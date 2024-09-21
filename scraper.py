@@ -1,5 +1,3 @@
-#scraper.py
-
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -8,6 +6,7 @@ import logging
 import os
 from urllib.parse import urlparse
 import argparse
+import html2text  # Import html2text
 
 # --- Configuration ---
 BASE_URL_PATH = 'urls/'
@@ -63,8 +62,10 @@ def extract_main_content(soup: BeautifulSoup) -> BeautifulSoup:
     return main_content
 
 def clean_main_content(content: BeautifulSoup) -> str:
-    """Extract and clean the text from the main content."""
-    return ' '.join([text for text in content.stripped_strings])
+    """Extract and clean the text from the main content and convert it to Markdown."""
+    html = str(content)
+    markdown_text = html2text.html2text(html)
+    return markdown_text
 
 def main(site_key):
     file_path = os.path.join(BASE_URL_PATH, f"{site_key}.json")
@@ -86,7 +87,7 @@ def main(site_key):
     
     all_text = all_text.strip()  # Ensure no leading/trailing whitespace
 
-    output_file = os.path.join(OUTPUT_DIR, f'{site_key}.txt')
+    output_file = os.path.join(OUTPUT_DIR, f'{site_key}.md')  # Save as Markdown file
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)  # Ensure output directory exists
     

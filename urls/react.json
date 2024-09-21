@@ -1,5 +1,5 @@
 {
-    "timestamp": "2024-09-20T15:36:13.958694",
+    "timestamp": "2024-09-21T15:02:02.914847",
     "domain": "https://react.dev",
     "crawl_metadata": {
         "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
@@ -8,6 +8,8 @@
             "community"
         ],
         "excluded_extensions": [
+            ".epub",
+            ".bz2",
             ".png",
             ".jpg",
             ".jpeg",
@@ -209,95 +211,95 @@
     "failed_urls": [
         {
             "url": "https://react.dev/TODO",
-            "error": "404, message='Not Found', url=URL('https://react.dev/TODO')"
+            "error": "404, message='Not Found', url='https://react.dev/TODO'"
         },
         {
             "url": "https://react.dev/docs/getting-started.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/docs/getting-started.html')"
+            "error": "404, message='Not Found', url='https://react.dev/docs/getting-started.html'"
         },
         {
             "url": "https://react.dev/tutorial/tutorial.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/tutorial/tutorial.html')"
+            "error": "404, message='Not Found', url='https://react.dev/tutorial/tutorial.html'"
         },
         {
             "url": "https://react.dev/languages",
-            "error": "404, message='Not Found', url=URL('https://react.dev/languages')"
+            "error": "404, message='Not Found', url='https://react.dev/languages'"
         },
         {
             "url": "https://react.dev/blog/2020/08/10/react-v17-rc.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/blog/2020/08/10/react-v17-rc.html')"
+            "error": "404, message='Not Found', url='https://react.dev/blog/2020/08/10/react-v17-rc.html'"
         },
         {
             "url": "https://react.dev/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022.html')"
+            "error": "404, message='Not Found', url='https://react.dev/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022.html'"
         },
         {
             "url": "https://react.dev/blog/2022/03/29/react-v18.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/blog/2022/03/29/react-v18.html')"
+            "error": "404, message='Not Found', url='https://react.dev/blog/2022/03/29/react-v18.html'"
         },
         {
             "url": "https://react.dev/blog/2022/03/08/react-18-upgrade-guide.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/blog/2022/03/08/react-18-upgrade-guide.html')"
+            "error": "404, message='Not Found', url='https://react.dev/blog/2022/03/08/react-18-upgrade-guide.html'"
         },
         {
             "url": "https://react.dev/blog/2021/12/17/react-conf-2021-recap.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/blog/2021/12/17/react-conf-2021-recap.html')"
+            "error": "404, message='Not Found', url='https://react.dev/blog/2021/12/17/react-conf-2021-recap.html'"
         },
         {
             "url": "https://react.dev/blog/2021/06/08/the-plan-for-react-18.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/blog/2021/06/08/the-plan-for-react-18.html')"
+            "error": "404, message='Not Found', url='https://react.dev/blog/2021/06/08/the-plan-for-react-18.html'"
         },
         {
             "url": "https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components.html')"
+            "error": "404, message='Not Found', url='https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components.html'"
         },
         {
             "url": "https://react.dev/blog/2020/10/20/react-v17.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/blog/2020/10/20/react-v17.html')"
+            "error": "404, message='Not Found', url='https://react.dev/blog/2020/10/20/react-v17.html'"
         },
         {
             "url": "https://react.dev/blog/2020/09/22/introducing-the-new-jsx-transform.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/blog/2020/09/22/introducing-the-new-jsx-transform.html')"
+            "error": "404, message='Not Found', url='https://react.dev/blog/2020/09/22/introducing-the-new-jsx-transform.html'"
         },
         {
             "url": "https://react.dev/blog/2020/02/26/react-v16.13.0.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/blog/2020/02/26/react-v16.13.0.html')"
+            "error": "404, message='Not Found', url='https://react.dev/blog/2020/02/26/react-v16.13.0.html'"
         },
         {
             "url": "https://react.dev/blog/all.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/blog/all.html')"
+            "error": "404, message='Not Found', url='https://react.dev/blog/all.html'"
         },
         {
             "url": "https://react.dev/docs/hello-world.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/docs/hello-world.html')"
+            "error": "404, message='Not Found', url='https://react.dev/docs/hello-world.html'"
         },
         {
             "url": "https://react.dev/docs/accessibility.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/docs/accessibility.html')"
+            "error": "404, message='Not Found', url='https://react.dev/docs/accessibility.html'"
         },
         {
             "url": "https://react.dev/docs/react-api.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/docs/react-api.html')"
+            "error": "404, message='Not Found', url='https://react.dev/docs/react-api.html'"
         },
         {
             "url": "https://react.dev/docs/hooks-intro.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/docs/hooks-intro.html')"
+            "error": "404, message='Not Found', url='https://react.dev/docs/hooks-intro.html'"
         },
         {
             "url": "https://react.dev/docs/testing.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/docs/testing.html')"
+            "error": "404, message='Not Found', url='https://react.dev/docs/testing.html'"
         },
         {
             "url": "https://react.dev/docs/how-to-contribute.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/docs/how-to-contribute.html')"
+            "error": "404, message='Not Found', url='https://react.dev/docs/how-to-contribute.html'"
         },
         {
             "url": "https://react.dev/docs/faq-ajax.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/docs/faq-ajax.html')"
+            "error": "404, message='Not Found', url='https://react.dev/docs/faq-ajax.html'"
         },
         {
             "url": "https://react.dev/acknowledgements.html",
-            "error": "404, message='Not Found', url=URL('https://react.dev/acknowledgements.html')"
+            "error": "404, message='Not Found', url='https://react.dev/acknowledgements.html'"
         }
     ]
 }

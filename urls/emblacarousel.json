@@ -1,0 +1,63 @@
+{
+    "timestamp": "2024-09-21T15:02:17.854914",
+    "domain": "https://www.embla-carousel.com",
+    "crawl_metadata": {
+        "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
+        "max_concurrency": 10,
+        "excluded_patterns": [],
+        "excluded_extensions": [
+            ".epub",
+            ".bz2",
+            ".png",
+            ".jpg",
+            ".jpeg",
+            ".gif",
+            ".svg",
+            ".webp",
+            ".bmp",
+            ".tiff",
+            ".ico",
+            ".zip"
+        ]
+    },
+    "total_urls": 31,
+    "urls": [
+        "https://www.embla-carousel.com",
+        "https://www.embla-carousel.com/",
+        "https://www.embla-carousel.com/api/",
+        "https://www.embla-carousel.com/api/events/",
+        "https://www.embla-carousel.com/api/methods/",
+        "https://www.embla-carousel.com/api/options/",
+        "https://www.embla-carousel.com/api/options/api/options/",
+        "https://www.embla-carousel.com/api/plugins/",
+        "https://www.embla-carousel.com/examples/",
+        "https://www.embla-carousel.com/examples/generator/",
+        "https://www.embla-carousel.com/examples/predefined/",
+        "https://www.embla-carousel.com/get-started/",
+        "https://www.embla-carousel.com/get-started/cdn/",
+        "https://www.embla-carousel.com/get-started/module/",
+        "https://www.embla-carousel.com/get-started/react/",
+        "https://www.embla-carousel.com/get-started/solid/",
+        "https://www.embla-carousel.com/get-started/svelte/",
+        "https://www.embla-carousel.com/get-started/vue/",
+        "https://www.embla-carousel.com/guides/",
+        "https://www.embla-carousel.com/guides/breakpoints/",
+        "https://www.embla-carousel.com/guides/previous-and-next-buttons/",
+        "https://www.embla-carousel.com/guides/slide-container/",
+        "https://www.embla-carousel.com/guides/slide-gaps/",
+        "https://www.embla-carousel.com/guides/slide-sizes/",
+        "https://www.embla-carousel.com/plugins/",
+        "https://www.embla-carousel.com/plugins/auto-height/",
+        "https://www.embla-carousel.com/plugins/auto-scroll/",
+        "https://www.embla-carousel.com/plugins/autoplay/",
+        "https://www.embla-carousel.com/plugins/class-names/",
+        "https://www.embla-carousel.com/plugins/fade/",
+        "https://www.embla-carousel.com/plugins/wheel-gestures/"
+    ],
+    "failed_urls": [
+        {
+            "url": "https://www.embla-carousel.com/api/options/api/options/",
+            "error": "404, message='Not Found', url='https://www.embla-carousel.com/api/options/api/options/'"
+        }
+    ]
+}

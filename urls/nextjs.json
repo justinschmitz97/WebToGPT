@@ -1,5 +1,5 @@
 {
-    "timestamp": "2024-09-20T15:37:20.581846",
+    "timestamp": "2024-09-21T14:53:03.012536",
     "domain": "https://nextjs.org/docs",
     "crawl_metadata": {
         "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
@@ -9,6 +9,8 @@
             "community"
         ],
         "excluded_extensions": [
+            ".epub",
+            ".bz2",
             ".png",
             ".jpg",
             ".jpeg",
@@ -246,7 +248,7 @@
     "failed_urls": [
         {
             "url": "https://nextjs.org/docs/architecture/docs/architecture/nextjs-compiler",
-            "error": "404, message='Not Found', url=URL('https://nextjs.org/docs/architecture/docs/architecture/nextjs-compiler')"
+            "error": "404, message='Not Found', url='https://nextjs.org/docs/architecture/docs/architecture/nextjs-compiler'"
         }
     ]
 }

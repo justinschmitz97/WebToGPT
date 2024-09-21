@@ -1,11 +1,13 @@
 {
-    "timestamp": "2024-09-20T15:37:05.484144",
+    "timestamp": "2024-09-21T15:01:32.658852",
     "domain": "https://www.typescriptlang.org",
     "crawl_metadata": {
         "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
         "max_concurrency": 10,
         "excluded_patterns": [],
         "excluded_extensions": [
+            ".epub",
+            ".bz2",
             ".png",
             ".jpg",
             ".jpeg",
@@ -175,15 +177,15 @@
     "failed_urls": [
         {
             "url": "https://www.typescriptlang.org/dev/compiler",
-            "error": "404, message='Not Found', url=URL('https://www.typescriptlang.org/dev/compiler')"
+            "error": "404, message='Not Found', url='https://www.typescriptlang.org/dev/compiler'"
         },
         {
             "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-0.html",
-            "error": "404, message='Not Found', url=URL('https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-0.html')"
+            "error": "404, message='Not Found', url='https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-0.html'"
         },
         {
             "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1.6.html",
-            "error": "404, message='Not Found', url=URL('https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1.6.html')"
+            "error": "404, message='Not Found', url='https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1.6.html'"
         }
     ]
 }
