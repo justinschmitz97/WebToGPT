@@ -7,7 +7,7 @@ from urllib.parse import urlparse, urljoin
 import logging
 import async_timeout
 import json
-from datetime import datetime
+from datetime import datetime, timezone  # Import timezone from datetime
 import os
 import argparse
 
@@ -101,7 +101,7 @@ class AsyncURLCrawler:
         
         unique_urls = sorted(set(self.visited_urls))
         output_data = {
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "domain": self.base_url,
             "crawl_metadata": {
                 "user_agent": self.user_agent,

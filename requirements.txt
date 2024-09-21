@@ -3,3 +3,4 @@ beautifulsoup4
 async-timeout
 requests
 html2text
+tqdm

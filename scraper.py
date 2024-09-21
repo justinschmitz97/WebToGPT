@@ -7,7 +7,8 @@ import os
 from urllib.parse import urlparse
 import argparse
 import html2text
-import re  # Import regex module
+import re
+from tqdm import tqdm
 
 # --- Configuration ---
 BASE_URL_PATH = 'urls/'
@@ -16,8 +17,23 @@ RETRIES = 3  # Number of retries for network requests
 LOG_LEVEL = logging.INFO
 # ----------------------
 
+# Custom logging handler that integrates with tqdm
+class TqdmLoggingHandler(logging.Handler):
+    def __init__(self, level=logging.NOTSET):
+        super().__init__(level)
+
+    def emit(self, record):
+        try:
+            msg = self.format(record)
+            tqdm.write(msg)
+            self.flush()
+        except Exception:
+            self.handleError(record)
+
 # Initialize Logger
-logging.basicConfig(level=LOG_LEVEL)
+logging.basicConfig(level=LOG_LEVEL,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    handlers=[TqdmLoggingHandler()])
 logger = logging.getLogger(__name__)
 
 def load_metadata_from_file(file_path: str) -> dict:
@@ -78,15 +94,16 @@ def main(site_key):
     urls = data.get('urls', [])
     timestamp = data.get('timestamp', '')
     domain = data.get('domain', 'unknown')
-    
+
     if not urls:
         logger.error(f"No URLs found in {file_path}")
         return
     
     all_text = f"Domain: {domain}\nTimestamp: {timestamp}\n\n"
-    
-    for url in urls:
-        logger.info(f"Processing {url}")
+
+    # Use tqdm to create a single progress bar for the URLs to be processed
+    progress_bar = tqdm(urls, desc=f"Processing {site_key} URLs", unit="url")
+    for url in progress_bar:
         text = fetch_and_parse(url)
         all_text += text + "\n"  # Separate text from different pages with a newline
     
