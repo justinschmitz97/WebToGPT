@@ -1,5 +1,5 @@
 {
-    "timestamp": "2024-09-21T23:14:51.888272+00:00",
+    "timestamp": "2024-09-21T23:31:05.782125+00:00",
     "domain": "https://www.typescriptlang.org",
     "crawl_metadata": {
         "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
@@ -8,6 +8,8 @@
             "/release-notes/"
         ],
         "excluded_extensions": [
+            ".md",
+            ".xml",
             ".epub",
             ".bz2",
             ".png",
@@ -22,10 +24,9 @@
             ".zip"
         ]
     },
-    "total_urls": 97,
+    "total_urls": 96,
     "urls": [
         "https://www.typescriptlang.org",
-        "https://www.typescriptlang.org/3ed761a6c3f38d73aadf745e7454f74d/global-modifying-module.d.ts.md",
         "https://www.typescriptlang.org/branding",
         "https://www.typescriptlang.org/cheatsheets",
         "https://www.typescriptlang.org/community",
@@ -123,22 +124,6 @@
         "https://www.typescriptlang.org/why-create-typescript"
     ],
     "failed_urls": [
-        {
-            "url": "https://www.typescriptlang.org/dev/compiler",
-            "error": "404, message='Not Found', url='https://www.typescriptlang.org/dev/compiler'"
-        },
-        {
-            "url": "https://www.typescriptlang.org/dev/compiler",
-            "error": "404, message='Not Found', url='https://www.typescriptlang.org/dev/compiler'"
-        },
-        {
-            "url": "https://www.typescriptlang.org/dev/compiler",
-            "error": "404, message='Not Found', url='https://www.typescriptlang.org/dev/compiler'"
-        },
-        {
-            "url": "https://www.typescriptlang.org/dev/compiler",
-            "error": "404, message='Not Found', url='https://www.typescriptlang.org/dev/compiler'"
-        },
         {
             "url": "https://www.typescriptlang.org/dev/compiler",
             "error": "404, message='Not Found', url='https://www.typescriptlang.org/dev/compiler'"

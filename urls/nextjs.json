@@ -1,5 +1,5 @@
 {
-    "timestamp": "2024-09-21T23:15:00.285681+00:00",
+    "timestamp": "2024-09-21T23:31:15.167194+00:00",
     "domain": "https://nextjs.org/docs",
     "crawl_metadata": {
         "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
@@ -9,6 +9,8 @@
             "community"
         ],
         "excluded_extensions": [
+            ".md",
+            ".xml",
             ".epub",
             ".bz2",
             ".png",

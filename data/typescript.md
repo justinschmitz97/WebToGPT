@@ -1,5 +1,5 @@
 Domain: https://www.typescriptlang.org
-Timestamp: 2024-09-21T23:07:57.196340+00:00
+Timestamp: 2024-09-21T23:31:05.782125+00:00
 
 # TypeScript is **JavaScript with syntax for types.**
 TypeScript is a strongly typed programming language that builds on JavaScript,
@@ -162,7 +162,6 @@ year-on-year growth.
 [HandbookLearn the language](/docs/handbook/intro.html)
 [PlaygroundTry in your browser](/play)
 [DownloadInstall TypeScript](/download/)
-
 # Branding
 ## Logos and design assets for TypeScript
 [Click to download

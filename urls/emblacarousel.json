@@ -1,11 +1,13 @@
 {
-    "timestamp": "2024-09-21T23:14:45.653818+00:00",
+    "timestamp": "2024-09-21T23:31:06.177728+00:00",
     "domain": "https://www.embla-carousel.com",
     "crawl_metadata": {
         "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
         "max_concurrency": 10,
         "excluded_patterns": [],
         "excluded_extensions": [
+            ".md",
+            ".xml",
             ".epub",
             ".bz2",
             ".png",

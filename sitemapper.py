@@ -17,13 +17,14 @@ class AsyncURLCrawler:
         self.base_url = self.normalize_url(base_url.rstrip('/'))
         self.base_parsed_url = urlparse(self.base_url)
         self.visited_urls = set()
-        self.failed_urls = []
+        self.failed_urls = []  # List to hold the failed URLs
+        self.failed_urls_set = set()  # Additional set to avoid duplicates
         self.urls_to_visit = asyncio.Queue()
         self.urls_to_visit.put_nowait(self.base_url)
         self.session = None
         self.user_agent = "Mozilla/5.0 (compatible; MyCrawler/1.0)"
-        self.excluded_patterns = config.get("excluded_patterns", [])
-        self.excluded_extensions = config.get("excluded_extensions", [".xml",".epub", ".bz2", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".bmp", ".tiff", ".ico", ".zip"])
+        self.excluded_patterns = config.get("excluded_patterns",)
+        self.excluded_extensions = config.get("excluded_extensions", [".md",".xml",".epub", ".bz2", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".bmp", ".tiff", ".ico", ".zip"])
         self.max_concurrency = config.get("max_concurrency", 10)
         self.failed_count = 0
         logging.basicConfig(level=logging.INFO)
@@ -46,8 +47,10 @@ class AsyncURLCrawler:
                     return html
             except aiohttp.ClientError as e:
                 self.failed_count += 1
-                logging.error(f"Request failed: {url}, error: {e}")
-                self.failed_urls.append({"url": url, "error": str(e)})
+                # Check if URL is already in the failed_urls_set before adding
+                if url not in self.failed_urls_set:
+                    self.failed_urls.append({"url": url, "error": str(e)})
+                    self.failed_urls_set.add(url)
                 return None
 
     def qualifies_url(self, url):

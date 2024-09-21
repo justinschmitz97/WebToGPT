@@ -1,11 +1,13 @@
 {
-    "timestamp": "2024-09-21T23:14:57.656199+00:00",
+    "timestamp": "2024-09-21T23:31:15.433195+00:00",
     "domain": "https://tailwindcss.com/docs",
     "crawl_metadata": {
         "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
         "max_concurrency": 10,
         "excluded_patterns": [],
         "excluded_extensions": [
+            ".md",
+            ".xml",
             ".epub",
             ".bz2",
             ".png",
