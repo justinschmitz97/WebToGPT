@@ -1,0 +1,429 @@
+config.json
+
+""""
+{
+  "default": {
+    "base_url": "",
+    "excluded_patterns": [],
+    "max_concurrency": 10
+  },
+  "react": {
+    "base_url": "https://react.dev",
+    "excluded_patterns": ["community"]
+  },
+  "nextjs": {
+    "base_url": "https://nextjs.org/docs",
+    "excluded_patterns": ["pages", "community"]
+  },
+  "tailwind": {
+    "base_url": "https://tailwindcss.com/docs/",
+    "excluded_patterns": []
+  },
+  "typescript": {
+    "base_url": "https://www.typescriptlang.org/",
+    "excluded_patterns": []
+  },
+  "swr": {
+    "base_url": "https://swr.vercel.app/",
+    "excluded_patterns": ["/ru", "/ja", "/ko", "/es-ES", "/zh-CN"]
+  },
+  "emblacarousel": {
+    "base_url": "https://www.embla-carousel.com/",
+    "excluded_patterns": []
+  },
+  "python": {
+    "base_url": "https://docs.python.org/3/",
+    "excluded_patterns": [
+      "/3/",
+      "3.0/",
+      "3.1/",
+      "3.2/",
+      "3.3/",
+      "3.4/",
+      "3.5/",
+      "3.6/",
+      "3.7/",
+      "3.8/",
+      "3.9/",
+      "3.10/",
+      "3.11/",
+      "3.13/",
+      "3.14/"
+    ]
+  }
+}
+
+""""
+
+README.md
+
+""""
+# WebToGPT
+
+WebToGPT is a two-stage web crawler and scraper tool designed for parsing and extracting main content from web documentation sites.
+The content is saved as a text file to use as custom knowledge files for enhancing Language Model capabilities.
+
+It consists of two main scripts: `sitemapper.py` for crawling URLs and `scraper.py` for extracting and cleaning content.
+
+The entire process can be executed sequentially using `run.py`.
+
+## Features
+
+- Supports excluding specific URL patterns and file extensions
+- Fetches and parses HTML content
+- Extracts main content from pages
+- Configurable via `config.json`
+- Sequential execution with `run.py`
+
+## Installation
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/justinschmitz97/WebToGPT.git
+cd WebToGPT
+pip install -r requirements.txt
+```
+
+## Configuration
+
+Modify the `config.json` file to add or update site configurations:
+
+```json
+{
+  "default": {
+    "base_url": "",
+    "excluded_patterns": [],
+    "max_concurrency": 10
+  },
+  "react": {
+    "base_url": "https://react.dev",
+    "excluded_patterns": ["community"]
+  }
+  // Add your additional site configurations here
+}
+```
+
+## Usage
+
+Run the entire process for a specific site key:
+
+```bash
+python run.py <site_key>
+```
+
+Run the sitemapper or scraper individually:
+
+```bash
+python sitemapper.py <site_key>
+python scraper.py <site_key>
+```
+
+## License
+
+This project is licensed under the Apache 2.0 License.
+
+## Contribution
+
+Feel free to open issues or submit pull requests to improve this project.
+
+Special thanks to the developers and documenters of the libraries and tools used in this project.
+
+---
+
+Happy crawling and scraping!
+
+""""
+
+requirements.txt
+
+""""
+aiohttp
+beautifulsoup4
+async-timeout
+requests
+""""
+
+run.py
+
+""""
+# run.py
+
+import argparse
+import subprocess
+
+def main():
+    parser = argparse.ArgumentParser(description='Run both sitemapper and scraper scripts in sequence.')
+    parser.add_argument('site_key', help='The site key to use from the config.')
+
+    args = parser.parse_args()
+    site_key = args.site_key
+
+    # Run the site mapper script
+    subprocess.run(['python', 'sitemapper.py', site_key], check=True)
+    
+    # Run the scraper script
+    subprocess.run(['python', 'scraper.py', site_key], check=True)
+
+if __name__ == '__main__':
+    main()
+""""
+
+scraper.py
+
+""""
+#scraper.py
+
+import requests
+from bs4 import BeautifulSoup
+import json
+from datetime import datetime
+import logging
+import os
+from urllib.parse import urlparse
+import argparse
+
+# --- Configuration ---
+BASE_URL_PATH = 'urls/'
+OUTPUT_DIR = 'data/'
+RETRIES = 3  # Number of retries for network requests
+LOG_LEVEL = logging.INFO
+# ----------------------
+
+# Initialize Logger
+logging.basicConfig(level=LOG_LEVEL)
+logger = logging.getLogger(__name__)
+
+def load_metadata_from_file(file_path: str) -> dict:
+    """Load metadata and URLs from a JSON file."""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+            if isinstance(data, dict) and 'urls' in data:
+                return data
+            logger.error(f"Unexpected JSON structure in {file_path}")
+            return {}
+    except (json.JSONDecodeError, FileNotFoundError) as e:
+        logger.error(f"Error reading {file_path}: {e}")
+        return {}
+
+def fetch_and_parse(url: str) -> str:
+    """Fetch and parse the URL's HTML content."""
+    for attempt in range(RETRIES):
+        try:
+            logger.debug(f"Fetching URL: {url}")
+            response = requests.get(url)
+            response.raise_for_status()  # Raise an HTTPError for bad requests
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            main_content = extract_main_content(soup)
+            if main_content:
+                cleaned_text = clean_main_content(main_content)
+                return cleaned_text
+            logger.warning(f"No main content found in {url}")
+            return ""
+        
+        except requests.RequestException as e:
+            logger.warning(f"Error fetching {url} (attempt {attempt + 1}): {e}")
+            if attempt + 1 == RETRIES:
+                return ""
+
+def extract_main_content(soup: BeautifulSoup) -> BeautifulSoup:
+    """Extract main content from the BeautifulSoup object."""
+    main_content = soup.find('main') or soup.find('article') or soup.body
+    if main_content:
+        for tag in main_content.find_all(['header', 'footer', 'aside', 'nav']):
+            tag.decompose()
+    return main_content
+
+def clean_main_content(content: BeautifulSoup) -> str:
+    """Extract and clean the text from the main content."""
+    return ' '.join([text for text in content.stripped_strings])
+
+def main(site_key):
+    file_path = os.path.join(BASE_URL_PATH, f"{site_key}.json")
+    data = load_metadata_from_file(file_path)
+    urls = data.get('urls', [])
+    timestamp = data.get('timestamp', '')
+    domain = data.get('domain', 'unknown')
+    
+    if not urls:
+        logger.error(f"No URLs found in {file_path}")
+        return
+    
+    all_text = f"Domain: {domain}\nTimestamp: {timestamp}\n\n"
+    
+    for url in urls:
+        logger.info(f"Processing {url}")
+        text = fetch_and_parse(url)
+        all_text += text + " "  # Separate text from different pages with a space
+    
+    all_text = all_text.strip()  # Ensure no leading/trailing whitespace
+
+    output_file = os.path.join(OUTPUT_DIR, f'{site_key}.txt')
+
+    os.makedirs(OUTPUT_DIR, exist_ok=True)  # Ensure output directory exists
+    
+    with open(output_file, 'w', encoding='utf-8') as file:
+        file.write(all_text)
+    
+    logger.info(f"All text has been written to {output_file}")
+
+if __name__ == "__main__":
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument("site_key", help="The site key to use from the config.")
+    args = parser.parse_args()
+
+    main(args.site_key)
+""""
+
+sitemapper.py
+
+""""
+# sitemapper.py
+
+import asyncio
+import aiohttp
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse, urljoin
+import logging
+import async_timeout
+import json
+from datetime import datetime
+import os
+import argparse
+
+class AsyncURLCrawler:
+    def __init__(self, base_url, config):
+        self.base_url = self.convert_to_https(base_url.rstrip('/'))
+        self.base_parsed_url = urlparse(self.base_url)
+        self.visited_urls = set()
+        self.failed_urls = []
+        self.urls_to_visit = asyncio.Queue()
+        self.urls_to_visit.put_nowait(self.base_url)
+        self.session = None
+        self.user_agent = "Mozilla/5.0 (compatible; MyCrawler/1.0)"
+        self.excluded_patterns = config.get("excluded_patterns", [])
+        self.excluded_extensions = config.get("excluded_extensions", [".epub", ".bz2", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".bmp", ".tiff", ".ico", ".zip"])
+        self.max_concurrency = config.get("max_concurrency", 10)
+        logging.basicConfig(level=logging.INFO)
+
+    def convert_to_https(self, url):
+        """ Convert HTTP URLs to HTTPS """
+        parsed_url = urlparse(url)
+        if parsed_url.scheme == 'http':
+            parsed_url = parsed_url._replace(scheme='https')
+        return parsed_url.geturl()
+
+    async def fetch_page(self, url):
+        async with async_timeout.timeout(10):
+            headers = {"User-Agent": self.user_agent}
+            try:
+                async with self.session.get(url, headers=headers) as response:
+                    response.raise_for_status()  # Checks for HTTP errors
+                    html = await response.text()
+                    return html
+            except aiohttp.ClientError as e:
+                logging.error(f"Request failed: {url}, error: {e}")
+                self.failed_urls.append({"url": url, "error": str(e)})
+                return None
+
+    def qualifies_url(self, url):
+        """ Check if the URL fits the base_url path and doesn't contain excluded patterns or extensions """
+        url = self.convert_to_https(url)
+        parsed_url = urlparse(url)
+        if parsed_url.netloc != self.base_parsed_url.netloc or not parsed_url.path.startswith(self.base_parsed_url.path):
+            return False
+
+        # Exclude URLs with unwanted patterns
+        for pattern in self.excluded_patterns:
+            if pattern in parsed_url.path:
+                return False
+
+        # Exclude URLs with unwanted extensions
+        for ext in self.excluded_extensions:
+            if parsed_url.path.lower().endswith(ext):
+                return False
+
+        return True
+
+    def parse_links(self, html, current_url):
+        soup = BeautifulSoup(html, 'html.parser')
+        for link in soup.find_all('a', href=True):
+            href = link['href']
+            # Remove URL fragments and resolve relative URLs
+            href = urljoin(current_url, href.split('#')[0].split('?')[0])
+            href = self.convert_to_https(href)
+            if self.qualifies_url(href) and href not in self.visited_urls:
+                self.urls_to_visit.put_nowait(href)
+
+    async def crawl_single_url(self):
+        while not self.urls_to_visit.empty():
+            url = await self.urls_to_visit.get()
+            if url in self.visited_urls:
+                self.urls_to_visit.task_done()
+                continue
+            logging.info(f"Crawling: {url}")
+            self.visited_urls.add(url)
+            html = await self.fetch_page(url)
+            if html:
+                self.parse_links(html, url)
+            self.urls_to_visit.task_done()
+
+    async def crawl(self):
+        async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as self.session:
+            tasks = [asyncio.create_task(self.crawl_single_url()) for _ in range(self.max_concurrency)]
+            await self.urls_to_visit.join()  # Ensure all tasks are done
+            for task in tasks:
+                task.cancel()  # Cancel any remaining tasks
+
+    def save_to_file_json(self, site_key):
+        file_path = f"urls/{site_key}.json"
+        
+        unique_urls = sorted(set(self.visited_urls))
+        output_data = {
+            "timestamp": datetime.utcnow().isoformat(),
+            "domain": self.base_url,
+            "crawl_metadata": {
+                "user_agent": self.user_agent,
+                "max_concurrency": self.max_concurrency,
+                "excluded_patterns": self.excluded_patterns,
+                "excluded_extensions": self.excluded_extensions,
+            },
+            "total_urls": len(unique_urls),
+            "urls": unique_urls,
+            "failed_urls": self.failed_urls
+        }
+
+        os.makedirs("urls", exist_ok=True)  # Ensure the directory exists before saving
+
+        with open(file_path, 'w') as file:
+            json.dump(output_data, file, indent=4)
+
+async def main(site_key):
+    # Load configuration
+    with open('config.json', 'r') as config_file:
+        config = json.load(config_file)
+
+    site_config = config.get(site_key, config["default"])
+    BASE_URL = site_config.get("base_url", "")
+
+    if not BASE_URL:
+        logging.error(f"No base URL found for site key: {site_key}")
+        return
+
+    crawler = AsyncURLCrawler(BASE_URL, site_config)
+    await crawler.crawl()
+    crawler.save_to_file_json(site_key)
+    logging.info(f"Crawling completed, {len(crawler.visited_urls)} URLs found.")
+
+if __name__ == "__main__":
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument("site_key", help="The site key to use from the config.")
+    args = parser.parse_args()
+
+    asyncio.run(main(args.site_key))
+""""
+

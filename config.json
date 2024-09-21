@@ -1,0 +1,51 @@
+{
+  "default": {
+    "base_url": "",
+    "excluded_patterns": [],
+    "max_concurrency": 10
+  },
+  "react": {
+    "base_url": "https://react.dev",
+    "excluded_patterns": ["community"]
+  },
+  "nextjs": {
+    "base_url": "https://nextjs.org/docs",
+    "excluded_patterns": ["pages", "community"]
+  },
+  "tailwind": {
+    "base_url": "https://tailwindcss.com/docs/",
+    "excluded_patterns": []
+  },
+  "typescript": {
+    "base_url": "https://www.typescriptlang.org/",
+    "excluded_patterns": []
+  },
+  "swr": {
+    "base_url": "https://swr.vercel.app/",
+    "excluded_patterns": ["/ru", "/ja", "/ko", "/es-ES", "/zh-CN"]
+  },
+  "emblacarousel": {
+    "base_url": "https://www.embla-carousel.com/",
+    "excluded_patterns": []
+  },
+  "python": {
+    "base_url": "https://docs.python.org/3/",
+    "excluded_patterns": [
+      "/3/",
+      "3.0/",
+      "3.1/",
+      "3.2/",
+      "3.3/",
+      "3.4/",
+      "3.5/",
+      "3.6/",
+      "3.7/",
+      "3.8/",
+      "3.9/",
+      "3.10/",
+      "3.11/",
+      "3.13/",
+      "3.14/"
+    ]
+  }
+}
