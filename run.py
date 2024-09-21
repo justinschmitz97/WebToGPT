@@ -1,56 +1,77 @@
+"""
+This script runs both the sitemapper and scraper scripts sequentially for multiple sites,
+either using site keys from a configuration file or a provided base URL.
+"""
+
 import argparse
 import concurrent.futures
 import subprocess
 import json
 from urllib.parse import urlparse
 
+
 def run_site(site_key):
-    # Execute sitemapper and scraper with the given site key
-    subprocess.run(['python', 'sitemapper.py', '--site_key', site_key], check=True)
-    subprocess.run(['python', 'scraper.py', '--site_key', site_key], check=True)
+    """
+    Execute sitemapper and scraper with the given site key.
+
+    :param site_key: The site key to use from the config.
+    """
+    subprocess.run(["python", "sitemapper.py", "--site_key", site_key], check=True)
+    subprocess.run(["python", "scraper.py", "--site_key", site_key], check=True)
+
 
 def run_with_url(base_url):
-    # Ensure the provided URL includes a scheme
+    """
+    Ensure the provided URL includes a scheme and run sitemapper with the normalized base URL.
+
+    :param base_url: The base URL to run the scripts with.
+    """
     parsed_url = urlparse(base_url)
     if not parsed_url.scheme:
-        base_url = 'https://' + base_url
-    
-    # Run sitemapper with the normalized base URL
-    subprocess.run(['python', 'sitemapper.py', '--base_url', base_url], check=True)
-    
-    # Generate a site key by transforming the base URL
-    site_key = base_url.replace('https://', '').replace('http://', '').replace('/', '_')
-    
-    # Run scraper with the generated site key
-    subprocess.run(['python', 'scraper.py', '--site_key', site_key], check=True)
+        base_url = "https://" + base_url
+
+    subprocess.run(["python", "sitemapper.py", "--base_url", base_url], check=True)
+    site_key = base_url.replace("https://", "").replace("http://", "").replace("/", "_")
+    subprocess.run(["python", "scraper.py", "--site_key", site_key], check=True)
+
 
 def load_all_site_keys(config_file):
-    # Load all site keys from the JSON config file, excluding the "default" key
-    with open(config_file, 'r') as f:
+    """
+    Load all site keys from the JSON config file, excluding the "default" key.
+
+    :param config_file: Path to the JSON config file.
+    :return: A list of site keys.
+    """
+    with open(config_file, "r", encoding="utf-8") as f:
         config = json.load(f)
     return [key for key in config.keys() if key != "default"]
 
-def main():
-    # Set up argument parser for command-line options
-    parser = argparse.ArgumentParser(description='Run both sitemapper and scraper scripts in sequence for multiple sites.')
-    parser.add_argument('--config', help='The site key(s) to use from the config.', nargs='*')
-    parser.add_argument('--url', help='A base URL to run the scripts with.')
 
+def main():
+    """
+    Main function to parse command-line options and run the scripts accordingly.
+    """
+    parser = argparse.ArgumentParser(
+        description="Run both sitemapper and scraper scripts in sequence for multiple sites."
+    )
+    parser.add_argument(
+        "--config", help="The site key(s) to use from the config.", nargs="*"
+    )
+    parser.add_argument("--url", help="A base URL to run the scripts with.")
     args = parser.parse_args()
 
     if args.url:
-        run_with_url(args.url)  # Run with the provided URL
+        run_with_url(args.url)
     elif args.config:
-        # Run concurrently for each provided site key
         site_keys = args.config
         with concurrent.futures.ThreadPoolExecutor() as executor:
             executor.map(run_site, site_keys)
     else:
-        # Load all site keys from default config file and run concurrently
-        config_file = 'config.json'
+        config_file = "config.json"
         site_keys = load_all_site_keys(config_file)
         with concurrent.futures.ThreadPoolExecutor() as executor:
             executor.map(run_site, site_keys)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

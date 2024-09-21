@@ -1,5 +1,5 @@
 Domain: https://www.embla-carousel.com
-Timestamp: 2024-09-21T23:31:06.177728+00:00
+Timestamp: 2024-09-21T23:49:33.837574+00:00
 
 # EmblaCarousel
 ## A lightweight carousel library with fluid motion and great swipe precision

@@ -1,5 +1,5 @@
 Domain: https://tailwindcss.com/docs
-Timestamp: 2024-09-21T23:31:15.433195+00:00
+Timestamp: 2024-09-21T23:49:44.192835+00:00
 
 ## Installation
   * ## [Tailwind CLI](/docs/installation)
