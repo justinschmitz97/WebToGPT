@@ -6,7 +6,8 @@ import logging
 import os
 from urllib.parse import urlparse
 import argparse
-import html2text  # Import html2text
+import html2text
+import re  # Import regex module
 
 # --- Configuration ---
 BASE_URL_PATH = 'urls/'
@@ -65,7 +66,11 @@ def clean_main_content(content: BeautifulSoup) -> str:
     """Extract and clean the text from the main content and convert it to Markdown."""
     html = str(content)
     markdown_text = html2text.html2text(html)
-    return markdown_text
+    # Remove image tags using regex
+    markdown_text = re.sub(r'!\[[^\]]*\]\([^\)]+\)', '', markdown_text)
+    # Remove empty lines
+    non_empty_lines = [line for line in markdown_text.split('\n') if line.strip() != '']
+    return '\n'.join(non_empty_lines)
 
 def main(site_key):
     file_path = os.path.join(BASE_URL_PATH, f"{site_key}.json")
@@ -83,7 +88,7 @@ def main(site_key):
     for url in urls:
         logger.info(f"Processing {url}")
         text = fetch_and_parse(url)
-        all_text += text + " "  # Separate text from different pages with a space
+        all_text += text + "\n"  # Separate text from different pages with a newline
     
     all_text = all_text.strip()  # Ensure no leading/trailing whitespace
 

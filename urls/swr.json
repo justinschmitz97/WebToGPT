@@ -1,5 +1,5 @@
 {
-    "timestamp": "2024-09-21T14:54:47.448995",
+    "timestamp": "2024-09-21T20:35:37.516003",
     "domain": "https://swr.vercel.app",
     "crawl_metadata": {
         "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
@@ -26,10 +26,9 @@
             ".zip"
         ]
     },
-    "total_urls": 37,
+    "total_urls": 36,
     "urls": [
         "https://swr.vercel.app",
-        "https://swr.vercel.app/",
         "https://swr.vercel.app/blog",
         "https://swr.vercel.app/blog/swr-v1",
         "https://swr.vercel.app/blog/swr-v1.en-US",

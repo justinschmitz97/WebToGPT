@@ -1,3763 +1,2116 @@
 Domain: https://www.embla-carousel.com
-Timestamp: 2024-09-21T15:02:17.854914
-
-![An illustrated atom like body which is the logotype of Embla
-Carousel](/static/embla-logo-light-theme-blur-
-db7093b8d7d20cb8c2429e3f6e05156a.svg)![An illustrated atom like body which is
-the logotype of Embla Carousel](/static/embla-logo-dark-theme-blur-
-dd6671f5992e7089fd82e1f04db7370e.svg)
+Timestamp: 2024-09-21T20:35:42.102615
 
 # EmblaCarousel
-
 ## A lightweight carousel library with fluid motion and great swipe precision
-
   * [Examples](/examples/predefined/)
   * [Generator](/examples/generator/)
-
   * ### [Highly ExtensibleAn API designed with flexibility and extensibility in mind.Read more](/api/)
   * ### [Plugin SystemAdd functionality and customize your carousels as you go.Read more](/plugins/)
   * ### [Carousel generatorCreate your own customized carousel in no time.Read more](/examples/generator/)
-
- ![An illustrated atom like body which is the logotype of Embla
-Carousel](/static/embla-logo-light-theme-blur-
-db7093b8d7d20cb8c2429e3f6e05156a.svg)![An illustrated atom like body which is
-the logotype of Embla Carousel](/static/embla-logo-dark-theme-blur-
-dd6671f5992e7089fd82e1f04db7370e.svg)
-
-# EmblaCarousel
-
-## A lightweight carousel library with fluid motion and great swipe precision
-
-  * [Examples](/examples/predefined/)
-  * [Generator](/examples/generator/)
-
-  * ### [Highly ExtensibleAn API designed with flexibility and extensibility in mind.Read more](/api/)
-  * ### [Plugin SystemAdd functionality and customize your carousels as you go.Read more](/plugins/)
-  * ### [Carousel generatorCreate your own customized carousel in no time.Read more](/examples/generator/)
-
- # API
-
+# API
 A lightweight carousel shouldn't be limited to just its core features. That's
 why the Embla Carousel API is **designed** with **extensibility in mind** ,
 and it exposes a **rich API** that can **easily be extended** to cover most of
 the use cases for carousels.
-
 * * *
-
 ## [](/api/#explore-the-api)Explore the API
-
   * ### [OptionsDiscover how to customize Embla Carousel with its available options.Read more](/api/options/)
   * ### [MethodsExplore Embla Carousel methods useful for extending the carousel beyond its native functionality.Read more](/api/methods/)
   * ### [EventsLearn how to listen to Embla Carousel events and how to make use of them.Read more](/api/events/)
   * ### [PluginsLearn how to add plugins to Embla Carousel and extend it.Read more](/api/plugins/)
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/api/index.mdx)
 
- # Events
-
+# Events
 Embla Carousel exposes **events** that you can listen to in order to **react**
 to **changes** in the carousel.
-
 * * *
-
 ## [](/api/events/#usage)Usage
-
 You need an **initialized carousel** in order to **make use of events**.
 Events will only be fired during the lifecycle of a carousel and added event
 listeners will persist even when you hard reset the carousel with the
 [reInit](/api/methods/#reinit) method.
-
 ### [](/api/events/#adding-event-listeners)Adding event listeners
-
 After initializing a carousel, we're going to **subscribe** to the
 [slidesInView](/api/events/#slidesinview) **event** in the following example:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'
     const emblaNode = document.querySelector('.embla')const emblaApi = EmblaCarousel(emblaNode)
     function logSlidesInView(emblaApi) {  console.log(emblaApi.slidesInView())}
     emblaApi.on('slidesInView', logSlidesInView)
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { useCallback, useEffect } from 'react'import useEmblaCarousel from 'embla-carousel-react'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = useEmblaCarousel()
       const logSlidesInView = useCallback((emblaApi) => {    console.log(emblaApi.slidesInView())  }, [])
       useEffect(() => {    if (emblaApi) emblaApi.on('slidesInView', logSlidesInView)  }, [emblaApi, logSlidesInView])
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import { onMounted } from 'vue'  import emblaCarouselVue from 'embla-carousel-vue'
       const [emblaRef, emblaApi] = emblaCarouselVue()
       function logSlidesInView(emblaApi) {    console.log(emblaApi.slidesInView())  }
       onMounted(() => {    if (emblaApi.value) emblaApi.value.on('slidesInView', logSlidesInView)  })
       // ...</script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { onMount } from 'solid-js'import createEmblaCarousel from 'embla-carousel-solid'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = createEmblaCarousel()
       function logSlidesInView(emblaApi) {    console.log(emblaApi.slidesInView())  }
       onMount(() => {    const api = emblaApi()    if (api) api.on('slidesInView', logSlidesInView)  })
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'
       let emblaApi
       function logSlidesInView(emblaApi) {    console.log(emblaApi.slidesInView())  }
       function onInit(event) {    emblaApi = event.detail    emblaApi.on('slidesInView', logSlidesInView)  }</script>
     <div class="embla" use:emblaCarouselSvelte onemblaInit="{onInit}">...</div>
-
 **Note:** Starting with Svelte 5, the `on:` event handlers have been
 deprecated. However, `on:emblaInit` will remain for backward compatibility.
-
 ### [](/api/events/#removing-event-listeners)Removing event listeners
-
 In order to remove an event listener, you'll have to call the
 [off](/api/methods/#off) method and make sure to pass the **same callback
 reference** you passed to the [on](/api/methods/#off) method:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'
     const emblaNode = document.querySelector('.embla')const emblaApi = EmblaCarousel(emblaNode)
     function logSlidesInViewOnce(emblaApi) {  console.log(emblaApi.slidesInView())  emblaApi.off('slidesInView', logSlidesInViewOnce)}
     emblaApi.on('slidesInView', logSlidesInViewOnce)
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { useCallback, useEffect } from 'react'import useEmblaCarousel from 'embla-carousel-react'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = useEmblaCarousel()
       const logSlidesInViewOnce = useCallback((emblaApi) => {    console.log(emblaApi.slidesInView())    emblaApi.off('slidesInView', logSlidesInViewOnce)  }, [])
       useEffect(() => {    if (emblaApi) emblaApi.on('slidesInView', logSlidesInViewOnce)  }, [emblaApi, logSlidesInViewOnce])
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import { onMounted } from 'vue'  import emblaCarouselVue from 'embla-carousel-vue'
       const [emblaRef, emblaApi] = emblaCarouselVue()
       function logSlidesInViewOnce(emblaApi) {    console.log(emblaApi.slidesInView())    emblaApi.off('slidesInView', logSlidesInViewOnce)  }
       onMounted(() => {    if (emblaApi.value) emblaApi.value.on('slidesInView', logSlidesInViewOnce)  })
       // ...</script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { onMount } from 'solid-js'import createEmblaCarousel from 'embla-carousel-solid'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = createEmblaCarousel()
       function logSlidesInViewOnce(emblaApi) {    console.log(emblaApi.slidesInView())    emblaApi.off('slidesInView', logSlidesInViewOnce)  }
       onMount(() => {    const api = emblaApi()    if (api) api.on('slidesInView', logSlidesInViewOnce)  })
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'
       let emblaApi
       function logSlidesInViewOnce(emblaApi) {    console.log(emblaApi.slidesInView())    emblaApi.off('slidesInView', logSlidesInViewOnce)  }
       function onInit(event) {    emblaApi = event.detail    emblaApi.on('slidesInView', logSlidesInViewOnce)  }</script>
     <div class="embla" use:emblaCarouselSvelte onemblaInit="{onInit}">...</div>
-
 **Note:** Starting with Svelte 5, the `on:` event handlers have been
 deprecated. However, `on:emblaInit` will remain for backward compatibility.
-
 ### [](/api/events/#typescript)TypeScript
-
 The `EmblaEventType` is obtained directly from the **core package** `embla-
 carousel` and used like so:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel, {  EmblaCarouselType,  EmblaEventType} from 'embla-carousel'
     const emblaNode = document.querySelector('.embla')const emblaApi = EmblaCarousel(emblaNode)
     function logEmblaEvent(  emblaApi: EmblaCarouselType,  eventName: EmblaEventType): void {  console.log(`Embla just triggered ${eventName}!`)}
     emblaApi.on('slidesInView', logEmblaEvent)
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import React, { useCallback } from 'react'import { EmblaCarouselType, EmblaEventType } from 'embla-carousel'import useEmblaCarousel from 'embla-carousel-react'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = useEmblaCarousel()
       const logEmblaEvent = useCallback(    (emblaApi: EmblaCarouselType, eventName: EmblaEventType) => {      console.log(`Embla just triggered ${eventName}!`)    },    []  )
       useEffect(() => {    if (emblaApi) emblaApi.on('slidesInView', logEmblaEvent)  }, [emblaApi, logEmblaEvent])
       // ...}
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-react` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import { onMounted } from 'vue'  import { EmblaCarouselType, EmblaEventType } from 'embla-carousel'  import emblaCarouselVue from 'embla-carousel-vue'
       const [emblaRef] = emblaCarouselVue()
       function logEmblaEvent(    emblaApi: EmblaCarouselType,    eventName: EmblaEventType  ): void {    console.log(`Embla just triggered ${eventName}!`)  }
       onMounted(() => {    if (emblaApi.value) emblaApi.value.on('slidesInView', logEmblaEvent)  })
       // ...</script>
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-vue` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { onMount } from 'solid-js'import { EmblaCarouselType, EmblaEventType } from 'embla-carousel'import createEmblaCarousel from 'embla-carousel-solid'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = createEmblaCarousel()
       function logEmblaEvent(    emblaApi: EmblaCarouselType,    eventName: EmblaEventType  ): void {    console.log(`Embla just triggered ${eventName}!`)  }
       onMount(() => {    const api = emblaApi()    if (api) api.on('slidesInView', logEmblaEvent)  })
       // ...}
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-solid` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import { EmblaCarouselType, EmblaEventType } from 'embla-carousel'  import emblaCarouselSvelte from 'embla-carousel-svelte'
       let emblaApi: EmblaCarouselType
       function logEmblaEvent(    emblaApi: EmblaCarouselType,    eventName: EmblaEventType  ): void {    console.log(`Embla just triggered ${eventName}!`)  }
       function onInit(event: CustomEvent<EmblaCarouselType>): void {    emblaApi = event.detail    emblaApi.on('slidesInView', logEmblaEvent)  }</script>
     <div class="embla" use:emblaCarouselSvelte onemblaInit="{onInit}">...</div>
-
 **Note:** Starting with Svelte 5, the `on:` event handlers have been
 deprecated. However, `on:emblaInit` will remain for backward compatibility.
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-svelte` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 ## [](/api/events/#reference)Reference
-
 Below follows an exhaustive **list of all** Embla Carousel **events** together
 with information about how they work.
-
 * * *
-
 ### [](/api/events/#init)init
-
 Once: `yes`
-
 Runs when the carousel mounts for the first time. This only fires once which
 means that it won't fire when the carousel is re-initialized using the
 [reInit](/api/methods/#reinit) method.
-
 * * *
-
 ### [](/api/events/#reinit)reInit
-
 Once: `no`
-
 Runs when the [reInit](/api/methods/#reinit) method is called. When the window
 is resized, Embla Carousel automatically calls the
 [reInit](/api/methods/#reinit) method which will also fire this event.
-
 * * *
-
 ### [](/api/events/#destroy)destroy
-
 Once: `yes`
-
 Runs when the carousel has been destroyed using the
 [destroy](/api/methods/#destroy) method. This only fires once and will be the
 last event the carousel fires.
-
 * * *
-
 ### [](/api/events/#select)select
-
 Once: `no`
-
 Runs when the selected scroll snap changes. The select event is triggered by
 drag interactions or the [scrollNext](/api/methods/#scrollnext),
 [scrollPrev](/api/methods/#scrollPrev) or [scrollTo](/api/methods/#scrollto)
 methods.
-
 * * *
-
 ### [](/api/events/#scroll)scroll
-
 Once: `no`
-
 Runs when the carousel is scrolling. It might be a good idea to throttle this
 if you're doing expensive stuff in your callback function.
-
 * * *
-
 ### [](/api/events/#settle)settle
-
 Once: `no`
-
 Runs when the carousel has settled after scroll has been triggered. Please
 note that this can take longer than you think when
 [dragFree](/api/options/#dragfree) is enabled or when using slow
 [transitions](/api/options/#duration).
-
 * * *
-
 ### [](/api/events/#resize)resize
-
 Once: `no`
-
 Runs when the carousel container or the slide sizes change. It's using
 [ResizeObserver](https://developer.mozilla.org/en-
 US/docs/Web/API/ResizeObserver) under the hood.
-
 * * *
-
 ### [](/api/events/#slidesinview)slidesInView
-
 Once: `no`
-
 Runs when any slide has **entered** or **exited** the viewport. This event is
 intended to be used together with the
 [slidesInView](/api/methods/#slidesinview) and/or
 [slidesNotInView](/api/methods/#slidesnotinview) methods.
-
 * * *
-
 ### [](/api/events/#slideschanged)slidesChanged
-
 Once: `no`
-
 Runs when slides are added to, or removed from the carousel
 [container](/api/options/#container). It's using
 [MutationObserver](https://developer.mozilla.org/en-
 US/docs/Web/API/MutationObserver) under the hood.
-
 * * *
-
 ### [](/api/events/#slidefocus)slideFocus
-
 Once: `no`
-
 Runs when a slide receives focus. For example, when a focusable element like a
 button, link or input receives focus inside a slide.
-
 * * *
-
 ### [](/api/events/#pointerdown)pointerDown
-
 Once: `no`
-
 Runs when the user has a pointer down on the carousel. It's triggered by a
 `touchstart` or a `mousedown` event.
-
 * * *
-
 ### [](/api/events/#pointerup)pointerUp
-
 Once: `no`
-
 Runs when the user has released the pointer from the carousel. It's triggered
 by a `touchend` or a `mouseup` event.
-
 * * *
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/api/events.mdx)
-
- # Methods
-
+# Methods
 Embla Carousel exposes a set of **useful methods** which makes it very
 **extensible**.
-
 * * *
-
 ## [](/api/methods/#usage)Usage
-
 You need an **initialized carousel** in order to **make use of methods**. They
 can be accessed during the lifecycle of a carousel and won't do anything after
 a carousel instance has been destroyed with the
 [destroy](/api/methods/#destroy) method.
-
 ### [](/api/methods/#calling-methods)Calling methods
-
 In the following example, the [slideNodes](/api/methods/#slidenodes) method is
 called and logged to the console as soon as the carousel has been initialized:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'
     const emblaNode = document.querySelector('.embla')const emblaApi = EmblaCarousel(emblaNode)
     console.log(emblaApi.slideNodes())
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { useEffect } from 'react'import useEmblaCarousel from 'embla-carousel-react'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = useEmblaCarousel()
       useEffect(() => {    if (emblaApi) console.log(emblaApi.slideNodes())  }, [emblaApi])
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import { onMounted } from 'vue'  import emblaCarouselVue from 'embla-carousel-vue'
       const [emblaRef, emblaApi] = emblaCarouselVue()
       onMounted(() => {    if (emblaApi.value) console.log(emblaApi.value.slideNodes())  })
       // ...</script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { onMount } from 'solid-js'import createEmblaCarousel from 'embla-carousel-solid'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = createEmblaCarousel()
       onMount(() => {    const api = emblaApi()    if (api) console.log(api.slideNodes())  })
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'
       let emblaApi
       function onInit(event) {    emblaApi = event.detail    console.log(emblaApi.slideNodes())  }</script>
     <div class="embla" use:emblaCarouselSvelte onemblaInit="{onInit}">...</div>
-
 **Note:** Starting with Svelte 5, the `on:` event handlers have been
 deprecated. However, `on:emblaInit` will remain for backward compatibility.
-
 ### [](/api/methods/#typescript)TypeScript
-
 The `EmblaCarouselType` is obtained directly from the **core package** `embla-
 carousel` and used like so:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel, { EmblaCarouselType } from 'embla-carousel'
     const emblaNode = document.querySelector('.embla')const emblaApi = EmblaCarousel(emblaNode)
     function logSlidesInView(emblaApi: EmblaCarouselType): void {  console.log(emblaApi.slidesInView())}
     emblaApi.on('slidesInView', logSlidesInView)
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import React, { useCallback } from 'react'import { EmblaCarouselType } from 'embla-carousel'import useEmblaCarousel from 'embla-carousel-react'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = useEmblaCarousel()
       const logSlidesInView = useCallback((emblaApi: EmblaCarouselType) => {    console.log(emblaApi.slidesInView())  }, [])
       useEffect(() => {    if (emblaApi) emblaApi.on('slidesInView', logSlidesInView)  }, [emblaApi, logSlidesInView])
       // ...}
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-react` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup lang="ts">  import { onMounted } from 'vue'  import { EmblaCarouselType } from 'embla-carousel'  import emblaCarouselVue from 'embla-carousel-vue'
       const [emblaRef] = emblaCarouselVue()
       function logSlidesInView(emblaApi: EmblaCarouselType): void {    console.log(emblaApi.slidesInView())  }
       onMounted(() => {    if (emblaApi.value) emblaApi.value.on('slidesInView', logSlidesInView)  })
       // ...</script>
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-vue` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { onMount } from 'solid-js'import { EmblaCarouselType } from 'embla-carousel'import createEmblaCarousel from 'embla-carousel-solid'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = createEmblaCarousel()
       function logSlidesInView(emblaApi: EmblaCarouselType): void {    console.log(emblaApi.slidesInView())  }
       onMount(() => {    const api = emblaApi()    if (api) api.on('slidesInView', logSlidesInView)  })
       // ...}
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-solid` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import { EmblaCarouselType } from 'embla-carousel'  import emblaCarouselSvelte from 'embla-carousel-svelte'
       let emblaApi: EmblaCarouselType
       function logSlidesInView(emblaApi: EmblaCarouselType): void {    console.log(emblaApi.slidesInView())  }
       function onInit(event: CustomEvent<EmblaCarouselType>): void {    emblaApi = event.detail    emblaApi.on('slidesInView', logSlidesInView)  }</script>
     <div class="embla" use:emblaCarouselSvelte onemblaInit="{onInit}">...</div>
-
 **Note:** Starting with Svelte 5, the `on:` event handlers have been
 deprecated. However, `on:emblaInit` will remain for backward compatibility.
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-svelte` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 ## [](/api/methods/#reference)Reference
-
 Below follows an exhaustive **list of all** Embla Carousel **methods** with
 their respective parameters and return values.
-
 * * *
-
 ### [](/api/methods/#rootnode)rootNode
-
 Parameters: `none`  
 Returns: `HTMLElement`
-
 Get the root node that holds the scroll container with slides inside. This
 method can be useful when you need to manipulate the root element dynamically
 or similar.
-
 * * *
-
 ### [](/api/methods/#containernode)containerNode
-
 Parameters: `none`  
 Returns: `HTMLElement`
-
 Get the container node that holds the slides. This method can be useful when
 you need to manipulate the container element dynamically or similar.
-
 * * *
-
 ### [](/api/methods/#slidenodes)slideNodes
-
 Parameters: `none`  
 Returns: `HTMLElement[]`
-
 Get all the slide nodes inside the container. This method can be useful when
 you need to manipulate the slide elements dynamically or similar.
-
 * * *
-
 ### [](/api/methods/#scrollnext)scrollNext
-
 Parameters: `jump?: boolean`  
 Returns: `void`
-
 Scroll to the next snap point if possible. When [loop](/api/options/#loop) is
 disabled and the carousel has reached the last snap point, this method won't
 do anything. Set the **jump** parameter to `true` when you want to go to the
 next slide instantly.
-
 * * *
-
 ### [](/api/methods/#scrollprev)scrollPrev
-
 Parameters: `jump?: boolean`  
 Returns: `void`
-
 Scroll to the previous snap point if possible. When [loop](/api/options/#loop)
 is disabled and the carousel has reached the first snap point, this method
 won't do anything. Set the **jump** parameter to `true` when you want to go to
 the previous slide instantly.
-
 * * *
-
 ### [](/api/methods/#scrollto)scrollTo
-
 Parameters: `index: number`, `jump?: boolean`  
 Returns: `void`
-
 Scroll to a snap point by its unique index. If [loop](/api/options/#loop) is
 enabled, Embla Carousel will choose the closest way to the target snap point.
 Set the **jump** parameter to `true` when you want to go to the desired slide
 instantly.
-
 * * *
-
 ### [](/api/methods/#canscrollnext)canScrollNext
-
 Parameters: `none`  
 Returns: `boolean`
-
 Check the possiblity to scroll to a next snap point. If
 [loop](/api/options/#loop) is enabled and the container holds any slides, this
 will always return `true`.
-
 * * *
-
 ### [](/api/methods/#canscrollprev)canScrollPrev
-
 Parameters: `none`  
 Returns: `boolean`
-
 Check the possiblity to scroll to a previous snap point. If
 [loop](/api/options/#loop) is enabled and the container holds any slides, this
 will always return `true`.
-
 * * *
-
 ### [](/api/methods/#selectedscrollsnap)selectedScrollSnap
-
 Parameters: `none`  
 Returns: `number`
-
 Get the index of the selected snap point.
-
 * * *
-
 ### [](/api/methods/#previousscrollsnap)previousScrollSnap
-
 Parameters: `none`  
 Returns: `number`
-
 Get the index of the previously selected snap point.
-
 * * *
-
 ### [](/api/methods/#scrollsnaplist)scrollSnapList
-
 Parameters: `none`  
 Returns: `number[]`
-
 Get an array containing all the snap point positions. Each position represents
 how far the carousel needs to progress in order to reach this position.
-
 * * *
-
 ### [](/api/methods/#scrollprogress)scrollProgress
-
 Parameters: `none`  
 Returns: `number`
-
 Check how far the carousel has scrolled of its scrollable length from 0 - 1.
 For example, **0.5 equals 50%**. For example, this can be useful when creating
 a scroll progress bar.
-
 * * *
-
 ### [](/api/methods/#slidesinview)slidesInView
-
 Parameters: `none`  
 Returns: `number[]`
-
 Get slide indexes **visible** in the carousel viewport. Honors the
 [inViewThreshold](/api/options/#inviewthreshold) option.
-
 * * *
-
 ### [](/api/methods/#slidesnotinview)slidesNotInView
-
 Parameters: `none`  
 Returns: `number[]`
-
 Get slide indexes **not visible** in the carousel viewport. Honors the
 [inViewThreshold](/api/options/#inviewthreshold) option.
-
 * * *
-
 ### [](/api/methods/#internalengine)internalEngine
-
 Parameters: `none`  
 Returns: `EmblaEngineType`
-
 Exposes almost all internal functionality used by Embla. Useful when creating
 plugins or similar.
-
 **Note:** Please **refrain** from creating **bug reports** related to this
 method. If you're using this and running into problems, it's a 99.8% chance
 that you don't understand how this works. Use at your own risk.
-
 * * *
-
 ### [](/api/methods/#reinit)reInit
-
 Parameters: `options?: EmblaOptionsType`, `plugins?: EmblaPluginType[]`  
 Returns: `void`
-
 Hard reset the carousel after it has been initialized. This method allows for
 changing [options](/api/options/) and [plugins](/api/plugins/) after
 initializing a carousel.
-
 **Note:** Passed options will be **merged** with current options, but passed
 plugins will **replace** current plugins.
-
 * * *
-
 ### [](/api/methods/#plugins)plugins
-
 Parameters: `none`  
 Returns: `EmblaPluginsType`
-
 Returns an object with key value pairs where the keys are the plugin names,
 and the plugin API:s are the values.
-
 * * *
-
 ### [](/api/methods/#destroy)destroy
-
 Parameters: `none`  
 Returns: `void`
-
 Destroy the carousel instance permanently. This is a one way operation and is
 intended to be used as a cleanup measure when the carousel instance isn't
 needed anymore.
-
 * * *
-
 ### [](/api/methods/#on)on
-
 Parameters: `event: EmblaEventType`, `callback: (emblaApi: EmblaCarouselType,
 eventName: EmblaEventType) => void`  
 Returns: `void`
-
 **Subscribe** to an Embla specific [event](/api/events/) with a **callback**.
 Added event listeners will persist even if [reInit](/api/methods/#reinit) is
 called, either until the carousel is destroyed or the event is removed with
 the [off](/api/methods/#off) method.
-
 * * *
-
 ### [](/api/methods/#off)off
-
 Parameters: `event: EmblaEventType`, `callback: (emblaApi: EmblaCarouselType,
 eventName: EmblaEventType) => void`  
 Returns: `void`
-
 **Unsubscribe** from an Embla specific [event](/api/events/). Make sure to
 pass the **same callback reference** when the callback was added with the
 [on](/api/methods/#on) method.
-
 * * *
-
 ### [](/api/methods/#emit)emit
-
 Parameters: `event: EmblaEventType`  
 Returns: `void`
-
 Emits an embla [event](/api/events/). This doesn't trigger any internal Embla
 functionality.
-
 * * *
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/api/methods.mdx)
-
- # Options
-
+# Options
 Embla Carousel takes various **options** in order to customize how the
 carousel works.
-
 * * *
-
 ## [](/api/options/#usage)Usage
-
 You can provide **options** in **two different ways** : With the [constructor
 options](/api/options/#constructor-options) and/or [global
 options](/api/options/#global-options). If both are provided, they will be
 merged, and if any options are in conflict, the **constructor option** has
 precedence and will **override global options**.
-
 ### [](/api/options/#constructor-options)Constructor options
-
 The constructor options is the default way of providing options to Embla
 Carousel. In the following example, the carousel [loop](/api/options/#loop)
 option is set to `true`:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'
     const emblaNode = document.querySelector('.embla')const emblaApi = EmblaCarousel(emblaNode, { loop: true })
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import useEmblaCarousel from 'embla-carousel-react'
     export function EmblaCarousel() {  const [emblaRef] = useEmblaCarousel({ loop: true })
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import emblaCarouselVue from 'embla-carousel-vue'
       const [emblaRef] = emblaCarouselVue({ loop: true })
       // ...</script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import createEmblaCarousel from 'embla-carousel-solid'
     export function EmblaCarousel() {  const [emblaRef] = createEmblaCarousel(() => ({ loop: true }))
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'
       let options = { loop: true }</script>
     <div class="embla" use:emblaCarouselSvelte="{{ options }}">...</div>
-
 ### [](/api/options/#global-options)Global options
-
 Setting **global options** will be applied to **all carousels** which will
 override the Embla default options with your own. In the following example
 [loop](/api/options/#loop) is set to `true`:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'
     EmblaCarousel.globalOptions = { loop: true }
     const emblaNode = document.querySelector('.embla')const emblaApi = EmblaCarousel(emblaNode, { align: 'start' })
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import useEmblaCarousel from 'embla-carousel-react'
     useEmblaCarousel.globalOptions = { loop: true }
     export function EmblaCarousel() {  const [emblaRef] = useEmblaCarousel({ align: 'start' })
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import emblaCarouselVue from 'embla-carousel-vue'
       emblaCarouselVue.globalOptions = { loop: true }
       const [emblaRef] = emblaCarouselVue({ align: 'start' })
       // ...</script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import createEmblaCarousel from 'embla-carousel-solid'
     createEmblaCarousel.globalOptions = { loop: true }
     export function EmblaCarousel() {  const [emblaRef] = createEmblaCarousel(() => ({ align: 'start' }))
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'
       emblaCarouselSvelte.globalOptions = { loop: true }
       let options = { align: 'start' }</script>
     <div class="embla" use:emblaCarouselSvelte="{{ options }}">...</div>
-
 Make sure to assign global options **before** initializing any carousel and
 **only assign it once**. Re-assigning global options might lead to confusing
 code and unexpected behaviour.
-
 ### [](/api/options/#changing-options)Changing options
-
 It's possible to **change options** passed to the Embla Carousel constructor
 **after initialization** with the [reInit](/api/methods/#reinit) method.
-
 In [React](/get-started/react/), [Vue](/get-started/vue/), [Solid](/get-
 started/solid/) and [Svelte](/get-started/svelte/) wrappers you can pass
 **reactive options** and the carousel will automatically reinitialize when
 they change. Here are some examples:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'
     const emblaNode = document.querySelector('.embla')const emblaApi = EmblaCarousel(emblaNode, { loop: true })
     emblaApi.reInit({ loop: false })
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { useState, useCallback } from 'react'import useEmblaCarousel from 'embla-carousel-react'
     export function EmblaCarousel() {  const [options, setOptions] = useState({ loop: true })  const [emblaRef, emblaApi] = useEmblaCarousel(options)
       const toggleLoop = useCallback(() => {    setOptions((currentOptions) => ({      ...currentOptions,      loop: !currentOptions.loop    }))  }, [])
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import emblaCarouselVue from 'embla-carousel-vue'
       const options = ref({ loop: true })  const [emblaRef, emblaApi] = emblaCarouselVue(options)
       function toggleLoop() {    options.value = {      ...options.value,      loop: !options.value.loop    }  }
       // ...</script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { createSignal } from 'solid-js'import createEmblaCarousel from 'embla-carousel-solid'
     export function EmblaCarousel() {  const [options, setOptions] = createSignal({ loop: true })  const [emblaRef] = createEmblaCarousel(() => options())
       function toggleLoop() {    setOptions((currentOptions) => ({      ...currentOptions,      loop: !currentOptions.loop    }))  }
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'
       let options = { loop: true }
       function toggleLoop() {    options = {      ...options,      loop: !options.loop    }  }</script>
     <div class="embla" use:emblaCarouselSvelte="{{ options }}">...</div>
-
 ### [](/api/options/#typescript)TypeScript
-
 The `EmblaOptionsType` is obtained directly from the **core package** `embla-
 carousel` and used like so:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel, { EmblaOptionsType } from 'embla-carousel'
     const emblaNode = document.querySelector('.embla')const options: EmblaOptionsType = { loop: true }const emblaApi = EmblaCarousel(emblaNode, options)
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import React from 'react'import { EmblaOptionsType } from 'embla-carousel'import useEmblaCarousel from 'embla-carousel-react'
     type PropType = {  options?: EmblaOptionsType}
     export function EmblaCarousel(props: PropType) {  const [emblaRef, emblaApi] = useEmblaCarousel(props.options)
       // ...}
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-react` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup lang="ts">  import { EmblaOptionsType } from 'embla-carousel'  import emblaCarouselVue from 'embla-carousel-vue'
       const options: EmblaOptionsType = { loop: true }  const [emblaRef] = emblaCarouselVue(options)
       // ...</script>
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-vue` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { EmblaOptionsType } from 'embla-carousel'import createEmblaCarousel from 'embla-carousel-solid'
     type PropType = {  options?: EmblaOptionsType}
     export function EmblaCarousel(props) {  const [emblaRef] = createEmblaCarousel(props.options)
       // ...}
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-solid` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import { EmblaOptionsType } from 'embla-carousel'  import emblaCarouselSvelte from 'embla-carousel-svelte'
       let options: EmblaOptionsType = { loop: true }</script>
     <div class="embla" use:emblaCarouselSvelte="{{ options }}">...</div>
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-svelte` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 ## [](/api/options/#reference)Reference
-
 Below follows an exhaustive **list of all** Embla Carousel **options** and
 their default values.
-
 * * *
-
 ### [](/api/options/#active)active
-
 Type: `boolean`  
 Default: `true`
-
 Setting this to `false` will not activate or deactivate the carousel. Useful
 when used together with the [breakpoints](/api/options/#breakpoints) option to
 toggle the carousel active/inactive depending on media queries.
-
 * * *
-
 ### [](/api/options/#align)align
-
 Type: `string | (viewSize: number, snapSize: number, index: number) => number`  
 Default: `center`
-
 Align the slides relative to the carousel viewport. Use one of the predefined
 alignments `start`, `center` or `end`. Alternatively, provide your own
 callback to fully customize the alignment.
-
 * * *
-
 ### [](/api/options/#axis)axis
-
 Type: `string`  
 Default: `x`
-
 Choose scroll axis between `x` and `y`. Remember to stack your slides
 horizontally or vertically using CSS to match this option.
-
 * * *
-
 ### [](/api/options/#breakpoints)breakpoints
-
 Type: `EmblaOptionsType`  
 Default: `{}`
-
 An object with options that will be applied for a given breakpoint by
 overriding the options at the root level. Example: `'(min-width: 768px)': {
 loop: false }`.
-
 **Note:** If multiple queries match, they will be merged. And when breakpoint
 options clash, the last one in the list has precedence.
-
 * * *
-
 ### [](/api/options/#container)container
-
 Type: `string | HTMLElement | null`  
 Default: `null`
-
 Enables choosing a custom container element which holds the slides. By
 **default** , Embla will choose the **first direct child element** of the
 **root element**. Provide either a valid `CSS selector string` or a `HTML
 element`.
-
 * * *
-
 ### [](/api/options/#containscroll)containScroll
-
 Type: `false` | `string`  
 Default: `'trimSnaps'`
-
 Clear leading and trailing empty space that causes excessive scrolling. Use
 `trimSnaps` to only use snap points that trigger scrolling or `keepSnaps` to
 keep them.
-
 **Note:** When this is active, it will **override alignments** applied by the
 [align](/api/options/#align) option for enough slides at the **start** and the
 **end** of the carousel, in order to **cover** the **leading** and **trailing
 space**.
-
 * * *
-
 ### [](/api/options/#direction)direction
-
 Type: `string`  
 Default: `ltr`
-
 Choose content direction between `ltr` and `rtl`.
-
 **Note:** When using `rtl`, the content direction also has to be set to RTL,
 either by using the [HTML dir attribute](https://developer.mozilla.org/en-
 US/docs/Web/HTML/Global_attributes/dir) or the [CSS
 direction](https://developer.mozilla.org/en-US/docs/Web/CSS/direction)
 property.
-
 * * *
-
 ### [](/api/options/#dragfree)dragFree
-
 Type: `boolean`  
 Default: `false`
-
 Enables momentum scrolling. The duration of the continued scrolling is
 proportional to how vigorous the drag gesture is.
-
 * * *
-
 ### [](/api/options/#dragthreshold)dragThreshold
-
 Type: `number`  
 Default: `10`
-
 Drag threshold in pixels. This only affects **when** clicks are fired and not.
 In contrast to other carousel libraries, it will **not affect when dragging**
 of the carousel **starts**.
-
 **Note:** Browsers handle touch events differently than mouse events. Browsers
 won't fire the click event when a touch event includes an accidental slight
 swipe gesture. This is why this threshold only works for mouse events.
-
 * * *
-
 ### [](/api/options/#duration)duration
-
 Type: `number`  
 Default: `25`
-
 Set scroll duration when triggered by any of the API methods. Higher numbers
 enables slower scrolling. Drag interactions are not affected because duration
 is then determined by the drag force.
-
 **Note:** Duration is **not** in milliseconds because Embla uses an attraction
 physics simulation when scrolling instead of easings. Only values between
 `20`-`60` are recommended.
-
 * * *
-
 ### [](/api/options/#inviewthreshold)inViewThreshold
-
 Type: `IntersectionObserverInit.threshold`  
 Default: `0`
-
 This is the Intersection Observer
 [threshold](https://developer.mozilla.org/en-
 US/docs/Web/API/Intersection_Observer_API#creating_an_intersection_observer)
 option that will be applied to all slides.
-
 * * *
-
 ### [](/api/options/#loop)loop
-
 Type: `boolean`  
 Default: `false`
-
 Enables **infinite looping**. Embla will apply `translateX` or `translateY` to
 the slides that need to change position in order to create the loop effect.
-
 Embla automatically falls back to `false` if slide content isn't enough to
 create the loop effect without visible glitches.
-
 * * *
-
 ### [](/api/options/#skipsnaps)skipSnaps
-
 Type: `boolean`  
 Default: `false`
-
 Allow the carousel to skip scroll snaps if it's dragged vigorously. Note that
 this option will be ignored if the [dragFree](/api/options/#dragfree) option
 is set to `true`.
-
 * * *
-
 ### [](/api/options/#slides)slides
-
 Type: `string | HTMLElement[] | NodeListOf<HTMLElement> | null`  
 Default: `null`
-
 Enables using custom slide elements. By **default** , Embla will choose **all
 direct child elements** of its [container](/api/options/#container). Provide
 either a valid `CSS selector string` or a `nodeList/array` containing `HTML
 elements`.
-
 **Note:** Even though it's possible to provide custom slide elements, they
 still have to be **direct descendants** of the carousel container.
-
 **Warning:** If you place elements inside the carousel container that aren't
 slides, they either shouldn't have any size, or should be detached from the
 document flow with `position: absolute` or similar.
-
 * * *
-
 ### [](/api/options/#slidestoscroll)slidesToScroll
-
 Type: `string | number`  
 Default: `1`
-
 Group slides together. Drag interactions, dot navigation, and previous/next
 buttons are mapped to group slides into the given number, which has to be an
 integer. Set it to `auto` if you want Embla to group slides automatically.
-
 * * *
-
 ### [](/api/options/#startindex)startIndex
-
 Type: `number`  
 Default: `0`
-
 Set the initial scroll snap to the given number. First snap index starts at
 `0`. Please note that this is not necessarily equal to the number of slides
 when used together with the [slidesToScroll](/api/options/#slidestoscroll)
 option.
-
 * * *
-
 ### [](/api/options/#watchdrag)watchDrag
-
 Type: `boolean | (emblaApi: EmblaCarouselType, event: MouseEvent | TouchEvent) => boolean | void`  
 Default: `true`
-
 Enables for scrolling the carousel with mouse and touch interactions. Set this
 to `false` to disable drag events or pass a custom callback to add your own
 drag logic.
-
 **Note:** When passing a custom callback it will run **before** the default
 Embla drag behaviour. Return `true` in your callback if you want Embla to run
 its default drag behaviour after your callback, or return `false` if you want
 to skip it.
-
 * * *
-
 ### [](/api/options/#watchfocus)watchFocus
-
 Type: `boolean | (emblaApi: EmblaCarouselType, event: FocusEvent) => boolean | void`  
 Default: `true`
-
 Embla automatically watches the [slides](api/options/#slides) for focus
 events. The default callback fires the [slideFocus](/api/events/#slidefocus/)
 event and [scrolls](/api/methods/#scrollto/) to the focused element. Set this
 to `false` to disable this behaviour or pass a custom callback to add your own
 focus logic.
-
 **Note:** When passing a custom callback it will run **before** the default
 Embla focus behaviour. Return `true` in your callback if you want Embla to run
 its default focus behaviour after your callback, or return `false` if you want
 to skip it.
-
 * * *
-
 ### [](/api/options/#watchresize)watchResize
-
 Type: `boolean | (emblaApi: EmblaCarouselType, entries: ResizeObserverEntry[]) => boolean | void`  
 Default: `true`
-
 Embla automatically watches the [container](/api/methods/#containernode/) and
 [slides](/api/methods/#slidenodes/) for size changes and runs
 [reInit](/api/methods/#reinit/) when any size has changed. Set this to `false`
 to disable this behaviour or pass a custom callback to add your own resize
 logic.
-
 **Note:** When passing a custom callback it will run **before** the default
 Embla resize behaviour. Return `true` in your callback if you want Embla to
 run its default resize behaviour after your callback, or return `false` if you
 want to skip it.
-
 * * *
-
 ### [](/api/options/#watchslides)watchSlides
-
 Type: `boolean | (emblaApi: EmblaCarouselType, mutations: MutationRecord[]) => boolean | void`  
 Default: `true`
-
 Embla automatically watches the [container](/api/methods/#containernode/) for
 **added** and/or **removed** slides and runs [reInit](/api/methods/#reinit/)
 if needed. Set this to `false` to disable this behaviour or pass a custom
 callback to add your own slides changed logic.
-
 **Note:** When passing a custom callback it will run **before** the default
 Embla mutation behaviour. Return `true` in your callback if you want Embla to
 run its default mutation behaviour after your callback, or return `false` if
 you want to skip it.
-
 * * *
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/api/options.mdx)
-
-  # Plugins
-
+# Plugins
 It's possible to **extend** Embla carousel with additional features using
 **plugins**. The complete list of official plugins can be found
 [here](/plugins/).
-
 * * *
-
 ## [](/api/plugins/#installation)Installation
-
 All **official plugins** are separate **NPM packages**. They're all
 **prefixed** with `embla-carousel` followed by its **unique** plugin **name**.
 For example, the `Autoplay` plugin is installed like so:
-
 CDNCDNnpmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script src="https://unpkg.com/embla-carousel-autoplay/embla-carousel-autoplay.umd.js"></script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-autoplay --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-autoplay
-
 ## [](/api/plugins/#usage)Usage
-
 The Embla Carousel **constructor** accepts an **array of plugins**. Each
 plugin might have its own [options](/api/plugins/#constructor-options),
 [methods](/api/plugins/#calling-methods) and [events](/api/plugins/#adding-
 event-listeners).
-
 ### [](/api/plugins/#adding-a-plugin)Adding a plugin
-
 The constructor plugin array is the default way of providing plugins to Embla
 Carousel. In the following example, the [Autoplay](/plugins/autoplay/) plugin
 is added to the carousel:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'import Autoplay from 'embla-carousel-autoplay'
     const emblaNode = document.querySelector('.embla')const embla = EmblaCarousel(emblaNode, { loop: true }, [Autoplay()])
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import useEmblaCarousel from 'embla-carousel-react'import Autoplay from 'embla-carousel-autoplay'
     export function EmblaCarousel() {  const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()])
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import emblaCarouselVue from 'embla-carousel-vue'  import Autoplay from 'embla-carousel-autoplay'
       const [emblaRef] = emblaCarouselVue({ loop: true }, [Autoplay()])
       // ...</script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import createEmblaCarousel from 'embla-carousel-solid'import Autoplay from 'embla-carousel-autoplay'
     export function EmblaCarousel() {  const [emblaRef] = createEmblaCarousel(    () => ({ loop: true }),    () => [AutoPlay()]  )
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'  import Autoplay from 'embla-carousel-autoplay'
       let plugins = [Autoplay()]</script>
     <div class="embla" use:emblaCarouselSvelte="{{ plugins }}">...</div>
-
 Note that it's possible to **change plugins** passed to the Embla Carousel
 constructor **after initialization** with the [reInit](/api/methods/#reinit)
 method.
-
 ### [](/api/plugins/#constructor-options)Constructor options
-
 Plugins have their own specific **options** which is the first argument of the
 plugin constructor. This allows for configuring the plugin to your liking:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'import Autoplay from 'embla-carousel-autoplay'
     const emblaNode = document.querySelector('.embla')const embla = EmblaCarousel(emblaNode, { loop: true }, [  Autoplay({ delay: 4000 })])
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import useEmblaCarousel from 'embla-carousel-react'import Autoplay from 'embla-carousel-autoplay'
     export function EmblaCarousel() {  const [emblaRef] = useEmblaCarousel({ loop: true }, [    Autoplay({ delay: 4000 })  ])
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import emblaCarouselVue from 'embla-carousel-vue'  import Autoplay from 'embla-carousel-autoplay'
       const [emblaRef] = emblaCarouselVue({ loop: true }, [    Autoplay({ delay: 4000 })  ])
       // ...</script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import createEmblaCarousel from 'embla-carousel-solid'import Autoplay from 'embla-carousel-autoplay'
     export function EmblaCarousel() {  const [emblaRef] = createEmblaCarousel(    () => ({ loop: true }),    () => [AutoPlay({ delay: 4000 })]  )
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'  import Autoplay from 'embla-carousel-autoplay'
       let plugins = [Autoplay({ delay: 4000 })]</script>
     <div class="embla" use:emblaCarouselSvelte="{{ plugins }}">...</div>
-
 ### [](/api/plugins/#global-options)Global options
-
 All [official plugins](/plugins/) allows you to set **global options** that
 will be applied to all instances. This allows for overriding the default
 plugin options with your own:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'import Autoplay from 'embla-carousel-autoplay'
     Autoplay.globalOptions = { delay: 4000 }
     const emblaNode = document.querySelector('.embla')const embla = EmblaCarousel(emblaNode, { loop: true }, [Autoplay()])
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import useEmblaCarousel from 'embla-carousel-react'import Autoplay from 'embla-carousel-autoplay'
     Autoplay.globalOptions = { delay: 4000 }
     export function EmblaCarousel() {  const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()])
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import emblaCarouselVue from 'embla-carousel-vue'  import Autoplay from 'embla-carousel-autoplay'
       Autoplay.globalOptions = { delay: 4000 }
       const [emblaRef] = emblaCarouselVue({ loop: true }, [Autoplay()])
       // ...</script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import createEmblaCarousel from 'embla-carousel-solid'import Autoplay from 'embla-carousel-autoplay'
     Autoplay.globalOptions = { delay: 4000 }
     export function EmblaCarousel() {  const [emblaRef] = createEmblaCarousel(    () => ({ loop: true }),    () => [AutoPlay()]  )
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'  import Autoplay from 'embla-carousel-autoplay'
       Autoplay.globalOptions = { delay: 4000 }
       let plugins = [Autoplay()]</script>
     <div class="embla" use:emblaCarouselSvelte="{{ plugins }}">...</div>
-
 Make sure to assign global options **before** initializing any carousel and
 **only assign it once**. Re-assigning global options might lead to confusing
 code and unexpected behaviour.
-
 ### [](/api/plugins/#calling-methods)Calling methods
-
 Additionally, some plugins expose their own **API methods**. You can access
 plugin methods by calling the [plugin](/api/methods/#plugins) method like
 demonstrated below:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'import Autoplay from 'embla-carousel-autoplay'
     const emblaNode = document.querySelector('.embla')const emblaApi = EmblaCarousel(emblaNode, { loop: true }, [Autoplay()])
     emblaApi.plugins().autoplay.stop()
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { useEffect } from 'react'import useEmblaCarousel from 'embla-carousel-react'import Autoplay from 'embla-carousel-autoplay'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
       useEffect(() => {    if (emblaApi) emblaApi.plugins().autoplay.stop()  }, [emblaApi])
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import { onMounted } from 'vue'  import emblaCarouselVue from 'embla-carousel-vue'  import Autoplay from 'embla-carousel-autoplay'
       const [emblaRef, emblaApi] = emblaCarouselVue({ loop: true }, [Autoplay()])
       onMounted(() => {    if (emblaApi.value) emblaApi.value.plugins().autoplay.stop()  })
       // ...</script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { onMount } from 'solid-js'import createEmblaCarousel from 'embla-carousel-solid'import Autoplay from 'embla-carousel-autoplay'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = createEmblaCarousel(    () => ({ loop: true }),    () => [AutoPlay()]  )
       onMount(() => {    const api = emblaApi()    if (api) api.plugins().autoplay.stop()  })
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'  import Autoplay from 'embla-carousel-autoplay'
       let emblaApi  let plugins = [Autoplay()]
       function onInit(event) {    emblaApi = event.detail    emblaApi.plugins().autoplay.stop()  }</script>
     <div  class="embla"  use:emblaCarouselSvelte="{{ plugins }}"  onemblaInit="{onInit}">  ...</div>
-
 **Note:** Starting with Svelte 5, the `on:` event handlers have been
 deprecated. However, `on:emblaInit` will remain for backward compatibility.
-
 ### [](/api/plugins/#adding-event-listeners)Adding event listeners
-
 Some plugins fire their own **events**. Plugin events are structured as
 follows `<plugin-name>:eventname`. [Adding](/api/events/#adding-event-
 listeners) and [removing](/api/events/#removing-event-listeners) plugin event
 listeners is done the same way as native Embla events. Here's an example where
 an event is added to the autoplay plugin:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'import Autoplay from 'embla-carousel-autoplay'
     const emblaNode = document.querySelector('.embla')const emblaApi = EmblaCarousel(emblaNode, { loop: true }, [Autoplay()])
     function logPluginEvent(emblaApi, eventName) {  console.log(`Autoplay just triggered ${eventName}!`)}
     emblaApi.on('autoplay:stop', logPluginEvent)
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { useEffect, useCallback } from 'react'import useEmblaCarousel from 'embla-carousel-react'import Autoplay from 'embla-carousel-autoplay'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
       const logPluginEvent = useCallback((emblaApi, eventName) => {    console.log(`Autoplay just triggered ${eventName}!`)  }, [])
       useEffect(() => {    if (emblaApi) emblaApi.on('autoplay:stop', logPluginEvent)  }, [emblaApi, logPluginEvent])
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import { onMounted } from 'vue'  import emblaCarouselVue from 'embla-carousel-vue'  import Autoplay from 'embla-carousel-autoplay'
       const [emblaRef, emblaApi] = emblaCarouselVue({ loop: true }, [Autoplay()])
       function logPluginEvent(emblaApi, eventName) {    console.log(`Autoplay just triggered ${eventName}!`)  }
       onMounted(() => {    if (emblaApi.value) emblaApi.value.on('autoplay:stop', logPluginEvent)  })
       // ...</script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { onMount } from 'solid-js'import createEmblaCarousel from 'embla-carousel-solid'import Autoplay from 'embla-carousel-autoplay'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = createEmblaCarousel(    () => ({ loop: true }),    () => [AutoPlay()]  )
       function logPluginEvent(emblaApi, eventName) {    console.log(`Autoplay just triggered ${eventName}!`)  }
       onMount(() => {    const api = emblaApi()    if (api) api.on('autoplay:stop', logPluginEvent)  })
       // ...}
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'  import Autoplay from 'embla-carousel-autoplay'
       let emblaApi  let plugins = [Autoplay()]
       function logPluginEvent(emblaApi, eventName) {    console.log(`Autoplay just triggered ${eventName}!`)  }
       function onInit(event) {    emblaApi = event.detail    emblaApi.on('autoplay:stop', logPluginEvent)  }</script>
     <div  class="embla"  use:emblaCarouselSvelte="{{ plugins }}"  onemblaInit="{onInit}">  ...</div>
-
 **Note:** Starting with Svelte 5, the `on:` event handlers have been
 deprecated. However, `on:emblaInit` will remain for backward compatibility.
-
 ### [](/api/plugins/#typescript)TypeScript
-
 The `EmblaPluginType` is obtained directly from the **core package** `embla-
 carousel` and used like so:
-
 VanillaVanillaReactReactVueVueSolidSolidSvelteSvelte
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel, { EmblaPluginType } from 'embla-carousel'import Autoplay from 'embla-carousel-autoplay'
     const emblaNode = document.querySelector('.embla')const plugins: EmblaPluginType[] = [Autoplay()]const emblaApi = EmblaCarousel(emblaNode, { loop: true }, plugins)
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import React from 'react'import { EmblaPluginType } from 'embla-carousel'import useEmblaCarousel from 'embla-carousel-react'import Autoplay from 'embla-carousel-autoplay'
     type PropType = {  plugins?: EmblaPluginType[]}
     export function EmblaCarousel(props) {  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, props.plugins)
       // ...}
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-react` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup lang="ts">  import { EmblaPluginType } from 'embla-carousel'  import emblaCarouselVue from 'embla-carousel-vue'  import Autoplay from 'embla-carousel-autoplay'
       const plugins: EmblaPluginType[] = [Autoplay()]  const [emblaRef] = emblaCarouselVue({ loop: true }, plugins)
       // ...</script>
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-vue` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { EmblaPluginType } from 'embla-carousel'import createEmblaCarousel from 'embla-carousel-solid'import Autoplay from 'embla-carousel-autoplay'
     type PropType = {  plugins?: EmblaPluginType[]}
     export function EmblaCarousel(props) {  const [emblaRef, emblaApi] = createEmblaCarousel(    () => ({ loop: true }),    props.plugins  )
       // ...}
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-solid` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import { EmblaPluginType } from 'embla-carousel'  import emblaCarouselSvelte from 'embla-carousel-svelte'  import Autoplay from 'embla-carousel-autoplay'
       let emblaApi  let plugins: EmblaPluginType[] = [Autoplay()]</script>
     <div class="embla" use:emblaCarouselSvelte="{{ plugins }}">...</div>
-
 If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
-
-  
-
 This is because even though `embla-carousel-svelte` has `embla-carousel` as a
 dependency, `pnpm` makes nested dependencies inaccessible by design.
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/api/plugins.mdx)
-
- # Example Setups
-
+# Example Setups
 Get started instantly with Embla Carousel by finding an example setup that
 suits your needs. All examples are generated using the
 [CodeSandbox](https://codesandbox.io/) API.
-
 * * *
-
 ## [](/examples/#choose-type-of-examples)Choose type of examples
-
   * ### [PredefinedBrowse predefined Embla Carousel setups that demonstrates its features.Read more](/examples/predefined/)
   * ### [GeneratorGenerate and customize your own Embla Carousel setup.Read more](/examples/generator/)
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/examples/index.mdx)
-
- # Carousel generator
-
+# Carousel generator
 Just follow the instructions and create your own customized carousel setup in
 no time!
-
 * * *
-
 ## [](/examples/generator/#choose-framework)Choose framework
-
   * Vanilla
   * Vanilla + TypeScript
   * React
   * React + TypeScript
-
 ## [](/examples/generator/#basic-settings)Basic settings
-
 -Horizontal
-
 -Vertical
-
 -Left to right
-
 -Right to left
-
 -Loop
-
 -Drag free
-
 -Accessibility (under development)
-
 ## [](/examples/generator/#navigation-settings)Navigation settings
-
 -Previous and next buttons
-
 -Dot navigation
-
 ## [](/examples/generator/#slide-settings)Slide settings
-
 Slide size (%)
-
 Slide gaps (px)
-
 ## [](/examples/generator/#alignment-settings)Alignment settings
-
 Aligment settings will only make a visual **difference** for carousels with
 slide sizes **less than 100%**.
-
 -Start
-
 -Center
-
 -End
-
 -Clear leading and trailing space
-
 ## [](/examples/generator/#plugins)Plugins
-
 -Autoplay
-
 -Wheel gestures (under development)
-
 * * *
-
 ## [](/examples/generator/#support)Support
-
 Did this save you time? Don't say thank you! **Share** it, **star** it or
 **support** this project:
-
 [Sponsor](https://github.com/sponsors/davidjerleke)
-
 1
-
 2
-
 3
-
 4
-
 5
-
   * Expand carousel preview
   * Create Sandbox
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/examples/generator.mdx)
-
- # Predefined Examples
-
+# Predefined Examples
 Get started instantly with pre-made CodeSandboxes or customize your carousel
 with the [carousel generator](/examples/generator/).
-
 * * *
-
 ## [](/examples/predefined/#basic-examples)Basic Examples
-
 Basic carousel setups that require minimal effort to get started with.
-
 ### [](/examples/predefined/#default)Default
-
 Edit Code
-
 ### [](/examples/predefined/#loop)Loop
-
 Edit Code
-
 ### [](/examples/predefined/#right-to-left)Right To Left
-
 Edit Code
-
 ### [](/examples/predefined/#slides-to-scroll)Slides To Scroll
-
 Edit Code
-
 ### [](/examples/predefined/#drag-free)Drag Free
-
 Edit Code
-
 ### [](/examples/predefined/#align)Align
-
 Edit Code
-
 ### [](/examples/predefined/#variable-widths)Variable Widths
-
 Edit Code
-
 ### [](/examples/predefined/#y-axis)Y-axis
-
 Edit Code
-
 ### [](/examples/predefined/#slides-per-view)Slides Per View
-
 Edit Code
-
 ### [](/examples/predefined/#thumbnails)Thumbnails
-
 Edit Code
-
 ## [](/examples/predefined/#plugin-examples)Plugin Examples
-
 Extend your carousels with [plugins](/plugins/) and easily add features.
-
 ### [](/examples/predefined/#autoplay)Autoplay
-
 Edit Code
-
 ### [](/examples/predefined/#auto-scroll)Auto Scroll
-
 Edit Code
-
 ### [](/examples/predefined/#auto-height)Auto Height
-
 Edit Code
-
 ### [](/examples/predefined/#fade)Fade
-
 Edit Code
-
 ### [](/examples/predefined/#class-names)Class Names
-
 Edit Code
-
 ## [](/examples/predefined/#tween-examples)Tween Examples
-
 Tween styles on your slides as the carousel scrolls.
-
 ### [](/examples/predefined/#parallax)Parallax
-
 Edit Code
-
 ### [](/examples/predefined/#scale)Scale
-
 Edit Code
-
 ### [](/examples/predefined/#opacity)Opacity
-
 Edit Code
-
 ## [](/examples/predefined/#miscellaneous-examples)Miscellaneous Examples
-
 Add features using the [API](/api/) and the internal engine.
-
 ### [](/examples/predefined/#progress)Progress
-
 Edit Code
-
 ### [](/examples/predefined/#lazy-load)Lazy Load
-
 Edit Code
-
 ### [](/examples/predefined/#infinite-scroll)Infinite Scroll
-
 Edit Code
-
 ### [](/examples/predefined/#ios-style-picker-default)IOS Style Picker Default
-
 Edit Code
-
 ### [](/examples/predefined/#ios-style-picker-loop)IOS Style Picker Loop
-
 Edit Code
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/examples/predefined.mdx)
-
- # Get Started
-
+# Get Started
 Embla Carousel is a **library agnostic** , **dependency free** and
 **lightweight** carousel library. It aims to solve the hardest technical
 challenges with building carousels, and the rest is up to the user utilizing
 its highly extensible [API](/api/) and [plugins](/plugins/). Embla Carousel
 works in all modern browsers.
-
 * * *
-
 ## [](/get-started/#choose-installation-type)Choose installation type
-
   * ### [ModuleLearn how to setup Embla Carousel using vanilla JavaScript.Read more](/get-started/module/)
   * ### [ReactLearn how to setup Embla Carousel using React.Read more](/get-started/react/)
   * ### [VueLearn how to setup Embla Carousel using Vue.Read more](/get-started/vue/)
   * ### [SvelteLearn how to setup Embla Carousel using Svelte.Read more](/get-started/svelte/)
   * ### [SolidLearn how to setup Embla Carousel using Solid.Read more](/get-started/solid/)
   * ### [CDNLearn how to setup Embla Carousel using a CDN.Read more](/get-started/cdn/)
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-docs/src/content/pages/get-
 started/index.mdx)
-
- # CDN
-
+# CDN
 Start by including the Embla Carousel script from a CDN with a `script` tag:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
-
 * * *
-
 ## [](/get-started/cdn/#the-html-structure)The HTML structure
-
 A minimal setup requires an **overflow wrapper** and a **scroll container**.
 Start by adding the following **HTML** structure to your carousel:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <div class="embla">  <div class="embla__container">    <div class="embla__slide">Slide 1</div>    <div class="embla__slide">Slide 2</div>    <div class="embla__slide">Slide 3</div>  </div></div>
-
 ## [](/get-started/cdn/#styling-the-carousel)Styling the carousel
-
 The wrapping element with the classname `embla` is needed to cover the scroll
 overflow. The element with the `container` classname is the scroll body that
 scrolls the slides. Continue by adding the following **CSS** to these
 elements:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla {  overflow: hidden;}.embla__container {  display: flex;}.embla__slide {  flex: 0 0 100%;  min-width: 0;}
-
 ## [](/get-started/cdn/#accessing-the-carousel-api)Accessing the carousel API
-
 Grab the element with the classname `embla` and pass it as the first argument
 to the `EmblaCarousel` constructor. This will **initialize** the **carousel**
 and give you **access** to the Embla Carousel [API](/api/).
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script type="text/javascript">  const emblaNode = document.querySelector('.embla')  const options = { loop: false }  const emblaApi = EmblaCarousel(emblaNode, options)
       console.log(emblaApi.slideNodes()) // Access API</script>
-
 ## [](/get-started/cdn/#adding-plugins)Adding plugins
-
 Start by including the plugin you want to use. In this example, we're going to
 include the [Autoplay](/plugins/autoplay/) plugin:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script><script src="https://unpkg.com/embla-carousel-autoplay/embla-carousel-autoplay.umd.js"></script>
-
 Plugins included from a CDN will be **prefixed** with **EmblaCarousel**.
 Here's an example that shows how to add the [Autoplay](/plugins/autoplay/)
 plugin to your carousel:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script type="text/javascript">  const emblaNode = document.querySelector('.embla')  const options = { loop: false }  const plugins = [EmblaCarouselAutoplay()]  const emblaApi = EmblaCarousel(emblaNode, options, plugins)</script>
-
 Congratulations! You just created your first Embla Carousel.
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-docs/src/content/pages/get-
 started/cdn.mdx)
-
- # Module
-
+# Module
 Start by installing the **npm package** and save it to your dependencies:
-
 npmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel
-
 * * *
-
 ## [](/get-started/module/#the-html-structure)The HTML structure
-
 A minimal setup requires an **overflow wrapper** and a **scroll container**.
 Start by adding the following **HTML** structure to your carousel:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <div class="embla">  <div class="embla__container">    <div class="embla__slide">Slide 1</div>    <div class="embla__slide">Slide 2</div>    <div class="embla__slide">Slide 3</div>  </div></div>
-
 ## [](/get-started/module/#styling-the-carousel)Styling the carousel
-
 The wrapping element with the classname `embla` is needed to cover the scroll
 overflow. The element with the `container` classname is the scroll body that
 scrolls the slides. Continue by adding the following **CSS** to these
 elements:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla {  overflow: hidden;}.embla__container {  display: flex;}.embla__slide {  flex: 0 0 100%;  min-width: 0;}
-
 ## [](/get-started/module/#accessing-the-carousel-api)Accessing the carousel
 API
-
 Grab the element with the classname `embla` and pass it as the first argument
 to the `EmblaCarousel` constructor. This will **initialize** the **carousel**
 and give you **access** to the Embla Carousel [API](/api/).
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'
     const emblaNode = document.querySelector('.embla')const options = { loop: false }const emblaApi = EmblaCarousel(emblaNode, options)
     console.log(emblaApi.slideNodes()) // Access API
-
 ## [](/get-started/module/#adding-plugins)Adding plugins
-
 Start by installing the plugin you want to use. In this example, we're going
 to install the [Autoplay](/plugins/autoplay/) plugin:
-
 npmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-autoplay --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-autoplay
-
 Embla Carousel accepts an optional **plugin array** as the third argument.
 Here's a basic example of how to make use of it:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'import Autoplay from 'embla-carousel-autoplay'
     const emblaNode = document.querySelector('.embla')const options = { loop: false }const plugins = [Autoplay()]const emblaApi = EmblaCarousel(emblaNode, options, plugins)
-
 Congratulations! You just created your first Embla Carousel.
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-docs/src/content/pages/get-
 started/module.mdx)
-
- # React
-
+# React
 Embla Carousel provides a wrapper for [React](https://react.dev/) that ensures
 seamless integration of the carousel into your React project and automatic
 cleanup on component unmount.
-
 Start by installing the Embla Carousel **npm package** and add it to your
 dependencies.
-
 npmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-react --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-react
-
 * * *
-
 ## [](/get-started/react/#the-component-structure)The component structure
-
 Embla Carousel provides the handy `useEmblaCarousel` hook for seamless
 integration with React. A minimal setup requires an **overflow wrapper** and a
 **scroll container**. Start by adding the following structure to your
 carousel:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import React from 'react'import useEmblaCarousel from 'embla-carousel-react'
     export function EmblaCarousel() {  const [emblaRef] = useEmblaCarousel()
       return (    <div className="embla" ref={emblaRef}>      <div className="embla__container">        <div className="embla__slide">Slide 1</div>        <div className="embla__slide">Slide 2</div>        <div className="embla__slide">Slide 3</div>      </div>    </div>  )}
-
 ## [](/get-started/react/#styling-the-carousel)Styling the carousel
-
 The hook gives us a **ref** to attach to our wrapping element with the
 classname `embla`, which is needed to cover the scroll overflow. The element
 with the `container` classname is the scroll body that scrolls the slides.
 Continue by adding the following **CSS** to these elements:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla {  overflow: hidden;}.embla__container {  display: flex;}.embla__slide {  flex: 0 0 100%;  min-width: 0;}
-
 ## [](/get-started/react/#accessing-the-carousel-api)Accessing the carousel
 API
-
 The `useEmblaCarousel` hook takes the Embla Carousel [options](/api/options/)
 as the first argument. Additionally, you can access the [API](/api/) with a
 `useEffect` like demonstrated below:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import React, { useEffect } from 'react'import useEmblaCarousel from 'embla-carousel-react'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false })
       useEffect(() => {    if (emblaApi) {      console.log(emblaApi.slideNodes()) // Access API    }  }, [emblaApi])
       return (    <div className="embla" ref={emblaRef}>      <div className="embla__container">        <div className="embla__slide">Slide 1</div>        <div className="embla__slide">Slide 2</div>        <div className="embla__slide">Slide 3</div>      </div>    </div>  )}
-
 ## [](/get-started/react/#adding-plugins)Adding plugins
-
 Start by installing the plugin you want to use. In this example, we're going
 to install the [Autoplay](/plugins/autoplay/) plugin:
-
 npmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-autoplay --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-autoplay
-
 The `useEmblaCarousel` hook accepts [plugins](/plugins/) as the second
 argument. Note that plugins need to be passed in an **array** like so:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import React, { useEffect } from 'react'import useEmblaCarousel from 'embla-carousel-react'import Autoplay from 'embla-carousel-autoplay'
     export function EmblaCarousel() {  const [emblaRef] = useEmblaCarousel({ loop: false }, [Autoplay()])
       return (    <div className="embla" ref={emblaRef}>      <div className="embla__container">        <div className="embla__slide">Slide 1</div>        <div className="embla__slide">Slide 2</div>        <div className="embla__slide">Slide 3</div>      </div>    </div>  )}
-
 Congratulations! You just created your first Embla Carousel component.
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-docs/src/content/pages/get-
 started/react.mdx)
-
- # Solid
-
+# Solid
 Embla Carousel provides a wrapper for [Solid](https://www.solidjs.com/) that
 ensures seamless integration of the carousel into your Solid project and
 automatic cleanup on component unmount.
-
 Start by installing the Embla Carousel **npm package** and add it to your
 dependencies.
-
 npmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-solid --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-solid
-
 * * *
-
 ## [](/get-started/solid/#the-component-structure)The component structure
-
 Embla Carousel provides the handy `createEmblaCarousel` method for seamless
 integration with Solid. A minimal setup requires an **overflow wrapper** and a
 **scroll container**. Start by adding the following structure to your
 carousel:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import createEmblaCarousel from 'embla-carousel-solid'
     export function EmblaCarousel() {  const [emblaRef] = createEmblaCarousel()
       return (    <div class="embla" ref={emblaRef}>      <div class="embla__container">        <div class="embla__slide">Slide 1</div>        <div class="embla__slide">Slide 2</div>        <div class="embla__slide">Slide 3</div>      </div>    </div>  )}
-
 ## [](/get-started/solid/#styling-the-carousel)Styling the carousel
-
 The method gives us a **ref** to attach to our wrapping element with the
 classname `embla`, which is needed to cover the scroll overflow. The element
 with the `container` classname is the scroll body that scrolls the slides.
 Continue by adding the following **CSS** to these elements:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla {  overflow: hidden;}.embla__container {  display: flex;}.embla__slide {  flex: 0 0 100%;  min-width: 0;}
-
 ## [](/get-started/solid/#accessing-the-carousel-api)Accessing the carousel
 API
-
 The `createEmblaCarousel` method takes the Embla Carousel
 [options](/api/options/) as the first argument, which is a Solid accessor.
 Additionally, you can access the [API](/api/) with a `onMount` like
 demonstrated below:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import { onMount } from 'solid-js'import createEmblaCarousel from 'embla-carousel-solid'
     export function EmblaCarousel() {  const [emblaRef, emblaApi] = createEmblaCarousel(() => ({ loop: true }))
       onMount(() => {    const api = emblaApi()    if (api) {      console.log(api.slideNodes()) // Access API    }  })
       return (    <div class="embla" ref={emblaRef}>      <div class="embla__container">        <div class="embla__slide">Slide 1</div>        <div class="embla__slide">Slide 2</div>        <div class="embla__slide">Slide 3</div>      </div>    </div>  )}
-
 ## [](/get-started/solid/#adding-plugins)Adding plugins
-
 Start by installing the plugin you want to use. In this example, we're going
 to install the [Autoplay](/plugins/autoplay/) plugin:
-
 npmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-autoplay --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-autoplay
-
 The `createEmblaCarousel` method accepts [plugins](/plugins/) as the second
 argument, which is a Solid accessor. Note that plugins need to be passed in an
 **array** like so:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import createEmblaCarousel from 'embla-carousel-solid'import Autoplay from 'embla-carousel-autoplay'
     export function EmblaCarousel() {  const [emblaRef] = createEmblaCarousel(    () => ({ loop: true }),    () => [AutoPlay()]  )
       return (    <div class="embla" ref={emblaRef}>      <div class="embla__container">        <div class="embla__slide">Slide 1</div>        <div class="embla__slide">Slide 2</div>        <div class="embla__slide">Slide 3</div>      </div>    </div>  )}
-
 Congratulations! You just created your first Embla Carousel component.
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-docs/src/content/pages/get-
 started/solid.mdx)
-
- # Svelte
-
+# Svelte
 Embla Carousel provides a wrapper for [Svelte](https://svelte.dev/) that
 ensures seamless integration of the carousel into your Svelte project and
 automatic cleanup on component unmount.
-
 Start by installing the Embla Carousel **npm package** and add it to your
 dependencies.
-
 npmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-svelte --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-svelte
-
 * * *
-
 ## [](/get-started/svelte/#the-component-structure)The component structure
-
 Embla Carousel provides the handy `emblaCarouselSvelte` action for seamless
 integration with Svelte. A minimal setup requires an **overflow wrapper** and
 a **scroll container**. Start by adding the following structure to your
 carousel:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'</script>
     <div class="embla" use:emblaCarouselSvelte>  <div class="embla__container">    <div class="embla__slide">Slide 1</div>    <div class="embla__slide">Slide 2</div>    <div class="embla__slide">Slide 3</div>  </div></div>
-
 ## [](/get-started/svelte/#styling-the-carousel)Styling the carousel
-
 The element with the classname `embla` is needed to cover the scroll overflow.
 Its child element with the `container` classname is the scroll body that
 scrolls the slides. Continue by adding the following **CSS** to these
 elements:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <style>  .embla {    overflow: hidden;  }  .embla__container {    display: flex;  }  .embla__slide {    flex: 0 0 100%;    min-width: 0;  }</style>
-
 ## [](/get-started/svelte/#accessing-the-carousel-api)Accessing the carousel
 API
-
 The `emblaCarouselSvelte` action takes the Embla Carousel
 [options](/api/options/) as part of its parameter. Additionally, you can
 access the [API](/api/) by using the `emblaInit` event to store the carousel
 instance in a variable:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'
       let emblaApi  let options = { loop: false }
       function onInit(event) {    emblaApi = event.detail    console.log(emblaApi.slideNodes()) // Access API  }</script>
     <div  class="embla"  use:emblaCarouselSvelte="{{ options }}"  onemblaInit="{onInit}">  <div class="embla__container">    <div class="embla__slide">Slide 1</div>    <div class="embla__slide">Slide 2</div>    <div class="embla__slide">Slide 3</div>  </div></div>
-
 **Note:** Starting with Svelte 5, the `on:` event handlers have been
 deprecated. However, `on:emblaInit` will remain for backward compatibility.
-
 ## [](/get-started/svelte/#adding-plugins)Adding plugins
-
 Start by installing the plugin you want to use. In this example, we're going
 to install the [Autoplay](/plugins/autoplay/) plugin:
-
 npmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-autoplay --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-autoplay
-
 The `emblaCarouselSvelte` action parameter accepts [plugins](/plugins/). Note
 that plugins need to be passed in an **array** like so:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script>  import emblaCarouselSvelte from 'embla-carousel-svelte'  import Autoplay from 'embla-carousel-autoplay'
       let options = { loop: false }  let plugins = [Autoplay()]</script>
     <div class="embla" use:emblaCarouselSvelte="{{ options, plugins }}">  <div class="embla__container">    <div class="embla__slide">Slide 1</div>    <div class="embla__slide">Slide 2</div>    <div class="embla__slide">Slide 3</div>  </div></div>
-
 Congratulations! You just created your first Embla Carousel component.
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-docs/src/content/pages/get-
 started/svelte.mdx)
-
- # Vue
-
+# Vue
 Embla Carousel provides a wrapper for [Vue](https://vuejs.org/) that ensures
 seamless integration of the carousel into your Vue project and automatic
 cleanup on component unmount.
-
 Start by installing the Embla Carousel **npm package** and add it to your
 dependencies.
-
 npmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-vue --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-vue
-
 **Note:** `embla-carousel-vue` only supports `Vue 3` and up. However, you can
 use the [core package](/get-started/module/) that `embla-carousel-vue` is
 using under the hood, and re-create the behaviour of `embla-carousel-vue`.
 Here's an [example](https://github.com/meirroth/embla-carousel-vue2) of how
 you can use Embla Carousel with `Vue 2` Options API.
-
 * * *
-
 ## [](/get-started/vue/#the-component-structure)The component structure
-
 Embla Carousel provides the handy `emblaCarouselVue` function for seamless
 integration with Vue. A minimal setup requires an **overflow wrapper** and a
 **scroll container**. Start by adding the following structure to your
 carousel:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import emblaCarouselVue from 'embla-carousel-vue'
       const [emblaRef] = emblaCarouselVue()</script>
     <template>  <div class="embla" ref="emblaRef">    <div class="embla__container">      <div class="embla__slide">Slide 1</div>      <div class="embla__slide">Slide 2</div>      <div class="embla__slide">Slide 3</div>    </div>  </div></template>
-
 ## [](/get-started/vue/#styling-the-carousel)Styling the carousel
-
 The `emblaCarouselVue` function gives us an **emblaRef** to attach to our
 wrapping element with the classname `embla`, which is needed to cover the
 scroll overflow. The element with the `container` classname is the scroll body
 that scrolls the slides. Continue by adding the following **CSS** to these
 elements:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <style scoped>  .embla {    overflow: hidden;  }  .embla__container {    display: flex;  }  .embla__slide {    flex: 0 0 100%;    min-width: 0;  }</style>
-
 ## [](/get-started/vue/#accessing-the-carousel-api)Accessing the carousel API
-
 The `emblaCarouselVue` function takes the Embla Carousel
 [options](/api/options/) as the first argument. Additionally, you can access
 the [API](/api/) with an `onMounted` like demonstrated below:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import { onMounted } from 'vue'  import emblaCarouselVue from 'embla-carousel-vue'
       const [emblaRef, emblaApi] = emblaCarouselVue({ loop: false })
       onMounted(() => {    if (emblaApi.value) {      console.log(emblaApi.value.slideNodes()) // Access API    }  })</script>
     <template>  <div class="embla" ref="emblaRef">    <div class="embla__container">      <div class="embla__slide">Slide 1</div>      <div class="embla__slide">Slide 2</div>      <div class="embla__slide">Slide 3</div>    </div>  </div></template>
-
 ## [](/get-started/vue/#adding-plugins)Adding plugins
-
 Start by installing the plugin you want to use. In this example, we're going
 to install the [Autoplay](/plugins/autoplay/) plugin:
-
 npmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-autoplay --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-autoplay
-
 The `emblaCarouselVue` function accepts [plugins](/plugins/) as the second
 argument. Note that plugins need to be passed in an **array** like so:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script setup>  import emblaCarouselVue from 'embla-carousel-vue'  import Autoplay from 'embla-carousel-autoplay'
       const [emblaRef] = emblaCarouselVue({ loop: false }, [Autoplay()])</script>
     <template>  <div class="embla" ref="emblaRef">    <div class="embla__container">      <div class="embla__slide">Slide 1</div>      <div class="embla__slide">Slide 2</div>      <div class="embla__slide">Slide 3</div>    </div>  </div></template>
-
 Congratulations! You just created your first Embla Carousel component.
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-docs/src/content/pages/get-
 started/vue.mdx)
-
- # Practical Guides
-
+# Practical Guides
 Here is a list of practical step-by-step guides to help you achieve a specific
 goal. These guides demonstrate how to **customize your carousels** for
 different use cases and teach you more about how Embla Carousel works.
-
 * * *
-
 ## [](/guides/#pick-a-guide)Pick a guide
-
   * ### [Slide ContainerThis guide demonstrates how to setup the Embla Carousel slide container correctly.Read more](/guides/slide-container/)
   * ### [Slide SizesThis guide demonstrates how Embla Carousel handles slide sizes and how to customize them.Read more](/guides/slide-sizes/)
   * ### [Slide GapsThis guide demonstrates how Embla Carousel handles slide gaps and how to customize them.Read more](/guides/slide-gaps/)
   * ### [BreakpointsThis guide demonstrates how to customize Embla Carousel based on different breakpoints.Read more](/guides/breakpoints/)
   * ### [Prev & Next ButtonsThis guide demonstrates how to setup previous and next buttons using the Embla Carousel API.Read more](/guides/previous-and-next-buttons/)
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/guides/index.mdx)
-
- # Breakpoints
-
+# Breakpoints
 This guide demonstrates how to customize your carousels for different
 breakpoints using the [flexbox](/guides/slide-container/#using-flexbox) setup.
 Embla Carousel offers a convenient way to customize your carousels based on
 different breakpoints including changing [options](/api/options/), using plain
 CSS.
-
 * * *
-
 ## [](/guides/breakpoints/#changing-slide-sizes)Changing slide sizes
-
 Embla Carousel will **automatically pick up** any **changes in slide sizes**
 when the **window is resized**. It's a walk in the park to change slide sizes
 based on your breakpoints:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__slide {  flex: 0 0 100%; /* Default slide covers 100% of the viewport */}@media (min-width: 768px) {  .embla__slide {    flex: 0 0 50%; /* Breakpoint SM slide covers 50% of the viewport */  }}
-
 ## [](/guides/breakpoints/#changing-slide-gaps)Changing slide gaps
-
 Embla Carousel will **automatically pick up** any **changes in gap sizes**
 when the **window is resized**. It's very simple to change gap sizes based on
 your breakpoints:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__slide {  margin-right: 10px; /* Default slide gap */}@media (min-width: 768px) {  .embla__slide {    margin-right: 20px; /* Breakpoint SM gap */  }}
-
 ## [](/guides/breakpoints/#changing-options)Changing options
-
 You can provide [options](/api/options/) that will be applied for specific
 breakpoints using the [breakpoint](/api/options/#breakpoints) option.
-
 Here's an example of a carousel that's only active when the screen width is
 less than 768px:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     const options = {  active: true,  breakpoints: {    '(min-width: 768px)': { active: false }  }}
-
 Because the default [active](/api/options/#active) value is `true`, we can
 omit it from the root level and achieve the same result as above like this:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     const options = {  breakpoints: {    '(min-width: 768px)': { active: false }  }}
-
 When breakpoint options **are in conflict** , the last option in the
 breakpoints options will be applied:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     const options = {  loop: false,  breakpoints: {    '(min-width: 768px)': { loop: true },    '(min-width: 420px)': { loop: false } // This will override the (min-width: 768px) breakpoint loop option  }}
-
 If multiple queries match, they will be **merged** :
-
 Copy code snippet to clipboardCopy
-
-    
-    
     const options = {  loop: false, // --> 419px screens and down will apply { loop: false }  breakpoints: {    '(min-width: 420px)': { align: 'start' }, // --> 420px screens and up will apply { align: 'start', loop: false }    '(min-width: 768px)': { loop: true } // --> 768px screens and up will apply { align: 'start', loop: true }  }}
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/guides/breakpoints.md)
-
- # Previous & Next Buttons
-
+# Previous & Next Buttons
 This guide will show you **how** to **add previous and next buttons** using
 the Embla Carousel [API](/api/). We're going to make use of the following
 methods to achieve this:
-
   * [scrollPrev](/api/methods/#scrollprev)
   * [scrollNext](/api/methods/#scrollnext)
-
 * * *
-
 ## [](/guides/previous-and-next-buttons/#button-placement)Button placement
-
 Assuming your carousel is [draggable](/api/options/#watchdrag), it's important
 to note that the **root node** will **respond to pointer events**. The root
 node is the one that is passed to the `EmblaCarousel` initializer. In the
 following example, it has the class name `embla`:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <div class="embla">  <div class="embla__container">    <div class="embla__slide">Slide 1</div>    <div class="embla__slide">Slide 2</div>    <div class="embla__slide">Slide 3</div>  </div></div>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     const emblaNode = document.querySelector('.embla') // Root nodeconst embla = EmblaCarousel(emblaNode) // Passed to the initializer here
-
 Therefore, it's **not a good idea** to place the previous and next buttons
 inside the root element, because a click on any of the buttons may trigger
 **unintended drag interactions** on the carousel.
-
 To solve this, we're going to modify the minimal [HTML setup](/get-
 started/module/#the-html-structure) from the installation guide by creating a
 **viewport wrapper** around our container like so:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <div class="embla">  <div class="embla__viewport">    <div class="embla__container">      <div class="embla__slide">Slide 1</div>      <div class="embla__slide">Slide 2</div>      <div class="embla__slide">Slide 3</div>    </div>  </div></div>
-
 Our new wrapper with the class name `embla__viewport` will act as our **new
 root element** , which will encapsulate the scroll container and respond to
 pointer events. Now, we're ready to place our buttons **outside** that
 wrapper:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <div class="embla">  <div class="embla__viewport">    <div class="embla__container">      <div class="embla__slide">Slide 1</div>      <div class="embla__slide">Slide 2</div>      <div class="embla__slide">Slide 3</div>    </div>  </div>  <button class="embla__prev">Prev</button>  <button class="embla__next">Next</button></div>
-
 ## [](/guides/previous-and-next-buttons/#with-vanilla-javascript)With vanilla
 JavaScript
-
 Adding event listeners to our buttons is easy. It just requires some basic
 JavaScript to get this done. First, we need to **grab our wrappers and
 buttons** :
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'
     // Grab wrapper nodesconst rootNode = document.querySelector('.embla')const viewportNode = rootNode.querySelector('.embla__viewport')
     // Grab button nodesconst prevButtonNode = rootNode.querySelector('.embla__prev')const nextButtonNode = rootNode.querySelector('.embla__next')
-
 Now that we have our nodes, let's initialize our carousel and make our
 previous and next **buttons respond to clicks**. We'll use
 [scrollPrev](/api/methods/#scrollprev) and
 [scrollNext](/api/methods/#scrollnext) for this:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     // Initialize the carouselconst embla = EmblaCarousel(viewportNode)
     // Add click listenersprevButtonNode.addEventListener('click', embla.scrollPrev, false)nextButtonNode.addEventListener('click', embla.scrollNext, false)
-
 ## [](/guides/previous-and-next-buttons/#with-react)With React
-
 Modifying the minimal [component setup](/get-started/react/#the-component-
 structure) from the installation guide, we're going to use the `emblaApi` to
 create our `scrollPrev` and `scrollNext` functions:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import React, { useCallback } from 'react'import useEmblaCarousel from 'embla-carousel-react'
     export const EmblaCarousel = () => {  const [emblaRef, emblaApi] = useEmblaCarousel()
       const scrollPrev = useCallback(() => {    if (emblaApi) emblaApi.scrollPrev()  }, [emblaApi])
       const scrollNext = useCallback(() => {    if (emblaApi) emblaApi.scrollNext()  }, [emblaApi])
       return (    <div className="embla">      <div className="embla__viewport" ref={emblaRef}>        <div className="embla__container">          <div className="embla__slide">Slide 1</div>          <div className="embla__slide">Slide 2</div>          <div className="embla__slide">Slide 3</div>        </div>      </div>      <button className="embla__prev" onClick={scrollPrev}>        Prev      </button>      <button className="embla__next" onClick={scrollNext}>        Next      </button>    </div>  )}
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/guides/previous-and-next-buttons.md)
-
- # Slide Container
-
+# Slide Container
 Embla Carousel allows you to use **any CSS to stack your slides** in the
 chosen scroll [axis](/api/options/#axis), whether it's CSS Grid, flexbox,
 inline-blocks or anything else. This guide will show you **how to setup** your
 **slide container** with flexbox and CSS Grid.
-
 * * *
-
 ## [](/guides/slide-container/#using-flexbox)Using Flexbox
-
 With the minimal [HTML setup](/get-started/module/#the-html-structure) in
 place, we're going use flexbox to style our slide container. First, we need to
 stack our slides in our chosen scroll direction. This is an example of a
 container with slides stacked **horizontally** :
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__container {  display: flex;}
-
 In order to create a **vertical** carousel, we can modify our container by
 setting the `flex-direction` to `column`. Additionally, a vertical carousel
 needs a **specified height** :
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__container {  display: flex;  flex-direction: column;  height: 200px;}
-
 Now we're ready to declare slide sizes using the `flex` property:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__slide {  flex: 0 0 80%; /* Slide covers 80% of the viewport */}
-
 ## [](/guides/slide-container/#using-css-grid)Using CSS Grid
-
 Creating a CSS Grid container based on the minimal [HTML setup](/get-
 started/module/#the-html-structure) gives us the power to declare everyting,
 including slide sizes together with our container styles. Here's an example of
 a **horizontal** container setup:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__container {  display: grid;  grid-auto-flow: column;  grid-auto-columns: 80%; /* Each slide covers 80% of the viewport */}
-
 We can easily modify our CSS Grid container to create a **vertical** carousel
 by changing our `column` declarations to `row`. Don't forget that a vertical
 carousel also needs a **specified height** :
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__container {  display: grid;  grid-auto-flow: row;  grid-auto-rows: 80%; /* Each slide covers 80% of the viewport */  height: 200px;}
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/guides/slide-container.md)
-
- # Slide Gaps
-
+# Slide Gaps
 Embla Carousel allows you to use **any CSS to stack your slides** in the
 chosen scroll [axis](/api/options/#axis), whether it's CSS Grid, flexbox,
 inline-blocks or anything else. It will conveniently **pick up any spacings**
 between the slides and **automatically adjust the scroll snaps** accordingly.
-
 * * *
-
 ## [](/guides/slide-gaps/#declaring-gaps)Declaring gaps
-
 It's recommended to declare gaps between slides **using CSS**. Any CSS that
 will render space between the slides is valid. You may add spacing in one
 direction like so:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__slide {  margin-right: 20px;}
-
 It's also valid to add gaps in both directions:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__slide {  margin-right: 20px;  margin-left: 10px;}
-
 If you want to accomodate for RTL languages, you can use [`margin-inline-
 end`](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-inline-end) and
 [`margin-inline-start`](https://developer.mozilla.org/en-
 US/docs/Web/CSS/margin-inline-start) instead:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__slide {  margin-inline-end: 20px; /* Space after the slide */  margin-inline-start: 10px; /* Space before the slide */}
-
 If you're using CSS Grid you can declare your gaps like so:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__container {  grid-column-gap: 20px;}
-
 > **Note!** If you don't have [loop](/api/options/#loop) enabled, Embla
 > Carousel will ignore any gaps at the start and end edge of the carousel.
-
 ## [](/guides/slide-gaps/#variable-gaps)Variable gaps
-
 Just like [variable](/guides/slide-sizes/#variable-sizes) slide sizes,
 variable gap sizes is **supported out of the box**. Declare your gap sizes in
 your CSS to achieve this:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__slide:nth-child(1) {  margin-right: 10px;}.embla__slide:nth-child(2) {  margin-right: 20px;  margin-left: 10px;}
-
 ## [](/guides/slide-gaps/#responding-to-breakpoints)Responding to breakpoints
-
 Embla Carousel will **automatically pick up** any **changes in gap sizes**
 when the **window is resized**. It's very simple to set different sizes based
 on your breakpoints:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__slide {  margin-right: 10px; /* Default slide gap */}@media (min-width: 768px) {  .embla__slide {    margin-right: 20px; /* Breakpoint SM gap */  }}
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/guides/slide-gaps.md)
-
- # Slide Sizes
-
+# Slide Sizes
 This guide will show you how to customize **slide sizes** for your carousels
 using the [flexbox](/guides/slide-container/#using-flexbox) setup. Embla
 Carousel supports horizontal and vertical carousels with the
 [axis](/api/options/#axis) option and that's why this guide will use the term
 **slide sizes** instead of **widths** or **heights**.
-
 If you haven't read about how to setup your slide [container](/guides/slide-
 container/), please visit that guide before continuing with this.
-
 * * *
-
 ## [](/guides/slide-sizes/#declaring-sizes)Declaring sizes
-
 Slide sizes should in most cases be **declared with CSS**. Embla Carousel
 **supports any slide size out of the box** , and will pick up whatever size
 you've declared in your CSS. A very simple setup could look like this:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__slide {  flex: 0 0 50%; /* Slide covers 50% of the viewport */  min-width: 0;}
-
 You can also declare your slide sizes using any other CSS unit like so:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__slide {  flex: 0 0 200px; /* Slide covers 200px of the viewport */  min-width: 0;}
-
 ## [](/guides/slide-sizes/#variable-sizes)Variable sizes
-
 Variable slide sizes is also **supported out of the box**. Declare your slide
 sizes in your CSS or let the content of your slides determine their sizes.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__slide:nth-child(1) {  flex: 0 0 30%; /* Slide covers 30% of the viewport */  min-width: 0;}.embla__slide:nth-child(2) {  flex: 0 0 60%; /* Slide covers 60% of the viewport */  min-width: 0;}
-
 If you're letting your slide sizes adapt to their content, make sure that the
 **slide sizes don't exceed** the size of the **viewport**.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__slide {  flex: 0 0 auto; /* Adapt slide size to its content */  min-width: 0;  max-width: 100%; /* Prevent from growing larger than viewport */}
-
 ## [](/guides/slide-sizes/#responding-to-breakpoints)Responding to breakpoints
-
 Embla Carousel will **automatically pick up** any **changes in slide sizes**
 when the **window is resized**. It's very simple to set different sizes based
 on your breakpoints:
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__slide {  flex: 0 0 100%; /* Default slide covers 100% of the viewport */  min-width: 0;}@media (min-width: 768px) {  .embla__slide {    flex: 0 0 50%; /* Breakpoint SM slide covers 50% of the viewport */  }}
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/guides/slide-sizes.md)
-
- # Plugins
-
+# Plugins
 Here is a list of available Embla Carousel plugins that will **extend your
 carousels** with additional features, that goes beyond the built-in Embla
 Carousel core features.
-
 * * *
-
 ## [](/plugins/#choose-a-plugin)Choose a plugin
-
   * ### [AutoplayLearn how to use the Autoplay plugin for Embla CarouselRead more](/plugins/autoplay/)
   * ### [Auto ScrollLearn how to use the Auto Scroll plugin for Embla CarouselRead more](/plugins/auto-scroll/)
   * ### [Auto HeightLearn how to use the Auto Height plugin for Embla CarouselRead more](/plugins/auto-height/)
   * ### [Class NamesLearn how to use the Class Names plugin for Embla CarouselRead more](/plugins/class-names/)
   * ### [FadeLearn how to use the Fade plugin for Embla CarouselRead more](/plugins/fade/)
   * ### [Wheel GesturesLearn how to add this Wheel Gesture plugin to Embla CarouselRead more](/plugins/wheel-gestures/)
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/plugins/index.mdx)
-
- # Auto Height
-
+# Auto Height
 [View plugin on GitHub](https://github.com/davidjerleke/embla-
 carousel/tree/master/packages/embla-carousel-auto-height)
-
 This plugin is used to extend Embla Carousel with **auto height**
 functionality. It changes the height of the carousel container to fit the
 height of the highest slide in view.
-
 * * *
-
 ## [](/plugins/auto-height/#example)Example
-
 Edit Code
-
 ## [](/plugins/auto-height/#installation)Installation
-
 First you need to install the **npm package** and save it to your
 dependencies:
-
 CDNCDNnpmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script src="https://unpkg.com/embla-carousel-auto-height/embla-carousel-auto-height.umd.js"></script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-auto-height --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-auto-height
-
 You can make use of CSS transitions to **transition height** changes. But
 beware: Transitioning height triggers reflow and may cause a performance hit.
-
-  
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__container {  transition: height 0.2s;}
-
 If you've been following along with any of the guides in the [get
 started](/get-started/) section, you want to make sure that each **slide
 height** is **determined** by the **content** it holds. Add the following to
 your CSS to achieve this:
-
-  
-
 Copy code snippet to clipboardCopy
-
-    
-    
     .embla__container {  display: flex;  align-items: flex-start; /* Add this */}
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/plugins/auto-height.mdx)
-
- # Auto Scroll
-
+# Auto Scroll
 [View plugin on GitHub](https://github.com/davidjerleke/embla-
 carousel/tree/master/packages/embla-carousel-auto-scroll)
-
 This plugin is used to extend Embla Carousel with **auto scroll**
 functionality.
-
 * * *
-
 ## [](/plugins/auto-scroll/#example)Example
-
 Edit Code
-
 ## [](/plugins/auto-scroll/#installation)Installation
-
 Start by installing the **npm package** and save it to your dependencies:
-
 CDNCDNnpmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script src="https://unpkg.com/embla-carousel-auto-scroll/embla-carousel-auto-scroll.umd.js"></script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-auto-scroll --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-auto-scroll
-
 ## [](/plugins/auto-scroll/#options)Options
-
 Below follows an exhaustive **list of all** `Auto Scroll` **options** and
 their default values.
-
 ### [](/plugins/auto-scroll/#speed)speed
-
 Type: `number`  
 Default: `2`
-
 Number of pixels auto scroll should advance per frame.
-
 * * *
-
 ### [](/plugins/auto-scroll/#startdelay)startDelay
-
 Type: `number`  
 Default: `1000`
-
 Number of milliseconds auto scroll should **wait before it starts**. This also
 applies when user interactions end and [stopOnInteraction](/plugins/auto-
 scroll/#stoponinteraction) is `false`.
-
 * * *
-
 ### [](/plugins/auto-scroll/#direction)direction
-
 Type: `string`  
 Default: `forward`
-
 This option is used to set the auto scroll direction. Set it to `backward` if
 you want it to scroll in the opposite direction.
-
 * * *
-
 ### [](/plugins/auto-scroll/#playoninit)playOnInit
-
 Type: `boolean`  
 Default: `true`
-
 If set to `false`, you'll have to start auto scroll yourself by calling the
 [play](/plugins/auto-scroll/#play) method.
-
 * * *
-
 ### [](/plugins/auto-scroll/#stoponinteraction)stopOnInteraction
-
 Type: `boolean`  
 Default: `true`
-
 If set to `false`, auto scroll will not be disabled after drag interactions,
 and it will restart every time after an interaction.
-
 * * *
-
 ### [](/plugins/auto-scroll/#stoponmouseenter)stopOnMouseEnter
-
 Type: `boolean`  
 Default: `false`
-
 When enabled, auto scroll will stop when a mouse pointer enters the Embla
 Carousel container. If [stopOnInteraction](/plugins/auto-
 scroll/#stoponinteraction) is also `false`, auto scroll will resume when the
 mouse leaves the carousel container.
-
 * * *
-
 ### [](/plugins/auto-scroll/#stoponfocusin)stopOnFocusIn
-
 Type: `boolean`  
 Default: `true`
-
 When enabled, auto scroll will stop when a focusable element inside the
 carousel recieves focus. If [stopOnInteraction](/plugins/auto-
 scroll/#stoponinteraction) is `false`, auto scroll will resume when the user
 leaves focus.
-
 * * *
-
 ### [](/plugins/auto-scroll/#rootnode)rootNode
-
 Type: `(emblaRoot: HTMLElement) => HTMLElement | null`  
 Default: `null`
-
 The **node** that should **respond** to user **interactions** like
 [stopOnMouseEnter](/plugins/auto-scroll/#stoponmouseenter) and
 [stopOnInteraction](/plugins/auto-scroll/#stoponinteraction). If this is
 omitted, the node that wraps the Embla Carousel will be used as default.
-
 * * *
-
 ## [](/plugins/auto-scroll/#methods)Methods
-
 Below follows an exhaustive **list of all** `Auto Scroll` **methods** with
 their respective parameters and return values.
-
 * * *
-
 ### [](/plugins/auto-scroll/#play)play
-
 Parameters: `startDelayOverride?: number`  
 Returns: `void`
-
 Start auto scroll. Pass a **startDelayOverride** if you want to change the
 [startDelay](/plugins/auto-scroll/#startdelay) option after the plugin has
 been initialized.
-
 * * *
-
 ### [](/plugins/auto-scroll/#stop)stop
-
 Parameters: `none`  
 Returns: `void`
-
 Stops auto scroll.
-
 * * *
-
 ### [](/plugins/auto-scroll/#reset)reset
-
 Parameters: `none`  
 Returns: `void`
-
 Stops auto scroll, and starts the timer again using
 [startDelay](/plugins/auto-scroll/#startdelay) when the carousel has settled.
 This will only take effect if auto scroll is playing. If auto scroll is
 stopped, this method won't trigger anything.
-
 * * *
-
 ### [](/plugins/auto-scroll/#isplaying)isPlaying
-
 Parameters: `none`  
 Returns: `boolean`
-
 Returns a boolean whether the carousel is auto scrolling or not.
-
 * * *
-
 ## [](/plugins/auto-scroll/#events)Events
-
 Below follows an exhaustive **list of all** `Auto Scroll` **events** together
 with information about how they work.
-
 * * *
-
 ### [](/plugins/auto-scroll/#autoscrollplay)autoScroll:play
-
 Once: `no`
-
 Fires when auto scroll starts playing.
-
 * * *
-
 ### [](/plugins/auto-scroll/#autoscrollstop)autoScroll:stop
-
 Once: `no`
-
 Fires when auto scroll stops scrolling.
-
 * * *
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/plugins/auto-scroll.mdx)
-
- # Autoplay
-
+# Autoplay
 [View plugin on GitHub](https://github.com/davidjerleke/embla-
 carousel/tree/master/packages/embla-carousel-autoplay)
-
 This plugin is used to extend Embla Carousel with **autoplay** functionality.
-
 * * *
-
 ## [](/plugins/autoplay/#example)Example
-
 Edit Code
-
 ## [](/plugins/autoplay/#installation)Installation
-
 Start by installing the **npm package** and save it to your dependencies:
-
 CDNCDNnpmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script src="https://unpkg.com/embla-carousel-autoplay/embla-carousel-autoplay.umd.js"></script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-autoplay --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-autoplay
-
 ## [](/plugins/autoplay/#options)Options
-
 Below follows an exhaustive **list of all** `Autoplay` **options** and their
 default values.
-
 * * *
-
 ### [](/plugins/autoplay/#delay)delay
-
 Type: `number`  
 Default: `4000`
-
 Delay between transitions in milliseconds.
-
 * * *
-
 ### [](/plugins/autoplay/#jump)jump
-
 Type: `boolean`  
 Default: `false`
-
 When set to true `true`, autoplay will do instant slide transitions when
 advancing.
-
 * * *
-
 ### [](/plugins/autoplay/#playoninit)playOnInit
-
 Type: `boolean`  
 Default: `true`
-
 If set to `false`, you'll have to start autoplay yourself by calling the
 [play](/plugins/autoplay/#play) method.
-
 * * *
-
 ### [](/plugins/autoplay/#stoponinteraction)stopOnInteraction
-
 Type: `boolean`  
 Default: `true`
-
 If set to `false`, autoplay will not be disabled after drag interactions, and
 it will restart every time after an interaction.
-
 * * *
-
 ### [](/plugins/autoplay/#stoponmouseenter)stopOnMouseEnter
-
 Type: `boolean`  
 Default: `false`
-
 When enabled, autoplay will stop when a mouse pointer enters the Embla
 Carousel container. If
 [stopOnInteraction](/plugins/autoplay/#stoponinteraction) is also `false`,
 autoplay will resume when the mouse leaves the carousel container.
-
 * * *
-
 ### [](/plugins/autoplay/#stoponfocusin)stopOnFocusIn
-
 Type: `boolean`  
 Default: `true`
-
 When enabled, autoplay will stop when a focusable element inside the carousel
 recieves focus. If [stopOnInteraction](/plugins/autoplay/#stoponinteraction)
 is `false`, autoplay will resume when the user leaves focus.
-
 * * *
-
 ### [](/plugins/autoplay/#stoponlastsnap)stopOnLastSnap
-
 Type: `boolean`  
 Default: `false`
-
 If this parameter is enabled, autoplay will stop when it reaches last slide.
-
 * * *
-
 ### [](/plugins/autoplay/#rootnode)rootNode
-
 Type: `(emblaRoot: HTMLElement) => HTMLElement | null`  
 Default: `null`
-
 The **node** that should **respond** to user **interactions** like
 [stopOnMouseEnter](/plugins/autoplay/#stoponmouseenter) and
 [stopOnInteraction](/plugins/autoplay/#stoponinteraction). If this is omitted,
 the node that wraps the Embla Carousel will be used as default.
-
 * * *
-
 ## [](/plugins/autoplay/#methods)Methods
-
 Below follows an exhaustive **list of all** `Autoplay` **methods** with their
 respective parameters and return values.
-
 * * *
-
 ### [](/plugins/autoplay/#play)play
-
 Parameters: `jump?: boolean`  
 Returns: `void`
-
 Start autoplay. Set the **jump** parameter to `true` when you want autoplay to
 do instant slide transitions when advancing. Please note that providing a
 value to this method vill override the [jump](/plugins/autoplay/#jump) option.
-
 * * *
-
 ### [](/plugins/autoplay/#stop)stop
-
 Parameters: `none`  
 Returns: `void`
-
 Stop autoplay.
-
 * * *
-
 ### [](/plugins/autoplay/#reset)reset
-
 Parameters: `none`  
 Returns: `void`
-
 Resets the timer and starts over. This will only take effect if autoplay is
 playing. If autoplay is stopped, this method won't trigger anything.
-
 * * *
-
 ### [](/plugins/autoplay/#isplaying)isPlaying
-
 Parameters: `none`  
 Returns: `boolean`
-
 Returns a boolean whether autoplay is playing or not.
-
 * * *
-
 ## [](/plugins/autoplay/#events)Events
-
 Below follows an exhaustive **list of all** `Autoplay` **events** together
 with information about how they work.
-
 * * *
-
 ### [](/plugins/autoplay/#autoplayplay)autoplay:play
-
 Once: `no`
-
 Fires when autoplay starts playing.
-
 * * *
-
 ### [](/plugins/autoplay/#autoplaystop)autoplay:stop
-
 Once: `no`
-
 Fires when autoplay stops playing.
-
 * * *
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/plugins/autoplay.mdx)
-
- # Class Names
-
+# Class Names
 [View plugin on GitHub](https://github.com/davidjerleke/embla-
 carousel/tree/master/packages/embla-carousel-class-names)
-
 Class Names is a **class name toggle** utility plugin for Embla Carousel that
 enables you to automate the toggling of class names on your carousel.
-
 * * *
-
 ## [](/plugins/class-names/#example)Example
-
 Edit Code
-
 ## [](/plugins/class-names/#installation)Installation
-
 First you need to install the **npm package** and save it to your
 dependencies:
-
 CDNCDNnpmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script src="https://unpkg.com/embla-carousel-class-names/embla-carousel-class-names.umd.js"></script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-class-names --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-class-names
-
 ## [](/plugins/class-names/#usage)Usage
-
 Please read the [plugins](/api/plugins/#usage) page to learn **how to work
 with plugins**.
-
 ## [](/plugins/class-names/#options)Options
-
 Below follows an exhaustive **list of all** `Class Names` **options** and
 their default values.
-
 * * *
-
 ### [](/plugins/class-names/#snapped)snapped
-
 Type: `string`  
 Default: `is-snapped`
-
 Choose a classname that will be applied to the snapped slides. Pass an empty
 string to opt-out.
-
 * * *
-
 ### [](/plugins/class-names/#inview)inView
-
 Type: `string`  
 Default: `is-in-view`
-
 Choose a classname that will be applied to slides in view. Pass an empty
 string to opt-out.
-
 This feature will honor the [inViewThreshold](/api/options/#inviewthreshold)
 option.
-
 * * *
-
 ### [](/plugins/class-names/#draggable)draggable
-
 Type: `string`  
 Default: `is-draggable`
-
 Choose a classname that will be applied to a draggable carousel container.
 Pass an empty string to opt-out.
-
 * * *
-
 ### [](/plugins/class-names/#dragging)dragging
-
 Type: `string`  
 Default: `is-dragging`
-
 Choose a classname that will be applied to the container when dragging. Pass
 an empty string to opt-out.
-
 * * *
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/plugins/class-names.mdx)
-
- # Fade
-
+# Fade
 [View plugin on GitHub](https://github.com/davidjerleke/embla-
 carousel/tree/master/packages/embla-carousel-fade)
-
 This plugin is used to replace the Embla Carousel scroll functionality with
 **fade transitions**.
-
 * * *
-
 ## [](/plugins/fade/#example)Example
-
 Edit Code
-
 ## [](/plugins/fade/#installation)Installation
-
 Start by installing the **npm package** and save it to your dependencies:
-
 CDNCDNnpmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script src="https://unpkg.com/embla-carousel-fade/embla-carousel-fade.umd.js"></script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-fade --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-fade
-
 When the Fade plugin is enabled, the
 [inViewThreshold](/api/options/#inviewthreshold) option no longer has any
 effect. This is because the Fade plugin stacks any slides with an **opacity
 higher** than `0` on top of each other, eliminating the concept of scrolling
 and gradual appearance of slides.
-
 If your slides are less than 100% of the viewport width, it's recommended to
 set these options when using the Fade plugin to avoid confusing UX:
-
-  
-
 Copy code snippet to clipboardCopy
-
-    
-    
     const options = {  align: 'center',  containScroll: false}
-
-  
-  
-
 However, `align: center` is default so you can omit setting the align option
 and achieve the same thing like so:
-
-  
-
 Copy code snippet to clipboardCopy
-
-    
-    
     const options = {  containScroll: false}
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/plugins/fade.mdx)
-
- # Wheel Gestures
-
+# Wheel Gestures
 [View plugin on GitHub](https://github.com/xiel/embla-carousel-wheel-gestures)
-
 This plugin is used to extend Embla Carousel with the ability to **use the
 mouse/trackpad wheel** to **navigate** the carousel.
-
 * * *
-
 ## [](/plugins/wheel-gestures/#installation)Installation
-
 First you need to install the **npm package** and save it to your
 dependencies:
-
 CDNCDNnpmnpmyarnyarn
-
 Copy code snippet to clipboardCopy
-
-    
-    
     <script src="https://unpkg.com/embla-carousel-wheel-gestures/dist/embla-carousel-wheel-gestures.umd.js"></script>
-
 Copy code snippet to clipboardCopy
-
-    
-    
     npm install embla-carousel-wheel-gestures --save
-
 Copy code snippet to clipboardCopy
-
-    
-    
     yarn add embla-carousel-wheel-gestures
-
 ## [](/plugins/wheel-gestures/#usage)Usage
-
 This plugin accepts a single **optional** parameter, which is its
 [options](/plugins/wheel-gestures/#options) object that allows you to
 configure it.
-
 Copy code snippet to clipboardCopy
-
-    
-    
     import EmblaCarousel from 'embla-carousel'import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
     const embla = EmblaCarousel(emblaRoot, { loop: false }, [WheelGesturesPlugin()]) // Add plugin
-
 ## [](/plugins/wheel-gestures/#options)Options
-
 Below follows an exhaustive **list of all** `Wheel Gestures` **options** and
 their default values.
-
 * * *
-
 ### [](/plugins/wheel-gestures/#wheeldraggingclass)wheelDraggingClass
-
 Type: `string`  
 Default: `is-wheel-dragging`
-
 Choose a classname that will be applied to the container during a wheel
 gesture. Pass an empty string to opt-out.
-
 * * *
-
 ### [](/plugins/wheel-gestures/#forcewheelaxis)forceWheelAxis
-
 Type: `string | undefined`  
 Default: `undefined`
-
 Force an axis on which to listen for wheel events. Choose scroll axis between
 `x` and `y`. Useful if you want to slide horizontally when scrolling
 vertically or vice versa.
-
 * * *
-
 ### [](/plugins/wheel-gestures/#target)target
-
 Type: `Element`  
 Default: `undefined`
-
 Specify the element that should be observed for wheel events.
-
 * * *
-
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/plugins/wheel-gestures.mdx)

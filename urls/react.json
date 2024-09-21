@@ -1,11 +1,12 @@
 {
-    "timestamp": "2024-09-21T15:02:02.914847",
+    "timestamp": "2024-09-21T20:35:40.703326",
     "domain": "https://react.dev",
     "crawl_metadata": {
         "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
         "max_concurrency": 10,
         "excluded_patterns": [
-            "community"
+            "community",
+            "/20"
         ],
         "excluded_extensions": [
             ".epub",
@@ -22,47 +23,10 @@
             ".zip"
         ]
     },
-    "total_urls": 183,
+    "total_urls": 141,
     "urls": [
         "https://react.dev",
-        "https://react.dev/",
-        "https://react.dev/TODO",
-        "https://react.dev/acknowledgements.html",
         "https://react.dev/blog",
-        "https://react.dev/blog/",
-        "https://react.dev/blog/2020/02/26/react-v16.13.0.html",
-        "https://react.dev/blog/2020/08/10/react-v17-rc.html",
-        "https://react.dev/blog/2020/09/22/introducing-the-new-jsx-transform.html",
-        "https://react.dev/blog/2020/10/20/react-v17.html",
-        "https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components",
-        "https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components.html",
-        "https://react.dev/blog/2021/06/08/the-plan-for-react-18",
-        "https://react.dev/blog/2021/06/08/the-plan-for-react-18.html",
-        "https://react.dev/blog/2021/12/17/react-conf-2021-recap",
-        "https://react.dev/blog/2021/12/17/react-conf-2021-recap.html",
-        "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
-        "https://react.dev/blog/2022/03/08/react-18-upgrade-guide.html",
-        "https://react.dev/blog/2022/03/29/react-v18",
-        "https://react.dev/blog/2022/03/29/react-v18.html",
-        "https://react.dev/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022",
-        "https://react.dev/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022.html",
-        "https://react.dev/blog/2023/03/16/introducing-react-dev",
-        "https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023",
-        "https://react.dev/blog/2023/05/03/react-canaries",
-        "https://react.dev/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024",
-        "https://react.dev/blog/2024/04/25/react-19",
-        "https://react.dev/blog/2024/04/25/react-19-upgrade-guide",
-        "https://react.dev/blog/2024/05/22/react-conf-2024-recap",
-        "https://react.dev/blog/all.html",
-        "https://react.dev/docs/accessibility.html",
-        "https://react.dev/docs/faq-ajax.html",
-        "https://react.dev/docs/getting-started.html",
-        "https://react.dev/docs/hello-world.html",
-        "https://react.dev/docs/hooks-intro.html",
-        "https://react.dev/docs/how-to-contribute.html",
-        "https://react.dev/docs/react-api.html",
-        "https://react.dev/docs/testing.html",
-        "https://react.dev/languages",
         "https://react.dev/learn",
         "https://react.dev/learn/add-react-to-an-existing-project",
         "https://react.dev/learn/adding-interactivity",
@@ -108,9 +72,6 @@
         "https://react.dev/learn/writing-markup-with-jsx",
         "https://react.dev/learn/you-might-not-need-an-effect",
         "https://react.dev/learn/your-first-component",
-        "https://react.dev/link/hydration-mismatch",
-        "https://react.dev/link/new-jsx-transform",
-        "https://react.dev/reference",
         "https://react.dev/reference/react",
         "https://react.dev/reference/react-dom",
         "https://react.dev/reference/react-dom/client",
@@ -204,102 +165,7 @@
         "https://react.dev/reference/rules/components-and-hooks-must-be-pure",
         "https://react.dev/reference/rules/react-calls-components-and-hooks",
         "https://react.dev/reference/rules/rules-of-hooks",
-        "https://react.dev/tutorial/tutorial.html",
-        "https://react.dev/versions",
-        "https://react.dev/warnings/react-dom-test-utils"
+        "https://react.dev/versions"
     ],
-    "failed_urls": [
-        {
-            "url": "https://react.dev/TODO",
-            "error": "404, message='Not Found', url='https://react.dev/TODO'"
-        },
-        {
-            "url": "https://react.dev/docs/getting-started.html",
-            "error": "404, message='Not Found', url='https://react.dev/docs/getting-started.html'"
-        },
-        {
-            "url": "https://react.dev/tutorial/tutorial.html",
-            "error": "404, message='Not Found', url='https://react.dev/tutorial/tutorial.html'"
-        },
-        {
-            "url": "https://react.dev/languages",
-            "error": "404, message='Not Found', url='https://react.dev/languages'"
-        },
-        {
-            "url": "https://react.dev/blog/2020/08/10/react-v17-rc.html",
-            "error": "404, message='Not Found', url='https://react.dev/blog/2020/08/10/react-v17-rc.html'"
-        },
-        {
-            "url": "https://react.dev/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022.html",
-            "error": "404, message='Not Found', url='https://react.dev/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022.html'"
-        },
-        {
-            "url": "https://react.dev/blog/2022/03/29/react-v18.html",
-            "error": "404, message='Not Found', url='https://react.dev/blog/2022/03/29/react-v18.html'"
-        },
-        {
-            "url": "https://react.dev/blog/2022/03/08/react-18-upgrade-guide.html",
-            "error": "404, message='Not Found', url='https://react.dev/blog/2022/03/08/react-18-upgrade-guide.html'"
-        },
-        {
-            "url": "https://react.dev/blog/2021/12/17/react-conf-2021-recap.html",
-            "error": "404, message='Not Found', url='https://react.dev/blog/2021/12/17/react-conf-2021-recap.html'"
-        },
-        {
-            "url": "https://react.dev/blog/2021/06/08/the-plan-for-react-18.html",
-            "error": "404, message='Not Found', url='https://react.dev/blog/2021/06/08/the-plan-for-react-18.html'"
-        },
-        {
-            "url": "https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components.html",
-            "error": "404, message='Not Found', url='https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components.html'"
-        },
-        {
-            "url": "https://react.dev/blog/2020/10/20/react-v17.html",
-            "error": "404, message='Not Found', url='https://react.dev/blog/2020/10/20/react-v17.html'"
-        },
-        {
-            "url": "https://react.dev/blog/2020/09/22/introducing-the-new-jsx-transform.html",
-            "error": "404, message='Not Found', url='https://react.dev/blog/2020/09/22/introducing-the-new-jsx-transform.html'"
-        },
-        {
-            "url": "https://react.dev/blog/2020/02/26/react-v16.13.0.html",
-            "error": "404, message='Not Found', url='https://react.dev/blog/2020/02/26/react-v16.13.0.html'"
-        },
-        {
-            "url": "https://react.dev/blog/all.html",
-            "error": "404, message='Not Found', url='https://react.dev/blog/all.html'"
-        },
-        {
-            "url": "https://react.dev/docs/hello-world.html",
-            "error": "404, message='Not Found', url='https://react.dev/docs/hello-world.html'"
-        },
-        {
-            "url": "https://react.dev/docs/accessibility.html",
-            "error": "404, message='Not Found', url='https://react.dev/docs/accessibility.html'"
-        },
-        {
-            "url": "https://react.dev/docs/react-api.html",
-            "error": "404, message='Not Found', url='https://react.dev/docs/react-api.html'"
-        },
-        {
-            "url": "https://react.dev/docs/hooks-intro.html",
-            "error": "404, message='Not Found', url='https://react.dev/docs/hooks-intro.html'"
-        },
-        {
-            "url": "https://react.dev/docs/testing.html",
-            "error": "404, message='Not Found', url='https://react.dev/docs/testing.html'"
-        },
-        {
-            "url": "https://react.dev/docs/how-to-contribute.html",
-            "error": "404, message='Not Found', url='https://react.dev/docs/how-to-contribute.html'"
-        },
-        {
-            "url": "https://react.dev/docs/faq-ajax.html",
-            "error": "404, message='Not Found', url='https://react.dev/docs/faq-ajax.html'"
-        },
-        {
-            "url": "https://react.dev/acknowledgements.html",
-            "error": "404, message='Not Found', url='https://react.dev/acknowledgements.html'"
-        }
-    ]
+    "failed_urls": []
 }

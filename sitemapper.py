@@ -13,7 +13,7 @@ import argparse
 
 class AsyncURLCrawler:
     def __init__(self, base_url, config):
-        self.base_url = self.convert_to_https(base_url.rstrip('/'))
+        self.base_url = self.normalize_url(base_url.rstrip('/'))
         self.base_parsed_url = urlparse(self.base_url)
         self.visited_urls = set()
         self.failed_urls = []
@@ -26,12 +26,13 @@ class AsyncURLCrawler:
         self.max_concurrency = config.get("max_concurrency", 10)
         logging.basicConfig(level=logging.INFO)
 
-    def convert_to_https(self, url):
-        """ Convert HTTP URLs to HTTPS """
+    def normalize_url(self, url):
+        """ Convert HTTP URLs to HTTPS and normalize the URL by removing the trailing slash """
         parsed_url = urlparse(url)
         if parsed_url.scheme == 'http':
             parsed_url = parsed_url._replace(scheme='https')
-        return parsed_url.geturl()
+        normalized_url = parsed_url._replace(path=parsed_url.path.rstrip('/'))
+        return normalized_url.geturl()
 
     async def fetch_page(self, url):
         async with async_timeout.timeout(10):
@@ -48,7 +49,7 @@ class AsyncURLCrawler:
 
     def qualifies_url(self, url):
         """ Check if the URL fits the base_url path and doesn't contain excluded patterns or extensions """
-        url = self.convert_to_https(url)
+        url = self.normalize_url(url)
         parsed_url = urlparse(url)
         if parsed_url.netloc != self.base_parsed_url.netloc or not parsed_url.path.startswith(self.base_parsed_url.path):
             return False
@@ -71,7 +72,7 @@ class AsyncURLCrawler:
             href = link['href']
             # Remove URL fragments and resolve relative URLs
             href = urljoin(current_url, href.split('#')[0].split('?')[0])
-            href = self.convert_to_https(href)
+            href = self.normalize_url(href)
             if self.qualifies_url(href) and href not in self.visited_urls:
                 self.urls_to_visit.put_nowait(href)
 
