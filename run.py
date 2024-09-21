@@ -1,24 +1,56 @@
 import argparse
 import concurrent.futures
 import subprocess
+import json
+import os
+from urllib.parse import urlparse
 
 def run_site(site_key):
     # Run the site mapper script
-    subprocess.run(['python', 'sitemapper.py', site_key], check=True)
+    subprocess.run(['python', 'sitemapper.py', '--site_key', site_key], check=True)
     
     # Run the scraper script
-    subprocess.run(['python', 'scraper.py', site_key], check=True)
+    subprocess.run(['python', 'scraper.py', '--site_key', site_key], check=True)
+
+def run_with_url(base_url):
+    # Ensure the URL has a scheme
+    parsed_url = urlparse(base_url)
+    if not parsed_url.scheme:
+        base_url = 'https://' + base_url
+
+    # Run the site mapper script with the base_url
+    subprocess.run(['python', 'sitemapper.py', '--base_url', base_url], check=True)
+    
+    # Generate a site_key from the base_url
+    site_key = base_url.replace('https://', '').replace('http://', '').replace('/', '_')
+    
+    # Run the scraper script with the generated site_key
+    subprocess.run(['python', 'scraper.py', '--site_key', site_key], check=True)
+
+def load_all_site_keys(config_file):
+    with open(config_file, 'r') as f:
+        config = json.load(f)
+    # Exclude the default configuration key
+    return [key for key in config.keys() if key != "default"]
 
 def main():
     parser = argparse.ArgumentParser(description='Run both sitemapper and scraper scripts in sequence for multiple sites.')
-    parser.add_argument('site_keys', nargs='+', help='The site keys to use from the config.')
+    parser.add_argument('--config', help='The site key(s) to use from the config.', nargs='*')
+    parser.add_argument('--url', help='A base URL to run the scripts with.')
 
     args = parser.parse_args()
-    site_keys = args.site_keys
 
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        # Map the site_keys to the run_site function, running them concurrently
-        executor.map(run_site, site_keys)
+    if args.url:
+        run_with_url(args.url)
+    elif args.config:
+        site_keys = args.config
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            executor.map(run_site, site_keys)
+    else:
+        config_file = 'config.json'
+        site_keys = load_all_site_keys(config_file)
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            executor.map(run_site, site_keys)
 
 if __name__ == '__main__':
     main()

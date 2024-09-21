@@ -7,9 +7,10 @@ from urllib.parse import urlparse, urljoin
 import logging
 import async_timeout
 import json
-from datetime import datetime, timezone  # Import timezone from datetime
+from datetime import datetime, timezone
 import os
 import argparse
+import tqdm
 
 class AsyncURLCrawler:
     def __init__(self, base_url, config):
@@ -22,8 +23,9 @@ class AsyncURLCrawler:
         self.session = None
         self.user_agent = "Mozilla/5.0 (compatible; MyCrawler/1.0)"
         self.excluded_patterns = config.get("excluded_patterns", [])
-        self.excluded_extensions = config.get("excluded_extensions", [".epub", ".bz2", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".bmp", ".tiff", ".ico", ".zip"])
+        self.excluded_extensions = config.get("excluded_extensions", [".xml",".epub", ".bz2", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".bmp", ".tiff", ".ico", ".zip"])
         self.max_concurrency = config.get("max_concurrency", 10)
+        self.failed_count = 0
         logging.basicConfig(level=logging.INFO)
 
     def normalize_url(self, url):
@@ -43,6 +45,7 @@ class AsyncURLCrawler:
                     html = await response.text()
                     return html
             except aiohttp.ClientError as e:
+                self.failed_count += 1
                 logging.error(f"Request failed: {url}, error: {e}")
                 self.failed_urls.append({"url": url, "error": str(e)})
                 return None
@@ -76,25 +79,29 @@ class AsyncURLCrawler:
             if self.qualifies_url(href) and href not in self.visited_urls:
                 self.urls_to_visit.put_nowait(href)
 
-    async def crawl_single_url(self):
+    async def crawl_single_url(self, progress_bar):
         while not self.urls_to_visit.empty():
             url = await self.urls_to_visit.get()
             if url in self.visited_urls:
                 self.urls_to_visit.task_done()
                 continue
-            logging.info(f"Crawling: {url}")
-            self.visited_urls.add(url)
             html = await self.fetch_page(url)
             if html:
+                self.visited_urls.add(url)  # Only add URL if it was successfully fetched
                 self.parse_links(html, url)
             self.urls_to_visit.task_done()
+            
+            progress_bar.update(1)
+            progress_bar.set_description(f"Crawling {self.base_parsed_url.netloc}: {len(self.visited_urls)} URLs found, {self.failed_count} URLs failed")
 
     async def crawl(self):
         async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as self.session:
-            tasks = [asyncio.create_task(self.crawl_single_url()) for _ in range(self.max_concurrency)]
-            await self.urls_to_visit.join()  # Ensure all tasks are done
-            for task in tasks:
-                task.cancel()  # Cancel any remaining tasks
+            total_urls_to_crawl = self.urls_to_visit.qsize()
+            with tqdm.tqdm(total=total_urls_to_crawl, desc=f"Crawling {self.base_parsed_url.netloc}", bar_format="{desc}", dynamic_ncols=True) as progress_bar:
+                tasks = [asyncio.create_task(self.crawl_single_url(progress_bar)) for _ in range(self.max_concurrency)]
+                await self.urls_to_visit.join()  # Ensure all tasks are done
+                for task in tasks:
+                    task.cancel()  # Cancel any remaining tasks
 
     def save_to_file_json(self, site_key):
         file_path = f"urls/{site_key}.json"
@@ -119,27 +126,33 @@ class AsyncURLCrawler:
         with open(file_path, 'w') as file:
             json.dump(output_data, file, indent=4)
 
-async def main(site_key):
-    # Load configuration
-    with open('config.json', 'r') as config_file:
-        config = json.load(config_file)
-
-    site_config = config.get(site_key, config["default"])
-    BASE_URL = site_config.get("base_url", "")
-
-    if not BASE_URL:
-        logging.error(f"No base URL found for site key: {site_key}")
-        return
-
-    crawler = AsyncURLCrawler(BASE_URL, site_config)
-    await crawler.crawl()
-    crawler.save_to_file_json(site_key)
-    logging.info(f"Crawling completed, {len(crawler.visited_urls)} URLs found.")
-
-if __name__ == "__main__":
-    # Parse command-line arguments
+async def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("site_key", help="The site key to use from the config.")
+    parser.add_argument('--site_key', help='The site key to use from the config.')
+    parser.add_argument('--base_url', help='A base URL to run the script with.')
+
     args = parser.parse_args()
 
-    asyncio.run(main(args.site_key))
+    config = {}
+    if args.site_key:
+        with open('config.json', 'r') as config_file:
+            config = json.load(config_file)
+        site_config = config.get(args.site_key, config.get("default", {}))
+        base_url = site_config.get("base_url", "")
+    else:
+        site_config = config.get("default", {})
+
+    if args.base_url:
+        base_url = args.base_url
+
+    if not base_url:
+        logging.error(f"No base URL found for site key: {args.site_key}")
+        return
+
+    crawler = AsyncURLCrawler(base_url, site_config)
+    await crawler.crawl()
+    site_key = args.site_key if args.site_key else base_url.replace('https://', '').replace('http://', '').replace('/', '_')
+    crawler.save_to_file_json(site_key)
+
+if __name__ == "__main__":
+    asyncio.run(main())

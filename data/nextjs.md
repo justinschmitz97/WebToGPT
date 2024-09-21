@@ -1,5 +1,5 @@
 Domain: https://nextjs.org/docs
-Timestamp: 2024-09-21T20:56:08.184268
+Timestamp: 2024-09-21T23:08:17.479416+00:00
 
 Menu
 Using App Router
@@ -27535,7 +27535,6 @@ correct `aria-*` attributes, use correct `role` attributes, and more.
 Was this helpful?
 supported.
 Send
-
 Menu
 Using App Router
 Features available in /app

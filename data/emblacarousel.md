@@ -1,5 +1,5 @@
 Domain: https://www.embla-carousel.com
-Timestamp: 2024-09-21T20:55:57.259163
+Timestamp: 2024-09-21T23:07:49.877961+00:00
 
 # EmblaCarousel
 ## A lightweight carousel library with fluid motion and great swipe precision
@@ -22,7 +22,6 @@ the use cases for carousels.
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-
 carousel/blob/master/packages/embla-carousel-
 docs/src/content/pages/api/index.mdx)
-
 # Events
 Embla Carousel exposes **events** that you can listen to in order to **react**
 to **changes** in the carousel.

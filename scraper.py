@@ -121,7 +121,7 @@ def main(site_key):
 if __name__ == "__main__":
     # Parse command-line arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument("site_key", help="The site key to use from the config.")
+    parser.add_argument("--site_key", required=True, help="The site key to use from the config.")
     args = parser.parse_args()
 
     main(args.site_key)

@@ -1,5 +1,5 @@
 {
-    "timestamp": "2024-09-21T20:56:08.184268",
+    "timestamp": "2024-09-21T23:15:00.285681+00:00",
     "domain": "https://nextjs.org/docs",
     "crawl_metadata": {
         "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
@@ -23,7 +23,7 @@
             ".zip"
         ]
     },
-    "total_urls": 219,
+    "total_urls": 218,
     "urls": [
         "https://nextjs.org/docs",
         "https://nextjs.org/docs/app",
@@ -215,7 +215,6 @@
         "https://nextjs.org/docs/app/building-your-application/upgrading/version-15",
         "https://nextjs.org/docs/architecture",
         "https://nextjs.org/docs/architecture/accessibility",
-        "https://nextjs.org/docs/architecture/docs/architecture/nextjs-compiler",
         "https://nextjs.org/docs/architecture/fast-refresh",
         "https://nextjs.org/docs/architecture/nextjs-compiler",
         "https://nextjs.org/docs/architecture/supported-browsers",

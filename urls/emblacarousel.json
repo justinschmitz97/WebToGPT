@@ -1,5 +1,5 @@
 {
-    "timestamp": "2024-09-21T21:49:33.849780+00:00",
+    "timestamp": "2024-09-21T23:14:45.653818+00:00",
     "domain": "https://www.embla-carousel.com",
     "crawl_metadata": {
         "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
@@ -20,11 +20,10 @@
             ".zip"
         ]
     },
-    "total_urls": 30,
+    "total_urls": 29,
     "urls": [
         "https://www.embla-carousel.com",
         "https://www.embla-carousel.com/api",
-        "https://www.embla-carousel.com/api/api/options",
         "https://www.embla-carousel.com/api/events",
         "https://www.embla-carousel.com/api/methods",
         "https://www.embla-carousel.com/api/options",
