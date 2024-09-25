@@ -2,6 +2,8 @@
   "default": {
     "base_url": "",
     "excluded_patterns": [],
+    "excluded_classes": [],
+    "custom_main_indicator": "",
     "max_concurrency": 10
   },
   "react": {
@@ -16,8 +18,7 @@
     "excluded_patterns": ["pages", "community"]
   },
   "tailwind": {
-    "base_url": "https://tailwindcss.com/docs/",
-    "excluded_patterns": []
+    "base_url": "https://tailwindcss.com/docs/"
   },
   "typescript": {
     "base_url": "https://www.typescriptlang.org/",
@@ -28,8 +29,14 @@
     "excluded_patterns": ["/ru", "/ja", "/ko", "/es-ES", "/zh-CN"]
   },
   "emblacarousel": {
-    "base_url": "https://www.embla-carousel.com/",
-    "excluded_patterns": []
+    "base_url": "https://www.embla-carousel.com/"
+  },
+  "figma": {
+    "base_url": "https://www.figma.com/blog/",
+    "custom_main_indicator": "progress-indicator-target"
+  },
+  "builtformars": {
+    "base_url": "https://builtformars.com/case-studies"
   },
   "python": {
     "base_url": "https://docs.python.org/3/",
@@ -50,6 +57,8 @@
       "3.14/",
       "whatsnew",
       "genindex"
-    ]
+    ],
+    "excluded_classes": [],
+    "custom_main_indicator": ""
   }
 }

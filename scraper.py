@@ -1,8 +1,3 @@
-"""
-This script fetches and parses URLs from a JSON file, extracts the main content,
-converts it to Markdown, and saves it into an output directory.
-"""
-
 import argparse
 import json
 import logging
@@ -12,7 +7,6 @@ import requests
 from bs4 import BeautifulSoup
 import html2text
 from tqdm import tqdm
-
 
 # --- Configuration ---
 BASE_URL_PATH = "urls/"
@@ -68,11 +62,15 @@ def load_metadata_from_file(file_path: str) -> dict:
         return {}
 
 
-def fetch_and_parse(url: str) -> str:
+def fetch_and_parse(
+    url: str, excluded_classes: list, custom_main_indicator: str
+) -> str:
     """
     Fetch and parse the URL's HTML content.
 
     :param url: URL to fetch and parse.
+    :param excluded_classes: List of CSS classes to exclude from the content.
+    :param custom_main_indicator: Custom CSS selector for the main content.
     :return: Cleaned text extracted from the main content or an empty string on failure.
     """
     for attempt in range(RETRIES):
@@ -82,7 +80,9 @@ def fetch_and_parse(url: str) -> str:
             response.raise_for_status()  # Raise an HTTPError for bad requests
             soup = BeautifulSoup(response.text, "html.parser")
 
-            main_content = extract_main_content(soup)
+            main_content = extract_main_content(
+                soup, excluded_classes, custom_main_indicator
+            )
             if main_content:
                 cleaned_text = clean_main_content(main_content)
                 return cleaned_text
@@ -97,17 +97,28 @@ def fetch_and_parse(url: str) -> str:
                 return ""
 
 
-def extract_main_content(soup: BeautifulSoup) -> BeautifulSoup:
+def extract_main_content(
+    soup: BeautifulSoup, excluded_classes: list, custom_main_indicator: str
+) -> BeautifulSoup:
     """
     Extract main content from the BeautifulSoup object.
 
     :param soup: BeautifulSoup object containing the HTML.
+    :param excluded_classes: List of CSS classes to exclude from the content.
+    :param custom_main_indicator: Custom CSS selector for the main content.
     :return: The main content as a BeautifulSoup object.
     """
-    main_content = soup.find("main") or soup.find("article") or soup.body
+    if custom_main_indicator:
+        main_content = soup.select_one(custom_main_indicator)
+    else:
+        main_content = soup.find("main") or soup.find("article") or soup.body
+
     if main_content:
         for tag in main_content.find_all(["header", "footer", "aside", "nav"]):
             tag.decompose()
+        for class_name in excluded_classes:
+            for tag in main_content.find_all(class_=class_name):
+                tag.decompose()
     return main_content
 
 
@@ -138,6 +149,8 @@ def main(site_key: str):
     urls = data.get("urls", [])
     timestamp = data.get("timestamp", "")
     domain = data.get("domain", "unknown")
+    excluded_classes = data.get("excluded_classes", [])
+    custom_main_indicator = data.get("custom_main_indicator", "")
 
     if not urls:
         logger.error("No URLs found in %s", file_path)
@@ -147,7 +160,7 @@ def main(site_key: str):
     progress_bar = tqdm(urls, desc=f"Processing {site_key} URLs", unit="url")
 
     for url in progress_bar:
-        text = fetch_and_parse(url)
+        text = fetch_and_parse(url, excluded_classes, custom_main_indicator)
         all_text += text + "\n"
 
     all_text = all_text.strip()
