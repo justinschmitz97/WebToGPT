@@ -1,9 +1,7 @@
 {
-    "timestamp": "2024-09-21T23:49:50.910146+00:00",
+    "timestamp": "2024-09-22T22:38:54.498807+00:00",
     "domain": "https://docs.python.org/3",
     "crawl_metadata": {
-        "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
-        "max_concurrency": 10,
         "excluded_patterns": [
             "3.0/",
             "3.1/",

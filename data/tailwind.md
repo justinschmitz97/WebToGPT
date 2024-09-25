@@ -1,5 +1,5 @@
 Domain: https://tailwindcss.com/docs
-Timestamp: 2024-09-21T23:49:44.192835+00:00
+Timestamp: 2024-09-22T22:38:48.400467+00:00
 
 ## Installation
   * ## [Tailwind CLI](/docs/installation)
@@ -37137,13 +37137,13 @@ Derrick Reimer, SavvyCal](https://www.refactoringui.com/?ref=sidebar)
 typography](/tailwindlabs/tailwindcss-typography) ** Public
   * [ Notifications ](/login?return_to=%2Ftailwindlabs%2Ftailwindcss-typography) You must be signed in to change notification settings
   * [ Fork 267 ](/login?return_to=%2Ftailwindlabs%2Ftailwindcss-typography)
-  * [ Star  4.4k ](/login?return_to=%2Ftailwindlabs%2Ftailwindcss-typography)
+  * [ Star  4.5k ](/login?return_to=%2Ftailwindlabs%2Ftailwindcss-typography)
 Beautiful typographic defaults for HTML you don't control.
 [tailwindcss-typography.vercel.app/](https://tailwindcss-
 typography.vercel.app/ "https://tailwindcss-typography.vercel.app/")
 ### License
 [ MIT license ](/tailwindlabs/tailwindcss-typography/blob/main/LICENSE)
-[ 4.4k stars ](/tailwindlabs/tailwindcss-typography/stargazers) [ 267 forks
+[ 4.5k stars ](/tailwindlabs/tailwindcss-typography/stargazers) [ 267 forks
 ](/tailwindlabs/tailwindcss-typography/forks) [ Branches
 ](/tailwindlabs/tailwindcss-typography/branches) [ Tags
 ](/tailwindlabs/tailwindcss-typography/tags) [ Activity
@@ -37512,7 +37512,7 @@ MIT license
 [ Activity ](/tailwindlabs/tailwindcss-typography/activity)
 [ Custom properties ](/tailwindlabs/tailwindcss-typography/custom-properties)
 ### Stars
-[ **4.4k** stars ](/tailwindlabs/tailwindcss-typography/stargazers)
+[ **4.5k** stars ](/tailwindlabs/tailwindcss-typography/stargazers)
 ### Watchers
 [ **17** watching ](/tailwindlabs/tailwindcss-typography/watchers)
 ### Forks

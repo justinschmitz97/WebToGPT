@@ -194,8 +194,6 @@ class AsyncURLCrawler:
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "domain": self.base_url,
             "crawl_metadata": {
-                "user_agent": self.user_agent,
-                "max_concurrency": self.max_concurrency,
                 "excluded_patterns": self.excluded_patterns,
                 "excluded_extensions": self.excluded_extensions,
             },

@@ -1,9 +1,7 @@
 {
-    "timestamp": "2024-09-21T23:49:38.674727+00:00",
+    "timestamp": "2024-09-22T22:38:45.541822+00:00",
     "domain": "https://www.typescriptlang.org",
     "crawl_metadata": {
-        "user_agent": "Mozilla/5.0 (compatible; MyCrawler/1.0)",
-        "max_concurrency": 10,
         "excluded_patterns": [
             "/release-notes/"
         ],

@@ -1,3 +1,5 @@
+#run.py
+
 """
 This script runs both the sitemapper and scraper scripts sequentially for multiple sites,
 either using site keys from a configuration file or a provided base URL.

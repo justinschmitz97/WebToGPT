@@ -1,0 +1,31 @@
+{
+    "timestamp": "2024-09-23T11:31:11.602413+00:00",
+    "domain": "https://platform.openai.com",
+    "crawl_metadata": {
+        "excluded_patterns": null,
+        "excluded_extensions": [
+            ".md",
+            ".xml",
+            ".epub",
+            ".bz2",
+            ".png",
+            ".jpg",
+            ".jpeg",
+            ".gif",
+            ".svg",
+            ".webp",
+            ".bmp",
+            ".tiff",
+            ".ico",
+            ".zip"
+        ]
+    },
+    "total_urls": 0,
+    "urls": [],
+    "failed_urls": [
+        {
+            "url": "https://platform.openai.com",
+            "error": "403, message='Forbidden', url='https://platform.openai.com'"
+        }
+    ]
+}

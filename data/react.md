@@ -1,5 +1,5 @@
 Domain: https://react.dev
-Timestamp: 2024-09-21T23:49:38.558790+00:00
+Timestamp: 2024-09-22T22:38:43.346465+00:00
 
 # React
 The library for web and native user interfaces
@@ -214,7 +214,7 @@ streaming HTML while you’re still fetching data, progressively filling in the
 remaining content before any JavaScript code loads. On the client, React can
 use standard web APIs to keep your UI responsive even in the middle of
 rendering.
-6:43 PM
+5:19 PM
 #### Go truly native
 People expect native apps to look and feel like their platform. [React
 Native](https://reactnative.dev) and [Expo](https://github.com/expo/expo) let
@@ -36528,7 +36528,7 @@ Sometimes, you might want to call a function from inside an
       }  
       useEffect(() => {  
         const options = createOptions();  
-        const connection = createConnection();  
+        const connection = createConnection(options);  
         connection.connect();  
         // ...
 This creates a problem. [Every reactive value must be declared as a dependency
@@ -36538,7 +36538,7 @@ specified-every-reactive-value-as-a-dependency) However, if you declare
 reconnect to the chat room:
       useEffect(() => {  
         const options = createOptions();  
-        const connection = createConnection();  
+        const connection = createConnection(options);  
         connection.connect();  
         return () => connection.disconnect();  
       }, [createOptions]); // 🔴 Problem: This dependency changes on every render  
@@ -36555,7 +36555,7 @@ To solve this, you can wrap the function you need to call from an Effect into
       }, [roomId]); // ✅ Only changes when roomId changes  
       useEffect(() => {  
         const options = createOptions();  
-        const connection = createConnection();  
+        const connection = createConnection(options);  
         connection.connect();  
         return () => connection.disconnect();  
       }, [createOptions]); // ✅ Only changes when createOptions changes  
@@ -36573,7 +36573,7 @@ for a function dependency.** Move your function _inside_ the Effect:
           };  
         }  
         const options = createOptions();  
-        const connection = createConnection();  
+        const connection = createConnection(options);  
         connection.connect();  
         return () => connection.disconnect();  
       }, [roomId]); // ✅ Only changes when roomId changes  
@@ -39153,6 +39153,7 @@ between re-renders.
   * Usage 
     * Skipping expensive recalculations 
     * Skipping re-rendering of components 
+    * Preventing an Effect from firing too often 
     * Memoizing a dependency of another Hook 
     * Memoizing a function 
   * Troubleshooting 
@@ -39478,6 +39479,69 @@ react-app "Open in CodeSandbox")
 Show more
 Next Example
 * * *
+### Preventing an Effect from firing too often
+Sometimes, you might want to use a value inside an
+[Effect:](/learn/synchronizing-with-effects)
+    function ChatRoom({ roomId }) {  
+      const [message, setMessage] = useState('');  
+      const options = {  
+        serverUrl: 'https://localhost:1234',  
+        roomId: roomId  
+      }  
+      useEffect(() => {  
+        const connection = createConnection(options);  
+        connection.connect();  
+        // ...
+This creates a problem. [Every reactive value must be declared as a dependency
+of your Effect.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-
+specified-every-reactive-value-as-a-dependency) However, if you declare
+`options` as a dependency, it will cause your Effect to constantly reconnect
+to the chat room:
+      useEffect(() => {  
+        const connection = createConnection(options);  
+        connection.connect();  
+        return () => connection.disconnect();  
+      }, [options]); // 🔴 Problem: This dependency changes on every render  
+      // ...
+To solve this, you can wrap the object you need to call from an Effect in
+`useMemo`:
+    function ChatRoom({ roomId }) {  
+      const [message, setMessage] = useState('');  
+      const options = useMemo(() => {  
+        return {  
+          serverUrl: 'https://localhost:1234',  
+          roomId: roomId  
+        };  
+      }, [roomId]); // ✅ Only changes when roomId changes  
+      useEffect(() => {  
+        const options = createOptions();  
+        const connection = createConnection(options);  
+        connection.connect();  
+        return () => connection.disconnect();  
+      }, [options]); // ✅ Only changes when createOptions changes  
+      // ...
+This ensures that the `options` object is the same between re-renders if
+`useMemo` returns the cached object.
+However, since `useMemo` is performance optimization, not a semantic
+guarantee, React may throw away the cached value if there is a specific reason
+to do that. This will also cause the effect to re-fire, **so it’s even better
+to remove the need for a function dependency** by moving your object _inside_
+the Effect:
+    function ChatRoom({ roomId }) {  
+      const [message, setMessage] = useState('');  
+      useEffect(() => {  
+        const options = { // ✅ No need for useMemo or object dependencies!  
+          serverUrl: 'https://localhost:1234',  
+          roomId: roomId  
+        }  
+        const connection = createConnection(options);  
+        connection.connect();  
+        return () => connection.disconnect();  
+      }, [roomId]); // ✅ Only changes when roomId changes  
+      // ...
+Now your code is simpler and doesn’t need `useMemo`. [Learn more about
+removing Effect dependencies.](/learn/removing-effect-dependencies#move-
+dynamic-objects-and-functions-inside-your-effect)
 ### Memoizing a dependency of another Hook
 Suppose you have a calculation that depends on an object created directly in
 the component body:
@@ -39871,6 +39935,7 @@ See more examples below.
   2. The `dispatch` function that lets you update the state to a different value and trigger a re-render.
 #### Caveats
   * `useReducer` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can’t call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+  * The `dispatch` function has a stable identity, so you will often see it omitted from effect dependencies, but including it will not cause the effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
   * In Strict Mode, React will **call your reducer and initializer twice** in order to help you find accidental impurities. This is development-only behavior and does not affect production. If your reducer and initializer are pure (as they should be), this should not affect your logic. The result from one of the calls is ignored.
 * * *
 ### `dispatch` function
@@ -40682,6 +40747,7 @@ or a function that calculates it from the previous state:
   * The `set` function **only updates the state variable for the _next_ render**. If you read the state variable after calling the `set` function, you will still get the old value that was on the screen before your call.
   * If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will **skip re-rendering the component and its children.** This is an optimization. Although in some cases React may still need to call your component before skipping the children, it shouldn’t affect your code.
   * React [batches state updates.](/learn/queueing-a-series-of-state-updates) It updates the screen **after all the event handlers have run** and have called their `set` functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use [`flushSync`.](/reference/react-dom/flushSync)
+  * The `set` function has a stable identity, so you will often see it omitted from effect dependencies, but including it will not cause the effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
   * Calling the `set` function _during rendering_ is only allowed from within the currently rendering component. React will discard its output and immediately attempt to render it again with the new state. This pattern is rarely needed, but you can use it to **store information from the previous renders**. See an example below.
   * In Strict Mode, React will **call your updater function twice** in order to help you find accidental impurities. This is development-only behavior and does not affect production. If your updater function is pure (as it should be), this should not affect the behavior. The result from one of the calls will be ignored.
 * * *
@@ -41573,6 +41639,7 @@ state update as a Transition.
   * `useTransition` is a Hook, so it can only be called inside components or custom Hooks. If you need to start a Transition somewhere else (for example, from a data library), call the standalone [`startTransition`](/reference/react/startTransition) instead.
   * You can wrap an update into a Transition only if you have access to the `set` function of that state. If you want to start a Transition in response to some prop or a custom Hook value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
   * The function you pass to `startTransition` must be synchronous. React immediately executes this function, marking all state updates that happen while it executes as Transitions. If you try to perform more state updates later (for example, in a timeout), they won’t be marked as Transitions.
+  * The `startTransition` function has a stable identity, so you will often see it omitted from effect dependencies, but including it will not cause the effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
   * A state update marked as a Transition will be interrupted by other state updates. For example, if you update a chart component inside a Transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart component after handling the input update.
   * Transition updates can’t be used to control text inputs.
   * If there are multiple ongoing Transitions, React currently batches them together. This is a limitation that will likely be removed in a future release.

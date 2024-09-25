@@ -8,6 +8,9 @@
     "base_url": "https://react.dev",
     "excluded_patterns": ["community", "/20"]
   },
+  "cva": {
+    "base_url": "https://cva.style"
+  },
   "nextjs": {
     "base_url": "https://nextjs.org/docs",
     "excluded_patterns": ["pages", "community"]
