@@ -63,7 +63,7 @@ def load_metadata_from_file(file_path: str) -> dict:
 
 
 def fetch_and_parse(
-    url: str, excluded_classes: list, custom_main_indicator: str
+    url: str, excluded_classes: list, custom_main_indicator: str, url_sizes: list
 ) -> str:
     """
     Fetch and parse the URL's HTML content.
@@ -71,6 +71,7 @@ def fetch_and_parse(
     :param url: URL to fetch and parse.
     :param excluded_classes: List of CSS classes to exclude from the content.
     :param custom_main_indicator: Custom CSS selector for the main content.
+    :param url_sizes: List to record URL and content size.
     :return: Cleaned text extracted from the main content or an empty string on failure.
     """
     for attempt in range(RETRIES):
@@ -78,6 +79,10 @@ def fetch_and_parse(
             logger.debug("Fetching URL: %s", url)
             response = requests.get(url, timeout=REQUEST_TIMEOUT)
             response.raise_for_status()  # Raise an HTTPError for bad requests
+
+            content_length = len(response.content)
+            url_sizes.append((url, content_length))
+
             soup = BeautifulSoup(response.text, "html.parser")
 
             main_content = extract_main_content(
@@ -159,9 +164,16 @@ def main(site_key: str):
     all_text = f"Domain: {domain}\nTimestamp: {timestamp}\n\n"
     progress_bar = tqdm(urls, desc=f"Processing {site_key} URLs", unit="url")
 
+    url_sizes = []
+
     for url in progress_bar:
-        text = fetch_and_parse(url, excluded_classes, custom_main_indicator)
+        text = fetch_and_parse(url, excluded_classes, custom_main_indicator, url_sizes)
         all_text += text + "\n"
+
+    # Log the 25 largest URLs
+    largest_urls = sorted(url_sizes, key=lambda x: x[1], reverse=True)[:25]
+    for url, size in largest_urls:
+        logger.info("URL: %s [Size: %d bytes]", url, size)
 
     all_text = all_text.strip()
 
