@@ -69,6 +69,10 @@ def fetch_and_parse(
             logger.debug("Fetching URL: %s", url)
             response = requests.get(url, timeout=REQUEST_TIMEOUT)
             response.raise_for_status()  # Raise an HTTPError for bad requests
+
+            content_length = len(response.content)
+            url_sizes.append((url, content_length))
+
             soup = BeautifulSoup(response.text, "html.parser")
             main_content = extract_main_content(
                 soup, excluded_classes, custom_main_indicator, selector
