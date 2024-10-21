@@ -1,0 +1,33 @@
+{
+    "timestamp": "2024-10-20T23:14:51.665794+00:00",
+    "domain": "https://cva.style",
+    "crawl_metadata": {
+        "excluded_patterns": [
+            "assets",
+            "tutorials",
+            "vue",
+            "svelte",
+            "astro",
+            "11ty",
+            "bem"
+        ],
+        "included_patterns": [],
+        "excluded_extensions": []
+    },
+    "total_urls": 12,
+    "urls": [
+        "https://cva.style",
+        "https://cva.style/docs",
+        "https://cva.style/docs/api-reference",
+        "https://cva.style/docs/examples/other-use-cases",
+        "https://cva.style/docs/examples/react/css-modules",
+        "https://cva.style/docs/examples/react/tailwind-css",
+        "https://cva.style/docs/faqs",
+        "https://cva.style/docs/getting-started/composing-components",
+        "https://cva.style/docs/getting-started/extending-components",
+        "https://cva.style/docs/getting-started/installation",
+        "https://cva.style/docs/getting-started/typescript",
+        "https://cva.style/docs/getting-started/variants"
+    ],
+    "failed_urls": []
+}

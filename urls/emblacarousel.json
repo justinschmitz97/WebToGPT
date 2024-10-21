@@ -1,32 +1,19 @@
 {
-    "timestamp": "2024-09-22T22:38:36.924941+00:00",
+    "timestamp": "2024-10-20T23:15:11.197832+00:00",
     "domain": "https://www.embla-carousel.com",
     "crawl_metadata": {
         "excluded_patterns": [],
-        "excluded_extensions": [
-            ".md",
-            ".xml",
-            ".epub",
-            ".bz2",
-            ".png",
-            ".jpg",
-            ".jpeg",
-            ".gif",
-            ".svg",
-            ".webp",
-            ".bmp",
-            ".tiff",
-            ".ico",
-            ".zip"
-        ]
+        "included_patterns": [],
+        "excluded_extensions": []
     },
-    "total_urls": 29,
+    "total_urls": 30,
     "urls": [
         "https://www.embla-carousel.com",
         "https://www.embla-carousel.com/api",
         "https://www.embla-carousel.com/api/events",
         "https://www.embla-carousel.com/api/methods",
         "https://www.embla-carousel.com/api/options",
+        "https://www.embla-carousel.com/api/options/api/options#slides",
         "https://www.embla-carousel.com/api/plugins",
         "https://www.embla-carousel.com/examples",
         "https://www.embla-carousel.com/examples/generator",
@@ -52,10 +39,5 @@
         "https://www.embla-carousel.com/plugins/fade",
         "https://www.embla-carousel.com/plugins/wheel-gestures"
     ],
-    "failed_urls": [
-        {
-            "url": "https://www.embla-carousel.com/api/api/options",
-            "error": "404, message='Not Found', url='https://www.embla-carousel.com/api/api/options'"
-        }
-    ]
+    "failed_urls": []
 }

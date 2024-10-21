@@ -22,18 +22,18 @@ def run_site(site_key):
     subprocess.run(["python", "scraper.py", "--site_key", site_key], check=True)
 
 
-def run_with_url(base_url):
+def run_with_url(url):
     """
     Ensure the provided URL includes a scheme and run sitemapper with the normalized base URL.
 
-    :param base_url: The base URL to run the scripts with.
+    :param url: The base URL to run the scripts with.
     """
-    parsed_url = urlparse(base_url)
+    parsed_url = urlparse(url)
     if not parsed_url.scheme:
-        base_url = "https://" + base_url
+        url = "https://" + url
 
-    subprocess.run(["python", "sitemapper.py", "--base_url", base_url], check=True)
-    site_key = base_url.replace("https://", "").replace("http://", "").replace("/", "_")
+    subprocess.run(["python", "sitemapper.py", "--url", url], check=True)
+    site_key = url.replace("https://", "").replace("http://", "").replace("/", "_")
     subprocess.run(["python", "scraper.py", "--site_key", site_key], check=True)
 
 

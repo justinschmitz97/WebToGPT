@@ -1,32 +1,18 @@
 {
-    "timestamp": "2024-09-22T22:38:43.346465+00:00",
+    "timestamp": "2024-10-20T23:17:27.734620+00:00",
     "domain": "https://react.dev",
     "crawl_metadata": {
         "excluded_patterns": [
             "community",
-            "/20"
+            "/20",
+            "blog"
         ],
-        "excluded_extensions": [
-            ".md",
-            ".xml",
-            ".epub",
-            ".bz2",
-            ".png",
-            ".jpg",
-            ".jpeg",
-            ".gif",
-            ".svg",
-            ".webp",
-            ".bmp",
-            ".tiff",
-            ".ico",
-            ".zip"
-        ]
+        "included_patterns": [],
+        "excluded_extensions": []
     },
-    "total_urls": 141,
+    "total_urls": 140,
     "urls": [
         "https://react.dev",
-        "https://react.dev/blog",
         "https://react.dev/learn",
         "https://react.dev/learn/add-react-to-an-existing-project",
         "https://react.dev/learn/adding-interactivity",

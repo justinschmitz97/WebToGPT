@@ -1,247 +1,111 @@
-# sitemapper.py
-
-"""
-This module provides the functionality for an asynchronous URL crawler that fetches, parses, and
-saves URLs in a website, excluding specified patterns and extensions.
-"""
-
 import asyncio
-from urllib.parse import urlparse, urljoin
 import logging
 import json
-from datetime import datetime, timezone
 import os
 import argparse
-import tqdm
-import async_timeout
-import aiohttp
-from bs4 import BeautifulSoup
+from datetime import datetime, timezone
+from urllib.parse import urlparse
+from crawlee.playwright_crawler import PlaywrightCrawler
+from crawlee import ConcurrencySettings
 
 
-class AsyncURLCrawler:
-    """
-    Asynchronous URL Crawler class for crawling and parsing URLs of a website.
-    """
-
-    def __init__(self, base_url, config):
-        """
-        Initialize the AsyncURLCrawler with a base URL and a configuration dictionary.
-
-        :param base_url: The base URL to start crawling from.
-        :param config: Configuration dictionary for the crawler.
-        """
-        self.base_url = self.normalize_url(base_url.rstrip("/"))
-        self.base_parsed_url = urlparse(self.base_url)
+class SimpleCrawler:
+    def __init__(self, url, config):
+        self.url = self.normalize_url(url)
+        self.base_domain = urlparse(self.url).netloc
         self.visited_urls = set()
-        self.failed_urls = []  # List to hold the failed URLs
-        self.failed_urls_set = set()  # Additional set to avoid duplicates
-        self.urls_to_visit = asyncio.Queue()
-        self.urls_to_visit.put_nowait(self.base_url)
-        self.session = None
-        self.user_agent = "Mozilla/5.0 (compatible; MyCrawler/1.0)"
-        self.excluded_patterns = config.get("excluded_patterns")
-        self.excluded_extensions = config.get(
-            "excluded_extensions",
-            [
-                ".md",
-                ".xml",
-                ".epub",
-                ".bz2",
-                ".png",
-                ".jpg",
-                ".jpeg",
-                ".gif",
-                ".svg",
-                ".webp",
-                ".bmp",
-                ".tiff",
-                ".ico",
-                ".zip",
-            ],
-        )
-        self.max_concurrency = config.get("max_concurrency", 10)
-        self.failed_count = 0
+        self.failed_urls = []
+        self.excluded_patterns = config.get("excluded_patterns", [])
+        self.included_patterns = config.get("included_patterns", [])
+        self.max_concurrency = config.get("max_concurrency", 50)
         logging.basicConfig(level=logging.INFO)
 
     def normalize_url(self, url):
-        """
-        Convert HTTP URLs to HTTPS and normalize the URL by removing the trailing slash.
-
-        :param url: URL to be normalized.
-        :return: Normalized URL.
-        """
+        # Use urlparse and _replace to force https and normalize URL
         parsed_url = urlparse(url)
-        if parsed_url.scheme == "http":
-            parsed_url = parsed_url._replace(scheme="https")
-        normalized_url = parsed_url._replace(path=parsed_url.path.rstrip("/"))
-        return normalized_url.geturl()
+        return parsed_url._replace(
+            scheme="https", path=parsed_url.path.rstrip("/")
+        ).geturl()
 
-    async def fetch_page(self, url):
-        """
-        Fetch the HTML content of the given URL.
-
-        :param url: URL to fetch.
-        :return: HTML content of the page or None if an error occurs.
-        """
-        async with async_timeout.timeout(10):
-            headers = {"User-Agent": self.user_agent}
-            try:
-                async with self.session.get(url, headers=headers) as response:
-                    response.raise_for_status()  # Checks for HTTP errors
-                    html = await response.text()
-                    return html
-            except aiohttp.ClientError as e:
-                self.failed_count += 1
-                if url not in self.failed_urls_set:
-                    self.failed_urls.append({"url": url, "error": str(e)})
-                    self.failed_urls_set.add(url)
-                return None
-
-    def qualifies_url(self, url):
-        """
-        Check if the URL fits the base_url path and doesn't contain excluded patterns or extensions.
-
-        :param url: URL to check.
-        :return: True if the URL qualifies, False otherwise.
-        """
-        url = self.normalize_url(url)
+    def should_visit(self, url):
+        url = self.normalize_url(url)  # Normalize URL to HTTPS
         parsed_url = urlparse(url)
-        if (
-            parsed_url.netloc != self.base_parsed_url.netloc
-            or not parsed_url.path.startswith(self.base_parsed_url.path)
-        ):
-            return False
+        is_same_domain = parsed_url.netloc == self.base_domain
+        is_not_excluded = not any(pattern in url for pattern in self.excluded_patterns)
 
-        for pattern in self.excluded_patterns:
-            if pattern in parsed_url.path:
-                return False
-
-        for ext in self.excluded_extensions:
-            if parsed_url.path.lower().endswith(ext):
-                return False
-
-        return True
-
-    def parse_links(self, html, current_url):
-        """
-        Parse HTML content and extract links to queue for visiting.
-
-        :param html: HTML content to parse.
-        :param current_url: URL of the current page being parsed.
-        """
-        soup = BeautifulSoup(html, "html.parser")
-        for link in soup.find_all("a", href=True):
-            href = link["href"]
-            href = urljoin(current_url, href.split("#")[0].split("?")[0])
-            href = self.normalize_url(href)
-            if self.qualifies_url(href) and href not in self.visited_urls:
-                self.urls_to_visit.put_nowait(href)
-
-    async def crawl_single_url(self, progress_bar):
-        """
-        Crawl a single URL from the queue.
-
-        :param progress_bar: Progress bar object to update progress.
-        """
-        while not self.urls_to_visit.empty():
-            url = await self.urls_to_visit.get()
-            if url in self.visited_urls:
-                self.urls_to_visit.task_done()
-                continue
-            html = await self.fetch_page(url)
-            if html:
-                self.visited_urls.add(url)
-                self.parse_links(html, url)
-            self.urls_to_visit.task_done()
-
-            progress_bar.update(1)
-            progress_bar.set_description(
-                f"Crawling {self.base_parsed_url.netloc}: {len(self.visited_urls)} URLs found, {self.failed_count} URLs failed"
-            )
+        should_visit = is_same_domain and is_not_excluded
+        logging.info(f"URL: {url}, Should Visit: {should_visit}")
+        return should_visit
 
     async def crawl(self):
-        """
-        Initiate the crawling process with a limited number of concurrent tasks.
-        """
-        async with aiohttp.ClientSession(
-            connector=aiohttp.TCPConnector(ssl=False)
-        ) as self.session:
-            total_urls_to_crawl = self.urls_to_visit.qsize()
-            with tqdm.tqdm(
-                total=total_urls_to_crawl,
-                desc=f"Crawling {self.base_parsed_url.netloc}",
-                bar_format="{desc}",
-                dynamic_ncols=True,
-            ) as progress_bar:
-                tasks = [
-                    asyncio.create_task(self.crawl_single_url(progress_bar))
-                    for _ in range(self.max_concurrency)
-                ]
-                await self.urls_to_visit.join()  # Ensure all tasks are done
-                for task in tasks:
-                    task.cancel()  # Cancel any remaining tasks
+        concurrency_settings = ConcurrencySettings(max_concurrency=self.max_concurrency)
+        crawler = PlaywrightCrawler(concurrency_settings=concurrency_settings)
 
-    def save_to_file_json(self, site_key):
-        """
-        Save the crawled URLs and metadata to a JSON file.
+        @crawler.router.default_handler
+        async def request_handler(context):
+            url = self.normalize_url(context.request.url)  # Normalize URL to HTTPS
+            context.log.info(f"Processing {url} ...")
 
-        :param site_key: The identifier for the crawled site.
-        """
-        file_path = f"urls/{site_key}.json"
+            # Enqueue links only if they should be visited
+            if self.should_visit(url):
+                await context.enqueue_links(
+                    transform_request=lambda req: req.set_url(
+                        self.normalize_url(req.url)
+                    )
+                )
+                self.visited_urls.add(url)
+                context.log.info(f"Enqueued links from {url}")
+            else:
+                context.log.info(f"Skipped {url} due to filtering")
 
-        unique_urls = sorted(set(self.visited_urls))
+        await crawler.run([self.url])
+
+    def save_results(self, site_key):
+        os.makedirs("urls", exist_ok=True)
+        filtered_urls = [
+            url
+            for url in self.visited_urls
+            if not self.included_patterns
+            or any(pattern in url for pattern in self.included_patterns)
+        ]
         output_data = {
             "timestamp": datetime.now(timezone.utc).isoformat(),
-            "domain": self.base_url,
+            "domain": self.url,
             "crawl_metadata": {
                 "excluded_patterns": self.excluded_patterns,
-                "excluded_extensions": self.excluded_extensions,
+                "included_patterns": self.included_patterns,
+                "excluded_extensions": [],
             },
-            "total_urls": len(unique_urls),
-            "urls": unique_urls,
+            "total_urls": len(filtered_urls),
+            "urls": sorted(filtered_urls),
             "failed_urls": self.failed_urls,
         }
-
-        os.makedirs("urls", exist_ok=True)  # Ensure the directory exists before saving
-
-        with open(file_path, "w", encoding="utf-8") as file:
+        with open(f"urls/{site_key}.json", "w", encoding="utf-8") as file:
             json.dump(output_data, file, indent=4)
 
 
 async def main():
-    """
-    Main function to parse arguments and start the crawler.
-    """
     parser = argparse.ArgumentParser()
     parser.add_argument("--site_key", help="The site key to use from the config.")
-    parser.add_argument("--base_url", help="A base URL to run the script with.")
+    parser.add_argument("--url", help="A base URL to run the script with.")
     args = parser.parse_args()
 
-    config = {}
-    base_url = ""
-    if args.site_key:
-        with open("config.json", "r", encoding="utf-8") as config_file:
-            config = json.load(config_file)
-        site_config = config.get(args.site_key, config.get("default", {}))
-        base_url = site_config.get("base_url", "")
-    else:
-        site_config = config.get("default", {})
+    with open("config.json", "r", encoding="utf-8") as config_file:
+        config = json.load(config_file)
 
-    if args.base_url:
-        base_url = args.base_url
+    site_config = config.get(args.site_key, config.get("default", {}))
+    url = args.url or site_config.get("url", "")
 
-    if not base_url:
+    if not url:
         logging.error("No base URL found for site key: %s", args.site_key)
         return
 
-    crawler = AsyncURLCrawler(base_url, site_config)
+    crawler = SimpleCrawler(url, site_config)
     await crawler.crawl()
-    site_key = (
-        args.site_key
-        if args.site_key
-        else base_url.replace("https://", "").replace("http://", "").replace("/", "_")
-    )
-    crawler.save_to_file_json(site_key)
+    site_key = args.site_key or url.replace("https://", "").replace(
+        "http://", ""
+    ).replace("/", "_")
+    crawler.save_results(site_key)
 
 
 if __name__ == "__main__":

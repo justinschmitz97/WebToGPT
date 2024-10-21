@@ -2,10 +2,8 @@ import argparse
 import json
 import logging
 import os
-import re
 import requests
 from bs4 import BeautifulSoup
-import html2text
 from tqdm import tqdm
 
 # --- Configuration ---
@@ -63,52 +61,42 @@ def load_metadata_from_file(file_path: str) -> dict:
 
 
 def fetch_and_parse(
-    url: str, excluded_classes: list, custom_main_indicator: str
-) -> str:
-    """
-    Fetch and parse the URL's HTML content.
-
-    :param url: URL to fetch and parse.
-    :param excluded_classes: List of CSS classes to exclude from the content.
-    :param custom_main_indicator: Custom CSS selector for the main content.
-    :return: Cleaned text extracted from the main content or an empty string on failure.
-    """
+    url: str, excluded_classes: list, custom_main_indicator: str, selector: str
+) -> dict:
+    """Fetch and parse the URL's HTML content."""
     for attempt in range(RETRIES):
         try:
             logger.debug("Fetching URL: %s", url)
             response = requests.get(url, timeout=REQUEST_TIMEOUT)
             response.raise_for_status()  # Raise an HTTPError for bad requests
             soup = BeautifulSoup(response.text, "html.parser")
-
             main_content = extract_main_content(
-                soup, excluded_classes, custom_main_indicator
+                soup, excluded_classes, custom_main_indicator, selector
             )
             if main_content:
-                cleaned_text = clean_main_content(main_content)
-                return cleaned_text
+                title = soup.title.string if soup.title else "No Title"
+                structured_content = extract_structured_content(main_content)
+                return {"url": url, "title": title, "content": structured_content}
             logger.warning("No main content found in %s", url)
-            return ""
-
+            return {}
         except requests.RequestException as e:
             logger.warning(
                 "Error fetching %s (attempt %d): %s", url, attempt + 1, str(e)
             )
             if attempt + 1 == RETRIES:
-                return ""
+                return {}
 
 
 def extract_main_content(
-    soup: BeautifulSoup, excluded_classes: list, custom_main_indicator: str
+    soup: BeautifulSoup,
+    excluded_classes: list,
+    custom_main_indicator: str,
+    selector: str,
 ) -> BeautifulSoup:
-    """
-    Extract main content from the BeautifulSoup object.
-
-    :param soup: BeautifulSoup object containing the HTML.
-    :param excluded_classes: List of CSS classes to exclude from the content.
-    :param custom_main_indicator: Custom CSS selector for the main content.
-    :return: The main content as a BeautifulSoup object.
-    """
-    if custom_main_indicator:
+    """Extract main content from the BeautifulSoup object."""
+    if selector:
+        main_content = soup.select_one(selector)
+    elif custom_main_indicator:
         main_content = soup.select_one(custom_main_indicator)
     else:
         main_content = soup.find("main") or soup.find("article") or soup.body
@@ -122,56 +110,57 @@ def extract_main_content(
     return main_content
 
 
-def clean_main_content(content: BeautifulSoup) -> str:
-    """
-    Extract and clean the text from the main content and convert it to Markdown.
-
-    :param content: BeautifulSoup object of the main content.
-    :return: Markdown formatted string.
-    """
-    html = str(content)
-    markdown_text = html2text.html2text(html)
-    # Remove image tags using regex
-    markdown_text = re.sub(r"!\[[^\]]*\]\([^\)]+\)", "", markdown_text)
-    # Remove empty lines
-    non_empty_lines = [line for line in markdown_text.split("\n") if line.strip()]
-    return "\n".join(non_empty_lines)
+def extract_structured_content(content: BeautifulSoup) -> list:
+    """Extract structured content from the main content."""
+    structured_content = []
+    for element in content.descendants:
+        if element.name and element.name.startswith("h") and element.name[1:].isdigit():
+            level = int(element.name[1:])
+            structured_content.append(
+                {"type": "header", "level": level, "text": element.get_text(strip=True)}
+            )
+        elif element.name == "p":
+            structured_content.append(
+                {"type": "p", "text": element.get_text(strip=True)}
+            )
+        elif element.name in ["ul", "ol"]:
+            list_items = [li.get_text(strip=True) for li in element.find_all("li")]
+            structured_content.append({"type": "list", "items": list_items})
+        elif element.name == "pre":
+            code = element.get_text(strip=True)
+            structured_content.append({"type": "code", "code": code})
+    return structured_content
 
 
 def main(site_key: str):
-    """
-    Main function to load URLs, process them, and save the extracted content.
-
-    :param site_key: The site key to use from the config.
-    """
+    """Main function to load URLs, process them, and save the extracted content."""
     file_path = os.path.join(BASE_URL_PATH, f"{site_key}.json")
     data = load_metadata_from_file(file_path)
     urls = data.get("urls", [])
-    timestamp = data.get("timestamp", "")
     domain = data.get("domain", "unknown")
     excluded_classes = data.get("excluded_classes", [])
     custom_main_indicator = data.get("custom_main_indicator", "")
+    selector = data.get("selector", "")
 
     if not urls:
         logger.error("No URLs found in %s", file_path)
         return
 
-    all_text = f"Domain: {domain}\nTimestamp: {timestamp}\n\n"
+    domain_data = {"name": domain, "url": f"https://{domain}", "pages": []}
+
     progress_bar = tqdm(urls, desc=f"Processing {site_key} URLs", unit="url")
-
     for url in progress_bar:
-        text = fetch_and_parse(url, excluded_classes, custom_main_indicator)
-        all_text += text + "\n"
+        page_data = fetch_and_parse(
+            url, excluded_classes, custom_main_indicator, selector
+        )
+        if page_data:
+            domain_data["pages"].append(page_data)
 
-    all_text = all_text.strip()
-
-    output_file = os.path.join(OUTPUT_DIR, f"{site_key}.md")
+    output_file = os.path.join(OUTPUT_DIR, f"{site_key}.json")
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-
     with open(output_file, "w", encoding="utf-8") as file:
-        file.write(all_text)
-
-    logger.info("All text has been written to %s", output_file)
+        json.dump(domain_data, file, ensure_ascii=False, indent=4)
+    logger.info("All data has been written to %s", output_file)
 
 
 if __name__ == "__main__":

@@ -1,11 +1,3 @@
-aiohttp
-beautifulsoup4
-async-timeout
-requests
-html2text
-tqdm
-pyquery
-fake_useragent
-pyppeteer
-parse
-w3lib
+crawlee
+playwright
+crawlee[playwright]

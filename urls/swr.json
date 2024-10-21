@@ -1,5 +1,5 @@
 {
-    "timestamp": "2024-09-22T22:38:31.934821+00:00",
+    "timestamp": "2024-10-20T23:15:14.971790+00:00",
     "domain": "https://swr.vercel.app",
     "crawl_metadata": {
         "excluded_patterns": [
@@ -9,36 +9,19 @@
             "/es-ES",
             "/zh-CN"
         ],
-        "excluded_extensions": [
-            ".md",
-            ".xml",
-            ".epub",
-            ".bz2",
-            ".png",
-            ".jpg",
-            ".jpeg",
-            ".gif",
-            ".svg",
-            ".webp",
-            ".bmp",
-            ".tiff",
-            ".ico",
-            ".zip"
-        ]
+        "included_patterns": [],
+        "excluded_extensions": []
     },
-    "total_urls": 36,
+    "total_urls": 33,
     "urls": [
         "https://swr.vercel.app",
         "https://swr.vercel.app/blog",
         "https://swr.vercel.app/blog/swr-v1",
-        "https://swr.vercel.app/blog/swr-v1.en-US",
         "https://swr.vercel.app/blog/swr-v2",
         "https://swr.vercel.app/docs/advanced/cache",
-        "https://swr.vercel.app/docs/advanced/cache.en-US",
         "https://swr.vercel.app/docs/advanced/devtools",
         "https://swr.vercel.app/docs/advanced/devtools.en-US",
         "https://swr.vercel.app/docs/advanced/performance",
-        "https://swr.vercel.app/docs/advanced/performance.en-US",
         "https://swr.vercel.app/docs/advanced/react-native",
         "https://swr.vercel.app/docs/advanced/understanding",
         "https://swr.vercel.app/docs/api",

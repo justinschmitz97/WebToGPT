@@ -32,12 +32,12 @@ Modify the `config.json` file to add or update site configurations:
 ```json
 {
   "default": {
-    "base_url": "",
+    "url": "",
     "excluded_patterns": [],
     "max_concurrency": 10
   },
   "react": {
-    "base_url": "https://react.dev",
+    "url": "https://react.dev",
     "excluded_patterns": ["community"]
   }
   // Add your additional site configurations here
