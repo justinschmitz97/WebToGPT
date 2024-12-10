@@ -7,70 +7,8 @@
             "title": "React Hooks for Data Fetching – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "SWR"
-                },
-                {
                     "type": "p",
-                    "text": "React Hooks for Data Fetching"
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Lightweight"
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Realtime"
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Suspense"
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Pagination"
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Backend Agnostic"
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "SSR / SSG Ready"
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "TypeScript Ready"
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Remote + Local"
-                },
-                {
-                    "type": "p",
-                    "text": "The name “SWR” is derived fromstale-while-revalidate, a HTTP cache invalidation strategy popularized byHTTP RFC 5861(opens in a new tab).\nSWR is a strategy to first return the data from cache (stale), then send the fetch request (revalidate), and finally come with the up-to-date data."
-                },
-                {
-                    "type": "p",
-                    "text": "With SWR, components will get a stream of data updatesconstantlyandautomatically.And the UI will be alwaysfastandreactive."
-                },
-                {
-                    "type": "p",
-                    "text": "Get Started·Examples·Blog·GitHub Repository(opens in a new tab)"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Overview"
+                    "text": "React Hooks for Data Fetching The name “SWR” is derived fromstale-while-revalidate, a HTTP cache invalidation strategy popularized byHTTP RFC 5861(opens in a new tab).\nSWR is a strategy to first return the data from cache (stale), then send the fetch request (revalidate), and finally come with the up-to-date data. With SWR, components will get a stream of data updatesconstantlyandautomatically.And the UI will be alwaysfastandreactive. Get Started·Examples·Blog·GitHub Repository(opens in a new tab)"
                 },
                 {
                     "type": "code",
@@ -78,20 +16,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "In this example, theuseSWRhook accepts akeystring and afetcherfunction.keyis a unique identifier of the data (normally the API URL)\nand will be passed tofetcher.fetchercan be any asynchronous function which returns the data, you can use the native fetch or tools like Axios."
-                },
-                {
-                    "type": "p",
-                    "text": "The hook returns 3 values:data,isLoadinganderror, based on the status of the request."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Features"
-                },
-                {
-                    "type": "p",
-                    "text": "With just one single line of code, you can simplify the logic of data fetching in your project, and also have all these amazing features out-of-the-box:"
+                    "text": "In this example, theuseSWRhook accepts akeystring and afetcherfunction.keyis a unique identifier of the data (normally the API URL)\nand will be passed tofetcher.fetchercan be any asynchronous function which returns the data, you can use the native fetch or tools like Axios. The hook returns 3 values:data,isLoadinganderror, based on the status of the request. With just one single line of code, you can simplify the logic of data fetching in your project, and also have all these amazing features out-of-the-box:"
                 },
                 {
                     "type": "list",
@@ -125,24 +50,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "And a lotmore."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Community"
-                },
-                {
-                    "type": "p",
-                    "text": ""
-                },
-                {
-                    "type": "p",
-                    "text": "SWR is created by the same team behindNext.js(opens in a new tab), the React framework.\nFollow@vercel(opens in a new tab)on Twitter for future project updates."
-                },
-                {
-                    "type": "p",
-                    "text": "Feel free to join thediscussions on GitHub(opens in a new tab)!"
+                    "text": "And a lotmore.  SWR is created by the same team behindNext.js(opens in a new tab), the React framework.\nFollow@vercel(opens in a new tab)on Twitter for future project updates. Feel free to join thediscussions on GitHub(opens in a new tab)!"
                 }
             ]
         },
@@ -151,35 +59,8 @@
             "title": "Blog – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "SWR Blog"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Announcing SWR 2.0"
-                },
-                {
                     "type": "p",
-                    "text": "Announcing SWR 2.0: new mutation APIs and improved optimistic UI capabilities, new DevTools, better support for concurrent rendering, and more.Read more →"
-                },
-                {
-                    "type": "p",
-                    "text": "December 9th, 2022"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Announcing SWR 1.0"
-                },
-                {
-                    "type": "p",
-                    "text": "Almost 2 years ago we open sourced SWR, the tiny data-fetching React library that people love. Today we are reaching another milestone: the 1.0 version of SWR.Read more →"
-                },
-                {
-                    "type": "p",
-                    "text": "August 27th, 2021"
+                    "text": "Announcing SWR 2.0: new mutation APIs and improved optimistic UI capabilities, new DevTools, better support for concurrent rendering, and more.Read more → December 9th, 2022 Almost 2 years ago we open sourced SWR, the tiny data-fetching React library that people love. Today we are reaching another milestone: the 1.0 version of SWR.Read more → August 27th, 2021"
                 }
             ]
         },
@@ -188,27 +69,8 @@
             "title": "Announcing SWR 1.0 – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Announcing SWR 1.0"
-                },
-                {
                     "type": "p",
-                    "text": "Almost 2 years ago weopen sourced(opens in a new tab)SWR, the tiny data-fetching React library that people love. Today we are reaching another milestone: the 1.0 version of SWR!"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "What’s New"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Smaller Size"
-                },
-                {
-                    "type": "p",
-                    "text": "Performanceis one of the most important features of SWR. In 1.0, we made the library significantly smallerwithout removing any existing features:"
+                    "text": "Almost 2 years ago weopen sourced(opens in a new tab)SWR, the tiny data-fetching React library that people love. Today we are reaching another milestone: the 1.0 version of SWR! Performanceis one of the most important features of SWR. In 1.0, we made the library significantly smallerwithout removing any existing features:"
                 },
                 {
                     "type": "list",
@@ -220,11 +82,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "There are many reasons to make the library lightweight: your application will have a smaller bundle, a leaner runtime, and a smallernode_modulesdirectory."
-                },
-                {
-                    "type": "p",
-                    "text": "We’ve also improved the bundling of the package, and it now supports path imports:"
+                    "text": "There are many reasons to make the library lightweight: your application will have a smaller bundle, a leaner runtime, and a smallernode_modulesdirectory. We’ve also improved the bundling of the package, and it now supports path imports:"
                 },
                 {
                     "type": "code",
@@ -232,16 +90,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "If you are not usinguseSWRInfinite, it will not be included in your application."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Fallback Data"
-                },
-                {
-                    "type": "p",
-                    "text": "In 1.0, there’s a newfallbackoption that you can provide any pre-fetched data as the initial value of all SWR hooks with specific keys:"
+                    "text": "If you are not usinguseSWRInfinite, it will not be included in your application. In 1.0, there’s a newfallbackoption that you can provide any pre-fetched data as the initial value of all SWR hooks with specific keys:"
                 },
                 {
                     "type": "code",
@@ -249,20 +98,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "This is very helpful for scenarios such as SSG, SSR, and data mockup for testing. Check the docsNext.js SSG and SSRfor more details."
-                },
-                {
-                    "type": "p",
-                    "text": "For better consistency and to avoid confusion, the oldinitialDatais now renamed tofallbackData, which still provides a single fallback value for the given hook."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Immutable Mode"
-                },
-                {
-                    "type": "p",
-                    "text": "Sometimes you want to mark a resource asimmutableif it will never change. It's better to disable automatic revalidations for it and only make the request once. There is now a helper hook to make this easier:"
+                    "text": "This is very helpful for scenarios such as SSG, SSR, and data mockup for testing. Check the docsNext.js SSG and SSRfor more details. For better consistency and to avoid confusion, the oldinitialDatais now renamed tofallbackData, which still provides a single fallback value for the given hook. Sometimes you want to mark a resource asimmutableif it will never change. It's better to disable automatic revalidations for it and only make the request once. There is now a helper hook to make this easier:"
                 },
                 {
                     "type": "code",
@@ -270,16 +106,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "It has the exact same API as theuseSWRhook, but it will never revalidate upon tab focus or network recovery. There's also a new option,revalidateIfStale, you can use to control the behavior precisely. More information can be foundhere."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Custom Cache Provider"
-                },
-                {
-                    "type": "p",
-                    "text": "By default, SWR uses a single global cache to store all the data. In 1.0, you are able to customize it with the newprovideroption:"
+                    "text": "It has the exact same API as theuseSWRhook, but it will never revalidate upon tab focus or network recovery. There's also a new option,revalidateIfStale, you can use to control the behavior precisely. More information can be foundhere. By default, SWR uses a single global cache to store all the data. In 1.0, you are able to customize it with the newprovideroption:"
                 },
                 {
                     "type": "code",
@@ -287,24 +114,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "You can use this new feature to do many powerful things. We have a couple of examples here:Mutate Multiple Keys with RegEx,LocalStorage Based Persistent Cache,Reset Cache Between Tests."
-                },
-                {
-                    "type": "p",
-                    "text": "This new cache provider API is also more compatible with concurrent rendering of React 18. If you are adding a cache provider, make sure to use the globalmutatefunction returned fromuseSWRConfig()."
-                },
-                {
-                    "type": "p",
-                    "text": "You can read the docsCache Providerfor more details."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "useSWRConfig()"
-                },
-                {
-                    "type": "p",
-                    "text": "There is a new Hook API to return all global configurations, including the current cache provider and globalmutatefunction:"
+                    "text": "You can use this new feature to do many powerful things. We have a couple of examples here:Mutate Multiple Keys with RegEx,LocalStorage Based Persistent Cache,Reset Cache Between Tests. This new cache provider API is also more compatible with concurrent rendering of React 18. If you are adding a cache provider, make sure to use the globalmutatefunction returned fromuseSWRConfig(). You can read the docsCache Providerfor more details. There is a new Hook API to return all global configurations, including the current cache provider and globalmutatefunction:"
                 },
                 {
                     "type": "code",
@@ -312,16 +122,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "More information can be foundhere."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Middleware"
-                },
-                {
-                    "type": "p",
-                    "text": "SWR Middleware provide a new way for you to build and reuse abstractions on top of SWR hooks:"
+                    "text": "More information can be foundhere. SWR Middleware provide a new way for you to build and reuse abstractions on top of SWR hooks:"
                 },
                 {
                     "type": "code",
@@ -329,29 +130,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "A lot of new ideas can be implemented with this feature, and we've built some examples:Request Logger,Keep Previous Data When Changing the Key, andSerialize Object Keys."
-                },
-                {
-                    "type": "p",
-                    "text": "Check theMiddleware APIfor more details."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Improvements and Better Test Coverage"
-                },
-                {
-                    "type": "p",
-                    "text": "Since 0.x, we've made hundreds of small improvements and bugfixes. SWR now has 157 tests that cover most of the edge cases in data fetching. Read theChangelog(opens in a new tab)for more details."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Docs Translations"
-                },
-                {
-                    "type": "p",
-                    "text": "Thanks to ourcontributors(opens in a new tab)and Nextra’si18n feature(opens in a new tab), we now offer SWR documentation in six different languages:"
+                    "text": "A lot of new ideas can be implemented with this feature, and we've built some examples:Request Logger,Keep Previous Data When Changing the Key, andSerialize Object Keys. Check theMiddleware APIfor more details. Since 0.x, we've made hundreds of small improvements and bugfixes. SWR now has 157 tests that cover most of the edge cases in data fetching. Read theChangelog(opens in a new tab)for more details. Thanks to ourcontributors(opens in a new tab)and Nextra’si18n feature(opens in a new tab), we now offer SWR documentation in six different languages:"
                 },
                 {
                     "type": "list",
@@ -363,16 +142,6 @@
                         "Korean(opens in a new tab)",
                         "Russian(opens in a new tab)"
                     ]
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Migration Guide"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "UpdateuseSWRInfiniteImports"
                 },
                 {
                     "type": "p",
@@ -391,11 +160,6 @@
                     "code": "- import { SWRInfiniteConfiguration, SWRInfiniteResponse } from 'swr'+ import { SWRInfiniteConfiguration, SWRInfiniteResponse } from 'swr/infinite'"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Changerevalidatetomutate"
-                },
-                {
                     "type": "p",
                     "text": "useSWRno longer returns therevalidatemethod, change tomutateinstead:"
                 },
@@ -404,18 +168,8 @@
                     "code": "- const { revalidate } = useSWR(key, fetcher, options)+ const { mutate } = useSWR(key, fetcher, options)// ...- revalidate()+ mutate()"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "RenameinitialDatatofallbackData"
-                },
-                {
                     "type": "code",
                     "code": "- useSWR(key, fetcher, { initialData: ... })+ useSWR(key, fetcher, { fallbackData: ... })"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "No More Default Fetcher"
                 },
                 {
                     "type": "p",
@@ -424,11 +178,6 @@
                 {
                     "type": "code",
                     "code": "<SWRConfigvalue={{fetcher:(url)=>fetch(url).then(res=>res.json()) }}><App/></SWRConfig>// ... oruseSWR(key,(url)=>fetch(url).then(res=>res.json()))"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Recommend to Use the Hook-Returnedmutate"
                 },
                 {
                     "type": "p",
@@ -440,25 +189,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "If you are not using a cache provider, the current global importimport { mutate } from 'swr'still works."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Renamed Types"
-                },
-                {
-                    "type": "p",
-                    "text": "If you are using TypeScript, the following type names have been changed for consistency:"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Beta and Unofficial Feature Users"
-                },
-                {
-                    "type": "p",
-                    "text": "If you are using a beta version of SWR, or using any undocumented APIs, please be aware of the following changes:"
+                    "text": "If you are not using a cache provider, the current global importimport { mutate } from 'swr'still works. If you are using TypeScript, the following type names have been changed for consistency: If you are using a beta version of SWR, or using any undocumented APIs, please be aware of the following changes:"
                 },
                 {
                     "type": "list",
@@ -470,39 +201,8 @@
                     ]
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Changelog"
-                },
-                {
                     "type": "p",
-                    "text": "Read the full Changelogon GitHub(opens in a new tab)."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "What’s Next"
-                },
-                {
-                    "type": "p",
-                    "text": "In future releases, we will keep improving the library while maintaining the stability. We are also aiming to embrace future React versions, as several new features and improvements in 1.0 are already preparing for that. In addition, we are also working on new features to improve the experience of doing data fetching in React and the experience of using this library."
-                },
-                {
-                    "type": "p",
-                    "text": "If you have any feedback about this release, pleaselet us know(opens in a new tab)."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Thank You!"
-                },
-                {
-                    "type": "p",
-                    "text": "Special thanks toToru Kobayashi(opens in a new tab)andYixuan Xu(opens in a new tab)for their contributions to the library, andPaco Coursey(opens in a new tab),uttk(opens in a new tab),Tomohiro SHIOYA(opens in a new tab),Markoz Peña(opens in a new tab),SeulGi Choi(opens in a new tab),Fang Lu(opens in a new tab),Valentin Politov(opens in a new tab)for their work on the translations and docs. This release can't happen without them."
-                },
-                {
-                    "type": "p",
-                    "text": "We also want to thank the entire community, our110 contributors(opens in a new tab)(+45 docs contributors(opens in a new tab)), and everyone who helped and gave us feedback!"
+                    "text": "Read the full Changelogon GitHub(opens in a new tab). In future releases, we will keep improving the library while maintaining the stability. We are also aiming to embrace future React versions, as several new features and improvements in 1.0 are already preparing for that. In addition, we are also working on new features to improve the experience of doing data fetching in React and the experience of using this library. If you have any feedback about this release, pleaselet us know(opens in a new tab). Special thanks toToru Kobayashi(opens in a new tab)andYixuan Xu(opens in a new tab)for their contributions to the library, andPaco Coursey(opens in a new tab),uttk(opens in a new tab),Tomohiro SHIOYA(opens in a new tab),Markoz Peña(opens in a new tab),SeulGi Choi(opens in a new tab),Fang Lu(opens in a new tab),Valentin Politov(opens in a new tab)for their work on the translations and docs. This release can't happen without them. We also want to thank the entire community, our110 contributors(opens in a new tab)(+45 docs contributors(opens in a new tab)), and everyone who helped and gave us feedback!"
                 }
             ]
         },
@@ -511,31 +211,8 @@
             "title": "Announcing SWR 2.0 – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Announcing SWR 2.0"
-                },
-                {
                     "type": "p",
-                    "text": "We are thrilled to announce the release of SWR 2.0, the popular React data-fetching library that enables components to fetch, cache, and mutate data and keeps the UI up-to-date with changes in that data over time."
-                },
-                {
-                    "type": "p",
-                    "text": "This new version comes packed with improvements and new features, such as new mutation APIs, improved optimistic UI capabilities, new DevTools, and better support for concurrent rendering. We would like to extend a huge thank you to all the contributors and maintainers who made this release possible."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Mutation and Optimistic UI"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "useSWRMutation"
-                },
-                {
-                    "type": "p",
-                    "text": "Mutation is an important part of the data-fetching process. They allow you to make changes to your data both locally and remotely. Our existingmutateAPI allows you to revalidate and mutate resources manually. In SWR 2.0, the new hookuseSWRMutationmakes it even simpler to remotely change data using a declarative API. You can set up a mutation using the hook, and then activate it later:"
+                    "text": "We are thrilled to announce the release of SWR 2.0, the popular React data-fetching library that enables components to fetch, cache, and mutate data and keeps the UI up-to-date with changes in that data over time. This new version comes packed with improvements and new features, such as new mutation APIs, improved optimistic UI capabilities, new DevTools, and better support for concurrent rendering. We would like to extend a huge thank you to all the contributors and maintainers who made this release possible. Mutation is an important part of the data-fetching process. They allow you to make changes to your data both locally and remotely. Our existingmutateAPI allows you to revalidate and mutate resources manually. In SWR 2.0, the new hookuseSWRMutationmakes it even simpler to remotely change data using a declarative API. You can set up a mutation using the hook, and then activate it later:"
                 },
                 {
                     "type": "code",
@@ -543,15 +220,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "The example above defines asendRequestmutation that affects the'/api/user'resource. UnlikeuseSWR,useSWRMutationwill not immediately start the request upon rendering. Instead, it returns atriggerfunction that can later be called to manually start the mutation."
-                },
-                {
-                    "type": "p",
-                    "text": "ThesendRequestfunction will be called when the button is clicked, with the extra argument{ username: 'johndoe' }. The value ofisMutatingwill be set totrueuntil the mutation has finished."
-                },
-                {
-                    "type": "p",
-                    "text": "Additionally, this new hook addresses other issues you may have with mutations:"
+                    "text": "The example above defines asendRequestmutation that affects the'/api/user'resource. UnlikeuseSWR,useSWRMutationwill not immediately start the request upon rendering. Instead, it returns atriggerfunction that can later be called to manually start the mutation. ThesendRequestfunction will be called when the button is clicked, with the extra argument{ username: 'johndoe' }. The value ofisMutatingwill be set totrueuntil the mutation has finished. Additionally, this new hook addresses other issues you may have with mutations:"
                 },
                 {
                     "type": "list",
@@ -565,20 +234,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "You can find in-depth API references and examples by reading thedocsor scrolling through the next few sections."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Optimistic UI"
-                },
-                {
-                    "type": "p",
-                    "text": "Optimistic UI is an excellent model for creating websites that feel fast and responsive; however, it can be difficult to implement correctly. SWR 2.0 has added some new powerful options to make it easier."
-                },
-                {
-                    "type": "p",
-                    "text": "Let’s say we have an API that adds a new todo to the todo list and sends it to the server:"
+                    "text": "You can find in-depth API references and examples by reading thedocsor scrolling through the next few sections. Optimistic UI is an excellent model for creating websites that feel fast and responsive; however, it can be difficult to implement correctly. SWR 2.0 has added some new powerful options to make it easier. Let’s say we have an API that adds a new todo to the todo list and sends it to the server:"
                 },
                 {
                     "type": "code",
@@ -602,11 +258,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "SWR will immediately update thedatawith theoptimisticDatavalue, and then send the request to the server. Once the request finishes, SWR will revalidate the resource to ensure it’s the latest."
-                },
-                {
-                    "type": "p",
-                    "text": "Like many APIs, if theaddNewTodo(...)request returns us the latest data from the server, we can directly show that result, too (instead of starting a new revalidation)! There’s the newpopulateCacheoption to tell SWR to update the local data with the mutate response:"
+                    "text": "SWR will immediately update thedatawith theoptimisticDatavalue, and then send the request to the server. Once the request finishes, SWR will revalidate the resource to ensure it’s the latest. Like many APIs, if theaddNewTodo(...)request returns us the latest data from the server, we can directly show that result, too (instead of starting a new revalidation)! There’s the newpopulateCacheoption to tell SWR to update the local data with the mutate response:"
                 },
                 {
                     "type": "code",
@@ -630,42 +282,15 @@
                 },
                 {
                     "type": "p",
-                    "text": "All these APIs are supported in the newuseSWRMutationhook as well. To learn more about them, you can check out ourdocs. And here is a demo showing that behavior:"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Mutate Multiple Keys"
-                },
-                {
-                    "type": "p",
-                    "text": "The globalmutateAPI now accepts a filter function, where you can mutate or revalidate specific keys. This will be helpful for use cases such as invalidating all the cached data. To learn more, you can readMutate Multiple Keysin the docs."
+                    "text": "All these APIs are supported in the newuseSWRMutationhook as well. To learn more about them, you can check out ourdocs. And here is a demo showing that behavior: The globalmutateAPI now accepts a filter function, where you can mutate or revalidate specific keys. This will be helpful for use cases such as invalidating all the cached data. To learn more, you can readMutate Multiple Keysin the docs."
                 },
                 {
                     "type": "code",
                     "code": "import{ mutate }from'swr'// Or from the hook if you have customized your cache provider:// { mutate } = useSWRConfig()// Mutate single resourcemutate(key)// Mutate multiple resources and clear the cache (set to undefined)mutate(key=>typeofkey==='string'&&key.startsWith('/api/item?id='),undefined,{ revalidate:false})"
                 },
                 {
-                    "type": "header",
-                    "level": 2,
-                    "text": "SWR DevTools"
-                },
-                {
                     "type": "p",
-                    "text": "SWRDevTools(opens in a new tab)is a browser extension that helps you debug your SWR cache and the fetch results. Check ourdevtoolssection for how to use devtools in your application."
-                },
-                {
-                    "type": "p",
-                    "text": ""
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Preloading Data"
-                },
-                {
-                    "type": "p",
-                    "text": "Preloading data can improve the user experience tremendously. If you know the resource is going to be used later in the application, you can use the newpreloadAPI to start fetching it early:"
+                    "text": "SWRDevTools(opens in a new tab)is a browser extension that helps you debug your SWR cache and the fetch results. Check ourdevtoolssection for how to use devtools in your application.  Preloading data can improve the user experience tremendously. If you know the resource is going to be used later in the application, you can use the newpreloadAPI to start fetching it early:"
                 },
                 {
                     "type": "code",
@@ -673,24 +298,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "In this example, thepreloadAPI is called in the global scope. This means that we start to preload the resource before React even starts to render anything.\nAnd when theProfilecomponent is being rendered, the data can probably be available already. If it’s still ongoing, theuseSWRhook will reuse that ongoing preloading request instead of starting a new one."
-                },
-                {
-                    "type": "p",
-                    "text": "ThepreloadAPI can also be used in cases like preloading data for another page that will likely be rendered. More information about prefetching data with SWR can be foundhere."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "isLoading"
-                },
-                {
-                    "type": "p",
-                    "text": "isLoadingis a new state returned byuseSWR, that indicatesif the request is still ongoing, and there is no data loaded yet. Previously, theisValidatingstate represents both the initial loading state and revalidating state so we had to check if bothdataanderrorareundefinedto determine if it was the initial loading state."
-                },
-                {
-                    "type": "p",
-                    "text": "Now, it is so easy that you can directly use theisLoadingvalue to render a loading message:"
+                    "text": "In this example, thepreloadAPI is called in the global scope. This means that we start to preload the resource before React even starts to render anything.\nAnd when theProfilecomponent is being rendered, the data can probably be available already. If it’s still ongoing, theuseSWRhook will reuse that ongoing preloading request instead of starting a new one. ThepreloadAPI can also be used in cases like preloading data for another page that will likely be rendered. More information about prefetching data with SWR can be foundhere. isLoadingis a new state returned byuseSWR, that indicatesif the request is still ongoing, and there is no data loaded yet. Previously, theisValidatingstate represents both the initial loading state and revalidating state so we had to check if bothdataanderrorareundefinedto determine if it was the initial loading state. Now, it is so easy that you can directly use theisLoadingvalue to render a loading message:"
                 },
                 {
                     "type": "code",
@@ -698,20 +306,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Note thatisValidatingis still present so you can still use it to show a loading indicator for revalidations."
-                },
-                {
-                    "type": "p",
-                    "text": "We have added the newUnderstanding SWRpage to describe how SWR returns values, which includes the difference betweenisValidatingandisLoading, and how to combine them to improve user experience."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Preserving Previous State"
-                },
-                {
-                    "type": "p",
-                    "text": "ThekeepPreviousDataoption is a new addition that allows you to keep the data that was fetched before. This improves UX immensely when you’re fetching data based on user actions happening in real time, like with a live search feature, where the resource’skeykeeps changing:"
+                    "text": "Note thatisValidatingis still present so you can still use it to show a loading indicator for revalidations. We have added the newUnderstanding SWRpage to describe how SWR returns values, which includes the difference betweenisValidatingandisLoading, and how to combine them to improve user experience. ThekeepPreviousDataoption is a new addition that allows you to keep the data that was fetched before. This improves UX immensely when you’re fetching data based on user actions happening in real time, like with a live search feature, where the resource’skeykeeps changing:"
                 },
                 {
                     "type": "code",
@@ -719,56 +314,19 @@
                 },
                 {
                     "type": "p",
-                    "text": "Check the code onCodeSandbox(opens in a new tab)and you can read more about ithere."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Extending Configurations"
-                },
-                {
-                    "type": "p",
-                    "text": "SWRConfigcan now accept a function value. When you have multiple levels of<SWRConfig>, the inner receives the parent configuration and returns a new one. This change makes it more flexible to configure SWR in a large codebase. More information can be foundhere."
+                    "text": "Check the code onCodeSandbox(opens in a new tab)and you can read more about ithere. SWRConfigcan now accept a function value. When you have multiple levels of<SWRConfig>, the inner receives the parent configuration and returns a new one. This change makes it more flexible to configure SWR in a large codebase. More information can be foundhere."
                 },
                 {
                     "type": "code",
                     "code": "<SWRConfigvalue={parentConfig=>({dedupingInterval:parentConfig.dedupingInterval*5,refreshInterval:100,})}><Page/></SWRConfig>"
                 },
                 {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Improved React 18 Support"
-                },
-                {
                     "type": "p",
-                    "text": "SWR has updated its internal code to useuseSyncExternalStoreandstartTransitionAPIs in React 18. These ensure stronger consistency when rendering UI concurrently. This change doesn’t require any user code changes and all developers will benefit from it directly. Shims are included for React 17 and below."
-                },
-                {
-                    "type": "p",
-                    "text": "SWR 2.0 and all the new features are still compatible with React 16 and 17."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Migration Guide"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Fetcher No Longer Accepts Multiple Arguments"
-                },
-                {
-                    "type": "p",
-                    "text": "keyis now passed as a single argument."
+                    "text": "SWR has updated its internal code to useuseSyncExternalStoreandstartTransitionAPIs in React 18. These ensure stronger consistency when rendering UI concurrently. This change doesn’t require any user code changes and all developers will benefit from it directly. Shims are included for React 17 and below. SWR 2.0 and all the new features are still compatible with React 16 and 17. keyis now passed as a single argument."
                 },
                 {
                     "type": "code",
                     "code": "- useSWR([1, 2, 3], (a, b, c) => {+ useSWR([1, 2, 3], ([a, b, c]) => {assert(a === 1)assert(b === 2)assert(c === 3)})"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Global Mutate No Longer Accepts agetKeyFunction"
                 },
                 {
                     "type": "p",
@@ -779,22 +337,12 @@
                     "code": "- mutate(() => '/api/item') // a function to return a key+ mutate('/api/item')       // to mutate the key, directly pass it"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "New Required Propertykeys()for Cache Interface"
-                },
-                {
                     "type": "p",
                     "text": "When you use your own cache implementation, the Cache interface now requires akeys()method that returns all keys in the cache object, similar to the JavaScript Map instances."
                 },
                 {
                     "type": "code",
                     "code": "interface Cache<Data> {get(key: string): Data | undefinedset(key: string, value: Data): voiddelete(key: string): void+ keys(): IterableIterator<string>}"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Changed Cache Internal Structure"
                 },
                 {
                     "type": "p",
@@ -806,73 +354,19 @@
                 },
                 {
                     "type": "p",
-                    "text": "You should not write to the cache directly, it might cause undefined behavior."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "SWRConfig.defaultIs Renamed asSWRConfig.defaultValue"
-                },
-                {
-                    "type": "p",
-                    "text": "SWRConfig.defaultValueis the property for accessing the default SWR config."
+                    "text": "You should not write to the cache directly, it might cause undefined behavior. SWRConfig.defaultValueis the property for accessing the default SWR config."
                 },
                 {
                     "type": "code",
                     "code": "- SWRConfig.default+ SWRConfig.defaultValue"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "TypeInfiniteFetcherIs Renamed asSWRInfiniteFetcher"
-                },
-                {
                     "type": "code",
                     "code": "- import type { InfiniteFetcher } from 'swr/infinite'+ import type { SWRInfiniteFetcher } from 'swr/infinite'"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Avoid Suspense on Server"
-                },
-                {
                     "type": "p",
-                    "text": "If you want to usesuspense: truewith SWR on the server-side, including pre-rendering in Next.js, then you must provide initial data viafallbackDataorfallback. Today, this means that you can't use Suspense to fetch data on the server side. Your other two options are doing fully client-side data-fetching or getting your framework to fetch the data for you (like getStaticProps does in Next.js)."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "ES2018 as the Build Target"
-                },
-                {
-                    "type": "p",
-                    "text": "If you want to support IE 11, you have to target ES5 in your framework or a bundler. This change has made a performance improvement on SSR, and keeps the bundle size small."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Changelog"
-                },
-                {
-                    "type": "p",
-                    "text": "Read the full Changelogon GitHub(opens in a new tab)."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "The Future & Thank You!"
-                },
-                {
-                    "type": "p",
-                    "text": "With the new release ofNext.js 13(opens in a new tab), we see a lot of exciting new things as well as paradigm shifts in the React ecosystem:React Server Components(opens in a new tab), streaming SSR,async components(opens in a new tab), and theusehook(opens in a new tab). Many of them are related to data-fetching, and some of them have overlapping use cases with SWR."
-                },
-                {
-                    "type": "p",
-                    "text": "However, the goal of the SWR project remains the same. We want it to be a drop-in library that is lightweight, framework agnostic, and a little bitopinionated(i.e. revalidate upon focus). Instead of trying to be a standard solution, we want to focus on innovations that make the UX better. In the meantime, we are also doing research on how to improve SWR with these new abilities of React."
-                },
-                {
-                    "type": "p",
-                    "text": "We want to thank every one of the143(opens in a new tab)contributors (+106(opens in a new tab)docs contributors), as well as those who helps us out or gave feedback. A special thanks goes toToru Kobayashi(opens in a new tab)for all his work on DevTools and docs– we couldn’t have done it without you!"
+                    "text": "If you want to usesuspense: truewith SWR on the server-side, including pre-rendering in Next.js, then you must provide initial data viafallbackDataorfallback. Today, this means that you can't use Suspense to fetch data on the server side. Your other two options are doing fully client-side data-fetching or getting your framework to fetch the data for you (like getStaticProps does in Next.js). If you want to support IE 11, you have to target ES5 in your framework or a bundler. This change has made a performance improvement on SSR, and keeps the bundle size small. Read the full Changelogon GitHub(opens in a new tab). With the new release ofNext.js 13(opens in a new tab), we see a lot of exciting new things as well as paradigm shifts in the React ecosystem:React Server Components(opens in a new tab), streaming SSR,async components(opens in a new tab), and theusehook(opens in a new tab). Many of them are related to data-fetching, and some of them have overlapping use cases with SWR. However, the goal of the SWR project remains the same. We want it to be a drop-in library that is lightweight, framework agnostic, and a little bitopinionated(i.e. revalidate upon focus). Instead of trying to be a standard solution, we want to focus on innovations that make the UX better. In the meantime, we are also doing research on how to improve SWR with these new abilities of React. We want to thank every one of the143(opens in a new tab)contributors (+106(opens in a new tab)docs contributors), as well as those who helps us out or gave feedback. A special thanks goes toToru Kobayashi(opens in a new tab)for all his work on DevTools and docs– we couldn’t have done it without you!"
                 }
             ]
         },
@@ -881,34 +375,8 @@
             "title": "Cache – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Cache"
-                },
-                {
                     "type": "p",
-                    "text": "Upgrade to the latest version (≥ 1.0.0) to use this feature."
-                },
-                {
-                    "type": "p",
-                    "text": "In most cases, you shouldn't directlywriteto the cache, which might cause undefined behaviors of SWR. If you need to manually mutate a key, please consider using the SWR APIs.See also:Mutation,Reset Cache Between Test Cases."
-                },
-                {
-                    "type": "p",
-                    "text": "By default, SWR uses a global cache to store and share data across all components. But you can also customize this behavior with theprovideroption ofSWRConfig."
-                },
-                {
-                    "type": "p",
-                    "text": "Cache providers are intended to enable SWR with more customized storages."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Cache Provider"
-                },
-                {
-                    "type": "p",
-                    "text": "A cache provider is Map-like object which matches the following TypeScript definition (which can be imported fromswr):"
+                    "text": "Upgrade to the latest version (≥ 1.0.0) to use this feature. In most cases, you shouldn't directlywriteto the cache, which might cause undefined behaviors of SWR. If you need to manually mutate a key, please consider using the SWR APIs.See also:Mutation,Reset Cache Between Test Cases. By default, SWR uses a global cache to store and share data across all components. But you can also customize this behavior with theprovideroption ofSWRConfig. Cache providers are intended to enable SWR with more customized storages. A cache provider is Map-like object which matches the following TypeScript definition (which can be imported fromswr):"
                 },
                 {
                     "type": "code",
@@ -916,16 +384,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "For example, aJavaScript Map(opens in a new tab)instance can be directly used as the cache provider for SWR."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Create Cache Provider"
-                },
-                {
-                    "type": "p",
-                    "text": "Theprovideroption ofSWRConfigreceives a function that returns acache provider. The provider will then be used by all SWR hooks inside thatSWRConfigboundary. For example:"
+                    "text": "For example, aJavaScript Map(opens in a new tab)instance can be directly used as the cache provider for SWR. Theprovideroption ofSWRConfigreceives a function that returns acache provider. The provider will then be used by all SWR hooks inside thatSWRConfigboundary. For example:"
                 },
                 {
                     "type": "code",
@@ -933,28 +392,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "All SWR hooks inside<Page/>will read and write from that Map instance. You can also use other cache provider implementations as well for your specific use case."
-                },
-                {
-                    "type": "p",
-                    "text": "In the example above, when the<App/>component is re-mounted, the provider will also be re-created. Cache providers should be put higher in the component tree, or outside of render."
-                },
-                {
-                    "type": "p",
-                    "text": "When nested, SWR hooks will use the upper-level cache provider. If there is no upper-level cache provider, it fallbacks to the default cache provider, which is an emptyMap."
-                },
-                {
-                    "type": "p",
-                    "text": "If a cache provider is used, the globalmutatewillnotwork for SWR hooks under that<SWRConfig>boundary. Please usethisinstead."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Access Current Cache Provider"
-                },
-                {
-                    "type": "p",
-                    "text": "When inside a React component, you need to use theuseSWRConfighook to get access to the current cache provider as well as other configurations includingmutate:"
+                    "text": "All SWR hooks inside<Page/>will read and write from that Map instance. You can also use other cache provider implementations as well for your specific use case. In the example above, when the<App/>component is re-mounted, the provider will also be re-created. Cache providers should be put higher in the component tree, or outside of render. When nested, SWR hooks will use the upper-level cache provider. If there is no upper-level cache provider, it fallbacks to the default cache provider, which is an emptyMap. If a cache provider is used, the globalmutatewillnotwork for SWR hooks under that<SWRConfig>boundary. Please usethisinstead. When inside a React component, you need to use theuseSWRConfighook to get access to the current cache provider as well as other configurations includingmutate:"
                 },
                 {
                     "type": "code",
@@ -962,38 +400,11 @@
                 },
                 {
                     "type": "p",
-                    "text": "If it's not under any<SWRConfig>, it will return the default configurations."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Experimental: Extend Cache Provider"
-                },
-                {
-                    "type": "p",
-                    "text": "This is an experimental feature, the behavior might change in future upgrades."
-                },
-                {
-                    "type": "p",
-                    "text": "When multiple<SWRConfig>components are nested, cache provider can be extended."
-                },
-                {
-                    "type": "p",
-                    "text": "The first argument for theproviderfunction is the cache provider of the upper-level<SWRConfig>(or the default cache if there's no parent<SWRConfig>), you can use it to extend the cache provider:"
+                    "text": "If it's not under any<SWRConfig>, it will return the default configurations. This is an experimental feature, the behavior might change in future upgrades. When multiple<SWRConfig>components are nested, cache provider can be extended. The first argument for theproviderfunction is the cache provider of the upper-level<SWRConfig>(or the default cache if there's no parent<SWRConfig>), you can use it to extend the cache provider:"
                 },
                 {
                     "type": "code",
                     "code": "<SWRConfigvalue={{provider:(cache)=>newCache }}>...</SWRConfig>"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Examples"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "LocalStorage Based Persistent Cache"
                 },
                 {
                     "type": "p",
@@ -1013,33 +424,15 @@
                 },
                 {
                     "type": "p",
-                    "text": "As an improvement, you can also use the memory cache as a buffer, and write tolocalStorageperiodically. You can also implement a similar layered cache with IndexedDB or WebSQL."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Reset Cache Between Test Cases"
-                },
-                {
-                    "type": "p",
-                    "text": "When testing your application, you might want to reset the SWR cache between test cases. You can simply wrap your application with an empty cache provider. Here's an example with Jest:"
+                    "text": "As an improvement, you can also use the memory cache as a buffer, and write tolocalStorageperiodically. You can also implement a similar layered cache with IndexedDB or WebSQL. When testing your application, you might want to reset the SWR cache between test cases. You can simply wrap your application with an empty cache provider. Here's an example with Jest:"
                 },
                 {
                     "type": "code",
                     "code": "describe('test suite',async()=>{it('test case',async()=>{render(<SWRConfigvalue={{provider:()=>newMap() }}><App/></SWRConfig>)})})"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Modify the Cache Data"
-                },
-                {
                     "type": "p",
-                    "text": "You should not write to the cache directly, it might cause undefined behavior."
-                },
-                {
-                    "type": "p",
-                    "text": "You can usemutateto modify the cache. For example, you can clear all cache data like the following."
+                    "text": "You should not write to the cache directly, it might cause undefined behavior. You can usemutateto modify the cache. For example, you can clear all cache data like the following."
                 },
                 {
                     "type": "code",
@@ -1056,21 +449,8 @@
             "title": "DevTools – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "DevTools"
-                },
-                {
                     "type": "p",
-                    "text": "SWRDevTools is not an official project of Vercel."
-                },
-                {
-                    "type": "p",
-                    "text": "SWRDevTools(opens in a new tab)is a developer tool for SWR, which helps to debug your SWR cache and fetchers."
-                },
-                {
-                    "type": "p",
-                    "text": "You can install SWR DevTools from the extension pages and use it with zero settings!"
+                    "text": "SWRDevTools is not an official project of Vercel. SWRDevTools(opens in a new tab)is a developer tool for SWR, which helps to debug your SWR cache and fetchers. You can install SWR DevTools from the extension pages and use it with zero settings!"
                 },
                 {
                     "type": "list",
@@ -1081,11 +461,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "After installing it, the SWR devtool panel will appear on browsers' developer tools."
-                },
-                {
-                    "type": "p",
-                    "text": "Checkout more information on thewebsite(opens in a new tab)and therepository(opens in a new tab)"
+                    "text": "After installing it, the SWR devtool panel will appear on browsers' developer tools. Checkout more information on thewebsite(opens in a new tab)and therepository(opens in a new tab)"
                 }
             ]
         },
@@ -1094,21 +470,8 @@
             "title": "DevTools – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "DevTools"
-                },
-                {
                     "type": "p",
-                    "text": "SWRDevTools is not an official project of Vercel."
-                },
-                {
-                    "type": "p",
-                    "text": "SWRDevTools(opens in a new tab)is a developer tool for SWR, which helps to debug your SWR cache and fetchers."
-                },
-                {
-                    "type": "p",
-                    "text": "You can install SWR DevTools from the extension pages and use it with zero settings!"
+                    "text": "SWRDevTools is not an official project of Vercel. SWRDevTools(opens in a new tab)is a developer tool for SWR, which helps to debug your SWR cache and fetchers. You can install SWR DevTools from the extension pages and use it with zero settings!"
                 },
                 {
                     "type": "list",
@@ -1119,11 +482,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "After installing it, the SWR devtool panel will appear on browsers' developer tools."
-                },
-                {
-                    "type": "p",
-                    "text": "Checkout more information on thewebsite(opens in a new tab)and therepository(opens in a new tab)"
+                    "text": "After installing it, the SWR devtool panel will appear on browsers' developer tools. Checkout more information on thewebsite(opens in a new tab)and therepository(opens in a new tab)"
                 }
             ]
         },
@@ -1132,21 +491,8 @@
             "title": "Performance – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Performance"
-                },
-                {
                     "type": "p",
-                    "text": "SWR provides critical functionality in all kinds of web apps, soperformanceis a top priority."
-                },
-                {
-                    "type": "p",
-                    "text": "SWR’s built-incachinganddeduplicationskips unnecessary network requests, but\nthe performance of theuseSWRhook itself still matters. In a complex app, there could be hundreds ofuseSWRcalls in a single page render."
-                },
-                {
-                    "type": "p",
-                    "text": "SWR ensures that your app has:"
+                    "text": "SWR provides critical functionality in all kinds of web apps, soperformanceis a top priority. SWR’s built-incachinganddeduplicationskips unnecessary network requests, but\nthe performance of theuseSWRhook itself still matters. In a complex app, there could be hundreds ofuseSWRcalls in a single page render. SWR ensures that your app has:"
                 },
                 {
                     "type": "list",
@@ -1158,16 +504,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "without any code changes from you."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Deduplication"
-                },
-                {
-                    "type": "p",
-                    "text": "It’s very common to reuse SWR hooks in your app. For example, an app that renders the current user’s avatar 5 times:"
+                    "text": "without any code changes from you. It’s very common to reuse SWR hooks in your app. For example, an app that renders the current user’s avatar 5 times:"
                 },
                 {
                     "type": "code",
@@ -1175,37 +512,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Each<Avatar>component has auseSWRhook inside. Since they have the same SWR key and are rendered almost at the same time,only 1 network request will be made."
-                },
-                {
-                    "type": "p",
-                    "text": "You can reuse your data hooks (likeuseUserin the example above) everywhere, without worrying about performance or duplicated requests."
-                },
-                {
-                    "type": "p",
-                    "text": "There is also adedupingIntervaloptionfor overriding the default deduplication interval."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Deep Comparison"
-                },
-                {
-                    "type": "p",
-                    "text": "SWRdeep comparesdata changes by default. If thedatavalue isn’t changed, a re-render will not be triggered."
-                },
-                {
-                    "type": "p",
-                    "text": "You can also customize the comparison function via thecompareoptionif you want to change the behavior.\nFor example, some API responses return a server timestamp that you might want to exclude from the data diff."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Dependency Collection"
-                },
-                {
-                    "type": "p",
-                    "text": "useSWRreturns 4statefulvalues:data,error,isLoadingandisValidating, each one can be updated independently.\nFor example, if we print those values within a full data-fetching lifecycle, it will be something like this:"
+                    "text": "Each<Avatar>component has auseSWRhook inside. Since they have the same SWR key and are rendered almost at the same time,only 1 network request will be made. You can reuse your data hooks (likeuseUserin the example above) everywhere, without worrying about performance or duplicated requests. There is also adedupingIntervaloptionfor overriding the default deduplication interval. SWRdeep comparesdata changes by default. If thedatavalue isn’t changed, a re-render will not be triggered. You can also customize the comparison function via thecompareoptionif you want to change the behavior.\nFor example, some API responses return a server timestamp that you might want to exclude from the data diff. useSWRreturns 4statefulvalues:data,error,isLoadingandisValidating, each one can be updated independently.\nFor example, if we print those values within a full data-fetching lifecycle, it will be something like this:"
                 },
                 {
                     "type": "code",
@@ -1221,11 +528,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "The state changes make sense. But that also means our componentrendered 4 times."
-                },
-                {
-                    "type": "p",
-                    "text": "If we change our component to only usedata:"
+                    "text": "The state changes make sense. But that also means our componentrendered 4 times. If we change our component to only usedata:"
                 },
                 {
                     "type": "code",
@@ -1241,20 +544,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "The exact same process has happened internally, there was an error from the first request, then we got the data from the retry.\nHowever,SWR only updates the states that are used by the component, which is onlydatanow."
-                },
-                {
-                    "type": "p",
-                    "text": "If you are not always using all these 3 states, you are already benefitting from this feature.\nAtVercel(opens in a new tab), this optimization results in ~60% fewer re-renders."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Tree Shaking"
-                },
-                {
-                    "type": "p",
-                    "text": "The SWR package istree-shakeable(opens in a new tab)and side-effect free.\nThat means if you are only importing the coreuseSWRAPI, unused APIs likeuseSWRInfinitewon't be bundled in your application."
+                    "text": "The exact same process has happened internally, there was an error from the first request, then we got the data from the retry.\nHowever,SWR only updates the states that are used by the component, which is onlydatanow. If you are not always using all these 3 states, you are already benefitting from this feature.\nAtVercel(opens in a new tab), this optimization results in ~60% fewer re-renders. The SWR package istree-shakeable(opens in a new tab)and side-effect free.\nThat means if you are only importing the coreuseSWRAPI, unused APIs likeuseSWRInfinitewon't be bundled in your application."
                 }
             ]
         },
@@ -1263,52 +553,16 @@
             "title": "React Native – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "React Native"
-                },
-                {
                     "type": "p",
-                    "text": "Upgrade to the latest version (≥ 1.0.0) to experience this customization."
-                },
-                {
-                    "type": "p",
-                    "text": "Unlike React running inside the browsers, React Native has a very different user experience. For example there is no “tab focus”, switching from the background to the app is considered as a “focus” instead.\nTo customize these behaviors, you can replace the default browserfocusandonlineevents listeners with React Native’s app state detection and other native ported API, and configure SWR to use them."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Example"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Global Setup"
-                },
-                {
-                    "type": "p",
-                    "text": "You can wrap your app underSWRConfigand preconfig all configurations there"
+                    "text": "Upgrade to the latest version (≥ 1.0.0) to experience this customization. Unlike React running inside the browsers, React Native has a very different user experience. For example there is no “tab focus”, switching from the background to the app is considered as a “focus” instead.\nTo customize these behaviors, you can replace the default browserfocusandonlineevents listeners with React Native’s app state detection and other native ported API, and configure SWR to use them. You can wrap your app underSWRConfigand preconfig all configurations there"
                 },
                 {
                     "type": "code",
                     "code": "<SWRConfigvalue={{/* ... */}}><App></SWRConfig>"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "CustomizefocusandreconnectEvents"
-                },
-                {
                     "type": "p",
-                    "text": "There're few configurations you need to take care of such asisOnline,isVisible,initFocusandinitReconnect."
-                },
-                {
-                    "type": "p",
-                    "text": "isOnlineandisVisibleare functions that return a boolean, to determine if the application is \"active\". By default, SWR will bail out a revalidation if these conditions are not met."
-                },
-                {
-                    "type": "p",
-                    "text": "When usinginitFocusandinitReconnect, it's required to also set up acustom cache provider. You can use an emptyMap()or any storage you prefer."
+                    "text": "There're few configurations you need to take care of such asisOnline,isVisible,initFocusandinitReconnect. isOnlineandisVisibleare functions that return a boolean, to determine if the application is \"active\". By default, SWR will bail out a revalidation if these conditions are not met. When usinginitFocusandinitReconnect, it's required to also set up acustom cache provider. You can use an emptyMap()or any storage you prefer."
                 },
                 {
                     "type": "code",
@@ -1333,105 +587,8 @@
             "title": "Understanding SWR – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Understanding SWR"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "State Machine"
-                },
-                {
                     "type": "p",
-                    "text": "useSWRreturnsdata,error,isLoading, andisValidatingdepending on the state of thefetcherfunction. This diagrams describe how SWR returns values in some scenarios."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Fetch and Revalidate"
-                },
-                {
-                    "type": "p",
-                    "text": "This pattern is to fetch data and revalidate it later."
-                },
-                {
-                    "type": "p",
-                    "text": ""
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Key Change"
-                },
-                {
-                    "type": "p",
-                    "text": "This pattern is to fetch data and change the key and revalidate it later."
-                },
-                {
-                    "type": "p",
-                    "text": ""
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Key Change + Previous Data"
-                },
-                {
-                    "type": "p",
-                    "text": "This pattern is to fetch data and change the key and revalidate it later with thekeepPreviousDataoption."
-                },
-                {
-                    "type": "p",
-                    "text": ""
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Fallback"
-                },
-                {
-                    "type": "p",
-                    "text": "This pattern is to fetch data and revalidate it later with fallback data."
-                },
-                {
-                    "type": "p",
-                    "text": ""
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Key Change + Fallback"
-                },
-                {
-                    "type": "p",
-                    "text": "This pattern is to fetch data and change the key and revalidate it later with fallback data."
-                },
-                {
-                    "type": "p",
-                    "text": ""
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Key Change + Previous Data + Fallback"
-                },
-                {
-                    "type": "p",
-                    "text": "This pattern is to fetch data and change the key and revalidate it later with thekeepPreviousDataoption and fallback data."
-                },
-                {
-                    "type": "p",
-                    "text": ""
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Combining with isLoading and isValidating for better UX"
-                },
-                {
-                    "type": "p",
-                    "text": "Comparing to the existingisValidatingvalue,isLoadingis a new property that can help you for the more general loading cases for UX."
+                    "text": "useSWRreturnsdata,error,isLoading, andisValidatingdepending on the state of thefetcherfunction. This diagrams describe how SWR returns values in some scenarios. This pattern is to fetch data and revalidate it later.  This pattern is to fetch data and change the key and revalidate it later.  This pattern is to fetch data and change the key and revalidate it later with thekeepPreviousDataoption.  This pattern is to fetch data and revalidate it later with fallback data.  This pattern is to fetch data and change the key and revalidate it later with fallback data.  This pattern is to fetch data and change the key and revalidate it later with thekeepPreviousDataoption and fallback data.  Comparing to the existingisValidatingvalue,isLoadingis a new property that can help you for the more general loading cases for UX."
                 },
                 {
                     "type": "list",
@@ -1442,11 +599,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Simply saying you can useisValidatingfor indicating everytime there is an ongoing revalidation, andisLoadingfor indicating that SWR is revalidating but there is no data yet to display."
-                },
-                {
-                    "type": "p",
-                    "text": "Fallback data and previous data are not considered \"loaded data,\" so when you use fallback data or enable the keepPreviousData option, you might have data to display."
+                    "text": "Simply saying you can useisValidatingfor indicating everytime there is an ongoing revalidation, andisLoadingfor indicating that SWR is revalidating but there is no data yet to display. Fallback data and previous data are not considered \"loaded data,\" so when you use fallback data or enable the keepPreviousData option, you might have data to display."
                 },
                 {
                     "type": "code",
@@ -1454,20 +607,7 @@
                 },
                 {
                     "type": "p",
-                    "text": ""
-                },
-                {
-                    "type": "p",
-                    "text": "You can find the code examplehere(opens in a new tab)"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Return previous data for better UX"
-                },
-                {
-                    "type": "p",
-                    "text": "When doing data fetching based on continuous user actions, e.g. real-time search when typing, keeping the previous fetched data can improve the UX a lot.keepPreviousDatais an option to enable that behavior. Here's a simple search UI:"
+                    "text": " You can find the code examplehere(opens in a new tab) When doing data fetching based on continuous user actions, e.g. real-time search when typing, keeping the previous fetched data can improve the UX a lot.keepPreviousDatais an option to enable that behavior. Here's a simple search UI:"
                 },
                 {
                     "type": "code",
@@ -1475,20 +615,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "WithkeepPreviousDataenabled, you will still get the previous data even if you change the SWR key and the data for the new key starts loading again."
-                },
-                {
-                    "type": "p",
-                    "text": "You can find the full code for this example here:https://codesandbox.io/s/swr-keeppreviousdata-fsjz3m(opens in a new tab)."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Dependency Collection for performance"
-                },
-                {
-                    "type": "p",
-                    "text": "SWR only triggers re-rendering when the states used in the component have been updated. If you only usedatain the component, SWR ignores the updates of other properties likeisValidating, andisLoading. This reduces rendering counts a lot. More information can be foundhere."
+                    "text": "WithkeepPreviousDataenabled, you will still get the previous data even if you change the SWR key and the data for the new key starts loading again. You can find the full code for this example here:https://codesandbox.io/s/swr-keeppreviousdata-fsjz3m(opens in a new tab). SWR only triggers re-rendering when the states used in the component have been updated. If you only usedatain the component, SWR ignores the updates of other properties likeisValidating, andisLoading. This reduces rendering counts a lot. More information can be foundhere."
                 }
             ]
         },
@@ -1497,18 +624,8 @@
             "title": "API – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "API"
-                },
-                {
                     "type": "code",
                     "code": "const{data,error,isLoading,isValidating,mutate}=useSWR(key,fetcher,options)"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Parameters"
                 },
                 {
                     "type": "list",
@@ -1517,11 +634,6 @@
                         "fetcher: (optional) a Promise-returning function to fetch your data(details)",
                         "options: (optional) an object of options for this SWR hook"
                     ]
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Return Values"
                 },
                 {
                     "type": "list",
@@ -1536,11 +648,6 @@
                 {
                     "type": "p",
                     "text": "More information can be foundhere."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Options"
                 },
                 {
                     "type": "list",
@@ -1577,20 +684,8 @@
                     ]
                 },
                 {
-                    "type": "list",
-                    "items": [
-                        "Disabled by default:refreshInterval = 0",
-                        "If set to a number, polling interval in milliseconds",
-                        "If set to a function, the function will receive the latest data and should return the interval in milliseconds"
-                    ]
-                },
-                {
                     "type": "p",
-                    "text": "When under a slow network (2G,<=70Kbps),errorRetryIntervalwill be 10s, andloadingTimeoutwill be 5s by default."
-                },
-                {
-                    "type": "p",
-                    "text": "You can also useglobal configurationto provide default options."
+                    "text": "When under a slow network (2G,<=70Kbps),errorRetryIntervalwill be 10s, andloadingTimeoutwill be 5s by default. You can also useglobal configurationto provide default options."
                 }
             ]
         },
@@ -1599,22 +694,12 @@
             "title": "Arguments – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Arguments"
-                },
-                {
                     "type": "p",
                     "text": "By default,keywill be passed tofetcheras the argument. So the following 3 expressions are equivalent:"
                 },
                 {
                     "type": "code",
                     "code": "useSWR('/api/user',()=>fetcher('/api/user'))useSWR('/api/user',url=>fetcher(url))useSWR('/api/user',fetcher)"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Multiple Arguments"
                 },
                 {
                     "type": "p",
@@ -1626,11 +711,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "This isincorrect. Because the identifier (also the cache key) of the data is'/api/user',\neven iftokenchanges, SWR will still use the same key and return the wrong data."
-                },
-                {
-                    "type": "p",
-                    "text": "Instead, you can use anarrayas thekeyparameter, which contains multiple arguments offetcher:"
+                    "text": "This isincorrect. Because the identifier (also the cache key) of the data is'/api/user',\neven iftokenchanges, SWR will still use the same key and return the wrong data. Instead, you can use anarrayas thekeyparameter, which contains multiple arguments offetcher:"
                 },
                 {
                     "type": "code",
@@ -1638,24 +719,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Thefetcherfunction accepts thekeyparameter as is, and the cache key will also be associated with the entirekeyargument. In the above example,urlandtokenare both tied to the cache key."
-                },
-                {
-                    "type": "p",
-                    "text": "In the previous versions (< 2.0.0), Thefetcherfunction will receive the spreaded arguments from originalkeywhen thekeyargument is array type. E.g., key[url, token]will become 2 arguments(url, token)forfetcherfunction."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Passing Objects"
-                },
-                {
-                    "type": "p",
-                    "text": "Since SWR 1.1.0, object-like keys will be serialized under the hood automatically."
-                },
-                {
-                    "type": "p",
-                    "text": "Say you have another function that fetches data with a user scope:fetchWithUser(api, user). You can do the following:"
+                    "text": "Thefetcherfunction accepts thekeyparameter as is, and the cache key will also be associated with the entirekeyargument. In the above example,urlandtokenare both tied to the cache key. In the previous versions (< 2.0.0), Thefetcherfunction will receive the spreaded arguments from originalkeywhen thekeyargument is array type. E.g., key[url, token]will become 2 arguments(url, token)forfetcherfunction. Since SWR 1.1.0, object-like keys will be serialized under the hood automatically. Say you have another function that fetches data with a user scope:fetchWithUser(api, user). You can do the following:"
                 },
                 {
                     "type": "code",
@@ -1680,27 +744,12 @@
             "title": "Conditional Fetching – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Conditional Fetching"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Conditional"
-                },
-                {
                     "type": "p",
                     "text": "Usenullor pass a function askeyto conditionally fetch data. If the function throws or returns a falsy value, SWR will not start the request."
                 },
                 {
                     "type": "code",
                     "code": "// conditionally fetchconst{data}=useSWR(shouldFetch?'/api/data':null,fetcher)// ...or return a falsy valueconst{data}=useSWR(()=>shouldFetch?'/api/data':null,fetcher)// ...or throw an error when user.id is not definedconst{data}=useSWR(()=>'/api/data?uid='+user.id,fetcher)"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Dependent"
                 },
                 {
                     "type": "p",
@@ -1717,34 +766,12 @@
             "title": "Data Fetching – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Data Fetching"
-                },
-                {
                     "type": "code",
                     "code": "const{data,error}=useSWR(key,fetcher)"
                 },
                 {
                     "type": "p",
-                    "text": "This is the very fundamental API of SWR. Thefetcherhere is an async function thataccepts thekeyof SWR, and returns the data."
-                },
-                {
-                    "type": "p",
-                    "text": "The returned value will be passed asdata, and if it throws, it will be caught aserror."
-                },
-                {
-                    "type": "p",
-                    "text": "Note thatfetchercan be omitted from the parameters if it'sprovided globally."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Fetch"
-                },
-                {
-                    "type": "p",
-                    "text": "You can use any library to handle data fetching, for example afetchpolyfilldevelopit/unfetch(opens in a new tab):"
+                    "text": "This is the very fundamental API of SWR. Thefetcherhere is an async function thataccepts thekeyof SWR, and returns the data. The returned value will be passed asdata, and if it throws, it will be caught aserror. Note thatfetchercan be omitted from the parameters if it'sprovided globally. You can use any library to handle data fetching, for example afetchpolyfilldevelopit/unfetch(opens in a new tab):"
                 },
                 {
                     "type": "code",
@@ -1755,18 +782,8 @@
                     "text": "If you are usingNext.js, you don't need to import this polyfill:New Built-In Polyfills: fetch(), URL, and Object.assign"
                 },
                 {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Axios"
-                },
-                {
                     "type": "code",
                     "code": "importaxiosfrom'axios'constfetcher=url=>axios.get(url).then(res=>res.data)functionApp() {const{data,error}=useSWR('/api/data',fetcher)// ...}"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "GraphQL"
                 },
                 {
                     "type": "p",
@@ -1787,11 +804,6 @@
             "title": "Error Handling – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Error Handling"
-                },
-                {
                     "type": "p",
                     "text": "If an error is thrown insidefetcher, it will be returned aserrorby the hook."
                 },
@@ -1801,20 +813,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Theerrorobject will be defined if the fetch promise is rejected."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Status Code and Error Object"
-                },
-                {
-                    "type": "p",
-                    "text": "Sometimes we want an API to return an error object alongside the status code.\nBoth of them are useful for the client."
-                },
-                {
-                    "type": "p",
-                    "text": "We can customize ourfetcherto return more information. If the status code is not2xx,\nwe consider it an error even if it can be parsed as JSON:"
+                    "text": "Theerrorobject will be defined if the fetch promise is rejected. Sometimes we want an API to return an error object alongside the status code.\nBoth of them are useful for the client. We can customize ourfetcherto return more information. If the status code is not2xx,\nwe consider it an error even if it can be parsed as JSON:"
                 },
                 {
                     "type": "code",
@@ -1822,24 +821,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Note thatdataanderrorcan exist at the same time. So the UI can display the existing data,\nwhile knowing the upcoming request has failed."
-                },
-                {
-                    "type": "p",
-                    "text": "Herewe have an example."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Error Retry"
-                },
-                {
-                    "type": "p",
-                    "text": "SWR uses theexponential backoff algorithm(opens in a new tab)to retry the request on error.\nThe algorithm allows the app to recover from errors quickly, but not waste resources retrying too often."
-                },
-                {
-                    "type": "p",
-                    "text": "You can also override this behavior via theonErrorRetryoption:"
+                    "text": "Note thatdataanderrorcan exist at the same time. So the UI can display the existing data,\nwhile knowing the upcoming request has failed. Herewe have an example. SWR uses theexponential backoff algorithm(opens in a new tab)to retry the request on error.\nThe algorithm allows the app to recover from errors quickly, but not waste resources retrying too often. You can also override this behavior via theonErrorRetryoption:"
                 },
                 {
                     "type": "code",
@@ -1847,20 +829,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "This callback gives you the flexibility to retry based on various conditions. You can also disable it by settingshouldRetryOnError: false."
-                },
-                {
-                    "type": "p",
-                    "text": "It's also possible to provide it via theGlobal Configurationcontext."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Global Error Report"
-                },
-                {
-                    "type": "p",
-                    "text": "You can always get theerrorobject inside the component reactively.\nBut in case you want to handle the error globally, to notify the UI to show atoast(opens in a new tab)or asnackbar(opens in a new tab), or report it somewhere such asSentry(opens in a new tab),\nthere's anonErrorevent:"
+                    "text": "This callback gives you the flexibility to retry based on various conditions. You can also disable it by settingshouldRetryOnError: false. It's also possible to provide it via theGlobal Configurationcontext. You can always get theerrorobject inside the component reactively.\nBut in case you want to handle the error globally, to notify the UI to show atoast(opens in a new tab)or asnackbar(opens in a new tab), or report it somewhere such asSentry(opens in a new tab),\nthere's anonErrorevent:"
                 },
                 {
                     "type": "code",
@@ -1873,27 +842,12 @@
             "title": "Getting Started – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Getting Started"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Installation"
-                },
-                {
                     "type": "p",
                     "text": "Inside your React project directory, run the following:"
                 },
                 {
                     "type": "code",
                     "code": "pnpmaddswr"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Quick Start"
                 },
                 {
                     "type": "p",
@@ -1905,11 +859,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "If you want to use GraphQL API or libs like Axios, you can create your own fetcher function.\nCheckherefor more examples."
-                },
-                {
-                    "type": "p",
-                    "text": "Then you can importuseSWRand start using it inside any function components:"
+                    "text": "If you want to use GraphQL API or libs like Axios, you can create your own fetcher function.\nCheckherefor more examples. Then you can importuseSWRand start using it inside any function components:"
                 },
                 {
                     "type": "code",
@@ -1917,16 +867,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Normally, there're 3 possible states of a request: \"loading\", \"ready\", or \"error\". You can use the value ofdata,errorandisLoadingto\ndetermine the current state of the request, and return the corresponding UI."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Make It Reusable"
-                },
-                {
-                    "type": "p",
-                    "text": "When building a web app, you might need to reuse the data in many places of the UI. It is incredibly easy to create reusable data hooks\non top of SWR:"
+                    "text": "Normally, there're 3 possible states of a request: \"loading\", \"ready\", or \"error\". You can use the value ofdata,errorandisLoadingto\ndetermine the current state of the request, and return the corresponding UI. When building a web app, you might need to reuse the data in many places of the UI. It is incredibly easy to create reusable data hooks\non top of SWR:"
                 },
                 {
                     "type": "code",
@@ -1942,20 +883,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "By adopting this pattern, you can forget aboutfetchingdata in the imperative way: start the request, update the loading state, and return the final result.\nInstead, your code is more declarative: you just need to specify what data is used by the component."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Example"
-                },
-                {
-                    "type": "p",
-                    "text": "In a real-world example, our website shows a navbar and the content, both depend onuser:"
-                },
-                {
-                    "type": "p",
-                    "text": "Traditionally, we fetch data once usinguseEffectin the top level component, and pass it to child components via props (notice that we don't handle error state for now):"
+                    "text": "By adopting this pattern, you can forget aboutfetchingdata in the imperative way: start the request, update the loading state, and return the final result.\nInstead, your code is more declarative: you just need to specify what data is used by the component. In a real-world example, our website shows a navbar and the content, both depend onuser: Traditionally, we fetch data once usinguseEffectin the top level component, and pass it to child components via props (notice that we don't handle error state for now):"
                 },
                 {
                     "type": "code",
@@ -1963,15 +891,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Usually, we need to keep all the data fetching in the top level component and add props to every component deep down the tree.\nThe code will become harder to maintain if we add more data dependency to the page."
-                },
-                {
-                    "type": "p",
-                    "text": "Although we can avoid passing props usingContext(opens in a new tab), there's still the dynamic content problem:\ncomponents inside the page content can be dynamic, and the top level component might not know what data will be needed by its child components."
-                },
-                {
-                    "type": "p",
-                    "text": "SWR solves the problem perfectly. With theuseUserhook we just created, the code can be refactored to:"
+                    "text": "Usually, we need to keep all the data fetching in the top level component and add props to every component deep down the tree.\nThe code will become harder to maintain if we add more data dependency to the page. Although we can avoid passing props usingContext(opens in a new tab), there's still the dynamic content problem:\ncomponents inside the page content can be dynamic, and the top level component might not know what data will be needed by its child components. SWR solves the problem perfectly. With theuseUserhook we just created, the code can be refactored to:"
                 },
                 {
                     "type": "code",
@@ -1979,15 +899,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Data is nowboundto the components which need the data, and all components areindependentto each other.\nAll the parent components don't need to know anything about the data or passing data around. They just render.\nThe code is much simpler and easier to maintain now."
-                },
-                {
-                    "type": "p",
-                    "text": "The most beautiful thing is that there will be only1 requestsent to the API, because they use the same SWR key and\nthe request isdeduped,cachedandsharedautomatically."
-                },
-                {
-                    "type": "p",
-                    "text": "Also, the application now has the ability to refetch the data onuser focus or network reconnect!\nThat means, when the user's laptop wakes from sleep or they switch between browser tabs, the data will be refreshed automatically."
+                    "text": "Data is nowboundto the components which need the data, and all components areindependentto each other.\nAll the parent components don't need to know anything about the data or passing data around. They just render.\nThe code is much simpler and easier to maintain now. The most beautiful thing is that there will be only1 requestsent to the API, because they use the same SWR key and\nthe request isdeduped,cachedandsharedautomatically. Also, the application now has the ability to refetch the data onuser focus or network reconnect!\nThat means, when the user's laptop wakes from sleep or they switch between browser tabs, the data will be refreshed automatically."
                 }
             ]
         },
@@ -1995,11 +907,6 @@
             "url": "https://swr.vercel.app/docs/global-configuration",
             "title": "Global Configuration – SWR",
             "content": [
-                {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Global Configuration"
-                },
                 {
                     "type": "p",
                     "text": "The contextSWRConfigcan provide global configurations (options) for all SWR hooks."
@@ -2017,41 +924,16 @@
                     "code": "importuseSWR,{ SWRConfig }from'swr'functionDashboard() {const{ data:events}=useSWR('/api/events')const{ data:projects}=useSWR('/api/projects')const{ data:user}=useSWR('/api/user',{ refreshInterval:0})// override// ...}functionApp() {return(<SWRConfigvalue={{refreshInterval:3000,fetcher:(resource,init)=>fetch(resource,init).then(res=>res.json())}}><Dashboard/></SWRConfig>)}"
                 },
                 {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Nesting Configurations"
-                },
-                {
                     "type": "p",
                     "text": "SWRConfigmerges the configuration from the parent context. It can receive either an object or a functional configuration. The functional one receives the parent configuration as argument and returns a new configuration that you can customize yourself."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Object Configuration Example"
                 },
                 {
                     "type": "code",
                     "code": "import{ SWRConfig,useSWRConfig }from'swr'functionApp() {return(<SWRConfigvalue={{dedupingInterval:100,refreshInterval:100,fallback:{ a:1,b:1},}}><SWRConfigvalue={{dedupingInterval:200,// will override the parent value since the value is primitivefallback:{ a:2,c:2},// will merge with the parent value since the value is a mergeable object}}><Page/></SWRConfig></SWRConfig>)}functionPage() {constconfig=useSWRConfig()// {//   dedupingInterval: 200,//   refreshInterval: 100,//   fallback: { a: 2,  b: 1, c: 2 },// }}"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Functional Configuration Example"
-                },
-                {
                     "type": "code",
                     "code": "import{ SWRConfig,useSWRConfig }from'swr'functionApp() {return(<SWRConfigvalue={{dedupingInterval:100,refreshInterval:100,fallback:{ a:1,b:1},}}><SWRConfigvalue={parent=>({dedupingInterval:parent.dedupingInterval*5,fallback:{ a:2,c:2},})}><Page/></SWRConfig></SWRConfig>)}functionPage() {constconfig=useSWRConfig()// {//   dedupingInterval: 500,//   fallback: { a: 2, c: 2 },// }}"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Extra APIs"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Cache Provider"
                 },
                 {
                     "type": "p",
@@ -2060,11 +942,6 @@
                 {
                     "type": "code",
                     "code": "<SWRConfigvalue={{provider:()=>newMap() }}><Dashboard/></SWRConfig>"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Access To Global Configurations"
                 },
                 {
                     "type": "p",
@@ -2085,39 +962,8 @@
             "title": "Middleware – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Middleware"
-                },
-                {
                     "type": "p",
-                    "text": "Upgrade to the latest version (≥ 1.0.0) to use this feature."
-                },
-                {
-                    "type": "p",
-                    "text": "The middleware feature is a new addition in SWR 1.0 that enables you to execute logic before and after SWR hooks."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Usage"
-                },
-                {
-                    "type": "p",
-                    "text": "Middleware receive the SWR hook and can execute logic before and after running it. If there are multiple middleware, each middleware wraps the next middleware. The last middleware in the list will receive the original SWR hookuseSWR."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "API"
-                },
-                {
-                    "type": "p",
-                    "text": "Notes: The function name shouldn't be capitalized (e.g.myMiddlewareinstead ofMyMiddleware) or React lint rules will throwRules of Hookerror"
-                },
-                {
-                    "type": "p",
-                    "text": "TypeScript(opens in a new tab)"
+                    "text": "Upgrade to the latest version (≥ 1.0.0) to use this feature. The middleware feature is a new addition in SWR 1.0 that enables you to execute logic before and after SWR hooks. Middleware receive the SWR hook and can execute logic before and after running it. If there are multiple middleware, each middleware wraps the next middleware. The last middleware in the list will receive the original SWR hookuseSWR. Notes: The function name shouldn't be capitalized (e.g.myMiddlewareinstead ofMyMiddleware) or React lint rules will throwRules of Hookerror TypeScript(opens in a new tab)"
                 },
                 {
                     "type": "code",
@@ -2130,11 +976,6 @@
                 {
                     "type": "code",
                     "code": "<SWRConfigvalue={{ use:[myMiddleware] }}>// or...useSWR(key, fetcher, { use: [myMiddleware] })"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Extend"
                 },
                 {
                     "type": "p",
@@ -2153,11 +994,6 @@
                     "code": "useSWR(key,fetcher,{ use:[a,b,c] })"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Multiple Middleware"
-                },
-                {
                     "type": "p",
                     "text": "Each middleware wraps the next middleware, and the last one just wraps the SWR hook. For example:"
                 },
@@ -2172,16 +1008,6 @@
                 {
                     "type": "code",
                     "code": "enter aenter benter cuseSWR()exit  cexit  bexit  a"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Examples"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Request Logger"
                 },
                 {
                     "type": "p",
@@ -2200,17 +1026,8 @@
                     "code": "SWR Request: /api/user1SWR Request: /api/user2"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Keep Previous Result"
-                },
-                {
                     "type": "p",
-                    "text": "Sometimes you want the data returned byuseSWRto be \"laggy\". Even if the key changes,\nyou still want it to return the previous result until the new data has loaded."
-                },
-                {
-                    "type": "p",
-                    "text": "This can be built as a laggy middleware together withuseRef. In this example, we are also going to\nextend the returned object of theuseSWRhook:"
+                    "text": "Sometimes you want the data returned byuseSWRto be \"laggy\". Even if the key changes,\nyou still want it to return the previous result until the new data has loaded. This can be built as a laggy middleware together withuseRef. In this example, we are also going to\nextend the returned object of theuseSWRhook:"
                 },
                 {
                     "type": "code",
@@ -2225,17 +1042,8 @@
                     "code": "const{data,isLagging,resetLaggy}=useSWR(key,fetcher,{ use:[laggy] })"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Serialize Object Keys"
-                },
-                {
                     "type": "p",
-                    "text": "Since SWR 1.1.0, object-like keys will be serialized under the hood automatically."
-                },
-                {
-                    "type": "p",
-                    "text": "In older versions (< 1.1.0), SWRshallowlycompares the arguments on every render, and triggers revalidation if any of them has changed.\nIf you are passing serializable objects as the key. You can serialize object keys to ensure its stability, a simple middleware can help:"
+                    "text": "Since SWR 1.1.0, object-like keys will be serialized under the hood automatically. In older versions (< 1.1.0), SWRshallowlycompares the arguments on every render, and triggers revalidation if any of them has changed.\nIf you are passing serializable objects as the key. You can serialize object keys to ensure its stability, a simple middleware can help:"
                 },
                 {
                     "type": "code",
@@ -2243,11 +1051,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "You don’t need to worry that object might change between renders. It’s always serialized to the same string, and the fetcher will still receive those object arguments."
-                },
-                {
-                    "type": "p",
-                    "text": "Furthermore, you can use libs likefast-json-stable-stringify(opens in a new tab)instead ofJSON.stringify— faster and stabler."
+                    "text": "You don’t need to worry that object might change between renders. It’s always serialized to the same string, and the fetcher will still receive those object arguments. Furthermore, you can use libs likefast-json-stable-stringify(opens in a new tab)instead ofJSON.stringify— faster and stabler."
                 }
             ]
         },
@@ -2256,31 +1060,8 @@
             "title": "Mutation & Revalidation – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Mutation & Revalidation"
-                },
-                {
                     "type": "p",
-                    "text": "SWR provides themutateanduseSWRMutationAPIs for mutating remote data and related cache."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "mutate"
-                },
-                {
-                    "type": "p",
-                    "text": "There're 2 ways to use themutateAPI to mutate the data, the global mutate API which can mutate any key and the bound mutate API which only can mutate the data of corresponding SWR hook."
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Global Mutate"
-                },
-                {
-                    "type": "p",
-                    "text": "The recommended way to get the global mutator is to use theuseSWRConfighook:"
+                    "text": "SWR provides themutateanduseSWRMutationAPIs for mutating remote data and related cache. There're 2 ways to use themutateAPI to mutate the data, the global mutate API which can mutate any key and the bound mutate API which only can mutate the data of corresponding SWR hook. The recommended way to get the global mutator is to use theuseSWRConfighook:"
                 },
                 {
                     "type": "code",
@@ -2296,29 +1077,11 @@
                 },
                 {
                     "type": "p",
-                    "text": "Using global mutator only with thekeyparameter willnot update the cache or trigger revalidationunless there is a mounted SWR hook using the same key."
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Bound Mutate"
-                },
-                {
-                    "type": "p",
-                    "text": "Bound mutate is the short path to mutate the current key with data. Whichkeyis bounded to thekeypassing touseSWR, and receive thedataas the first argument."
-                },
-                {
-                    "type": "p",
-                    "text": "It is functionally equivalent to the globalmutatefunction in the previous section but does not require thekeyparameter:"
+                    "text": "Using global mutator only with thekeyparameter willnot update the cache or trigger revalidationunless there is a mounted SWR hook using the same key. Bound mutate is the short path to mutate the current key with data. Whichkeyis bounded to thekeypassing touseSWR, and receive thedataas the first argument. It is functionally equivalent to the globalmutatefunction in the previous section but does not require thekeyparameter:"
                 },
                 {
                     "type": "code",
                     "code": "importuseSWRfrom'swr'functionProfile() {const{data,mutate}=useSWR('/api/user',fetcher)return(<div><h1>My name is {data.name}.</h1><buttononClick={async()=>{constnewName=data.name.toUpperCase()// send a request to the API to update the dataawaitrequestUpdateUsername(newName)// update the local data immediately and revalidate (refetch)// NOTE: key is not required when using useSWR's mutate as it's pre-boundmutate({...data,name:newName })}}>Uppercase my name!</button></div>)}"
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Revalidation"
                 },
                 {
                     "type": "p",
@@ -2331,16 +1094,6 @@
                 {
                     "type": "p",
                     "text": "It broadcasts to SWR hooks under the samecache providerscope. If no cache provider exists, it will broadcast to all SWR hooks."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "API"
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Parameters"
                 },
                 {
                     "type": "list",
@@ -2356,21 +1109,6 @@
                     ]
                 },
                 {
-                    "type": "list",
-                    "items": [
-                        "optimisticData: data to immediately update the client cache, or a function that receives current data and returns the new client cache data, usually used in optimistic UI.",
-                        "revalidate = true: should the cache revalidate once the asynchronous update resolves. If set to a function, the function receivesdataandkey.",
-                        "populateCache = true: should the result of the remote mutation be written to the cache, or a function that receives new result and current result as arguments and returns the mutation result.",
-                        "rollbackOnError = true: should the cache rollback if the remote mutation errors, or a function that receives the error thrown from fetcher as arguments and returns a boolean whether should rollback or not.",
-                        "throwOnError = true: should the mutate call throw the error when fails."
-                    ]
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Return Values"
-                },
-                {
                     "type": "p",
                     "text": "mutatereturns the results thedataparameter has been resolved. The function passed tomutatewill return an updated data which is used to update the corresponding cache value. If there is an error thrown while executing the function, the error will be thrown so it can be handled appropriately."
                 },
@@ -2379,31 +1117,12 @@
                     "code": "try{constuser=awaitmutate('/api/user',updateUser(newUser))}catch(error) {// Handle an error while updating the user here}"
                 },
                 {
-                    "type": "header",
-                    "level": 2,
-                    "text": "useSWRMutation"
-                },
-                {
                     "type": "p",
-                    "text": "SWR also providesuseSWRMutationas a hook for remote mutations. The remote mutations are only triggered manually, instead of automatically likeuseSWR."
-                },
-                {
-                    "type": "p",
-                    "text": "Also, this hook doesn’t share states with otheruseSWRMutationhooks."
+                    "text": "SWR also providesuseSWRMutationas a hook for remote mutations. The remote mutations are only triggered manually, instead of automatically likeuseSWR. Also, this hook doesn’t share states with otheruseSWRMutationhooks."
                 },
                 {
                     "type": "code",
                     "code": "importuseSWRMutationfrom'swr/mutation'// Fetcher implementation.// The extra argument will be passed via the `arg` property of the 2nd parameter.// In the example below, `arg` will be `'my_token'`asyncfunctionupdateUser(url,{ arg }:{ arg:string}) {awaitfetch(url,{method:'POST',headers:{Authorization:`Bearer${arg}`}})}functionProfile() {// A useSWR + mutate like API, but it will not start the request automatically.const{trigger}=useSWRMutation('/api/user',updateUser,options)return<buttononClick={()=>{// Trigger `updateUser` with a specific argument.trigger('my_token')}}>Update User</button>}"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "API"
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Parameters"
                 },
                 {
                     "type": "list",
@@ -2423,34 +1142,12 @@
                 {
                     "type": "list",
                     "items": [
-                        "optimisticData: same asmutate'soptimisticData",
-                        "revalidate = true: same asmutate'srevalidate",
-                        "populateCache = false: same asmutate'spopulateCache, but the default isfalse",
-                        "rollbackOnError = true: same asmutate'srollbackOnError",
-                        "throwOnError = true: same asmutate'sthrowOnError",
-                        "onSuccess(data, key, config):　 callback function when a remote mutation has been finished successfully",
-                        "onError(err, key, config): callback function when a remote mutation has returned an error"
-                    ]
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Return Values"
-                },
-                {
-                    "type": "list",
-                    "items": [
                         "data: data for the given key returned fromfetcher",
                         "error: error thrown byfetcher(or undefined)",
                         "trigger(arg, options): a function to trigger a remote mutation",
                         "reset: a function to reset the state (data,error,isMutating)",
                         "isMutating: if there's an ongoing remote mutation"
                     ]
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Basic Usage"
                 },
                 {
                     "type": "code",
@@ -2473,11 +1170,6 @@
                     "code": "const{trigger}=useSWRMutation('/api/user',updateUser,{optimisticData:current=>({...current,name:newName })})// ortrigger(newName,{optimisticData:current=>({...current,name:newName })})"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Defer loading data until needed"
-                },
-                {
                     "type": "p",
                     "text": "You can also useuseSWRMutationfor loading data.useSWRMutationwon't start requesting untiltriggeris called, so you can defer loading data when you actually need it."
                 },
@@ -2486,17 +1178,8 @@
                     "code": "import{ useState }from'react'importuseSWRMutationfrom'swr/mutation'constfetcher=url=>fetch(url).then(res=>res.json())constPage=()=>{const[show,setShow]=useState(false)// data is undefined until trigger is calledconst{ data:user,trigger}=useSWRMutation('/api/user',fetcher);return(<div><buttononClick={()=>{trigger();setShow(true);}}>Show User</button>{show&&user?<div>{user.name}</div>:null}</div>);}"
                 },
                 {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Optimistic Updates"
-                },
-                {
                     "type": "p",
-                    "text": "In many cases, applying local mutations to data is a good way to make changes\nfeel faster — no need to wait for the remote source of data."
-                },
-                {
-                    "type": "p",
-                    "text": "With theoptimisticDataoption, you can update your local data manually, while\nwaiting for the remote mutation to finish. ComposingrollbackOnErroryou can also\ncontrol when to rollback the data."
+                    "text": "In many cases, applying local mutations to data is a good way to make changes\nfeel faster — no need to wait for the remote source of data. With theoptimisticDataoption, you can update your local data manually, while\nwaiting for the remote mutation to finish. ComposingrollbackOnErroryou can also\ncontrol when to rollback the data."
                 },
                 {
                     "type": "code",
@@ -2504,11 +1187,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "TheupdateFnshould be a promise or asynchronous function to handle the remote mutation, it should return updated data."
-                },
-                {
-                    "type": "p",
-                    "text": "You can also pass a function tooptimisticDatato make it depending on the current data:"
+                    "text": "TheupdateFnshould be a promise or asynchronous function to handle the remote mutation, it should return updated data. You can also pass a function tooptimisticDatato make it depending on the current data:"
                 },
                 {
                     "type": "code",
@@ -2523,22 +1202,8 @@
                     "code": "importuseSWRMutationfrom'swr/mutation'functionProfile() {const{trigger}=useSWRMutation('/api/user',updateUserName)return(<div><h1>My name is {data.name}.</h1><buttononClick={async()=>{constnewName=data.name.toUpperCase()trigger(newName,{optimisticData:user=>({...user,name:newName }),rollbackOnError:true})}}>Uppercase my name!</button></div>)}"
                 },
                 {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Rollback on Errors"
-                },
-                {
                     "type": "p",
-                    "text": "When you haveoptimisticDataset, it’s possible that the optimistic data gets\ndisplayed to the user, but the remote mutation fails. In this case, you can leveragerollbackOnErrorto revert the local cache to the previous state, to make sure\nthe user is seeing the correct data."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Update Cache After Mutation"
-                },
-                {
-                    "type": "p",
-                    "text": "Sometimes, the remote mutation request directly returns the updated data, so there is no need to do an extra fetch to load it.\nYou can enable thepopulateCacheoption to update the cache foruseSWRwith the response of the mutation:"
+                    "text": "When you haveoptimisticDataset, it’s possible that the optimistic data gets\ndisplayed to the user, but the remote mutation fails. In this case, you can leveragerollbackOnErrorto revert the local cache to the previous state, to make sure\nthe user is seeing the correct data. Sometimes, the remote mutation request directly returns the updated data, so there is no need to do an extra fetch to load it.\nYou can enable thepopulateCacheoption to update the cache foruseSWRwith the response of the mutation:"
                 },
                 {
                     "type": "code",
@@ -2554,16 +1219,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "When combined withoptimisticDataandrollbackOnError, you’ll get a perfect optimistic UI experience."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Avoid Race Conditions"
-                },
-                {
-                    "type": "p",
-                    "text": "BothmutateanduseSWRMutationcan avoid race conditions betweenuseSWR. For example,"
+                    "text": "When combined withoptimisticDataandrollbackOnError, you’ll get a perfect optimistic UI experience. BothmutateanduseSWRMutationcan avoid race conditions betweenuseSWR. For example,"
                 },
                 {
                     "type": "code",
@@ -2571,33 +1227,11 @@
                 },
                 {
                     "type": "p",
-                    "text": "The normaluseSWRhook might refresh its data any time due to focus, polling, or other conditions. This way the displayed username\ncan be as fresh as possible. However, since we have a mutation there that can happen at the nearly same time of a refetch ofuseSWR, there\ncould be a race condition thatgetUserrequest starts earlier, but takes longer thanupdateUser."
-                },
-                {
-                    "type": "p",
-                    "text": "Luckily,useSWRMutationhandles this for you automatically. After the mutation, it will telluseSWRto ditch the ongoing request and revalidate,\nso the stale data will never be displayed."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Mutate Based on Current Data"
-                },
-                {
-                    "type": "p",
-                    "text": "Sometimes, you want to update a part of your data based on the current data."
-                },
-                {
-                    "type": "p",
-                    "text": "Withmutate, you can pass an async function which will receive the current cached value, if any, and returns an updated document."
+                    "text": "The normaluseSWRhook might refresh its data any time due to focus, polling, or other conditions. This way the displayed username\ncan be as fresh as possible. However, since we have a mutation there that can happen at the nearly same time of a refetch ofuseSWR, there\ncould be a race condition thatgetUserrequest starts earlier, but takes longer thanupdateUser. Luckily,useSWRMutationhandles this for you automatically. After the mutation, it will telluseSWRto ditch the ongoing request and revalidate,\nso the stale data will never be displayed. Sometimes, you want to update a part of your data based on the current data. Withmutate, you can pass an async function which will receive the current cached value, if any, and returns an updated document."
                 },
                 {
                     "type": "code",
                     "code": "mutate('/api/todos',asynctodos=>{// let's update the todo with ID `1` to be completed,// this API returns the updated dataconstupdatedTodo=awaitfetch('/api/todos/1',{method:'PATCH',body:JSON.stringify({ completed:true})})// filter the list, and return it with the updated itemconstfilteredTodos=todos.filter(todo=>todo.id!=='1')return[...filteredTodos,updatedTodo]// Since the API already gives us the updated information,// we don't need to revalidate here.},{ revalidate:false})"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Mutate Multiple Items"
                 },
                 {
                     "type": "p",
@@ -2638,35 +1272,8 @@
             "title": "Pagination – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Pagination"
-                },
-                {
                     "type": "p",
-                    "text": "Please update to the latest version (≥ 0.3.0) to use this API. The previoususeSWRPagesAPI is now deprecated."
-                },
-                {
-                    "type": "p",
-                    "text": "SWR provides a dedicated APIuseSWRInfiniteto support common UI patterns such aspaginationandinfinite loading."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "When to UseuseSWR"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Pagination"
-                },
-                {
-                    "type": "p",
-                    "text": "First of all, we mightNOTneeduseSWRInfinitebut can use justuseSWRif we are building something like this:"
-                },
-                {
-                    "type": "p",
-                    "text": "...which is a typical pagination UI. Let's see how it can be easily implemented withuseSWR:"
+                    "text": "Please update to the latest version (≥ 0.3.0) to use this API. The previoususeSWRPagesAPI is now deprecated. SWR provides a dedicated APIuseSWRInfiniteto support common UI patterns such aspaginationandinfinite loading. First of all, we mightNOTneeduseSWRInfinitebut can use justuseSWRif we are building something like this: ...which is a typical pagination UI. Let's see how it can be easily implemented withuseSWR:"
                 },
                 {
                     "type": "code",
@@ -2690,20 +1297,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "With just 1 line of code, we get a much better UX. TheuseSWRhook is so powerful,\nthat most scenarios are covered by it."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Infinite Loading"
-                },
-                {
-                    "type": "p",
-                    "text": "Sometimes we want to build aninfinite loadingUI, with a \"Load More\" button that appends data\nto the list (or done automatically when you scroll):"
-                },
-                {
-                    "type": "p",
-                    "text": "To implement this, we need to makedynamic number of requestson this page. React Hooks havea couple of rules(opens in a new tab),\nso weCANNOTdo something like this:"
+                    "text": "With just 1 line of code, we get a much better UX. TheuseSWRhook is so powerful,\nthat most scenarios are covered by it. Sometimes we want to build aninfinite loadingUI, with a \"Load More\" button that appends data\nto the list (or done automatically when you scroll): To implement this, we need to makedynamic number of requestson this page. React Hooks havea couple of rules(opens in a new tab),\nso weCANNOTdo something like this:"
                 },
                 {
                     "type": "code",
@@ -2718,17 +1312,8 @@
                     "code": "functionApp() {const[cnt,setCnt]=useState(1)constpages=[]for(leti=0; i<cnt; i++) {pages.push(<Pageindex={i}key={i} />)}return<div>{pages}<buttononClick={()=>setCnt(cnt+1)}>Load More</button></div>}"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Advanced Cases"
-                },
-                {
                     "type": "p",
-                    "text": "However, in some advanced use cases, the solution above doesn't work."
-                },
-                {
-                    "type": "p",
-                    "text": "For example, we are still implementing the same \"Load More\" UI, but also need to display a number\nabout how many items are there in total. We can't use the<Page />solution anymore because\nthe top level UI (<App />) needs the data inside each page:"
+                    "text": "However, in some advanced use cases, the solution above doesn't work. For example, we are still implementing the same \"Load More\" UI, but also need to display a number\nabout how many items are there in total. We can't use the<Page />solution anymore because\nthe top level UI (<App />) needs the data inside each page:"
                 },
                 {
                     "type": "code",
@@ -2736,20 +1321,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Also, if the pagination API iscursor based, that solution doesn't work either. Because each page\nneeds the data from the previous page, they're not isolated."
-                },
-                {
-                    "type": "p",
-                    "text": "That's how this newuseSWRInfiniteHook can help."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "useSWRInfinite"
-                },
-                {
-                    "type": "p",
-                    "text": "useSWRInfinitegives us the ability to trigger a number of requests with one Hook. This is how it looks:"
+                    "text": "Also, if the pagination API iscursor based, that solution doesn't work either. Because each page\nneeds the data from the previous page, they're not isolated. That's how this newuseSWRInfiniteHook can help. useSWRInfinitegives us the ability to trigger a number of requests with one Hook. This is how it looks:"
                 },
                 {
                     "type": "code",
@@ -2757,25 +1329,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Similar touseSWR, this new Hook accepts a function that returns the request key, a fetcher function, and options.\nIt returns all the values thatuseSWRreturns, including 2 extra values: the page size and a page size setter, like a React state."
-                },
-                {
-                    "type": "p",
-                    "text": "In infinite loading, onepageis one request, and our goal is to fetch multiple pages and render them."
-                },
-                {
-                    "type": "p",
-                    "text": "If you are using SWR 0.x versions,useSWRInfiniteneeds to be imported fromswr:import { useSWRInfinite } from 'swr'"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "API"
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Parameters"
+                    "text": "Similar touseSWR, this new Hook accepts a function that returns the request key, a fetcher function, and options.\nIt returns all the values thatuseSWRreturns, including 2 extra values: the page size and a page size setter, like a React state. In infinite loading, onepageis one request, and our goal is to fetch multiple pages and render them. If you are using SWR 0.x versions,useSWRInfiniteneeds to be imported fromswr:import { useSWRInfinite } from 'swr'"
                 },
                 {
                     "type": "list",
@@ -2791,23 +1345,8 @@
                     ]
                 },
                 {
-                    "type": "list",
-                    "items": [
-                        "initialSize = 1: number of pages should be loaded initially",
-                        "revalidateAll = false: always try to revalidate all pages",
-                        "revalidateFirstPage = true: always try to revalidate the first page",
-                        "persistSize = false: don't reset the page size to 1 (orinitialSizeif set) when the first page's key changes",
-                        "parallel = false: fetches multiple pages in parallel"
-                    ]
-                },
-                {
                     "type": "p",
                     "text": "Note that theinitialSizeoption is not allowed to change in the lifecycle."
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Return Values"
                 },
                 {
                     "type": "list",
@@ -2820,11 +1359,6 @@
                         "size: the number of pages thatwillbe fetched and returned",
                         "setSize: set the number of pages that need to be fetched"
                     ]
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Example 1: Index Based Paginated API"
                 },
                 {
                     "type": "p",
@@ -2840,20 +1374,11 @@
                 },
                 {
                     "type": "p",
-                    "text": "ThegetKeyfunction is the major difference betweenuseSWRInfiniteanduseSWR.\nIt accepts the index of the current page, as well as the data from the previous page.\nSo both index based and cursor based pagination API can be supported nicely."
-                },
-                {
-                    "type": "p",
-                    "text": "Alsodatais no longer just one API response. It's an array of multiple API responses:"
+                    "text": "ThegetKeyfunction is the major difference betweenuseSWRInfiniteanduseSWR.\nIt accepts the index of the current page, as well as the data from the previous page.\nSo both index based and cursor based pagination API can be supported nicely. Alsodatais no longer just one API response. It's an array of multiple API responses:"
                 },
                 {
                     "type": "code",
                     "code": "// `data` will look like this[[{ name:'Alice',...},{ name:'Bob',...},{ name:'Cathy',...},...],[{ name:'John',...},{ name:'Paul',...},{ name:'George',...},...],...]"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Example 2: Cursor or Offset Based Paginated API"
                 },
                 {
                     "type": "p",
@@ -2872,17 +1397,8 @@
                     "code": "constgetKey=(pageIndex,previousPageData)=>{// reached the endif(previousPageData&&!previousPageData.data)returnnull// first page, we don't have `previousPageData`if(pageIndex===0)return`/users?limit=10`// add the cursor to the API endpointreturn`/users?cursor=${previousPageData.nextCursor}&limit=10`}"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Parallel Fetching Mode"
-                },
-                {
                     "type": "p",
-                    "text": "Please update to the latest version (≥ 2.1.0) to use this API."
-                },
-                {
-                    "type": "p",
-                    "text": "The default behavior of useSWRInfinite is to fetch data for each page in sequence, as key creation is based on the previously fetched data. However, fetching data sequentially for a large number of pages may not be optimal, particularly if the pages are not interdependent. By specifyingparalleloption totruewill let you fetch pages independently in parallel, which can significantly speed up the loading process."
+                    "text": "Please update to the latest version (≥ 2.1.0) to use this API. The default behavior of useSWRInfinite is to fetch data for each page in sequence, as key creation is based on the previously fetched data. However, fetching data sequentially for a large number of pages may not be optimal, particularly if the pages are not interdependent. By specifyingparalleloption totruewill let you fetch pages independently in parallel, which can significantly speed up the loading process."
                 },
                 {
                     "type": "code",
@@ -2890,33 +1406,11 @@
                 },
                 {
                     "type": "p",
-                    "text": "ThepreviousPageDataargument of thegetKeyfunction becomesnullwhen you enable theparalleloption."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Revalidate Specific Pages"
-                },
-                {
-                    "type": "p",
-                    "text": "Please update to the latest version (≥ 2.2.5) to use this API."
-                },
-                {
-                    "type": "p",
-                    "text": "The default behavior of the mutation ofuseSWRInfiniteis to revalidate all pages that have been loaded. But you might want to revalidate only the specific pages that have been changed. You can revalidate only specific pages by passing a function to therevalidateoption."
-                },
-                {
-                    "type": "p",
-                    "text": "Therevalidatefunction is called for each page."
+                    "text": "ThepreviousPageDataargument of thegetKeyfunction becomesnullwhen you enable theparalleloption. Please update to the latest version (≥ 2.2.5) to use this API. The default behavior of the mutation ofuseSWRInfiniteis to revalidate all pages that have been loaded. But you might want to revalidate only the specific pages that have been changed. You can revalidate only specific pages by passing a function to therevalidateoption. Therevalidatefunction is called for each page."
                 },
                 {
                     "type": "code",
                     "code": "functionApp() {const{data,mutate,size}=useSWRInfinite((index)=>[`/api/?page=${index+1}`,index+1],fetcher);mutate(data,{// only revalidate the last pagerevalidate:(pageData,[url,page])=>page===size});}"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Global Mutate withuseSWRInfinite"
                 },
                 {
                     "type": "p",
@@ -2928,16 +1422,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "As the name implies,unstable_serializeis not a stable API, so we might change it in the future."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Advanced Features"
-                },
-                {
-                    "type": "p",
-                    "text": "Here is an exampleshowing how you can implement the following features withuseSWRInfinite:"
+                    "text": "As the name implies,unstable_serializeis not a stable API, so we might change it in the future. Here is an exampleshowing how you can implement the following features withuseSWRInfinite:"
                 },
                 {
                     "type": "list",
@@ -2956,16 +1441,6 @@
             "title": "Prefetching Data – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Prefetching Data"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Top-Level Page Data"
-                },
-                {
                     "type": "p",
                     "text": "There’re many ways to prefetch the data for SWR. For top level requests,rel=\"preload\"(opens in a new tab)is highly recommended:"
                 },
@@ -2975,24 +1450,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Just put it inside your HTML<head>. It’s easy, fast and native."
-                },
-                {
-                    "type": "p",
-                    "text": "It will prefetch the data when the HTML loads, even before JavaScript starts to download. All your incoming fetch requests with the same URL will reuse the result (including SWR, of course)."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Programmatically Prefetch"
-                },
-                {
-                    "type": "p",
-                    "text": "SWR provides thepreloadAPI to prefetch the resources programmatically and store the results in the cache.preloadacceptskeyandfetcheras the arguments."
-                },
-                {
-                    "type": "p",
-                    "text": "You can callpreloadeven outside of React."
+                    "text": "Just put it inside your HTML<head>. It’s easy, fast and native. It will prefetch the data when the HTML loads, even before JavaScript starts to download. All your incoming fetch requests with the same URL will reuse the result (including SWR, of course). SWR provides thepreloadAPI to prefetch the resources programmatically and store the results in the cache.preloadacceptskeyandfetcheras the arguments. You can callpreloadeven outside of React."
                 },
                 {
                     "type": "code",
@@ -3008,20 +1466,11 @@
                 },
                 {
                     "type": "p",
-                    "text": "Together with techniques likepage prefetching(opens in a new tab)in Next.js, you will be able to load both next page and data instantly."
-                },
-                {
-                    "type": "p",
-                    "text": "In Suspense mode, you should utilizepreloadto avoid waterfall problems."
+                    "text": "Together with techniques likepage prefetching(opens in a new tab)in Next.js, you will be able to load both next page and data instantly. In Suspense mode, you should utilizepreloadto avoid waterfall problems."
                 },
                 {
                     "type": "code",
                     "code": "importuseSWR,{ preload }from'swr'// should call before renderingpreload('/api/user',fetcher);preload('/api/movies',fetcher);constPage=()=>{// The below useSWR hooks will suspend the rendering, but the requests to `/api/user` and `/api/movies` have started by `preload` already,// so the waterfall problem doesn't happen.const{ data:user}=useSWR('/api/user',fetcher,{ suspense:true});const{ data:movies}=useSWR('/api/movies',fetcher,{ suspense:true});return(<div><Useruser={user} /><Moviesmovies={movies} /></div>);}"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Pre-fill Data"
                 },
                 {
                     "type": "p",
@@ -3033,11 +1482,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "If SWR hasn't fetched the data yet, this hook will returnprefetchedDataas a fallback."
-                },
-                {
-                    "type": "p",
-                    "text": "You can also configure this for all SWR hooks and multiple keys with<SWRConfig>and thefallbackoption. CheckNext.js SSG and SSRfor more details."
+                    "text": "If SWR hasn't fetched the data yet, this hook will returnprefetchedDataas a fallback. You can also configure this for all SWR hooks and multiple keys with<SWRConfig>and thefallbackoption. CheckNext.js SSG and SSRfor more details."
                 }
             ]
         },
@@ -3046,47 +1491,8 @@
             "title": "Automatic Revalidation – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Automatic Revalidation"
-                },
-                {
                     "type": "p",
-                    "text": "If you want to manually revalidate the data, checkmutation."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Revalidate on Focus"
-                },
-                {
-                    "type": "p",
-                    "text": "When you re-focus a page or switch between tabs, SWR automatically revalidates data."
-                },
-                {
-                    "type": "p",
-                    "text": "This can be useful to immediately synchronize to the latest state. This is helpful for refreshing data in scenarios like stale mobile tabs, or laptops thatwent to sleep."
-                },
-                {
-                    "type": "p",
-                    "text": "This feature is enabled by default. You can disable it via therevalidateOnFocusoption."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Revalidate on Interval"
-                },
-                {
-                    "type": "p",
-                    "text": "In many cases, data changes because of multiple devices, multiple users, multiple tabs. How can we over time update the data on screen?"
-                },
-                {
-                    "type": "p",
-                    "text": "SWR will give you the option to automatically refetch data. It’ssmartwhich means refetching will only happen if the component associated with the hook ison screen."
-                },
-                {
-                    "type": "p",
-                    "text": "You can enable it by setting arefreshIntervalvalue:"
+                    "text": "If you want to manually revalidate the data, checkmutation. When you re-focus a page or switch between tabs, SWR automatically revalidates data. This can be useful to immediately synchronize to the latest state. This is helpful for refreshing data in scenarios like stale mobile tabs, or laptops thatwent to sleep. This feature is enabled by default. You can disable it via therevalidateOnFocusoption. In many cases, data changes because of multiple devices, multiple users, multiple tabs. How can we over time update the data on screen? SWR will give you the option to automatically refetch data. It’ssmartwhich means refetching will only happen if the component associated with the hook ison screen. You can enable it by setting arefreshIntervalvalue:"
                 },
                 {
                     "type": "code",
@@ -3094,37 +1500,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "There're also options such asrefreshWhenHiddenandrefreshWhenOffline. Both are disabled by default so SWR won't fetch when the webpage is not on screen, or there's no network connection."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Revalidate on Reconnect"
-                },
-                {
-                    "type": "p",
-                    "text": "It's useful to also revalidate when the user is back online. This scenario happens a lot when the user unlocks their computer, but the internet is not yet connected at the same moment."
-                },
-                {
-                    "type": "p",
-                    "text": "To make sure the data is always up-to-date, SWR automatically revalidates when network recovers."
-                },
-                {
-                    "type": "p",
-                    "text": "This feature is enabled by default. You can disable it via therevalidateOnReconnectoption."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Disable Automatic Revalidations"
-                },
-                {
-                    "type": "p",
-                    "text": "If the resource isimmutable, that will never change if we revalidate again, we can disable all kinds of automatic revalidations for it."
-                },
-                {
-                    "type": "p",
-                    "text": "Since version 1.0, SWR provides a helper hookuseSWRImmutableto mark the resource as immutable:"
+                    "text": "There're also options such asrefreshWhenHiddenandrefreshWhenOffline. Both are disabled by default so SWR won't fetch when the webpage is not on screen, or there's no network connection. It's useful to also revalidate when the user is back online. This scenario happens a lot when the user unlocks their computer, but the internet is not yet connected at the same moment. To make sure the data is always up-to-date, SWR automatically revalidates when network recovers. This feature is enabled by default. You can disable it via therevalidateOnReconnectoption. If the resource isimmutable, that will never change if we revalidate again, we can disable all kinds of automatic revalidations for it. Since version 1.0, SWR provides a helper hookuseSWRImmutableto mark the resource as immutable:"
                 },
                 {
                     "type": "code",
@@ -3140,24 +1516,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "TherevalidateIfStalecontrols if SWR should revalidate when it mounts and there is stale data."
-                },
-                {
-                    "type": "p",
-                    "text": "These 2 hooks above do theexact samething. Once the data is cached, they will never request it again."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Revalidate on Mount"
-                },
-                {
-                    "type": "p",
-                    "text": "It's useful to force override SWR revalidation on mounting. By default, the value ofrevalidateOnMountis set to undefined."
-                },
-                {
-                    "type": "p",
-                    "text": "A SWR hook mounts as:"
+                    "text": "TherevalidateIfStalecontrols if SWR should revalidate when it mounts and there is stale data. These 2 hooks above do theexact samething. Once the data is cached, they will never request it again. It's useful to force override SWR revalidation on mounting. By default, the value ofrevalidateOnMountis set to undefined. A SWR hook mounts as:"
                 },
                 {
                     "type": "list",
@@ -3167,11 +1526,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "revalidateIfStaleuseful to control the mount behaviour. By defaultrevalidateIfStaleis set to true."
-                },
-                {
-                    "type": "p",
-                    "text": "IfrevalidateIfStaleis set to true it only refetches if there's any cache data else it will not refetch."
+                    "text": "revalidateIfStaleuseful to control the mount behaviour. By defaultrevalidateIfStaleis set to true. IfrevalidateIfStaleis set to true it only refetches if there's any cache data else it will not refetch."
                 }
             ]
         },
@@ -3180,40 +1535,16 @@
             "title": "Subscription – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Subscription"
-                },
-                {
                     "type": "p",
-                    "text": "Please update to the latest version (≥ 2.1.0) to use this API."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "useSWRSubscription"
-                },
-                {
-                    "type": "p",
-                    "text": "useSWRSubscriptionis a React hook that allows subscribing to real-time data sources with SWR."
+                    "text": "Please update to the latest version (≥ 2.1.0) to use this API. useSWRSubscriptionis a React hook that allows subscribing to real-time data sources with SWR."
                 },
                 {
                     "type": "code",
                     "code": "useSWRSubscription<Data,Error>(key: Key,subscribe: (key:Key,options:{next:(error?:Error|null,data:Data)=>void})=>()=>void): { data?:Data,error?:Error }"
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "API"
-                },
-                {
                     "type": "p",
                     "text": "This hook subscribes to a real-time data source using the subscribe function provided, and returns the latest data received and any errors encountered. The hook automatically updates the returned data as new events are received."
-                },
-                {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Parameters"
                 },
                 {
                     "type": "list",
@@ -3222,20 +1553,6 @@
                         "subscribe: A function that subscribes to the real-time data source. It receives the following arguments:key: same key as aboveoptions: an object with the following properties:next: A function that accepts an error and data, and updates the state with the latest data received from the real-time data source.",
                         "key: same key as above",
                         "options: an object with the following properties:next: A function that accepts an error and data, and updates the state with the latest data received from the real-time data source.",
-                        "next: A function that accepts an error and data, and updates the state with the latest data received from the real-time data source."
-                    ]
-                },
-                {
-                    "type": "list",
-                    "items": [
-                        "key: same key as above",
-                        "options: an object with the following properties:next: A function that accepts an error and data, and updates the state with the latest data received from the real-time data source.",
-                        "next: A function that accepts an error and data, and updates the state with the latest data received from the real-time data source."
-                    ]
-                },
-                {
-                    "type": "list",
-                    "items": [
                         "next: A function that accepts an error and data, and updates the state with the latest data received from the real-time data source."
                     ]
                 },
@@ -3256,11 +1573,6 @@
                     "code": "functionsubscribe(key,{ next }) {constsub=remote.subscribe(key,(err,data)=>next(err,prev=>prev.concat(data)))return()=>sub.close()}"
                 },
                 {
-                    "type": "header",
-                    "level": 4,
-                    "text": "Return Values"
-                },
-                {
                     "type": "list",
                     "items": [
                         "state: An object with the following properties:data: The latest data received from the real-time data source.error: An Error object if an error occurred while subscribing to the real-time data source, otherwise undefined.",
@@ -3269,24 +1581,8 @@
                     ]
                 },
                 {
-                    "type": "list",
-                    "items": [
-                        "data: The latest data received from the real-time data source.",
-                        "error: An Error object if an error occurred while subscribing to the real-time data source, otherwise undefined."
-                    ]
-                },
-                {
                     "type": "p",
-                    "text": "When new data is received, theerrorwill be reset toundefined."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Usage"
-                },
-                {
-                    "type": "p",
-                    "text": "UsinguseSWRSubscriptionto subscribe to a Firestore data source:"
+                    "text": "When new data is received, theerrorwill be reset toundefined. UsinguseSWRSubscriptionto subscribe to a Firestore data source:"
                 },
                 {
                     "type": "code",
@@ -3302,20 +1598,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "You could also check TypeScript examples ofuseSWRSubscriptionatthis page"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Deduplication"
-                },
-                {
-                    "type": "p",
-                    "text": "useSWRSubscriptiondeduplicates the subscription requests with the same key.\nIf there are multiple components using the same key, they will share the same subscription.\nWhen the last component using the key unmounts, the subscription will be closed."
-                },
-                {
-                    "type": "p",
-                    "text": "This means that if you have multiple components using the same key, they will all receive the same data.\nAnd there's only one subscription to the real-time data source per key."
+                    "text": "You could also check TypeScript examples ofuseSWRSubscriptionatthis page useSWRSubscriptiondeduplicates the subscription requests with the same key.\nIf there are multiple components using the same key, they will share the same subscription.\nWhen the last component using the key unmounts, the subscription will be closed. This means that if you have multiple components using the same key, they will all receive the same data.\nAnd there's only one subscription to the real-time data source per key."
                 }
             ]
         },
@@ -3324,17 +1607,8 @@
             "title": "Suspense – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Suspense"
-                },
-                {
                     "type": "p",
-                    "text": "React stilldoesn't recommendusingSuspensein data frameworks like SWR (More information). These APIs may change in the future as the results of our research."
-                },
-                {
-                    "type": "p",
-                    "text": "You can enable thesuspenseoption to use SWR with React Suspense:"
+                    "text": "React stilldoesn't recommendusingSuspensein data frameworks like SWR (More information). These APIs may change in the future as the results of our research. You can enable thesuspenseoption to use SWR with React Suspense:"
                 },
                 {
                     "type": "code",
@@ -3342,11 +1616,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Note that thesuspenseoption is not allowed to change in the lifecycle."
-                },
-                {
-                    "type": "p",
-                    "text": "In Suspense mode,datais always the fetch response (so you don't need to check if it'sundefined).\nBut if an error occurred, you need to use anerror boundary(opens in a new tab)to catch it:"
+                    "text": "Note that thesuspenseoption is not allowed to change in the lifecycle. In Suspense mode,datais always the fetch response (so you don't need to check if it'sundefined).\nBut if an error occurred, you need to use anerror boundary(opens in a new tab)to catch it:"
                 },
                 {
                     "type": "code",
@@ -3354,16 +1624,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "Suspense mode suspends rendering until the data is ready, which means it causes waterfall problems easily. To avoid that, you should prefetch resources before rendering.More information"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Note: With Conditional Fetching"
-                },
-                {
-                    "type": "p",
-                    "text": "Normally, when you enabledsuspenseit's guaranteed thatdatawill always be ready on render:"
+                    "text": "Suspense mode suspends rendering until the data is ready, which means it causes waterfall problems easily. To avoid that, you should prefetch resources before rendering.More information Normally, when you enabledsuspenseit's guaranteed thatdatawill always be ready on render:"
                 },
                 {
                     "type": "code",
@@ -3379,16 +1640,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "If you want to read more technical details about this restriction, checkthe discussion here(opens in a new tab)."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Server-Side Rendering"
-                },
-                {
-                    "type": "p",
-                    "text": "When using suspense mode on the server-side (including pre-rendering in Next.js), it'srequiredto provide the initial data viafallbackData or fallback. This means that you can't useSuspenseto fetch data on the server side, but either doing fully client-side data fetching, or fetch the data via the framework level data fetching method(such as getStaticProps in Next.js). More discussions can be foundhere(opens in a new tab)."
+                    "text": "If you want to read more technical details about this restriction, checkthe discussion here(opens in a new tab). When using suspense mode on the server-side (including pre-rendering in Next.js), it'srequiredto provide the initial data viafallbackData or fallback. This means that you can't useSuspenseto fetch data on the server side, but either doing fully client-side data fetching, or fetch the data via the framework level data fetching method(such as getStaticProps in Next.js). More discussions can be foundhere(opens in a new tab)."
                 }
             ]
         },
@@ -3397,27 +1649,8 @@
             "title": "TypeScript – SWR",
             "content": [
                 {
-                    "type": "header",
-                    "level": 1,
-                    "text": "TypeScript"
-                },
-                {
                     "type": "p",
-                    "text": "SWR is friendly for apps written in TypeScript, with type safety out of the box."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Basic Usage"
-                },
-                {
-                    "type": "p",
-                    "text": "By default, SWR will also infer the argument types offetcherfromkey, so you can have the preferred types automatically."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "useSWR"
+                    "text": "SWR is friendly for apps written in TypeScript, with type safety out of the box. By default, SWR will also infer the argument types offetcherfromkey, so you can have the preferred types automatically."
                 },
                 {
                     "type": "code",
@@ -3440,22 +1673,12 @@
                     "code": "const{data,error}=useSWR<User,Error>(uid,fetcher);// `data` will be `User | undefined`.// `error` will be `Error | undefined`."
                 },
                 {
-                    "type": "header",
-                    "level": 3,
-                    "text": "useSWRInfinite"
-                },
-                {
                     "type": "p",
                     "text": "Same forswr/infinite, you can either rely on the automatic type inference or explicitly specify the types by yourself."
                 },
                 {
                     "type": "code",
                     "code": "import{ SWRInfiniteKeyLoader }from'swr/infinite'constgetKey:SWRInfiniteKeyLoader=(index,previousPageData)=>{// ...}const{data}=useSWRInfinite(getKey,fetcher)"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "useSWRSubscription"
                 },
                 {
                     "type": "list",
@@ -3478,11 +1701,6 @@
                     "code": "importuseSWRSubscriptionfrom'swr/subscription'importtype{ SWRSubscription }from'swr/subscription'/*** The first generic is Key* The second generic is Data* The Third generic is Error*/constsub:SWRSubscription<string,number,Error>=(key,{ next })=>{//......}const{data,error}=useSWRSubscription('key',sub)"
                 },
                 {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Generics"
-                },
-                {
                     "type": "p",
                     "text": "Specifying the type ofdatais easy. By default, it will use the return type offetcher(withundefinedfor the non-ready state) as thedatatype, but you can also pass it as a parameter:"
                 },
@@ -3499,11 +1717,6 @@
                     "code": "importuseSWRfrom'swr'importtype{ SWRConfiguration }from'swr'constconfig:SWRConfiguration={fallbackData:\"fallback\",revalidateOnMount:false// ...}const{data}=useSWR<string[]>('/api/data',fetcher,config)"
                 },
                 {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Middleware Types"
-                },
-                {
                     "type": "p",
                     "text": "There're some extra type definitions you can import to help adding types to your custom middleware."
                 },
@@ -3517,21 +1730,6 @@
             "url": "https://swr.vercel.app/docs/with-nextjs",
             "title": "Usage with Next.js – SWR",
             "content": [
-                {
-                    "type": "header",
-                    "level": 1,
-                    "text": "Usage with Next.js"
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "App Router"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Server Components"
-                },
                 {
                     "type": "p",
                     "text": "In Next.js App Router, all components are React Server Components (RSC) by default.You could only import the key serialization APIs from SWR in RSC."
@@ -3547,11 +1745,6 @@
                 {
                     "type": "code",
                     "code": "importuseSWRfrom'swr'// ❌ This is not available in server components"
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Client Components"
                 },
                 {
                     "type": "p",
@@ -3574,17 +1767,8 @@
                     "code": "// This is still a server componentimport{ SWRProvider }from'./swr-provider'exportdefaultPage() {return(<SWRProvider><h1>hello SWR</h1></SWRProvider>)}"
                 },
                 {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Client Side Data Fetching"
-                },
-                {
                     "type": "p",
-                    "text": "If your page contains frequently updating data, and you don’t need to pre-render the data, SWR is a perfect fit and no special setup is needed: just importuseSWRand use the hook inside any components that use the data."
-                },
-                {
-                    "type": "p",
-                    "text": "Here’s how it works:"
+                    "text": "If your page contains frequently updating data, and you don’t need to pre-render the data, SWR is a perfect fit and no special setup is needed: just importuseSWRand use the hook inside any components that use the data. Here’s how it works:"
                 },
                 {
                     "type": "list",
@@ -3595,28 +1779,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "This approach works well for user dashboard pages, for example. Because a dashboard is a private, user-specific page, SEO is not relevant and the page doesn’t need to be pre-rendered. The data is frequently updated, which requires request-time data fetching."
-                },
-                {
-                    "type": "header",
-                    "level": 2,
-                    "text": "Pre-rendering with Default Data"
-                },
-                {
-                    "type": "p",
-                    "text": "If the page must be pre-rendered, Next.js supports2 forms of pre-rendering(opens in a new tab):Static Generation (SSG)andServer-side Rendering (SSR)."
-                },
-                {
-                    "type": "p",
-                    "text": "Together with SWR, you can pre-render the page for SEO, and also have features such as caching, revalidation, focus tracking, refetching on interval on the client side."
-                },
-                {
-                    "type": "p",
-                    "text": "You can use thefallbackoption ofSWRConfigto pass the pre-fetched data as the initial value of all SWR hooks."
-                },
-                {
-                    "type": "p",
-                    "text": "For example withgetStaticProps:"
+                    "text": "This approach works well for user dashboard pages, for example. Because a dashboard is a private, user-specific page, SEO is not relevant and the page doesn’t need to be pre-rendered. The data is frequently updated, which requires request-time data fetching. If the page must be pre-rendered, Next.js supports2 forms of pre-rendering(opens in a new tab):Static Generation (SSG)andServer-side Rendering (SSR). Together with SWR, you can pre-render the page for SEO, and also have features such as caching, revalidation, focus tracking, refetching on interval on the client side. You can use thefallbackoption ofSWRConfigto pass the pre-fetched data as the initial value of all SWR hooks. For example withgetStaticProps:"
                 },
                 {
                     "type": "code",
@@ -3624,20 +1787,7 @@
                 },
                 {
                     "type": "p",
-                    "text": "The page is still pre-rendered. It's SEO friendly, fast to response, but also fully powered by SWR on the client side. The data can be dynamic and self-updated over time."
-                },
-                {
-                    "type": "p",
-                    "text": "TheArticlecomponent will render the pre-generated data first, and after the page is hydrated, it will fetch the latest data again to keep it fresh."
-                },
-                {
-                    "type": "header",
-                    "level": 3,
-                    "text": "Complex Keys"
-                },
-                {
-                    "type": "p",
-                    "text": "useSWRcan be used with keys that arearrayandfunctiontypes. Utilizing pre-fetched data with these kinds of keys requires serializing thefallbackkeys withunstable_serialize."
+                    "text": "The page is still pre-rendered. It's SEO friendly, fast to response, but also fully powered by SWR on the client side. The data can be dynamic and self-updated over time. TheArticlecomponent will render the pre-generated data first, and after the page is hydrated, it will fetch the latest data again to keep it fresh. useSWRcan be used with keys that arearrayandfunctiontypes. Utilizing pre-fetched data with these kinds of keys requires serializing thefallbackkeys withunstable_serialize."
                 },
                 {
                     "type": "code",

@@ -1,0 +1,812 @@
+{
+    "name": "https://ux.mailchimp.com",
+    "url": "https://https://ux.mailchimp.com",
+    "pages": [
+        {
+            "url": "https://ux.mailchimp.com",
+            "title": "Color | Mailchimp",
+            "content": []
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns",
+            "title": "Color | Mailchimp",
+            "content": []
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/buttons",
+            "title": "Buttons | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Priority",
+                        "Disabled",
+                        "Loading",
+                        "Pagination",
+                        "Combo",
+                        "Group"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Buttons are categorized by importance and can be applied to a variety of html nodes. Each variation has intention and should be used sparingly. You can create buttons using thebuttonHTML tag accompanied by thebuttonclass. To style an anchor(a)tag as a button use thebuttonclass. To style aninputas a button use thebuttonclass and define a label by adding avalueattribute. In most situations we recommend using the semanticdisabledattribute for appropriate HTML elements. If needed there is a companiondisabledutility class. These buttons are used when we have a time-intensive action on the page. We use them to provide feedback to the user and let them know the action is in progress. Dynamically add thebutton-loadingclass to the button after the first press. After the request is completed, remove the class. It's advisable to toggle thedisabledattribute as well. There are situations when buttons are grouped for a related function. For example, in paging controls for previous-next buttons. Wrap two or more buttons using thebutton-groupclass. Adding theregularclass to style like the example. Adarkstyle is also available. If the button has no accessible name or uses an icon, include anaria-labelattribute. Combo buttons are preferred when more than one action is associated with a button. The primary action is visible and available on the button itself, while the secondary actions are accessed through the drop-down menu. The button's color is based on our button priority. The chosen color should reflect the importance of a user's action relative to other buttons on the page. Combo buttons are created using Dijit'sdijit/form/ComboButtonand secondary actions are defined insidedijit/DropDownMenuusingdijit/MenuItems. This component is most easily implemented by programmatically instantiatingmojo/widgets/ButtonGroupand passing a template string. Be mindful of accessibility and tap sizes. Use semantic markup and keep in mind this pattern works best with 3 to 5 items."
+                }
+            ]
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/color",
+            "title": "Color | Mailchimp",
+            "content": []
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/data",
+            "title": "Data Visualization | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Charts",
+                        "Palette",
+                        "Grids",
+                        "Fly-over"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Data helps us make informed decisions. Therefore, data should be clear; it should not be overly decorative and it should be presented in a meaningful way. Below are a few standards that we’ve set for telling visual data stories. Stylistically, our charts and graphs draw inspiration from a more grown-up, editorial style. Notes Use solid lines to indicate actual trends in data. Use dotted lines for showing a general trait like an average or projection. Lines should be 2pts in weight and straight, never curved. Use dots on a line to highlight a selected data point. Notes Don’t apply rounded corners. The space between bars should always be 50% of the width of the bars. Generally, categories in stacked bar charts should use one of our pre-configuredcategorical color combos. Avoid using the same hue to represent categories. If subcategories need to be made, use our hatch pattern if applicable. Notes Use the color combos to determine the color of the points. Points should be 8px by 8px. When using multiple sets or categories, cycle through multiple shapes so that the data can be more easily differentiated. Generally, the order is: circle, square, triangle, diamond, upside-down triangle. Notes Data in these charts always add up to 100%. If there is more than one category represented, always use of the categorical color combos. The layout can be unique from chart to chart but the bars themselves always have a height (or width if vertical) that’s a multiple of eight (or four but that is the exception). Limit representation to fewer than six categories. If you must represent more than six categories, consider truncating data to include the top four categories and then include smaller data sets in an 'other' category. Notes Avoid using pie charts, as research shows this is not the most effective way of displaying and relating data. Instead, use a percent bar graph. If you must use a pie chart, always use a categorical color combo. The colors for our complex charts come from our predefined categorical combos. Generally, we try to vary value, saturation, and hue between categories. When building a data story, choose from one of the established combos for visual harmony and accessibility optimization. Feel free to use more than one combo when creating multiple charts on a page."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "These colors are the building blocks we use to craft pre-defined combinations and sub-palettes within data visualization. We do not use these directly in charts and graphs. Using pre-defined groupings will help foster consistency, predictability, and accessibility. See the guides in each section to learn how to choose colors for specified usage. When choosing colors to create a new categorical combo, try to pick colors across the spectrum to make use of different hues, tints, and tones. For accessibility, avoid a sequence that uses adjacent hues and be sure to pick a variety of lightnesses. When you need to use color to enhance a singular data point (like in a meter) use one of the pre-defined accent colors in this section. If more than one color may be used to represent data, use one of the pre-defined categorical color combos. When pairing our accent colors for accessibility, make sure the visual presentation has a contrast ratio of at least 3:1 against adjacent colors. Apple For the most part, Apple is used to convey ‘positive’ values or success. It should not be used for conveying a progression. This includes things like representing completion of account setup, percentage of available sends or seats, etc. Plum Plum represents itself as neutral. As such, use it for things that do not convey strong positive or negative values. Apricot Apricot also represents itself as neutral. As such, use it for things that do not convey strong positive or negative values. Keep in mind that a similar color, Squash, often represents a 'warning' state. When using Apricot, ensure the association with a warning state isn't too strong. Pumpkin Pumpkin can carry a negative connotation. Use pumpkin sparingly, and as an accent to help when at-a-glance comparisons are needed. Avoid using Pumpkin as the primary color when surfacing negative values in graphs and charts. Parsnip Parsnip is used as the background color to indicate 'unfilled' space. Use it to indicate the possible breadth of a value. The baseline (when applicable) is a 2pt, Peppercorn line. The points are represented with ticks. Avoid getting too crowded with the x-axis labels. If need be, skip a few labels but keep the ticks so that the labels are legible. If there is no ‘y’ dimension, it is appropriate to use a 1pt y-axis line (similar to a typical x-axis grid line). Typical x-axis X-axis without baseline Compressed x-axis X-axis without y-axis The y-axis is usually represented with a label and a 1pt Peppercorn-a15 grid line. Always label the lowest value, even if it’s 0. This will make clear whether the chart is truncating the y-axis data. The fly-over should not only activate on hover. It should present itself when a highlightable portion of a chart is selectable. On mobile, a user should be able to tap on a portion of the graph to make it appear. The fly-over is not always necessary but is recommended unless there’s another piece of the UI that highlights the selected data and ties those two things together. Flag The flag is Peppercorn at 90% opacity. It should be centered at the data it points to and pinned to the highest reasonable point of a chart. Pole The pole is Peppercorn at 100% opacity and should be centered to the flag. In cases where the fly-over is near the edge of a chart, you may adjust the positioning of the flag on the pole. If the chart has fewer than two items to call out, you may eliminate the pole and just use the flag."
+                }
+            ]
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/dialogs",
+            "title": "Dialogs | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Generic Dialog",
+                        "Feature Dialog"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "We use modals and dialogs for a variety of different purposes throughout the app including forms and verification prompts. You're about to delete this campaign. Modals in the app are defined using Dijit's Dialog plugin. Themodal_idis used to bind the buttononclickevents to show/hide the modal. The primary action in the modal and dialog appears before the secondary action. We’ve updated the AB testingcampaigninterface. Now you can easily test your content. Use thefeature-dialogclass to show a dialog with a simpler look and feel. This type of dialog should be used sparingly and not shown more than once. They should be easily dismissible as they don't feature a close icon. You're about to delete this campaign. We’ve updated the AB testingcampaigninterface. Now you can easily test your content."
+                }
+            ]
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/feedback",
+            "title": "Feedback | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Feedback Blocks",
+                        "Upgrade Block",
+                        "Badges",
+                        "Toaster",
+                        "Inline Toast",
+                        "Callout Tips"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "All good! You closed your account on Nov 29, 2013 07:00 pm Something terrible happened.Let's see if this fixes it. FYI - You're awesome. No type declaration defaults to an info style. FYI – Feedback blocks can contain buttons andCombo Buttons You closed your account on Nov 29, 2013 07:00 pm Feedback blocks are used to provide action-based feedback messages or to convey informational and/or critical account-related messages. Feedback messages are categorized into four types based on severity:"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Success: indicates that an action processed successfully or that there are no account-related issues. Thesuccesshelper class gives this block its green color.",
+                        "Warning: indicates that an action failed at this time that otherwise would be processed correctly. If the message is related to an account status then campaign sending ability might be affected to some extent. Use thewarningclass for the yellow background color.",
+                        "Error: indicates that an action failed completely. If the message is related to an account status then the campaigns will definitley not send. Use theerrorclass for the red background color.",
+                        "Info: just provides information related to a performed action. Use theinfoclass for the blue background color."
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "These blocks are built around a standard media block and show an icon relative to their severity. For Freddicons addv-isFreddiconto thec-mediaImagecontainer to get the alignment right. This block is a way to denote an action requires a different pricing plan. While it behaves similar to a feedback block, it's different in a couple key ways: It's supported with an illustration instead of an icon and is positioned relative to other UI. If the block is dismissable, theDismissaction should follow theUpgrade Nowaction so that the user can distinguish between the text and actions. It should sit in close proximity to whatever action or feature it's related to. To voice a consistent message, the default illustration is preferred. This block is designed to be instantiated programmatically but can be declared. A button, body title, body copy, and image are all required. Smart defaults are set for all except the body. These defaults can be overridden through props. An optional booleanisDismissiblecan be added through props to show the dismiss button. Default value isfalse. Attach a function to thedismissConfig.onDismissPressCallbackprop to use the callback mechanism. A button event listener is configurable via callback ordojo/topic. Attach a function to theonCtaPressCallbackprop to use the callback mechanism. If dojo/topic is needed, pass the topic name as a prop,topicName: cool/topic/name. Do not use both a callback and dojo/topic within a single instance. Badges are used as a form of inline feedback and labeling. They are typically used to provide additional context to components already on the page. The Pro badge is reserved for identifying Pro-level features and accounts. Show Toaster Toaster messages are shown at the bottom-left of the page and stay for ~2 seconds, providing immediate feedback in response to a user action. These are most usually generated through JS or PHP. Inline toasts are a variant of toaster message, providing immediate feedback in response to a user action somewhere inline on the page. These have two style variants,darkandlight, to be used based context of their placement. Defaults to yellow light-bulb freddicon and single column. To manually set columns, usedata-dojo-props=\"columns: 12\". To manually set the freddicon, usedata-dojo-props=\"icon: 'icon-name'\". If you need a full-width single column with centered text in the middle, usedata-dojo-props=\"columns: '1 centered'\". All the options."
+                }
+            ]
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/forms",
+            "title": "Form Elements | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Select",
+                        "Inputs",
+                        "Field help",
+                        "Checkboxes & Radios",
+                        "Range",
+                        "Disclosure"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Dijit Selects provide and consistent look and feel on different browsers and platforms maxHeight=-1is used so the select adjusts to the container box, allowing scrolling for a long list of options in a small container. Expands on default Dijit select to add images and/or a second line containing meta information. Consider using other select forms before introducing multi select as these should be used sparingly. It is not the most effective way to display large amounts of data. If you must create a multi select, define a regular select with options. Then, define thedata-dojo-typeof the element todata-dojo-type=\"dojox/form/CheckedMultiSelect\" Make sure you add the following attributes:dropDown=\"true\" multiple=\"true\" labelText=\"Select options\" To create a days of week select, define it like a regular select. Add the attributedata-dojo-typewith the following value:mojo/widgets/input/DaysWeek If you want all checkboxes selected by default add the attributedata-dojo-props=\"selectAll:'true'\" Native Selects are useful when browser defaults work better than Dijit Selects. For example, on mobile devices the native selects are better styled for interactions and are tightly coupled with the OS itself. Native selects can be styled to look like Dijit Selects on WebKit browsers only. Multiple options are selectable with the booleanmultipleattribute. Text inputs are accompanied by alabeland wrapped inside afieldset. The:hoverand:focusstyles follow our brand colors. Required fields can be indicated by adding therequiredclass to the associated label. Combineposition--absolute,c-currencyInput--symbol, andzin-lv2classes with thespanto generate input fields with a currency icon. Usec-currencyInputclass on the input to create the correct padding to account for the symbol to the right of the input field. Also, usemojo/userpropertycurrencyto get the User's currency symbol Combineposition--absolute,c-suffixInput--symbol, andzin-lv2classes with thespanto generate input fields with a suffix icon. Usec-suffixInputclass on the input to create the correct padding to account for the symbol to the right of the input field. Last, addposition--relativeto thefield-wrapperandsize1of2class for sizing the container will help withmax-widthofinputelements. Combineform-inlineandwith-buttonclasses with thefield-wrapperto generate input fields attached to inline buttons. Usefield-helpto better explain an input field and to guide the user through the form filling process. Declare thefield-helpright after theinputfield inside afield-wrapper. This will keep all the elements together and in context. Input fields that have not passed validation are updated with aninvalidclass. Likefield-help, theinvalid-errormessage is placed right after theinputfield. Field validation is handled by the backend, and the styles and attributes required to style the errors are provided by the controller. This component takes an existing full list, and removes items based on criteria that match/don't match. Include a custom placeholder by settingplaceholder:'Filtered Search'todata-dojo-props. Publish a topic by passingsearchTopic, then filter results by subscribing to the topic in the view's corresponding js. This is our take on a multi-value input. Created as a Dojo widget, the tag list input is designed to be keyboard navigable and adopt our input patterns. Configure theoperatorOptionswithindata-dojo-propsto optionally include a select statement at the start. This input can be found in several editing experiences. Use thenoColorEnabledprop to make removing a color an option. Pass a default color value withvalueprop. This is a dijit element we have styled to match other patterns. Use theconstraints=\"\"to customize a variety of options such as date format, min, and max. Radio buttons and checkboxes are defined using Dijit plugins –dijit/form/RadioButtonanddijit/form/CheckBox. Addradioorcheckboxclass to thelabelthat wraps theinputelement. Use thedisabledattribute to disable the input element and to apply appropriate styles. To add a description to a checkbox or a radio button, declareradio-descriptionorcheckbox-descriptionright after theinputelement. Thelabelshould wrap both—the input element and the description block."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "300 credits$9.00",
+                        "900 credits$12.00",
+                        "Hello",
+                        "One Line"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Addon One$3.00",
+                        "Addon Two$6.00",
+                        "One Line",
+                        "Hello"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Addon One$3.00"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "This style controls the hover/selected/focus states of a choice card which uses an<input>of typecheckboxorradio. The switch behaves like a checkbox — allowing the user to toggle an on or off state as they would on a mobile device. Just make sure you include\"mojo/widgets/Switch\". As with most inputs, attributes such asdisabledwork out of the box. You can assign a title attribute viadojo-data-props If you want to check the status of the switch. Useregistry.byId('switchId')switchInputNode.checked;. We use theHorizontalSliderdijit component to represent the range input. Useful for hiding optional subforms or extra content. Specify the id of the hidden dom element you want to toggle as the first parameter of the disclosureElement function."
+                }
+            ]
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/grid",
+            "title": "Grid System | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Grid sizes",
+                        "Grid gutter",
+                        "Mixed grids",
+                        "Responsive columns"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Our grid system is composed of 8 flexible columns with a gutter between columns of 30px. We applyborder-boxso that the border and padding is included in the width of the grid columns. 1 / 1 1 / 2 1 / 2 1 / 3 1 / 3 1 / 3 1 / 4 1 / 4 1 / 4 1 / 4 1 / 8 1 / 8 1 / 8 1 / 8 1 / 8 1 / 8 1 / 8 1 / 8 When using the grid, wrap the columns using alineand uselastUnitfor the last column. Refer toOOCSS base classesto learn more about the grid classes. This example applies to the other ratios we support: 1/1, 1/2, 1/3, 1/4, and 1/8 Our grid columns have a 15px padding on either side that results in a 30px gutter between columns and a 15px gutter on the grid edges. Even though our columns are fluid, the gutter remains constant. 1 / 3 1 / 3 1 / 3 The grid layout is easily extended by nesting and mixing different column sizes. 1 / 8 7 / 8 3 / 4 1 / 4 1 / 3 1 / 2 1 / 2 When nesting grids use thegroupclass to eliminate gutters on the parent element of the columns that are being nested. It provides a padding-less container for nested columns and subsequently, helps avoid the indentation and side-padding issues otherwise seen on nested columns withunitandlastUnitparent classes. Wherever possible, limit nesting grids to 2 levels deep. Anything more than that would require the use ofnopaddingon grid columns orunits for correct grid alignment and indentation. Our different column sizes automatically change dimensions once they reach certain breakpoints. To illustrate, resize your browser window and you will see the grid columns change size. The following table shows the media-query breakpoints."
+                }
+            ]
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/helpers",
+            "title": "Helper Classes | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Spacing",
+                        "Typography",
+                        "Display",
+                        "Responsive Utilities"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "We have a number of helper classes that allow us to quickly style elements throughout the application without adding unnecessary bloat and complexity to our CSS. This also allows us to keep our CSS specificity low. For consistent spacing and to maintain avertical rhythm, we use a level system for both margin and padding. Padding can be applied by using the classespadding--lv1throughpadding--lv8, while margin uses themargin--lv1throughmargin--lv8scale. Usepadding--lv0ormargin--lv0to completely remove any margin or padding from the element. The!prefix is a way to indicate!importanton the style. Level 1: 6px Level 2: 12px Level 3: 18px Level 4: 24px Level 5: 30px Level 6: 36px Level 7: 42px Level 8: 48px To fine tune the padding and margin for an element, supplement the padding level with the following classes:"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "padding-top--lv0ormargin-top--lv0for no space on top",
+                        "padding-bottom--lv0ormargin-bottom--lv0for no space on bottom",
+                        "padding-top-bottom--lv0ormargin-top-bottom--lv0for no space on top or bottom",
+                        "padding-left--lv0ormargin-left--lv0for no space on left",
+                        "padding-right--lv0ormargin-right--lv0for no space on right",
+                        "padding-left-right--lv0ormargin-left-right--lv0for no space on left or right"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Below margin helpers:",
+                        "margin-bottom--lv0for a margin bottom of 0px",
+                        "margin-bottom--lv1for a margin bottom of 6px",
+                        "margin-bottom--lv2for a margin bottom of 12px",
+                        "margin-bottom--lv3for a margin bottom of 18px",
+                        "margin-bottom--lv4for a margin bottom of 24px",
+                        "margin-bottom--lv5for a margin bottom of 30px",
+                        "margin-bottom--lv6for a margin bottom of 36px",
+                        "margin-bottom--lv7for a margin bottom of 42px",
+                        "margin-bottom--lv8for a margin bottom of 48px"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Additional classes related to white space and word wrapping are available such as:white-space--normal,white-space--nowrap,white-space--preline,word-wrap--break-all, andword-wrap--break-word."
+                }
+            ]
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/icons",
+            "title": "Freddicons | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Icons are symbols that help communicate or reinforce a concept. Our Freddicons are used within Dojo implementations."
+                }
+            ]
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/lists",
+            "title": "Lists | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Leaders list",
+                        "Linear lists",
+                        "Unordered list",
+                        "Activity Timeline"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Leaders lists are usually to display statistics. The label is on the left side while the value is on the right. A consecutive line of dots separate the label and value."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "List average61.7%",
+                        "Industry average61.7%"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "List average61.7%",
+                        "Industry average61.7%"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Add the classleadersto the<ul>element and use<span>tags to wrap labels and values. To make a linear list use thelinear-listclass in aulelement."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "item uno",
+                        "item dos",
+                        "item tres"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "item uno",
+                        "item dos",
+                        "item tres"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "To separate the items with dots use thedotsclass. Items on a linear list are separated by spaces."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "item uno",
+                        "item dos",
+                        "item tres"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "item uno",
+                        "item dos",
+                        "item tres"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "To separate the items with spaces use thespacesclass. Regular style for unordered list with link elements in the list items"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "item one",
+                        "item two",
+                        "item three"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "item one",
+                        "item two",
+                        "item three"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Add classregularto the<ul>element. Notice the state for<li>elements with theselectedclass. To convert a list to an activity timeline we need to wrap the list in a div that has the classc-activityTimeline. The div is needed in order to style the date associated with the list. Arelativeclass is also required on the list. We needrelativebecause we are absolute positioning some elements inside the list items. The timeline pattern requires some extra markup inside the list items in order to display time and icons."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "1:23pm1 new subscribers to \"Mailchimp UX Newsletter\"Nice! Guess people like what you're saying. Here are a few:freddie@mailchimp.com.",
+                        "10:24amInbox PreviewCheck your profile",
+                        "6:03amUnsubscribedMailchimp UX·View Results"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "1:23pm1 new subscribers to \"Mailchimp UX Newsletter\"Nice! Guess people like what you're saying. Here are a few:freddie@mailchimp.com."
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Activity is grouped by date. The date is located outside of the unordered list. The date and icon are located inside ofactivity-metadiv. For time addactivity-timefor icons addactiviy-iconandactivity-sprite. Content goes insideactivity-contentsection."
+                }
+            ]
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/navigation",
+            "title": "Navigation | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Local Navigation",
+                        "Switcher",
+                        "Tabs"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Overview",
+                        "SettingsUsers & account detailsContact informationManage my dataClose my account",
+                        "SettingsUsers & account detailsContact informationManage my dataClose my account",
+                        "Users & account details",
+                        "Contact information",
+                        "Manage my data",
+                        "Close my account",
+                        "BillingMonthly plans or buy creditsBilling information",
+                        "BillingMonthly plans or buy creditsBilling information",
+                        "Monthly plans or buy credits",
+                        "Billing information",
+                        "ExtrasRewardsAPI keysRegistered apps",
+                        "ExtrasRewardsAPI keysRegistered apps",
+                        "Rewards",
+                        "API keys",
+                        "Registered apps",
+                        "Integrations"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Overview",
+                        "SettingsUsers & account detailsContact informationManage my dataClose my account",
+                        "SettingsUsers & account detailsContact informationManage my dataClose my account",
+                        "Users & account details",
+                        "Contact information",
+                        "Manage my data",
+                        "Close my account",
+                        "BillingMonthly plans or buy creditsBilling information",
+                        "BillingMonthly plans or buy creditsBilling information",
+                        "Monthly plans or buy credits",
+                        "Billing information",
+                        "ExtrasRewardsAPI keysRegistered apps",
+                        "ExtrasRewardsAPI keysRegistered apps",
+                        "Rewards",
+                        "API keys",
+                        "Registered apps",
+                        "Integrations"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Local navigation is used to jump between pages that categorically fall under the same (main) section. The local nav shown in the example above is from the Account section and it is present on all pages under/account. If there are secondary pages in a section, then links to those pages are shown insidehover-listmenus. A blue-colored link indicates the page/sub-section currently in view. The local nav spans the full width of the page up to 640px, at which point it collapses into a stacked menu."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Switch listStayin' AliveAhhahahastayin' aliiiiiiive",
+                        "Stayin' Alive",
+                        "Ah",
+                        "ha",
+                        "ha",
+                        "ha",
+                        "stayin' aliiiiiiive"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Switch listList 1List 2List 3",
+                        "List 1",
+                        "List 2",
+                        "List 3"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "A switcher is used in lists, campaigns and reports dashboard page headers to quickly navigate to a different list, campaign, or report, respectively. We have re-styled Dijit's tab container and content panes. Usedijit-tabscontainer as a wrapper for the TabContainer and uselastGroupfor wrapping the tab contents inside the ContentPane. This will ensure that theunitandlastUnitclasses will not add extra padding inside the tab contents."
+                }
+            ]
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/slats",
+            "title": "Slats | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Generic",
+                        "Lists",
+                        "Reports"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Slats represent a unit with associated data and actions. These can be found throughout the application to represent campaigns, audiences, automation triggers, and more."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "In pellentesque faucibus vestibulum. Nulla at.Some other textConfigure"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "In pellentesque faucibus vestibulum. Nulla at.Some other textConfigure"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Mandrill Welcome Email TestCreated Aug 07, 2013 04:00 pm6Subscribers0.0%Open rate0.0%Click rateSubscribers6Open rate0.0%Click rate0.0%StatsManage subscribersSignup formsSettingsImportReplicate listCombine lists",
+                        "Subscribers6",
+                        "Open rate0.0%",
+                        "Click rate0.0%"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Mandrill Welcome Email TestCreated Aug 07, 2013 04:00 pm6Subscribers0.0%Open rate0.0%Click rateSubscribers6Open rate0.0%Click rate0.0%StatsManage subscribersSignup formsSettingsImportReplicate listCombine lists",
+                        "Subscribers6",
+                        "Open rate0.0%",
+                        "Click rate0.0%"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Mailchimp UX Issue 9 - Patternsregular ·Sent Jul 25, 2013 05:03 pm2,065Subscribers55.8%Open rateOpens1,147Open rateOpens13.7%Click rateClicks281Click rateClicksSubscribers2,065Open rate55.8%Click rate13.7%View reportView emailShare campaignShare reportDownloadPrint",
+                        "Subscribers2,065",
+                        "Open rate55.8%",
+                        "Click rate13.7%"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Mailchimp UX Issue 9 - Patternsregular ·Sent Jul 25, 2013 05:03 pm2,065Subscribers55.8%Open rateOpens1,147Open rateOpens13.7%Click rateClicks281Click rateClicksSubscribers2,065Open rate55.8%Click rate13.7%View reportView emailShare campaignShare reportDownloadPrint",
+                        "Subscribers2,065",
+                        "Open rate55.8%",
+                        "Click rate13.7%"
+                    ]
+                }
+            ]
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/stats",
+            "title": "Stats & Data | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Meter blocks",
+                        "No-data block",
+                        "Stat block",
+                        "Stat animation"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Meter blocks are composed of two main blocks. The top part is where the labels and stats are located, and the bottom part is the meter. The two main blocks should be wrapped around some kind of unit. In this example they're wrapped in asize1of2unit. The width of the bar is fed by the controller to make it dynamic, but it can be hard coded as well. The meter color can be adjusted to provide additional context and feedback. Adding ameter--warningormeter--errorclass can indicate a warning or problem the customer may want to address. Adding ameter--neutralclass can be used to communicate data with no positive or negative connotation like subscriber growth. The meter should not be the sole indicator of information. It should accompany additional copy for accessibility. A larger version of our meter with labels and a width animation. Thespectrumtype represents how we visualize reputation scores. Withoutspectrum, the pattern will fall back to our default meter colors. AddingmeterClass:'className'todata-dojo-propsallows the large meter to adopt other colors if necessary. No-data blocks are used to show empty states. We use different illustrations to associate the type of missing data with the no-data message. Generally the block headers use sentence-case. Stat blocks work in grid units. Just addstat-blockclass to the unit element. Opened Clicked Unsubscribed Opened Clicked Unsubscribed You can have any type of content inside the stat blocks, but usually they follow a pattern of title and data. Use heading tags for the titles and paragraph tags for the content of the stats. In this example we are also using some utility classes to hide and show content at different break points. hide-phonewill hide content if in phone break point (640px).show-phoneWill show content if viewport is within the phone break point (640px). Add an animation between a two numbers to create delightful motion. Adjusting number of decimals to animate, animation duration, and animation delay all allow flexibility. Total opens Successful deliveries By default the widget animates from 0 to the number in the widget DOM element. Pass widget settings viadata-dojo-props Some of the settings include:startVal,numDecimals,animDuration,animDelay,easing"
+                }
+            ]
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/tables",
+            "title": "Tables | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Subscribers Table",
+                        "Responsive Tables",
+                        "Elements",
+                        "Add-on Classes",
+                        "Child Rows",
+                        "Stats"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Select VisibleSelect AllDeselect All",
+                        "Select Visible",
+                        "Select All",
+                        "Deselect All"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Select VisibleSelect AllDeselect All",
+                        "Select Visible",
+                        "Select All",
+                        "Deselect All"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "This table helps identify and segment the list subscribers based on the merge fields defined by the list owner. Upto 60 merge fields are allowed per list. The Email Address column is absolutely-positioned, while the rest of the table scrolls horizontally when the table is larger than the viewport. At widths less than 640px, the Email Address column is no longer fixed, and the entire table scrolls horizontally. Tables are declared with themc-tableclass. For screens larger than 1024px, the tables are 100% wide and span the entire available space. For screens 1024px and below, the tables scroll horizontally in case of an overflow. For tables that shouldn't span the entire page width, declare them with theblockhelper class in addition to themc-tableclass. Usenowrap-smallfor text inside tables to not wrap when viewed on mobile devices (1024px or less screen widths)."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "10,000",
+                        ""
+                    ]
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "44.4%",
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "url": "https://ux.mailchimp.com/patterns/typography",
+            "title": "Typography | Mailchimp",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Navigation"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Intro",
+                        "Type Scale",
+                        "Paragraphs"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "This is Means. Our brand typeface. Means is the primary brand typeface for Mailchimp. An elegant serif infused with a quirky warmth, this headline face projects trustworthiness, optimism, and sincerity. The light weight sets an editorial tone while uncommon rounded corners infuse the typeface with a distinctive personality. Graphik is our supporting font Graphik is our workhorse typeface, carefully chosen to support Means in more functional moments. Purposefully plain, this sans-serif prioritizes legibility and balances the expressiveness of Means. We follow a 6px baseline grid for achieving a vertical rhythm on all block-level elements in the app."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Heading One44px / 48pxMeans Regular44px / 48pxMeans Regular",
+                        "44px / 48px",
+                        "Means Regular",
+                        "Heading Two36px / 45pxGraphik · Regular36px / 45pxGraphik · Regular",
+                        "36px / 45px",
+                        "Graphik · Regular",
+                        "Heading Three28px / 35pxGraphik · Regular28px / 35pxGraphik · Regular",
+                        "28px / 35px",
+                        "Graphik · Regular",
+                        "Heading Four20px / 25pxGraphik · Regular20px / 25pxGraphik · Regular",
+                        "20px / 25px",
+                        "Graphik · Regular",
+                        "Body Bold16px / 24pxGraphik · Medium16px / 24pxGraphik · Medium",
+                        "16px / 24px",
+                        "Graphik · Medium",
+                        "Body16px / 24pxGraphik · Regular16px / 24pxGraphik · Regular",
+                        "16px / 24px",
+                        "Graphik · Regular",
+                        "Button & Meta14px / 24pxGraphik · Medium14px / 24pxGraphik · Medium",
+                        "14px / 24px",
+                        "Graphik · Medium"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "The default body text is 16px. For optimum reading length, the paragraph width is capped at 635px. Examples Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Helper classes"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "small-metafor 14px text",
+                        "textcolor--secondaryfor light gray text (65% opacity)",
+                        "font-weight--boldfor bold text (500 weight)",
+                        "font-weight--lightfor light text (300 weight)",
+                        "font-style--italicfor italics text"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "LESS variables"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "@font-family--brandfor brand font-stack – \"Means Web\", Georgia, Times, \"Times New Roman\", serif;",
+                        "@font-family--basefor default font-stack – \"Graphik Web\", \"Helvetica Neue\", Helvetica, Arial, Verdana, sans-serif;",
+                        "@font-family--monospacefor monospace font-stack – \"SFMono-Regular\", Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", Courier, monospace;",
+                        "@large-copyfor 17px text",
+                        "@medium-copyfor 16px text",
+                        "@small-copyfor 14px text"
+                    ]
+                }
+            ]
+        }
+    ]
+}

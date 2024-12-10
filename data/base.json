@@ -1,0 +1,601 @@
+{
+    "name": "https://baseweb.design",
+    "url": "https://https://baseweb.design",
+    "pages": [
+        {
+            "url": "https://baseweb.design",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/base-figma-community",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/base-web-v11",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/base-web-v12",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/base-web-v7",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/base-web-v8",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/base-web-v9",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/drag-and-drop-list",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/file-uploader",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/getting-started-with-base-web",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/getting-started-with-styletron",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/introducing-base-map-markers",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/introducing-react-view",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/nested-overrides-playground",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/open-source-engagement",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/phone-input",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/responsive-web",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/screen-reader-improvements",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/visual-regression-testing",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/blog/vs-code-extension",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/cheat-sheet",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/accordion",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/app-nav-bar",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/aspect-ratio-box",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/avatar",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/badge",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/banner",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/base-provider",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/block",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/bottom-navigation",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/breadcrumbs",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/button",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/button-dock",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/button-group",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/button-timed",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/card",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/checkbox",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/combobox",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/data-table",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/datepicker",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/divider",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/dnd-list",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/drawer",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/empty-state",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/file-uploader",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/file-uploader-basic",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/fixed-marker",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/flex-grid",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/floating-marker",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/floating-route-marker",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/form-control",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/header-navigation",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/heading",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/hint-dot",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/icon",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/input",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/layer",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/layout-grid",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/link",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/list",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/location-puck",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/menu",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/message-card",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/mobile-header",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/modal",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/notification",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/notification-circle",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/page-control",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/pagination",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/payment-card",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/phone-input",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/pin-code",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/popover",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/progress-bar",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/progress-steps",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/radio",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/rating",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/segmented-control",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/select",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/side-nav",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/skeleton",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/slider",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/snackbar",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/spinner",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/stepper",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/styled",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/table",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/table-grid",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/table-semantic",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/tabs",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/tabs-motion",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/tag",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/textarea",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/tile",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/time-picker",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/timezone-picker",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/toast",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/tokens",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/tooltip",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/tree-view",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/typography",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/unstable-a11y",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/components/use-styletron",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/discover-more/comparison",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/discover-more/supported-platforms",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/discover-more/versioning-policy",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/getting-started/learn",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/getting-started/setup",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/guides/bidirectionality",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/guides/internationalization",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/guides/seo",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/guides/styling",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/guides/tables",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/guides/theming",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/guides/understanding-overrides",
+            "title": "No Title",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/ladle",
+            "title": "Ladle",
+            "content": []
+        },
+        {
+            "url": "https://baseweb.design/new",
+            "title": "Base Web Starter - StackBlitz",
+            "content": []
+        }
+    ]
+}

@@ -1,30 +1,22 @@
 {
-    "timestamp": "2024-10-20T23:15:11.197832+00:00",
+    "timestamp": "2024-12-10T20:46:18.349218+00:00",
     "domain": "https://www.embla-carousel.com",
     "crawl_metadata": {
-        "excluded_patterns": [],
+        "excluded_patterns": [
+            "started",
+            "examples"
+        ],
         "included_patterns": [],
         "excluded_extensions": []
     },
-    "total_urls": 30,
+    "total_urls": 19,
     "urls": [
         "https://www.embla-carousel.com",
         "https://www.embla-carousel.com/api",
         "https://www.embla-carousel.com/api/events",
         "https://www.embla-carousel.com/api/methods",
         "https://www.embla-carousel.com/api/options",
-        "https://www.embla-carousel.com/api/options/api/options#slides",
         "https://www.embla-carousel.com/api/plugins",
-        "https://www.embla-carousel.com/examples",
-        "https://www.embla-carousel.com/examples/generator",
-        "https://www.embla-carousel.com/examples/predefined",
-        "https://www.embla-carousel.com/get-started",
-        "https://www.embla-carousel.com/get-started/cdn",
-        "https://www.embla-carousel.com/get-started/module",
-        "https://www.embla-carousel.com/get-started/react",
-        "https://www.embla-carousel.com/get-started/solid",
-        "https://www.embla-carousel.com/get-started/svelte",
-        "https://www.embla-carousel.com/get-started/vue",
         "https://www.embla-carousel.com/guides",
         "https://www.embla-carousel.com/guides/breakpoints",
         "https://www.embla-carousel.com/guides/previous-and-next-buttons",

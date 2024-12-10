@@ -70,9 +70,6 @@ def fetch_and_parse(
             response = requests.get(url, timeout=REQUEST_TIMEOUT)
             response.raise_for_status()  # Raise an HTTPError for bad requests
 
-            content_length = len(response.content)
-            url_sizes.append((url, content_length))
-
             soup = BeautifulSoup(response.text, "html.parser")
             main_content = extract_main_content(
                 soup, excluded_classes, custom_main_indicator, selector
@@ -117,22 +114,40 @@ def extract_main_content(
 def extract_structured_content(content: BeautifulSoup) -> list:
     """Extract structured content from the main content."""
     structured_content = []
-    for element in content.descendants:
-        if element.name and element.name.startswith("h") and element.name[1:].isdigit():
-            level = int(element.name[1:])
-            structured_content.append(
-                {"type": "header", "level": level, "text": element.get_text(strip=True)}
-            )
-        elif element.name == "p":
-            structured_content.append(
-                {"type": "p", "text": element.get_text(strip=True)}
-            )
-        elif element.name in ["ul", "ol"]:
-            list_items = [li.get_text(strip=True) for li in element.find_all("li")]
-            structured_content.append({"type": "list", "items": list_items})
-        elif element.name == "pre":
-            code = element.get_text(strip=True)
-            structured_content.append({"type": "code", "code": code})
+    current_paragraph = []
+
+    # Iterate over direct children to maintain structure
+    for element in content.children:
+        if isinstance(element, str):
+            continue  # Skip text nodes at the top level (if any)
+
+        if element.name == "p":
+            # Accumulate text from each paragraph
+            current_paragraph.append(element.get_text(strip=True))
+        else:
+            # Before processing non-paragraph elements, add accumulated paragraphs
+            if current_paragraph:
+                structured_content.append(
+                    {"type": "p", "text": " ".join(current_paragraph)}
+                )
+                current_paragraph = []  # Reset the paragraph accumulator list
+
+            # Process specific element types
+            if element.name in ["ul", "ol"]:
+                list_items = [li.get_text(strip=True) for li in element.find_all("li")]
+                structured_content.append({"type": "list", "items": list_items})
+            elif element.name == "pre":
+                code = element.get_text(strip=True)
+                structured_content.append({"type": "code", "code": code})
+            else:
+                # Recursively process other elements
+                child_content = extract_structured_content(element)
+                structured_content.extend(child_content)
+
+    # After iterating, check if there's any accumulated paragraph text
+    if current_paragraph:
+        structured_content.append({"type": "p", "text": " ".join(current_paragraph)})
+
     return structured_content
 
 

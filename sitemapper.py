@@ -18,22 +18,66 @@ class SimpleCrawler:
         self.excluded_patterns = config.get("excluded_patterns", [])
         self.included_patterns = config.get("included_patterns", [])
         self.max_concurrency = config.get("max_concurrency", 50)
+        self.excluded_extensions = config.get(
+            "excluded_extensions",
+            [
+                ".jpg",
+                ".jpeg",
+                ".png",
+                ".gif",
+                ".bmp",
+                ".svg",  # Image files
+                ".mp4",
+                ".avi",
+                ".mov",
+                ".wmv",
+                ".flv",
+                ".mkv",  # Video files
+                ".mp3",
+                ".wav",
+                ".aac",
+                ".flac",  # Audio files
+                ".pdf",
+                ".doc",
+                ".docx",
+                ".xls",
+                ".xlsx",
+                ".ppt",
+                ".pptx",  # Documents
+                ".zip",
+                ".rar",
+                ".tar",
+                ".gz",
+                ".7z",  # Archives
+                ".md",
+                ".txt",
+                ".csv",  # Text files
+            ],
+        )
         logging.basicConfig(level=logging.INFO)
 
     def normalize_url(self, url):
-        # Use urlparse and _replace to force https and normalize URL
         parsed_url = urlparse(url)
         return parsed_url._replace(
             scheme="https", path=parsed_url.path.rstrip("/")
         ).geturl()
 
     def should_visit(self, url):
-        url = self.normalize_url(url)  # Normalize URL to HTTPS
+        url = self.normalize_url(url)
         parsed_url = urlparse(url)
         is_same_domain = parsed_url.netloc == self.base_domain
         is_not_excluded = not any(pattern in url for pattern in self.excluded_patterns)
+        has_no_fragment_or_query = "#" not in url and "?" not in url
+        has_no_excluded_extension = not any(
+            url.endswith(ext) for ext in self.excluded_extensions
+        )
 
-        should_visit = is_same_domain and is_not_excluded
+        should_visit = (
+            is_same_domain
+            and is_not_excluded
+            and has_no_fragment_or_query
+            and has_no_excluded_extension
+        )
         logging.info(f"URL: {url}, Should Visit: {should_visit}")
         return should_visit
 
@@ -43,7 +87,7 @@ class SimpleCrawler:
 
         @crawler.router.default_handler
         async def request_handler(context):
-            url = self.normalize_url(context.request.url)  # Normalize URL to HTTPS
+            url = self.normalize_url(context.request.url)
             context.log.info(f"Processing {url} ...")
 
             # Enqueue links only if they should be visited

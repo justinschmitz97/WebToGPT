@@ -7,43 +7,8 @@
     "max_concurrency": 20,
     "selector": ""
   },
-  "vue": {
-    "url": "https://vuejs.org/guide/"
-  },
-  "react": {
-    "url": "https://react.dev",
-    "excluded_patterns": ["community", "/20", "blog"]
-  },
-  "cva": {
-    "url": "https://cva.style",
-    "excluded_patterns": [
-      "assets",
-      "tutorials",
-      "vue",
-      "svelte",
-      "astro",
-      "11ty",
-      "bem"
-    ]
-  },
-  "nextjs": {
-    "url": "https://nextjs.org/",
-    "excluded_patterns": ["pages", "community", "canary", "blog"],
-    "included_patterns": ["learn", "docs"]
-  },
-  "tailwind": {
-    "url": "https://tailwindcss.com/",
-    "included_patterns": ["docs/"]
-  },
-  "typescript": {
-    "url": "https://www.typescriptlang.org/",
-    "excluded_patterns": ["/release-notes/"]
-  },
-  "swr": {
-    "url": "https://swr.vercel.app/",
-    "excluded_patterns": ["/ru", "/ja", "/ko", "/es-ES", "/zh-CN"]
-  },
   "emblacarousel": {
-    "url": "https://www.embla-carousel.com/"
+    "url": "https://www.embla-carousel.com/",
+    "excluded_patterns": ["started", "examples"]
   }
 }

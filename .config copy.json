@@ -1,0 +1,153 @@
+{
+  "default": {
+    "url": "",
+    "excluded_patterns": [],
+    "included_patterns": [],
+    "excluded_classes": [],
+    "max_concurrency": 20,
+    "selector": ""
+  },
+  "base": {
+    "url": "https://baseweb.design/"
+  },
+  "atlassian": {
+    "url": "https://atlassian.design/",
+    "excluded_patterns": ["get-started", "pragmatic", "eslint", "flag"],
+    "included_patterns": [
+      "foundations",
+      "content",
+      "patterns",
+      "resources",
+      "tokens",
+      "components",
+      "brand"
+    ]
+  },
+  "apple": {
+    "url": "https://developer.apple.com/design/human-interface-guidelines",
+    "excluded_patterns": ["videos"]
+  },
+  "carbon": {
+    "url": "https://carbondesignsystem.com/",
+    "excluded_patterns": ["developing"],
+    "included_patterns": [
+      "patterns",
+      "guidelines",
+      "elements",
+      "data-visualization",
+      "components",
+      "community"
+    ]
+  },
+  "mailchimp": {
+    "url": "https://ux.mailchimp.com/"
+  },
+  "lightning": {
+    "url": "https://www.lightningdesignsystem.com/",
+    "excluded_patterns": ["assets", "?", "#"]
+  },
+  "spectrum": {
+    "url": "https://spectrum.adobe.com/"
+  },
+  "sap": {
+    "url": "https://experience.sap.com/fiori-design-web/",
+    "excluded_patterns": ["v1", "wp-content"]
+  },
+  "zendesk": {
+    "url": "https://garden.zendesk.com/"
+  },
+  "gitlab": {
+    "url": "https://design.gitlab.com/",
+    "excluded_patterns": ["get-started", "/contribute"]
+  },
+  "paste": {
+    "url": "https://paste.twilio.design/",
+    "excluded_patterns": ["blog", "api", "changelog"]
+  },
+  "fluent": {
+    "url": "https://fluent2.microsoft.design/#/",
+    "excluded_patterns": ["ios", "android", "get-started", "login"]
+  },
+  "polaris": {
+    "url": "https://polaris.shopify.com/",
+    "excluded_patterns": ["icons", "icon"]
+  },
+  "gestalt": {
+    "url": "https://gestalt.pinterest.systems/",
+    "included_patterns": ["web", "foundations"]
+  },
+  "nordhealth": {
+    "url": "https://nordhealth.design/",
+    "excluded_patterns": [
+      "assets",
+      "example",
+      "changelog",
+      "update",
+      "migration"
+    ]
+  },
+  "geist": {
+    "url": "https://vercel.com/geist/introduction",
+    "included_patterns": ["geist"]
+  },
+  "porsche": {
+    "url": "https://designsystem.porsche.com/v3/",
+    "excluded_patterns": [
+      "example",
+      "coding",
+      "v2",
+      "latest",
+      "developing",
+      "help",
+      "must-know",
+      "news",
+      "partials",
+      "sketch"
+    ]
+  },
+  "wise": {
+    "url": "https://wise.design/foundations"
+  },
+  "vue": {
+    "url": "https://vuejs.org/guide/",
+    "included_patterns": ["style-guide", "guide", "api"]
+  },
+  "react": {
+    "url": "https://react.dev",
+    "excluded_patterns": ["community", "/20"],
+    "included_patterns": ["blog/", "reference/"]
+  },
+  "cva": {
+    "url": "https://cva.style",
+    "excluded_patterns": [
+      "assets",
+      "tutorials",
+      "vue",
+      "svelte",
+      "astro",
+      "11ty",
+      "bem"
+    ]
+  },
+  "nextjs": {
+    "url": "https://nextjs.org/",
+    "excluded_patterns": ["pages", "community", "canary", "learn"],
+    "included_patterns": ["docs"]
+  },
+  "tailwind": {
+    "url": "https://tailwindcss.com/",
+    "included_patterns": ["v3"]
+  },
+  "typescript": {
+    "url": "https://www.typescriptlang.org/",
+    "excluded_patterns": ["/release-notes/", "/2/"],
+    "included_patterns": ["docs"]
+  },
+  "swr": {
+    "url": "https://swr.vercel.app/",
+    "excluded_patterns": ["/ru", "/ja", "/ko", "/es-ES", "/zh-CN"]
+  },
+  "emblacarousel": {
+    "url": "https://www.embla-carousel.com/"
+  }
+}
