@@ -1,5 +1,5 @@
 {
-    "timestamp": "2024-12-10T20:37:30.260133+00:00",
+    "timestamp": "2024-12-22T13:07:43.349841+00:00",
     "domain": "https://nextjs.org",
     "crawl_metadata": {
         "excluded_patterns": [
@@ -13,7 +13,7 @@
         ],
         "excluded_extensions": []
     },
-    "total_urls": 258,
+    "total_urls": 256,
     "urls": [
         "https://nextjs.org/docs",
         "https://nextjs.org/docs/accessibility",
@@ -180,7 +180,6 @@
         "https://nextjs.org/docs/app/building-your-application/deploying/multi-zones",
         "https://nextjs.org/docs/app/building-your-application/deploying/production-checklist",
         "https://nextjs.org/docs/app/building-your-application/deploying/static-exports",
-        "https://nextjs.org/docs/app/building-your-application/examples",
         "https://nextjs.org/docs/app/building-your-application/optimizing",
         "https://nextjs.org/docs/app/building-your-application/optimizing/analytics",
         "https://nextjs.org/docs/app/building-your-application/optimizing/fonts",
@@ -202,7 +201,6 @@
         "https://nextjs.org/docs/app/building-your-application/rendering/partial-prerendering",
         "https://nextjs.org/docs/app/building-your-application/rendering/server-components",
         "https://nextjs.org/docs/app/building-your-application/routing",
-        "https://nextjs.org/docs/app/building-your-application/routing/defining-routes",
         "https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes",
         "https://nextjs.org/docs/app/building-your-application/routing/error-handling",
         "https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes",
@@ -234,6 +232,7 @@
         "https://nextjs.org/docs/app/building-your-application/upgrading/from-vite",
         "https://nextjs.org/docs/app/building-your-application/upgrading/version-14",
         "https://nextjs.org/docs/app/building-your-application/upgrading/version-15",
+        "https://nextjs.org/docs/app/examples",
         "https://nextjs.org/docs/app/getting-started",
         "https://nextjs.org/docs/app/getting-started/css-and-styling",
         "https://nextjs.org/docs/app/getting-started/data-fetching-and-streaming",
@@ -245,7 +244,6 @@
         "https://nextjs.org/docs/architecture/fast-refresh",
         "https://nextjs.org/docs/architecture/nextjs-compiler",
         "https://nextjs.org/docs/architecture/supported-browsers",
-        "https://nextjs.org/docs/getting-started/react-essentials",
         "https://nextjs.org/docs/messages/google-font-display",
         "https://nextjs.org/docs/messages/google-font-preconnect",
         "https://nextjs.org/docs/messages/inline-script-id",

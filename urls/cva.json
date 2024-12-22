@@ -1,5 +1,5 @@
 {
-    "timestamp": "2024-12-10T20:14:09.532064+00:00",
+    "timestamp": "2024-12-22T12:32:10.735493+00:00",
     "domain": "https://cva.style",
     "crawl_metadata": {
         "excluded_patterns": [
@@ -14,7 +14,7 @@
         "included_patterns": [],
         "excluded_extensions": []
     },
-    "total_urls": 12,
+    "total_urls": 13,
     "urls": [
         "https://cva.style",
         "https://cva.style/docs",
@@ -26,6 +26,7 @@
         "https://cva.style/docs/getting-started/composing-components",
         "https://cva.style/docs/getting-started/extending-components",
         "https://cva.style/docs/getting-started/installation",
+        "https://cva.style/docs/getting-started/polymorphism",
         "https://cva.style/docs/getting-started/typescript",
         "https://cva.style/docs/getting-started/variants"
     ],

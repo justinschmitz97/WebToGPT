@@ -8,34 +8,20 @@
             "content": [
                 {
                     "type": "p",
-                    "text": ""
-                },
-                {
-                    "type": "p",
-                    "text": "CSS-in-TS libraries such asStitches(opens in a new tab)andVanilla Extract(opens in a new tab)arefantasticoptions for building type-safe UI components; taking away all the worries of class names and StyleSheet composition. …but CSS-in-TS (or CSS-in-JS) isn't for everyone. You may need full control over your StyleSheet output. Your job might require you to use a framework such as Tailwind CSS. You might just prefer writing your own CSS. Creating variants with the \"traditional\" CSS approach can become an arduous task; manually matching classes to props and manually adding types. cvaaims to take those pain points away, allowing you to focus on the more fun aspects of UI development."
-                },
-                {
-                    "type": "p",
-                    "text": "Want to support this project?cvais a privately-maintainedfreeopen-source project.Become a sponsor(opens in a new tab)to contribute towards development efforts financially."
+                    "text": "CSS-in-TS libraries such as Stitches (opens in a new tab) and Vanilla Extract (opens in a new tab) are fantastic options for building type-safe UI components; taking away all the worries of class names and StyleSheet composition. …but CSS-in-TS (or CSS-in-JS) isn't for everyone. You may need full control over your StyleSheet output. Your job might require you to use a framework such as Tailwind CSS. You might just prefer writing your own CSS. Creating variants with the \"traditional\" CSS approach can become an arduous task; manually matching classes to props and manually adding types. cva aims to take those pain points away, allowing you to focus on the more fun aspects of UI development. Want to support this project? cva is a privately-maintained free open-source project. Become a sponsor (opens in a new tab) to contribute towards development efforts financially."
                 },
                 {
                     "type": "list",
                     "items": [
-                        "Stitches(opens in a new tab)(WorkOS(opens in a new tab))Huge thanks to the WorkOS team for pioneering thevariantsAPI movement – your open-source contributions are immensely appreciated",
-                        "clb(opens in a new tab)(Bill Criswell(opens in a new tab))This project originally started out with the intention of merging into the wonderfulclb(opens in a new tab)library, but after some discussion with Bill, we felt it was best to go down the route of a separate project.I'm so grateful to Bill for sharing his work publicly and for getting me excited about building a type-safe variants API for classes. If you have a moment, please go andstar the project on GitHub(opens in a new tab). Thank you Bill!",
-                        "clsx(opens in a new tab)(Luke Edwards(opens in a new tab))Previously, this project surfaced a customcxutility for flattening classes, but it lacked the ability to handle variadic arguments or objects.clsx(opens in a new tab)provided those extra features with quite literally zero increase to the bundle size – a no-brainer to switch!",
-                        "Vanilla Extract(opens in a new tab)(Seek(opens in a new tab))"
-                    ]
-                },
-                {
-                    "type": "list",
-                    "items": [
-                        "Wallpaper"
+                        "Stitches (opens in a new tab) ( WorkOS (opens in a new tab) ) Huge thanks to the WorkOS team for pioneering the variants API movement – your open-source contributions are immensely appreciated",
+                        "clb (opens in a new tab) ( Bill Criswell (opens in a new tab) ) This project originally started out with the intention of merging into the wonderful clb (opens in a new tab) library, but after some discussion with Bill, we felt it was best to go down the route of a separate project. I'm so grateful to Bill for sharing his work publicly and for getting me excited about building a type-safe variants API for classes. If you have a moment, please go and star the project on GitHub (opens in a new tab) . Thank you Bill!",
+                        "clsx (opens in a new tab) ( Luke Edwards (opens in a new tab) ) Previously, this project surfaced a custom cx utility for flattening classes, but it lacked the ability to handle variadic arguments or objects. clsx (opens in a new tab) provided those extra features with quite literally zero increase to the bundle size – a no-brainer to switch!",
+                        "Vanilla Extract (opens in a new tab) ( Seek (opens in a new tab) )"
                     ]
                 },
                 {
                     "type": "p",
-                    "text": "Apache-2.0 License(opens in a new tab)©Joe Bell(opens in a new tab)"
+                    "text": "Apache-2.0 License (opens in a new tab) © Joe Bell (opens in a new tab)"
                 }
             ]
         },
@@ -45,34 +31,20 @@
             "content": [
                 {
                     "type": "p",
-                    "text": ""
-                },
-                {
-                    "type": "p",
-                    "text": "CSS-in-TS libraries such asStitches(opens in a new tab)andVanilla Extract(opens in a new tab)arefantasticoptions for building type-safe UI components; taking away all the worries of class names and StyleSheet composition. …but CSS-in-TS (or CSS-in-JS) isn't for everyone. You may need full control over your StyleSheet output. Your job might require you to use a framework such as Tailwind CSS. You might just prefer writing your own CSS. Creating variants with the \"traditional\" CSS approach can become an arduous task; manually matching classes to props and manually adding types. cvaaims to take those pain points away, allowing you to focus on the more fun aspects of UI development."
-                },
-                {
-                    "type": "p",
-                    "text": "Want to support this project?cvais a privately-maintainedfreeopen-source project.Become a sponsor(opens in a new tab)to contribute towards development efforts financially."
+                    "text": "CSS-in-TS libraries such as Stitches (opens in a new tab) and Vanilla Extract (opens in a new tab) are fantastic options for building type-safe UI components; taking away all the worries of class names and StyleSheet composition. …but CSS-in-TS (or CSS-in-JS) isn't for everyone. You may need full control over your StyleSheet output. Your job might require you to use a framework such as Tailwind CSS. You might just prefer writing your own CSS. Creating variants with the \"traditional\" CSS approach can become an arduous task; manually matching classes to props and manually adding types. cva aims to take those pain points away, allowing you to focus on the more fun aspects of UI development. Want to support this project? cva is a privately-maintained free open-source project. Become a sponsor (opens in a new tab) to contribute towards development efforts financially."
                 },
                 {
                     "type": "list",
                     "items": [
-                        "Stitches(opens in a new tab)(WorkOS(opens in a new tab))Huge thanks to the WorkOS team for pioneering thevariantsAPI movement – your open-source contributions are immensely appreciated",
-                        "clb(opens in a new tab)(Bill Criswell(opens in a new tab))This project originally started out with the intention of merging into the wonderfulclb(opens in a new tab)library, but after some discussion with Bill, we felt it was best to go down the route of a separate project.I'm so grateful to Bill for sharing his work publicly and for getting me excited about building a type-safe variants API for classes. If you have a moment, please go andstar the project on GitHub(opens in a new tab). Thank you Bill!",
-                        "clsx(opens in a new tab)(Luke Edwards(opens in a new tab))Previously, this project surfaced a customcxutility for flattening classes, but it lacked the ability to handle variadic arguments or objects.clsx(opens in a new tab)provided those extra features with quite literally zero increase to the bundle size – a no-brainer to switch!",
-                        "Vanilla Extract(opens in a new tab)(Seek(opens in a new tab))"
-                    ]
-                },
-                {
-                    "type": "list",
-                    "items": [
-                        "Wallpaper"
+                        "Stitches (opens in a new tab) ( WorkOS (opens in a new tab) ) Huge thanks to the WorkOS team for pioneering the variants API movement – your open-source contributions are immensely appreciated",
+                        "clb (opens in a new tab) ( Bill Criswell (opens in a new tab) ) This project originally started out with the intention of merging into the wonderful clb (opens in a new tab) library, but after some discussion with Bill, we felt it was best to go down the route of a separate project. I'm so grateful to Bill for sharing his work publicly and for getting me excited about building a type-safe variants API for classes. If you have a moment, please go and star the project on GitHub (opens in a new tab) . Thank you Bill!",
+                        "clsx (opens in a new tab) ( Luke Edwards (opens in a new tab) ) Previously, this project surfaced a custom cx utility for flattening classes, but it lacked the ability to handle variadic arguments or objects. clsx (opens in a new tab) provided those extra features with quite literally zero increase to the bundle size – a no-brainer to switch!",
+                        "Vanilla Extract (opens in a new tab) ( Seek (opens in a new tab) )"
                     ]
                 },
                 {
                     "type": "p",
-                    "text": "Apache-2.0 License(opens in a new tab)©Joe Bell(opens in a new tab)"
+                    "text": "Apache-2.0 License (opens in a new tab) © Joe Bell (opens in a new tab)"
                 }
             ]
         },
@@ -81,44 +53,32 @@
             "title": "API Reference | cva",
             "content": [
                 {
-                    "type": "p",
-                    "text": "Builds acvacomponent"
-                },
-                {
                     "type": "code",
-                    "code": "constcomponent=cva(\"base\",options);"
+                    "code": "const component = cva ( \"base\" , options);"
                 },
                 {
                     "type": "list",
                     "items": [
-                        "base: the base class name (string,string[]or otherclsxvalue(opens in a new tab))",
-                        "options(optional)variants: your variants schemacompoundVariants: variants based on a combination of previously defined variantsdefaultVariants: set default values for previously defined variantsnote: these default values can be removed completely by setting the variant asnull",
-                        "variants: your variants schema",
-                        "compoundVariants: variants based on a combination of previously defined variants",
-                        "defaultVariants: set default values for previously defined variantsnote: these default values can be removed completely by setting the variant asnull"
+                        "base : the base class name ( string , string[] or other clsx value (opens in a new tab) )",
+                        "options (optional) variants : your variants schema compoundVariants : variants based on a combination of previously defined variants defaultVariants : set default values for previously defined variants note: these default values can be removed completely by setting the variant as null",
+                        "variants : your variants schema",
+                        "compoundVariants : variants based on a combination of previously defined variants",
+                        "defaultVariants : set default values for previously defined variants note: these default values can be removed completely by setting the variant as null"
                     ]
                 },
                 {
                     "type": "p",
-                    "text": "Acvacomponent function"
-                },
-                {
-                    "type": "p",
-                    "text": "Concatenates class names (an alias ofclsx(opens in a new tab))"
+                    "text": "Concatenates class names (an alias of clsx (opens in a new tab) )"
                 },
                 {
                     "type": "code",
-                    "code": "constclassName=cx(classes);"
+                    "code": "const className = cx (classes);"
                 },
                 {
                     "type": "list",
                     "items": [
-                        "classes: array of classes to be concatenated (seeclsxusage(opens in a new tab))"
+                        "classes : array of classes to be concatenated ( see clsx usage (opens in a new tab) )"
                     ]
-                },
-                {
-                    "type": "p",
-                    "text": "string"
                 }
             ]
         },
@@ -128,11 +88,11 @@
             "content": [
                 {
                     "type": "p",
-                    "text": "Although primarily designed for handling class names, at its core,cvais really just a fancy way of managing a string…"
+                    "text": "Although primarily designed for handling class names, at its core, cva is really just a fancy way of managing a string…"
                 },
                 {
                     "type": "code",
-                    "code": "constgreeter=cva(\"Good morning!\",{variants:{isLoggedIn:{true:\"Here's a secret only logged in users can see\",false:\"Log in to find out more…\",},},defaultVariants:{isLoggedIn:\"false\",},});greeter();// => \"Good morning! Log in to find out more…\"greeter({ isLoggedIn:\"true\"});// => \"Good morning! Here's a secret only logged in users can see\""
+                    "code": "const greeter = cva ( \"Good morning!\" , { variants : { isLoggedIn : { true : \"Here's a secret only logged in users can see\" , false : \"Log in to find out more…\" , } , } , defaultVariants : { isLoggedIn : \"false\" , } , }); greeter (); // => \"Good morning! Log in to find out more…\" greeter ({ isLoggedIn : \"true\" }); // => \"Good morning! Here's a secret only logged in users can see\""
                 }
             ]
         },
@@ -152,7 +112,7 @@
             "content": [
                 {
                     "type": "p",
-                    "text": "Long story short: it's unnecessary. cvaencourages you to think of components as traditional CSS classes:"
+                    "text": "cva encourages you to think of components as traditional CSS classes:"
                 },
                 {
                     "type": "list",
@@ -160,20 +120,12 @@
                         "Less JavaScript is better",
                         "They're framework agnostic; truly reusable",
                         "Polymorphism is free; just apply the class to your preferred HTML element",
-                        "Less opinionated; you're free to build components withcvahowever you'd like"
+                        "Less opinionated; you're free to build components with cva however you'd like"
                     ]
                 },
                 {
                     "type": "p",
-                    "text": "There's noasprop incva, because HTML is free:"
-                },
-                {
-                    "type": "code",
-                    "code": "-- // A familiar `styled` button as a link-- <Button as=\"a\" href=\"#\" variant=\"primary\">Button as a link</Button>++ // A `cva` button as a link++ <a href=\"#\" class={button({variant: \"primary\"})}>Button as a link</a>"
-                },
-                {
-                    "type": "p",
-                    "text": "You can't. cvadoesn't know about how you choose to apply CSS classes, and it doesn't want to. We recommend either:"
+                    "text": "See the \"Polymorphism\" documentation for further recommendations. cva doesn't know about how you choose to apply CSS classes, and it doesn't want to."
                 },
                 {
                     "type": "list",
@@ -183,12 +135,12 @@
                 },
                 {
                     "type": "code",
-                    "code": "exportconstExample=()=>(<><divclassName=\"hidden sm:inline-flex\"><buttonclassName={button({ intent:\"primary\"})}>Hidden until sm</button></div><divclassName=\"inline-flex sm:hidden\"><buttonclassName={button({ intent:\"secondary\"})}>Hidden after sm</button></div></>);"
+                    "code": "export const Example = () => ( <> < div className = \"hidden sm:inline-flex\" > < button className = { button ({ intent : \"primary\" })}>Hidden until sm</ button > </ div > < div className = \"inline-flex sm:hidden\" > < button className = { button ({ intent : \"secondary\" })}> Hidden after sm </ button > </ div > </> );"
                 },
                 {
                     "type": "list",
                     "items": [
-                        "Create a bespoke variant that changes based on the breakpoint.e.g.button({ intent: \"primaryUntilMd\" })"
+                        "Create a bespoke variant that changes based on the breakpoint. e.g. button({ intent: \"primaryUntilMd\" })"
                     ]
                 },
                 {
@@ -203,11 +155,11 @@
             "content": [
                 {
                     "type": "p",
-                    "text": "Whilstcvadoesn't yet offer a built-in method for composing components, it does offer the tools toextendcomponents on your own terms… For example; twocvacomponents, concatenated together withcx:"
+                    "text": "Whilst cva doesn't yet offer a built-in method for composing components together, it does offer the tools to extend components on your own terms… For example; two cva components, concatenated together with cx :"
                 },
                 {
                     "type": "code",
-                    "code": "// components/card.tsimporttype{ VariantProps }from\"class-variance-authority\";import{ cva,cx }from\"class-variance-authority\";/*** Box*/exporttypeBoxProps=VariantProps<typeofbox>;exportconstbox=cva([\"box\",\"box-border\"],{variants:{margin:{0:\"m-0\",2:\"m-2\",4:\"m-4\",8:\"m-8\"},padding:{0:\"p-0\",2:\"p-2\",4:\"p-4\",8:\"p-8\"},},defaultVariants:{margin:0,padding:0,},});/*** Card*/typeCardBaseProps=VariantProps<typeofcardBase>;constcardBase=cva([\"card\",\"border-solid\",\"border-slate-300\",\"rounded\"],{variants:{shadow:{md:\"drop-shadow-md\",lg:\"drop-shadow-lg\",xl:\"drop-shadow-xl\",},},});exportinterfaceCardPropsextendsBoxProps,CardBaseProps{}exportconstcard=({ margin,padding,shadow }:CardProps={})=>cx(box({ margin,padding }),cardBase({ shadow }));"
+                    "code": "// components/card.ts import type { VariantProps } from \"class-variance-authority\" ; import { cva , cx } from \"class-variance-authority\" ; /** * Box */ export type BoxProps = VariantProps < typeof box>; export const box = cva ([ \"box\" , \"box-border\" ] , { variants : { margin : { 0 : \"m-0\" , 2 : \"m-2\" , 4 : \"m-4\" , 8 : \"m-8\" } , padding : { 0 : \"p-0\" , 2 : \"p-2\" , 4 : \"p-4\" , 8 : \"p-8\" } , } , defaultVariants : { margin : 0 , padding : 0 , } , }); /** * Card */ type CardBaseProps = VariantProps < typeof cardBase>; const cardBase = cva ([ \"card\" , \"border-solid\" , \"border-slate-300\" , \"rounded\" ] , { variants : { shadow : { md : \"drop-shadow-md\" , lg : \"drop-shadow-lg\" , xl : \"drop-shadow-xl\" , } , } , }); export interface CardProps extends BoxProps , CardBaseProps {} export const card = ({ margin , padding , shadow } : CardProps = {}) => cx ( box ({ margin , padding }) , cardBase ({ shadow }));"
                 }
             ]
         },
@@ -217,11 +169,11 @@
             "content": [
                 {
                     "type": "p",
-                    "text": "Allcvacomponents provide an optionalclassorclassNameprop, which can be used to pass additional classes to the component."
+                    "text": "All cva components provide an optional class or className prop, which can be used to pass additional classes to the component."
                 },
                 {
                     "type": "code",
-                    "code": "// components/button.tsimport{ cva }from\"class-variance-authority\";constbutton=cva(/* … */);button({ class:\"m-4\"});// => \"…buttonClasses m-4\"button({ className:\"m-4\"});// => \"…buttonClasses m-4\""
+                    "code": "// components/button.ts import { cva } from \"class-variance-authority\" ; const button = cva ( /* … */ ); button ({ class : \"m-4\" }); // => \"…buttonClasses m-4\" button ({ className : \"m-4\" }); // => \"…buttonClasses m-4\""
                 }
             ]
         },
@@ -231,45 +183,41 @@
             "content": [
                 {
                     "type": "code",
-                    "code": "pnpmiclass-variance-authority"
+                    "code": "pnpm i class-variance-authority"
                 },
                 {
                     "type": "p",
-                    "text": "Unfortunately, for a little bit longer, yes. Originally, the plan was to publish the package ascva, but this namewas taken and marked as a \"placeholder\"(opens in a new tab). On 2022/02/16, GitHub transferred NPM ownership ofcvatoJoe Bell(opens in a new tab). This shorter name will be used from v1 onwards. In the meantime, you can always alias the package for your convenience…"
+                    "text": "Unfortunately, for a little bit longer, yes. Originally, the plan was to publish the package as cva , but this name was taken and marked as a \"placeholder\" (opens in a new tab) . On 2022/02/16, GitHub transferred NPM ownership of cva to Joe Bell (opens in a new tab) . This shorter name will be used from v1 onwards. In the meantime, you can always alias the package for your convenience…"
                 },
                 {
                     "type": "list",
                     "items": [
-                        "Alias the package withnpm install(opens in a new tab)npmicva@npm:class-variance-authority",
-                        "Then import like so:import{ cva }from\"cva\";// …"
+                        "Alias the package with npm install (opens in a new tab) npm i cva@npm:class-variance-authority",
+                        "Then import like so: import { cva } from \"cva\" ; // …"
                     ]
                 },
                 {
                     "type": "p",
-                    "text": "If you're a Tailwind user, here are some additional (optional) steps to get the most out ofcva:"
-                },
-                {
-                    "type": "p",
-                    "text": "You can enable autocompletion insidecvausing the steps below:"
+                    "text": "If you're a Tailwind user, here are some additional (optional) steps to get the most out of cva : You can enable autocompletion inside cva using the steps below:"
                 },
                 {
                     "type": "list",
                     "items": [
-                        "Install the \"Tailwind CSS IntelliSense\" Visual Studio Code extension(opens in a new tab)",
-                        "Add the following to yoursettings.json(opens in a new tab):"
+                        "Install the \"Tailwind CSS IntelliSense\" Visual Studio Code extension (opens in a new tab)",
+                        "Add the following to your settings.json (opens in a new tab) :"
                     ]
                 },
                 {
                     "type": "code",
-                    "code": "{\"tailwindCSS.experimental.classRegex\":[[\"cva\\\\(([^)]*)\\\\)\",\"[\\\"'`]([^\\\"'`]*).*?[\\\"'`]\"],[\"cx\\\\(([^)]*)\\\\)\",\"(?:'|\\\"|`)([^']*)(?:'|\\\"|`)\"]]}"
+                    "code": "{ \"tailwindCSS.experimental.classRegex\" : [ [ \"cva\\\\(([^)]*)\\\\)\" , \"[\\\"'`]([^\\\"'`]*).*?[\\\"'`]\" ] , [ \"cx\\\\(([^)]*)\\\\)\" , \"(?:'|\\\"|`)([^']*)(?:'|\\\"|`)\" ] ] }"
                 },
                 {
                     "type": "p",
-                    "text": "Althoughcva's API is designed to help you avoid styling conflicts, there's still a small margin of error. If you're keen to lift that burden altogether, check out the wonderfultailwind-merge(opens in a new tab)package. For bulletproof components, wrap yourcvacomponent withtwMerge."
+                    "text": "Although cva 's API is designed to help you avoid styling conflicts, there's still a small margin of error. If you're keen to lift that burden altogether, check out the wonderful tailwind-merge (opens in a new tab) package. For bulletproof components, wrap your cva component with twMerge ."
                 },
                 {
                     "type": "code",
-                    "code": "import{ cva,typeVariantProps }from\"class-variance-authority\";import{ twMerge }from\"tailwind-merge\";constbuttonVariants=cva([\"your\",\"base\",\"classes\"],{variants:{intent:{primary:[\"your\",\"primary\",\"classes\"],},},defaultVariants:{intent:\"primary\",},});exportinterfaceButtonVariantsextendsVariantProps<typeofbuttonVariants> {}exportconstbutton=(variants:ButtonVariants)=>twMerge(buttonVariants(variants));"
+                    "code": "import { cva , type VariantProps } from \"class-variance-authority\" ; import { twMerge } from \"tailwind-merge\" ; const buttonVariants = cva ([ \"your\" , \"base\" , \"classes\" ] , { variants : { intent : { primary : [ \"your\" , \"primary\" , \"classes\" ] , } , } , defaultVariants : { intent : \"primary\" , } , }); export interface ButtonVariants extends VariantProps < typeof buttonVariants> {} export const button = (variants : ButtonVariants ) => twMerge ( buttonVariants (variants));"
                 }
             ]
         },
@@ -279,19 +227,19 @@
             "content": [
                 {
                     "type": "p",
-                    "text": "cvaoffers theVariantPropshelper to extract variant types"
+                    "text": "cva offers the VariantProps helper to extract variant types"
                 },
                 {
                     "type": "code",
-                    "code": "// components/button.tsimporttype{ VariantProps }from\"class-variance-authority\";import{ cva,cx }from\"class-variance-authority\";/*** Button*/exporttypeButtonProps=VariantProps<typeofbutton>;exportconstbutton=cva(/* … */);"
+                    "code": "// components/button.ts import type { VariantProps } from \"class-variance-authority\" ; import { cva , cx } from \"class-variance-authority\" ; /** * Button */ export type ButtonProps = VariantProps < typeof button>; export const button = cva ( /* … */ );"
                 },
                 {
                     "type": "p",
-                    "text": "To keep the API small and unopinionated,cvadoesn'toffer a built-in solution for setting required variants. Instead, we recommend using TypeScript'sUtility Types(opens in a new tab):"
+                    "text": "To keep the API small and unopinionated, cva doesn't offer a built-in solution for setting required variants. Instead, we recommend using TypeScript's Utility Types (opens in a new tab) :"
                 },
                 {
                     "type": "code",
-                    "code": "// components/button.tsimport{ cva,typeVariantProps }from\"class-variance-authority\";exporttypeButtonVariantProps=VariantProps<typeofbuttonVariants>;exportconstbuttonVariants=cva(\"…\",{variants:{optional:{ a:\"…\",b:\"…\"},required:{ a:\"…\",b:\"…\"},},});/*** Button*/exportinterfaceButtonPropsextendsOmit<ButtonVariantProps,\"required\">,Required<Pick<ButtonVariantProps,\"required\">> {}exportconstbutton=(props:ButtonProps)=>buttonVariants(props);// ❌ TypeScript Error:// Argument of type \"{}\": is not assignable to parameter of type \"ButtonProps\".//   Property \"required\" is missing in type \"{}\" but required in type//   \"ButtonProps\".button({});// ✅button({ required:\"a\"});"
+                    "code": "// components/button.ts import { cva , type VariantProps } from \"class-variance-authority\" ; export type ButtonVariantProps = VariantProps < typeof buttonVariants>; export const buttonVariants = cva ( \"…\" , { variants : { optional : { a : \"…\" , b : \"…\" } , required : { a : \"…\" , b : \"…\" } , } , }); /** * Button */ export interface ButtonProps extends Omit < ButtonVariantProps , \"required\" > , Required < Pick < ButtonVariantProps , \"required\" >> {} export const button = (props : ButtonProps ) => buttonVariants (props); // ❌ TypeScript Error: // Argument of type \"{}\": is not assignable to parameter of type \"ButtonProps\". //   Property \"required\" is missing in type \"{}\" but required in type //   \"ButtonProps\". button ({}); // ✅ button ({ required : \"a\" });"
                 }
             ]
         },
@@ -301,19 +249,11 @@
             "content": [
                 {
                     "type": "p",
-                    "text": "Althoughcvais atiny(opens in a new tab)library, it's best to use in a SSR/SSG environment – your user probably doesn't need this JavaScript, especially for static components."
-                },
-                {
-                    "type": "p",
-                    "text": "To kick things off, let's build a \"basic\"buttoncomponent, usingcvato handle our variant's classes"
-                },
-                {
-                    "type": "p",
-                    "text": "Use of Tailwind CSS is optional"
+                    "text": "Although cva is a tiny (opens in a new tab) library, it's best to use in a SSR/SSG environment – your user probably doesn't need this JavaScript, especially for static components. To kick things off, let's build a \"basic\" button component, using cva to handle our variant's classes Use of Tailwind CSS is optional"
                 },
                 {
                     "type": "code",
-                    "code": "// components/button.tsimport{ cva }from\"class-variance-authority\";constbutton=cva([\"font-semibold\",\"border\",\"rounded\"],{variants:{intent:{primary:[\"bg-blue-500\",\"text-white\",\"border-transparent\",\"hover:bg-blue-600\",],// **or**// primary: \"bg-blue-500 text-white border-transparent hover:bg-blue-600\",secondary:[\"bg-white\",\"text-gray-800\",\"border-gray-400\",\"hover:bg-gray-100\",],},size:{small:[\"text-sm\",\"py-1\",\"px-2\"],medium:[\"text-base\",\"py-2\",\"px-4\"],},},compoundVariants:[{intent:\"primary\",size:\"medium\",class:\"uppercase\",// **or** if you're a React.js user, `className` may feel more consistent:// className: \"uppercase\"},],defaultVariants:{intent:\"primary\",size:\"medium\",},});button();// => \"font-semibold border rounded bg-blue-500 text-white border-transparent hover:bg-blue-600 text-base py-2 px-4 uppercase\"button({ intent:\"secondary\",size:\"small\"});// => \"font-semibold border rounded bg-white text-gray-800 border-gray-400 hover:bg-gray-100 text-sm py-1 px-2\""
+                    "code": "// components/button.ts import { cva } from \"class-variance-authority\" ; const button = cva ([ \"font-semibold\" , \"border\" , \"rounded\" ] , { variants : { intent : { primary : [ \"bg-blue-500\" , \"text-white\" , \"border-transparent\" ] , // **or** // primary: \"bg-blue-500 text-white border-transparent hover:bg-blue-600\", secondary : [ \"bg-white\" , \"text-gray-800\" , \"border-gray-400\" ] , } , size : { small : [ \"text-sm\" , \"py-1\" , \"px-2\" ] , medium : [ \"text-base\" , \"py-2\" , \"px-4\" ] , } , // `boolean` variants are also supported! disabled : { false : null , true : [ \"opacity-50\" , \"cursor-not-allowed\" ] , } , } , compoundVariants : [ { intent : \"primary\" , disabled : false , class : \"hover:bg-blue-600\" , } , { intent : \"secondary\" , disabled : false , class : \"hover:bg-gray-100\" , } , { intent : \"primary\" , size : \"medium\" , // **or** if you're a React.js user, `className` may feel more consistent: // className: \"uppercase\" class : \"uppercase\" , } , ] , defaultVariants : { intent : \"primary\" , size : \"medium\" , disabled : false , } , }); button (); // => \"font-semibold border rounded bg-blue-500 text-white border-transparent text-base py-2 px-4 hover:bg-blue-600 uppercase\" button ({ disabled : true }); // => \"font-semibold border rounded bg-blue-500 text-white border-transparent text-base py-2 px-4 opacity-50 cursor-not-allowed uppercase\" button ({ intent : \"secondary\" , size : \"small\" }); // => \"font-semibold border rounded bg-white text-gray-800 border-gray-400 text-sm py-1 px-2 hover:bg-gray-100\""
                 },
                 {
                     "type": "p",
@@ -321,11 +261,11 @@
                 },
                 {
                     "type": "code",
-                    "code": "// components/button.tsimport{ cva }from\"class-variance-authority\";constbutton=cva(\"…\",{variants:{intent:{ primary:\"…\",secondary:\"…\"},size:{ small:\"…\",medium:\"…\"},},compoundVariants:[// Applied via://   `button({ intent: \"primary\", size: \"medium\" })`{intent:\"primary\",size:\"medium\",class:\"…\",},],});"
+                    "code": "// components/button.ts import { cva } from \"class-variance-authority\" ; const button = cva ( \"…\" , { variants : { intent : { primary : \"…\" , secondary : \"…\" } , size : { small : \"…\" , medium : \"…\" } , } , compoundVariants : [ // Applied via: //   `button({ intent: \"primary\", size: \"medium\" })` { intent : \"primary\" , size : \"medium\" , class : \"…\" , } , ] , });"
                 },
                 {
                     "type": "code",
-                    "code": "// components/button.tsimport{ cva }from\"class-variance-authority\";constbutton=cva(\"…\",{variants:{intent:{ primary:\"…\",secondary:\"…\"},size:{ small:\"…\",medium:\"…\"},},compoundVariants:[// Applied via://   `button({ intent: \"primary\", size: \"medium\" })`//     or//   `button({ intent: \"secondary\", size: \"medium\" })`{intent:[\"primary\",\"secondary\"],size:\"medium\",class:\"…\",},],});"
+                    "code": "// components/button.ts import { cva } from \"class-variance-authority\" ; const button = cva ( \"…\" , { variants : { intent : { primary : \"…\" , secondary : \"…\" } , size : { small : \"…\" , medium : \"…\" } , } , compoundVariants : [ // Applied via: //   `button({ intent: \"primary\", size: \"medium\" })` //     or //   `button({ intent: \"secondary\", size: \"medium\" })` { intent : [ \"primary\" , \"secondary\" ] , size : \"medium\" , class : \"…\" , } , ] , });"
                 }
             ]
         }

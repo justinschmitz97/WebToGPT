@@ -1,5 +1,5 @@
 {
-    "timestamp": "2024-12-10T20:17:27.144278+00:00",
+    "timestamp": "2024-12-22T12:34:39.242527+00:00",
     "domain": "https://react.dev",
     "crawl_metadata": {
         "excluded_patterns": [
@@ -12,9 +12,8 @@
         ],
         "excluded_extensions": []
     },
-    "total_urls": 93,
+    "total_urls": 90,
     "urls": [
-        "https://react.dev/(/reference/rsc/server-functions)",
         "https://react.dev/reference/react",
         "https://react.dev/reference/react-dom",
         "https://react.dev/reference/react-dom/client",
@@ -97,9 +96,7 @@
         "https://react.dev/reference/react/useSyncExternalStore",
         "https://react.dev/reference/react/useTransition",
         "https://react.dev/reference/rsc/directives",
-        "https://react.dev/reference/rsc/server-actions",
         "https://react.dev/reference/rsc/server-components",
-        "https://react.dev/reference/rsc/server-function",
         "https://react.dev/reference/rsc/server-functions",
         "https://react.dev/reference/rsc/use-client",
         "https://react.dev/reference/rsc/use-server",

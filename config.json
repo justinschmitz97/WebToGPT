@@ -7,8 +7,52 @@
     "max_concurrency": 20,
     "selector": ""
   },
+  "cva": {
+    "url": "https://cva.style",
+    "excluded_patterns": [
+      "assets",
+      "tutorials",
+      "vue",
+      "svelte",
+      "astro",
+      "11ty",
+      "bem"
+    ]
+  },
   "emblacarousel": {
     "url": "https://www.embla-carousel.com/",
     "excluded_patterns": ["started", "examples"]
+  },
+  "react": {
+    "url": "https://react.dev",
+    "excluded_patterns": ["community", "/20"],
+    "included_patterns": ["blog/", "reference/"]
+  },
+  "nextjs": {
+    "url": "https://nextjs.org/",
+    "excluded_patterns": [
+      "pages",
+      "community",
+      "canary",
+      "learn",
+      "next-config-js"
+    ],
+    "included_patterns": ["docs"]
+  },
+  "tailwind": {
+    "url": "https://tailwindcss.com/",
+    "included_patterns": ["v3", "v4"]
+  },
+  "typescript": {
+    "url": "https://www.typescriptlang.org/",
+    "excluded_patterns": [
+      "modules",
+      "declaration-files",
+      "typescript-4",
+      "typescript-3",
+      "typescript-2",
+      "typescript-1"
+    ],
+    "included_patterns": ["docs", "/2/"]
   }
 }
