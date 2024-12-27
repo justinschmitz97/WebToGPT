@@ -19,6 +19,9 @@
       "bem"
     ]
   },
+  "mdn": {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML"
+  },
   "emblacarousel": {
     "url": "https://www.embla-carousel.com/",
     "excluded_patterns": ["started", "examples"]
