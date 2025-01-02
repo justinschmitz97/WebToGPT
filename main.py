@@ -1,4 +1,4 @@
-#run.py
+# main.py
 
 """
 This script runs both the sitemapper and scraper scripts sequentially for multiple sites,

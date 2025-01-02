@@ -1,0 +1,17 @@
+{
+    "timestamp": "2025-01-02T22:49:16Z",
+    "site_key": "cva",
+    "domain": "https://cva.style",
+    "total_urls": 8,
+    "failed_urls": {},
+    "urls": [
+        "https://cva.style/docs/examples/other-use-cases",
+        "https://cva.style/docs",
+        "https://cva.style/docs/api-reference",
+        "https://cva.style/docs/examples/react/css-modules",
+        "https://cva.style/docs/faqs",
+        "https://cva.style",
+        "https://cva.style/",
+        "https://cva.style/docs/examples/react/tailwind-css"
+    ]
+}
