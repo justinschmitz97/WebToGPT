@@ -7,6 +7,18 @@
     "max_concurrency": 20,
     "selector": ""
   },
+  "devtools": {
+    "url": "https://developer.chrome.com/docs/extensions",
+    "included_patterns": "extensions"
+  },
+  "mdn": {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML"
+  },
+  "react": {
+    "url": "https://react.dev",
+    "excluded_patterns": ["community", "/20"],
+    "included_patterns": ["blog/", "reference/"]
+  },
   "cva": {
     "url": "https://cva.style",
     "excluded_patterns": [
@@ -19,17 +31,8 @@
       "bem"
     ]
   },
-  "mdn": {
-    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML"
-  },
-  "emblacarousel": {
-    "url": "https://www.embla-carousel.com/",
-    "excluded_patterns": ["started", "examples"]
-  },
-  "react": {
-    "url": "https://react.dev",
-    "excluded_patterns": ["community", "/20"],
-    "included_patterns": ["blog/", "reference/"]
+  "recharts": {
+    "url": "https://recharts.org/en-US/"
   },
   "nextjs": {
     "url": "https://nextjs.org/",
@@ -57,5 +60,9 @@
       "typescript-1"
     ],
     "included_patterns": ["docs", "/2/"]
+  },
+  "emblacarousel": {
+    "url": "https://www.embla-carousel.com/",
+    "excluded_patterns": ["started", "examples"]
   }
 }

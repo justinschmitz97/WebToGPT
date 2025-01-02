@@ -1,3 +1,0 @@
-crawlee
-playwright
-crawlee[playwright]

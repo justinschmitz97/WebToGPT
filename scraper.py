@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 from tqdm import tqdm
+from readabilipy import simple_json_from_html_string
 
 # --- Configuration ---
 BASE_URL_PATH = "urls/"
@@ -101,6 +102,31 @@ def fetch_and_parse(
             response.raise_for_status()  # Raise an HTTPError for bad requests
 
             soup = BeautifulSoup(response.text, "html.parser")
+
+            # Try ReadabiliPy first for clean article extraction
+            readabilipy_result = simple_json_from_html_string(
+                response.text, use_readability=True
+            )
+            if readabilipy_result and readabilipy_result["content"]:
+                logger.debug("ReadabiliPy extracted content for %s", url)
+                title = readabilipy_result["title"] or soup.title.string or "No Title"
+                plain_text = readabilipy_result["plain_text"] or []
+
+                # Return the plain text content extracted by ReadabiliPy
+                structured_content = [
+                    {"type": "p", "text": text} for text in plain_text
+                ]  # Convert paragraphs to JSON format
+                return {
+                    "url": url,
+                    "title": title,
+                    "content": structured_content,
+                }
+
+            # Fall back to the manual extraction logic if ReadabiliPy fails
+            logger.warning(
+                "ReadabiliPy failed to extract content for %s. Falling back to manual extraction.",
+                url,
+            )
             main_content = extract_main_content(
                 soup, excluded_classes, custom_main_indicator, selector
             )
