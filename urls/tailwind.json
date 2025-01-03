@@ -1,12 +1,12 @@
 {
-    "timestamp": "2025-01-03T11:30:28Z",
+    "timestamp": "2025-01-03T12:04:56Z",
     "site_key": "tailwind",
     "domain": "https://tailwindcss.com/",
     "total_urls": 3,
     "failed_urls": {},
     "urls": [
         "https://tailwindcss.com/blog/tailwindcss-v4-beta",
-        "https://tailwindcss.com/docs/v4-beta",
-        "https://tailwindcss.com/blog/tailwindcss-v4-alpha"
+        "https://tailwindcss.com/blog/tailwindcss-v4-alpha",
+        "https://tailwindcss.com/docs/v4-beta"
     ]
 }

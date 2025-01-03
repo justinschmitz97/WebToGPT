@@ -25,22 +25,6 @@ Start building and help us bullet\-proof this thing for the stable release early
 
 
 
-## Tailwind CSS v4.0 Beta - Tailwind CSS
-
-[Read the full article](https://tailwindcss.com/docs/v4-beta)
-
-
-
-
-Mar 16, 2020
-
-
- Michael Foster
-
-### Boost your conversion rate
-
-
-
 ## Open-sourcing our progress on Tailwind CSS v4.0 - Tailwind CSS
 
 [Read the full article](https://tailwindcss.com/blog/tailwindcss-v4-alpha)
@@ -338,4 +322,20 @@ Finally, compile your CSS using the CLI tool:
 \`\`\`bash
 $ npx @tailwindcss/cli@next \-i app.css \-o dist/app.css
 \`\`\`
+
+## Tailwind CSS v4.0 Beta - Tailwind CSS
+
+[Read the full article](https://tailwindcss.com/docs/v4-beta)
+
+
+
+
+Mar 16, 2020
+
+
+ Michael Foster
+
+### Boost your conversion rate
+
+
 

@@ -8,6 +8,10 @@ import time
 import logging
 import re
 
+import hashlib
+import aiohttp
+import asyncio
+
 import requests
 from bs4 import BeautifulSoup
 from markdownify import markdownify as md
@@ -43,6 +47,29 @@ def load_configuration(site_key):
             logging.error(f"Error parsing JSON configuration: {e}")
             sys.exit(1)
     return config
+
+
+CACHE_DIR = "cache/"
+
+
+def get_cache_filename(url):
+    url_hash = hashlib.md5(url.encode("utf-8")).hexdigest()
+    return os.path.join(CACHE_DIR, f"{url_hash}.cache")
+
+
+def read_from_cache(url):
+    filename = get_cache_filename(url)
+    if os.path.exists(filename):
+        with open(filename, "r", encoding="utf-8") as f:
+            return f.read()
+    return None
+
+
+def write_to_cache(url, content):
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    filename = get_cache_filename(url)
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(content)
 
 
 def fetch_url(url, max_retries=3, delay=1):
@@ -84,14 +111,28 @@ def fetch_url_with_playwright(url):
         return None
 
 
-def fetch_page_content(url):
-    html_content = fetch_url(url)
-    if html_content is not None:
-        return html_content
-    else:
-        logging.info(f"Attempting to fetch URL with Playwright: {url}")
-        html_content = fetch_url_with_playwright(url)
-    return html_content
+async def fetch_page_content(session, url):
+    # Check cache first
+    cached_content = read_from_cache(url)
+    if cached_content:
+        logging.info(f"Using cached content for URL: {url}")
+        return cached_content
+
+    try:
+        async with session.get(url) as response:
+            response.raise_for_status()
+            content = await response.text()
+            write_to_cache(url, content)  # Save content to cache
+            return content
+    except Exception as e:
+        logging.error(f"Error fetching URL {url}: {e}")
+        return None
+
+
+async def fetch_all_pages(urls, excluded_classes):
+    async with aiohttp.ClientSession() as session:
+        tasks = [fetch_page_content(session, url) for url in urls]
+        return await asyncio.gather(*tasks, return_exceptions=True)
 
 
 def parse_content(html_content, excluded_classes):
@@ -179,7 +220,7 @@ def write_markdown(output_path, content):
         f.write(content)
 
 
-def main():
+async def main():
     args = parse_args()
     config = load_configuration(args.site_key)
     urls = config.get("urls", [])
@@ -190,40 +231,30 @@ def main():
         logging.error("No URLs found in the configuration.")
         sys.exit(1)
 
-    # Initialize the Markdown content with the domain header
     markdown_content = f"# {domain}\n\n"
 
-    for url in urls:
-        logging.info(f"Processing URL: {url}")
-        html_content = fetch_page_content(url)
-        if html_content is None:
-            logging.error(f"Skipping URL due to fetch failure: {url}")
+    # Fetch all pages concurrently
+    fetched_contents = await fetch_all_pages(urls, excluded_classes)
+    for url, content in zip(urls, fetched_contents):
+        if content is None:
+            logging.error(f"Failed to process content for URL: {url}")
             continue
 
-        # Parse HTML content
-        main_content = parse_content(html_content, excluded_classes)
-
-        # Extract page title
-        soup = BeautifulSoup(html_content, "lxml")
+        # Parse and process HTML (synchronously but efficiently to keep code simple)
+        main_content = parse_content(content, excluded_classes)
+        soup = BeautifulSoup(content, "lxml")
         page_title = (
             soup.title.string.strip()
             if soup.title and soup.title.string
             else "No Title"
         )
-
-        # Convert main content to Markdown
         md_content = convert_to_markdown(main_content)
-
-        # Sanitize the converted Markdown content
         sanitized_content = sanitize_markdown_content(md_content)
 
-        # Append to the main markdown content
+        # Append to main markdown content
         markdown_content += f"## {page_title}\n\n"
         markdown_content += f"[Read the full article]({url})\n\n"
         markdown_content += sanitized_content + "\n\n"
-
-        # Respect rate limiting
-        time.sleep(1)  # Adjust sleep time as needed
 
     # Write to output file
     output_filename = f"{args.site_key}.md"
@@ -233,4 +264,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

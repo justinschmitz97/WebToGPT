@@ -1,3 +1,8 @@
+"""
+This script generates a sitemap for a given website based on the configuration provided.
+It includes domain restriction, file extension filtering, and final output filtering.
+"""
+
 import argparse
 import asyncio
 import re
@@ -112,7 +117,9 @@ def main():
     )
 
     # Strict mode-related settings
-    strict_mode = args.strict
+    strict_mode = args.strict or site_config.get(
+        "strict", False
+    )  # Command-line flag overrides config
     url_prefix = base_url if strict_mode else None
 
     # Start crawling
@@ -142,7 +149,7 @@ def main():
     output_dir = "urls"
     os.makedirs(output_dir, exist_ok=True)
     output_filename = os.path.join(
-        output_dir, f"{args.site_key.replace('.', '_')}.json"
+        output_dir, f"{(args.site_key or 'default').replace('.', '_')}.json"
     )
     with open(output_filename, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=4)

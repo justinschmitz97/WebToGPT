@@ -1,16 +1,16 @@
 {
-    "timestamp": "2025-01-03T11:30:35Z",
+    "timestamp": "2025-01-03T12:05:02Z",
     "site_key": "nextjsblog",
     "domain": "https://nextjs.org/blog/",
     "total_urls": 7,
     "failed_urls": {},
     "urls": [
         "https://nextjs.org/blog/next-15",
-        "https://nextjs.org/blog/next-15-rc",
-        "https://nextjs.org/blog/next-14-2",
-        "https://nextjs.org/blog/next-15-1",
         "https://nextjs.org/blog/next-15-rc2",
+        "https://nextjs.org/blog/next-15-rc",
+        "https://nextjs.org/blog/next-15-1",
         "https://nextjs.org/blog/next-14",
+        "https://nextjs.org/blog/next-14-2",
         "https://nextjs.org/blog/next-14-1"
     ]
 }

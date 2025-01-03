@@ -1,17 +1,16 @@
 {
-    "timestamp": "2025-01-03T11:30:15Z",
+    "timestamp": "2025-01-03T12:04:43Z",
     "site_key": "cva",
-    "domain": "https://cva.style",
-    "total_urls": 8,
+    "domain": "https://cva.style/",
+    "total_urls": 7,
     "failed_urls": {},
     "urls": [
-        "https://cva.style",
-        "https://cva.style/docs/examples/other-use-cases",
-        "https://cva.style/docs/faqs",
-        "https://cva.style/",
         "https://cva.style/docs/examples/react/css-modules",
         "https://cva.style/docs/examples/react/tailwind-css",
+        "https://cva.style/",
+        "https://cva.style/docs/examples/other-use-cases",
+        "https://cva.style/docs",
         "https://cva.style/docs/api-reference",
-        "https://cva.style/docs"
+        "https://cva.style/docs/faqs"
     ]
 }

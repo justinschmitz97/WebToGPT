@@ -9,7 +9,8 @@
   },
   "devtools": {
     "url": "https://developer.chrome.com/docs/extensions/reference/",
-    "final_include_patterns": "https://developer.chrome.com/docs/extensions/reference/"
+    "final_include_patterns": "https://developer.chrome.com/docs/extensions/reference/",
+    "strict": true
   },
   "mdn": {
     "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/",
@@ -17,7 +18,8 @@
       "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/",
       "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/"
     ],
-    "excluded_patterns": [".txt", "/input/", "/rel/"]
+    "excluded_patterns": [".txt", "/input/", "/rel/"],
+    "strict": true
   },
   "react": {
     "url": "https://react.dev",

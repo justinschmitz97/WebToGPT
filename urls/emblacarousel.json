@@ -1,22 +1,22 @@
 {
-    "timestamp": "2025-01-03T11:30:16Z",
+    "timestamp": "2025-01-03T12:04:43Z",
     "site_key": "emblacarousel",
     "domain": "https://www.embla-carousel.com/",
     "total_urls": 13,
     "failed_urls": {},
     "urls": [
-        "https://www.embla-carousel.com/api/options/",
-        "https://www.embla-carousel.com/api/events/",
-        "https://www.embla-carousel.com/api/plugins/",
-        "https://www.embla-carousel.com/plugins/autoplay/",
-        "https://www.embla-carousel.com/api/options/api/options/",
+        "https://www.embla-carousel.com/api/methods/",
         "https://www.embla-carousel.com/plugins/wheel-gestures/",
+        "https://www.embla-carousel.com/api/events/",
+        "https://www.embla-carousel.com/plugins/auto-scroll/",
+        "https://www.embla-carousel.com/api/options/",
+        "https://www.embla-carousel.com/plugins/",
+        "https://www.embla-carousel.com/plugins/autoplay/",
         "https://www.embla-carousel.com/api/",
         "https://www.embla-carousel.com/plugins/auto-height/",
-        "https://www.embla-carousel.com/plugins/class-names/",
+        "https://www.embla-carousel.com/api/options/api/options/",
         "https://www.embla-carousel.com/plugins/fade/",
-        "https://www.embla-carousel.com/plugins/auto-scroll/",
-        "https://www.embla-carousel.com/api/methods/",
-        "https://www.embla-carousel.com/plugins/"
+        "https://www.embla-carousel.com/plugins/class-names/",
+        "https://www.embla-carousel.com/api/plugins/"
     ]
 }
