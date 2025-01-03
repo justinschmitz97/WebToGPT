@@ -12,22 +12,25 @@ A lightweight carousel shouldn't be limited to just its core features. That's wh
 
 ## Explore the API
 
-* [### Options
+- [### Options
 
 Discover how to customize Embla Carousel with its available options.
 
 Read more](/api/options/)
-* [### Methods
+
+- [### Methods
 
 Explore Embla Carousel methods useful for extending the carousel beyond its native functionality.
 
 Read more](/api/methods/)
-* [### Events
+
+- [### Events
 
 Learn how to listen to Embla Carousel events and how to make use of them.
 
 Read more](/api/events/)
-* [### Plugins
+
+- [### Plugins
 
 Learn how to add plugins to Embla Carousel and extend it.
 
@@ -60,26 +63,26 @@ emblaApi.on('slidesInView', logSlidesInView)
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import { useCallback, useEffect } from 'react'import useEmblaCarousel from 'embla\-carousel\-react'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = useEmblaCarousel()
- const logSlidesInView = useCallback((emblaApi) =\> { console.log(emblaApi.slidesInView()) }, \[])
- useEffect(() =\> { if (emblaApi) emblaApi.on('slidesInView', logSlidesInView) }, \[emblaApi, logSlidesInView])
- // ...}
+const logSlidesInView = useCallback((emblaApi) =\> { console.log(emblaApi.slidesInView()) }, \[])
+useEffect(() =\> { if (emblaApi) emblaApi.on('slidesInView', logSlidesInView) }, \[emblaApi, logSlidesInView])
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import { onMounted } from 'vue' import emblaCarouselVue from 'embla\-carousel\-vue'
- const \[emblaRef, emblaApi] = emblaCarouselVue()
- function logSlidesInView(emblaApi) { console.log(emblaApi.slidesInView()) }
- onMounted(() =\> { if (emblaApi.value) emblaApi.value.on('slidesInView', logSlidesInView) })
- // ...\
+const \[emblaRef, emblaApi] = emblaCarouselVue()
+function logSlidesInView(emblaApi) { console.log(emblaApi.slidesInView()) }
+onMounted(() =\> { if (emblaApi.value) emblaApi.value.on('slidesInView', logSlidesInView) })
+// ...\
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import { onMount } from 'solid\-js'import createEmblaCarousel from 'embla\-carousel\-solid'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = createEmblaCarousel()
- function logSlidesInView(emblaApi) { console.log(emblaApi.slidesInView()) }
- onMount(() =\> { const api = emblaApi() if (api) api.on('slidesInView', logSlidesInView) })
- // ...}
+function logSlidesInView(emblaApi) { console.log(emblaApi.slidesInView()) }
+onMount(() =\> { const api = emblaApi() if (api) api.on('slidesInView', logSlidesInView) })
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselSvelte from 'embla\-carousel\-svelte'
- let emblaApi
- function logSlidesInView(emblaApi) { console.log(emblaApi.slidesInView()) }
- function onInit(event) { emblaApi = event.detail emblaApi.on('slidesInView', logSlidesInView) }\
+let emblaApi
+function logSlidesInView(emblaApi) { console.log(emblaApi.slidesInView()) }
+function onInit(event) { emblaApi = event.detail emblaApi.on('slidesInView', logSlidesInView) }\
 \...\
 \`\`\`**Note:** Starting with Svelte 5, the `on:` event handlers have been deprecated. However, `on:emblaInit` will remain for backward compatibility.
 
@@ -95,26 +98,26 @@ emblaApi.on('slidesInView', logSlidesInViewOnce)
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import { useCallback, useEffect } from 'react'import useEmblaCarousel from 'embla\-carousel\-react'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = useEmblaCarousel()
- const logSlidesInViewOnce = useCallback((emblaApi) =\> { console.log(emblaApi.slidesInView()) emblaApi.off('slidesInView', logSlidesInViewOnce) }, \[])
- useEffect(() =\> { if (emblaApi) emblaApi.on('slidesInView', logSlidesInViewOnce) }, \[emblaApi, logSlidesInViewOnce])
- // ...}
+const logSlidesInViewOnce = useCallback((emblaApi) =\> { console.log(emblaApi.slidesInView()) emblaApi.off('slidesInView', logSlidesInViewOnce) }, \[])
+useEffect(() =\> { if (emblaApi) emblaApi.on('slidesInView', logSlidesInViewOnce) }, \[emblaApi, logSlidesInViewOnce])
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import { onMounted } from 'vue' import emblaCarouselVue from 'embla\-carousel\-vue'
- const \[emblaRef, emblaApi] = emblaCarouselVue()
- function logSlidesInViewOnce(emblaApi) { console.log(emblaApi.slidesInView()) emblaApi.off('slidesInView', logSlidesInViewOnce) }
- onMounted(() =\> { if (emblaApi.value) emblaApi.value.on('slidesInView', logSlidesInViewOnce) })
- // ...\
+const \[emblaRef, emblaApi] = emblaCarouselVue()
+function logSlidesInViewOnce(emblaApi) { console.log(emblaApi.slidesInView()) emblaApi.off('slidesInView', logSlidesInViewOnce) }
+onMounted(() =\> { if (emblaApi.value) emblaApi.value.on('slidesInView', logSlidesInViewOnce) })
+// ...\
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import { onMount } from 'solid\-js'import createEmblaCarousel from 'embla\-carousel\-solid'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = createEmblaCarousel()
- function logSlidesInViewOnce(emblaApi) { console.log(emblaApi.slidesInView()) emblaApi.off('slidesInView', logSlidesInViewOnce) }
- onMount(() =\> { const api = emblaApi() if (api) api.on('slidesInView', logSlidesInViewOnce) })
- // ...}
+function logSlidesInViewOnce(emblaApi) { console.log(emblaApi.slidesInView()) emblaApi.off('slidesInView', logSlidesInViewOnce) }
+onMount(() =\> { const api = emblaApi() if (api) api.on('slidesInView', logSlidesInViewOnce) })
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselSvelte from 'embla\-carousel\-svelte'
- let emblaApi
- function logSlidesInViewOnce(emblaApi) { console.log(emblaApi.slidesInView()) emblaApi.off('slidesInView', logSlidesInViewOnce) }
- function onInit(event) { emblaApi = event.detail emblaApi.on('slidesInView', logSlidesInViewOnce) }\
+let emblaApi
+function logSlidesInViewOnce(emblaApi) { console.log(emblaApi.slidesInView()) emblaApi.off('slidesInView', logSlidesInViewOnce) }
+function onInit(event) { emblaApi = event.detail emblaApi.on('slidesInView', logSlidesInViewOnce) }\
 \...\
 \`\`\`**Note:** Starting with Svelte 5, the `on:` event handlers have been deprecated. However, `on:emblaInit` will remain for backward compatibility.
 
@@ -130,9 +133,9 @@ emblaApi.on('slidesInView', logEmblaEvent)
 \`\`\`Copy code snippet to clipboardCopy\`\`\`tsx
 import React, { useCallback } from 'react'import { EmblaCarouselType, EmblaEventType } from 'embla\-carousel'import useEmblaCarousel from 'embla\-carousel\-react'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = useEmblaCarousel()
- const logEmblaEvent = useCallback( (emblaApi: EmblaCarouselType, eventName: EmblaEventType) =\> { console.log(\`Embla just triggered ${eventName}!\`) }, \[] )
- useEffect(() =\> { if (emblaApi) emblaApi.on('slidesInView', logEmblaEvent) }, \[emblaApi, logEmblaEvent])
- // ...}
+const logEmblaEvent = useCallback( (emblaApi: EmblaCarouselType, eventName: EmblaEventType) =\> { console.log(\`Embla just triggered ${eventName}!\`) }, \[] )
+useEffect(() =\> { if (emblaApi) emblaApi.on('slidesInView', logEmblaEvent) }, \[emblaApi, logEmblaEvent])
+// ...}
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
 
@@ -141,10 +144,10 @@ dependency, `pnpm` makes nested dependencies inaccessible by design.
 
 Copy code snippet to clipboardCopy\`\`\`html
 \ import { onMounted } from 'vue' import { EmblaCarouselType, EmblaEventType } from 'embla\-carousel' import emblaCarouselVue from 'embla\-carousel\-vue'
- const \[emblaRef] = emblaCarouselVue()
- function logEmblaEvent( emblaApi: EmblaCarouselType, eventName: EmblaEventType ): void { console.log(\`Embla just triggered ${eventName}!\`) }
- onMounted(() =\> { if (emblaApi.value) emblaApi.value.on('slidesInView', logEmblaEvent) })
- // ...\
+const \[emblaRef] = emblaCarouselVue()
+function logEmblaEvent( emblaApi: EmblaCarouselType, eventName: EmblaEventType ): void { console.log(\`Embla just triggered ${eventName}!\`) }
+onMounted(() =\> { if (emblaApi.value) emblaApi.value.on('slidesInView', logEmblaEvent) })
+// ...\
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
 
@@ -154,9 +157,9 @@ dependency, `pnpm` makes nested dependencies inaccessible by design.
 Copy code snippet to clipboardCopy\`\`\`jsx
 import { onMount } from 'solid\-js'import { EmblaCarouselType, EmblaEventType } from 'embla\-carousel'import createEmblaCarousel from 'embla\-carousel\-solid'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = createEmblaCarousel()
- function logEmblaEvent( emblaApi: EmblaCarouselType, eventName: EmblaEventType ): void { console.log(\`Embla just triggered ${eventName}!\`) }
- onMount(() =\> { const api = emblaApi() if (api) api.on('slidesInView', logEmblaEvent) })
- // ...}
+function logEmblaEvent( emblaApi: EmblaCarouselType, eventName: EmblaEventType ): void { console.log(\`Embla just triggered ${eventName}!\`) }
+onMount(() =\> { const api = emblaApi() if (api) api.on('slidesInView', logEmblaEvent) })
+// ...}
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
 
@@ -165,9 +168,9 @@ dependency, `pnpm` makes nested dependencies inaccessible by design.
 
 Copy code snippet to clipboardCopy\`\`\`html
 \ import { EmblaCarouselType, EmblaEventType } from 'embla\-carousel' import emblaCarouselSvelte from 'embla\-carousel\-svelte'
- let emblaApi: EmblaCarouselType
- function logEmblaEvent( emblaApi: EmblaCarouselType, eventName: EmblaEventType ): void { console.log(\`Embla just triggered ${eventName}!\`) }
- function onInit(event: CustomEvent\): void { emblaApi = event.detail emblaApi.on('slidesInView', logEmblaEvent) }\
+let emblaApi: EmblaCarouselType
+function logEmblaEvent( emblaApi: EmblaCarouselType, eventName: EmblaEventType ): void { console.log(\`Embla just triggered ${eventName}!\`) }
+function onInit(event: CustomEvent\): void { emblaApi = event.detail emblaApi.on('slidesInView', logEmblaEvent) }\
 \...\
 \`\`\`**Note:** Starting with Svelte 5, the `on:` event handlers have been deprecated. However, `on:emblaInit` will remain for backward compatibility.
 
@@ -306,22 +309,22 @@ console.log(emblaApi.slideNodes())
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import { useEffect } from 'react'import useEmblaCarousel from 'embla\-carousel\-react'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = useEmblaCarousel()
- useEffect(() =\> { if (emblaApi) console.log(emblaApi.slideNodes()) }, \[emblaApi])
- // ...}
+useEffect(() =\> { if (emblaApi) console.log(emblaApi.slideNodes()) }, \[emblaApi])
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import { onMounted } from 'vue' import emblaCarouselVue from 'embla\-carousel\-vue'
- const \[emblaRef, emblaApi] = emblaCarouselVue()
- onMounted(() =\> { if (emblaApi.value) console.log(emblaApi.value.slideNodes()) })
- // ...\
+const \[emblaRef, emblaApi] = emblaCarouselVue()
+onMounted(() =\> { if (emblaApi.value) console.log(emblaApi.value.slideNodes()) })
+// ...\
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import { onMount } from 'solid\-js'import createEmblaCarousel from 'embla\-carousel\-solid'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = createEmblaCarousel()
- onMount(() =\> { const api = emblaApi() if (api) console.log(api.slideNodes()) })
- // ...}
+onMount(() =\> { const api = emblaApi() if (api) console.log(api.slideNodes()) })
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselSvelte from 'embla\-carousel\-svelte'
- let emblaApi
- function onInit(event) { emblaApi = event.detail console.log(emblaApi.slideNodes()) }\
+let emblaApi
+function onInit(event) { emblaApi = event.detail console.log(emblaApi.slideNodes()) }\
 \...\
 \`\`\`**Note:** Starting with Svelte 5, the `on:` event handlers have been deprecated. However, `on:emblaInit` will remain for backward compatibility.
 
@@ -337,9 +340,9 @@ emblaApi.on('slidesInView', logSlidesInView)
 \`\`\`Copy code snippet to clipboardCopy\`\`\`tsx
 import React, { useCallback } from 'react'import { EmblaCarouselType } from 'embla\-carousel'import useEmblaCarousel from 'embla\-carousel\-react'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = useEmblaCarousel()
- const logSlidesInView = useCallback((emblaApi: EmblaCarouselType) =\> { console.log(emblaApi.slidesInView()) }, \[])
- useEffect(() =\> { if (emblaApi) emblaApi.on('slidesInView', logSlidesInView) }, \[emblaApi, logSlidesInView])
- // ...}
+const logSlidesInView = useCallback((emblaApi: EmblaCarouselType) =\> { console.log(emblaApi.slidesInView()) }, \[])
+useEffect(() =\> { if (emblaApi) emblaApi.on('slidesInView', logSlidesInView) }, \[emblaApi, logSlidesInView])
+// ...}
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
 
@@ -348,10 +351,10 @@ dependency, `pnpm` makes nested dependencies inaccessible by design.
 
 Copy code snippet to clipboardCopy\`\`\`html
 \ import { onMounted } from 'vue' import { EmblaCarouselType } from 'embla\-carousel' import emblaCarouselVue from 'embla\-carousel\-vue'
- const \[emblaRef] = emblaCarouselVue()
- function logSlidesInView(emblaApi: EmblaCarouselType): void { console.log(emblaApi.slidesInView()) }
- onMounted(() =\> { if (emblaApi.value) emblaApi.value.on('slidesInView', logSlidesInView) })
- // ...\
+const \[emblaRef] = emblaCarouselVue()
+function logSlidesInView(emblaApi: EmblaCarouselType): void { console.log(emblaApi.slidesInView()) }
+onMounted(() =\> { if (emblaApi.value) emblaApi.value.on('slidesInView', logSlidesInView) })
+// ...\
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
 
@@ -361,9 +364,9 @@ dependency, `pnpm` makes nested dependencies inaccessible by design.
 Copy code snippet to clipboardCopy\`\`\`jsx
 import { onMount } from 'solid\-js'import { EmblaCarouselType } from 'embla\-carousel'import createEmblaCarousel from 'embla\-carousel\-solid'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = createEmblaCarousel()
- function logSlidesInView(emblaApi: EmblaCarouselType): void { console.log(emblaApi.slidesInView()) }
- onMount(() =\> { const api = emblaApi() if (api) api.on('slidesInView', logSlidesInView) })
- // ...}
+function logSlidesInView(emblaApi: EmblaCarouselType): void { console.log(emblaApi.slidesInView()) }
+onMount(() =\> { const api = emblaApi() if (api) api.on('slidesInView', logSlidesInView) })
+// ...}
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
 
@@ -372,9 +375,9 @@ dependency, `pnpm` makes nested dependencies inaccessible by design.
 
 Copy code snippet to clipboardCopy\`\`\`html
 \ import { EmblaCarouselType } from 'embla\-carousel' import emblaCarouselSvelte from 'embla\-carousel\-svelte'
- let emblaApi: EmblaCarouselType
- function logSlidesInView(emblaApi: EmblaCarouselType): void { console.log(emblaApi.slidesInView()) }
- function onInit(event: CustomEvent\): void { emblaApi = event.detail emblaApi.on('slidesInView', logSlidesInView) }\
+let emblaApi: EmblaCarouselType
+function logSlidesInView(emblaApi: EmblaCarouselType): void { console.log(emblaApi.slidesInView()) }
+function onInit(event: CustomEvent\): void { emblaApi = event.detail emblaApi.on('slidesInView', logSlidesInView) }\
 \...\
 \`\`\`**Note:** Starting with Svelte 5, the `on:` event handlers have been deprecated. However, `on:emblaInit` will remain for backward compatibility.
 
@@ -392,7 +395,7 @@ Below follows an exhaustive **list of all** Embla Carousel **methods** with thei
 
 ### rootNode
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `HTMLElement`
 
@@ -402,7 +405,7 @@ Get the root node that holds the scroll container with slides inside. This metho
 
 ### containerNode
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `HTMLElement`
 
@@ -412,7 +415,7 @@ Get the container node that holds the slides. This method can be useful when you
 
 ### slideNodes
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `HTMLElement[]`
 
@@ -422,7 +425,7 @@ Get all the slide nodes inside the container. This method can be useful when you
 
 ### scrollNext
 
-Parameters: `jump?: boolean`  
+Parameters: `jump?: boolean`
 
 Returns: `void`
 
@@ -432,7 +435,7 @@ Scroll to the next snap point if possible. When [loop](/api/options/#loop) is di
 
 ### scrollPrev
 
-Parameters: `jump?: boolean`  
+Parameters: `jump?: boolean`
 
 Returns: `void`
 
@@ -442,7 +445,7 @@ Scroll to the previous snap point if possible. When [loop](/api/options/#loop) i
 
 ### scrollTo
 
-Parameters: `index: number`, `jump?: boolean`  
+Parameters: `index: number`, `jump?: boolean`
 
 Returns: `void`
 
@@ -452,7 +455,7 @@ Scroll to a snap point by its unique index. If [loop](/api/options/#loop) is ena
 
 ### canScrollNext
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `boolean`
 
@@ -462,7 +465,7 @@ Check the possiblity to scroll to a next snap point. If [loop](/api/options/#loo
 
 ### canScrollPrev
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `boolean`
 
@@ -472,7 +475,7 @@ Check the possiblity to scroll to a previous snap point. If [loop](/api/options/
 
 ### selectedScrollSnap
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `number`
 
@@ -482,7 +485,7 @@ Get the index of the selected snap point.
 
 ### previousScrollSnap
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `number`
 
@@ -492,7 +495,7 @@ Get the index of the previously selected snap point.
 
 ### scrollSnapList
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `number[]`
 
@@ -502,7 +505,7 @@ Get an array containing all the snap point positions. Each position represents h
 
 ### scrollProgress
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `number`
 
@@ -512,7 +515,7 @@ Check how far the carousel has scrolled of its scrollable length from 0 \- 1\. F
 
 ### slidesInView
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `number[]`
 
@@ -522,7 +525,7 @@ Get slide indexes **visible** in the carousel viewport. Honors the [inViewThresh
 
 ### slidesNotInView
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `number[]`
 
@@ -532,7 +535,7 @@ Get slide indexes **not visible** in the carousel viewport. Honors the [inViewTh
 
 ### internalEngine
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `EmblaEngineType`
 
@@ -546,7 +549,7 @@ that you don't understand how this works. Use at your own risk.
 
 ### reInit
 
-Parameters: `options?: EmblaOptionsType`, `plugins?: EmblaPluginType[]`  
+Parameters: `options?: EmblaOptionsType`, `plugins?: EmblaPluginType[]`
 
 Returns: `void`
 
@@ -559,7 +562,7 @@ plugins will **replace** current plugins.
 
 ### plugins
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `EmblaPluginsType`
 
@@ -569,7 +572,7 @@ Returns an object with key value pairs where the keys are the plugin names, and 
 
 ### destroy
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `void`
 
@@ -579,7 +582,7 @@ Destroy the carousel instance permanently. This is a one way operation and is in
 
 ### on
 
-Parameters: `event: EmblaEventType`, `callback: (emblaApi: EmblaCarouselType, eventName: EmblaEventType) => void`  
+Parameters: `event: EmblaEventType`, `callback: (emblaApi: EmblaCarouselType, eventName: EmblaEventType) => void`
 
 Returns: `void`
 
@@ -589,7 +592,7 @@ Returns: `void`
 
 ### off
 
-Parameters: `event: EmblaEventType`, `callback: (emblaApi: EmblaCarouselType, eventName: EmblaEventType) => void`  
+Parameters: `event: EmblaEventType`, `callback: (emblaApi: EmblaCarouselType, eventName: EmblaEventType) => void`
 
 Returns: `void`
 
@@ -599,7 +602,7 @@ Returns: `void`
 
 ### emit
 
-Parameters: `event: EmblaEventType`  
+Parameters: `event: EmblaEventType`
 
 Returns: `void`
 
@@ -633,20 +636,21 @@ const emblaNode = document.querySelector('.embla')const emblaApi = EmblaCarousel
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import useEmblaCarousel from 'embla\-carousel\-react'
 export function EmblaCarousel() { const \[emblaRef] = useEmblaCarousel({ loop: true })
- // ...}
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselVue from 'embla\-carousel\-vue'
- const \[emblaRef] = emblaCarouselVue({ loop: true })
- // ...\
+const \[emblaRef] = emblaCarouselVue({ loop: true })
+// ...\
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import createEmblaCarousel from 'embla\-carousel\-solid'
 export function EmblaCarousel() { const \[emblaRef] = createEmblaCarousel(() =\> ({ loop: true }))
- // ...}
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselSvelte from 'embla\-carousel\-svelte'
- let options = { loop: true }\
+let options = { loop: true }\
 \...\
 \`\`\`
+
 ### Global options
 
 Setting **global options** will be applied to **all carousels** which will override the Embla default options with your own. In the following example [loop](/api/options/#loop) is set to `true`:
@@ -659,21 +663,21 @@ const emblaNode = document.querySelector('.embla')const emblaApi = EmblaCarousel
 import useEmblaCarousel from 'embla\-carousel\-react'
 useEmblaCarousel.globalOptions = { loop: true }
 export function EmblaCarousel() { const \[emblaRef] = useEmblaCarousel({ align: 'start' })
- // ...}
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselVue from 'embla\-carousel\-vue'
- emblaCarouselVue.globalOptions = { loop: true }
- const \[emblaRef] = emblaCarouselVue({ align: 'start' })
- // ...\
+emblaCarouselVue.globalOptions = { loop: true }
+const \[emblaRef] = emblaCarouselVue({ align: 'start' })
+// ...\
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import createEmblaCarousel from 'embla\-carousel\-solid'
 createEmblaCarousel.globalOptions = { loop: true }
 export function EmblaCarousel() { const \[emblaRef] = createEmblaCarousel(() =\> ({ align: 'start' }))
- // ...}
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselSvelte from 'embla\-carousel\-svelte'
- emblaCarouselSvelte.globalOptions = { loop: true }
- let options = { align: 'start' }\
+emblaCarouselSvelte.globalOptions = { loop: true }
+let options = { align: 'start' }\
 \...\
 \`\`\`
 Make sure to assign global options **before** initializing any carousel and
@@ -693,24 +697,25 @@ emblaApi.reInit({ loop: false })
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import { useState, useCallback } from 'react'import useEmblaCarousel from 'embla\-carousel\-react'
 export function EmblaCarousel() { const \[options, setOptions] = useState({ loop: true }) const \[emblaRef, emblaApi] = useEmblaCarousel(options)
- const toggleLoop = useCallback(() =\> { setOptions((currentOptions) =\> ({ ...currentOptions, loop: !currentOptions.loop })) }, \[])
- // ...}
+const toggleLoop = useCallback(() =\> { setOptions((currentOptions) =\> ({ ...currentOptions, loop: !currentOptions.loop })) }, \[])
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselVue from 'embla\-carousel\-vue'
- const options = ref({ loop: true }) const \[emblaRef, emblaApi] = emblaCarouselVue(options)
- function toggleLoop() { options.value = { ...options.value, loop: !options.value.loop } }
- // ...\
+const options = ref({ loop: true }) const \[emblaRef, emblaApi] = emblaCarouselVue(options)
+function toggleLoop() { options.value = { ...options.value, loop: !options.value.loop } }
+// ...\
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import { createSignal } from 'solid\-js'import createEmblaCarousel from 'embla\-carousel\-solid'
 export function EmblaCarousel() { const \[options, setOptions] = createSignal({ loop: true }) const \[emblaRef] = createEmblaCarousel(() =\> options())
- function toggleLoop() { setOptions((currentOptions) =\> ({ ...currentOptions, loop: !currentOptions.loop })) }
- // ...}
+function toggleLoop() { setOptions((currentOptions) =\> ({ ...currentOptions, loop: !currentOptions.loop })) }
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselSvelte from 'embla\-carousel\-svelte'
- let options = { loop: true }
- function toggleLoop() { options = { ...options, loop: !options.loop } }\
+let options = { loop: true }
+function toggleLoop() { options = { ...options, loop: !options.loop } }\
 \...\
 \`\`\`
+
 ### TypeScript
 
 The `EmblaOptionsType` is obtained directly from the **core package** `embla-carousel` and used like so:
@@ -722,7 +727,7 @@ const emblaNode = document.querySelector('.embla')const options: EmblaOptionsTyp
 import React from 'react'import { EmblaOptionsType } from 'embla\-carousel'import useEmblaCarousel from 'embla\-carousel\-react'
 type PropType = { options?: EmblaOptionsType}
 export function EmblaCarousel(props: PropType) { const \[emblaRef, emblaApi] = useEmblaCarousel(props.options)
- // ...}
+// ...}
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
 
@@ -731,8 +736,8 @@ dependency, `pnpm` makes nested dependencies inaccessible by design.
 
 Copy code snippet to clipboardCopy\`\`\`html
 \ import { EmblaOptionsType } from 'embla\-carousel' import emblaCarouselVue from 'embla\-carousel\-vue'
- const options: EmblaOptionsType = { loop: true } const \[emblaRef] = emblaCarouselVue(options)
- // ...\
+const options: EmblaOptionsType = { loop: true } const \[emblaRef] = emblaCarouselVue(options)
+// ...\
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
 
@@ -743,7 +748,7 @@ Copy code snippet to clipboardCopy\`\`\`tsx
 import { EmblaOptionsType } from 'embla\-carousel'import createEmblaCarousel from 'embla\-carousel\-solid'
 type PropType = { options?: EmblaOptionsType}
 export function EmblaCarousel(props) { const \[emblaRef] = createEmblaCarousel(props.options)
- // ...}
+// ...}
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
 
@@ -752,7 +757,7 @@ dependency, `pnpm` makes nested dependencies inaccessible by design.
 
 Copy code snippet to clipboardCopy\`\`\`html
 \ import { EmblaOptionsType } from 'embla\-carousel' import emblaCarouselSvelte from 'embla\-carousel\-svelte'
- let options: EmblaOptionsType = { loop: true }\
+let options: EmblaOptionsType = { loop: true }\
 \...\
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
@@ -768,7 +773,7 @@ Below follows an exhaustive **list of all** Embla Carousel **options** and their
 
 ### active
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `true`
 
@@ -778,7 +783,7 @@ Setting this to `false` will not activate or deactivate the carousel. Useful whe
 
 ### align
 
-Type: `string | (viewSize: number, snapSize: number, index: number) => number`  
+Type: `string | (viewSize: number, snapSize: number, index: number) => number`
 
 Default: `center`
 
@@ -788,7 +793,7 @@ Align the slides relative to the carousel viewport. Use one of the predefined al
 
 ### axis
 
-Type: `string`  
+Type: `string`
 
 Default: `x`
 
@@ -798,7 +803,7 @@ Choose scroll axis between `x` and `y`. Remember to stack your slides horizontal
 
 ### breakpoints
 
-Type: `EmblaOptionsType`  
+Type: `EmblaOptionsType`
 
 Default: `{}`
 
@@ -811,7 +816,7 @@ options clash, the last one in the list has precedence.
 
 ### container
 
-Type: `string | HTMLElement | null`  
+Type: `string | HTMLElement | null`
 
 Default: `null`
 
@@ -821,7 +826,7 @@ Enables choosing a custom container element which holds the slides. By **default
 
 ### containScroll
 
-Type: `false` \| `string`  
+Type: `false` \| `string`
 
 Default: `'trimSnaps'`
 
@@ -835,7 +840,7 @@ the carousel, in order to **cover** the **leading** and **trailing space**.
 
 ### direction
 
-Type: `string`  
+Type: `string`
 
 Default: `ltr`
 
@@ -852,7 +857,7 @@ property.
 
 ### dragFree
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `false`
 
@@ -862,7 +867,7 @@ Enables momentum scrolling. The duration of the continued scrolling is proportio
 
 ### dragThreshold
 
-Type: `number`  
+Type: `number`
 
 Default: `10`
 
@@ -876,7 +881,7 @@ swipe gesture. This is why this threshold only works for mouse events.
 
 ### duration
 
-Type: `number`  
+Type: `number`
 
 Default: `25`
 
@@ -890,7 +895,7 @@ physics simulation when scrolling instead of easings. Only values between
 
 ### inViewThreshold
 
-Type: `IntersectionObserverInit.threshold`  
+Type: `IntersectionObserverInit.threshold`
 
 Default: `0`
 
@@ -900,7 +905,7 @@ This is the Intersection Observer [threshold](https://developer.mozilla.org/en-U
 
 ### loop
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `false`
 
@@ -913,7 +918,7 @@ create the loop effect without visible glitches.
 
 ### skipSnaps
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `false`
 
@@ -923,7 +928,7 @@ Allow the carousel to skip scroll snaps if it's dragged vigorously. Note that th
 
 ### slides
 
-Type: `string | HTMLElement[] | NodeListOf | null`  
+Type: `string | HTMLElement[] | NodeListOf | null`
 
 Default: `null`
 
@@ -940,7 +945,7 @@ document flow with `position: absolute` or similar.
 
 ### slidesToScroll
 
-Type: `string | number`  
+Type: `string | number`
 
 Default: `1`
 
@@ -950,7 +955,7 @@ Group slides together. Drag interactions, dot navigation, and previous/next butt
 
 ### startIndex
 
-Type: `number`  
+Type: `number`
 
 Default: `0`
 
@@ -960,7 +965,7 @@ Set the initial scroll snap to the given number. First snap index starts at `0`.
 
 ### watchDrag
 
-Type: `boolean | (emblaApi: EmblaCarouselType, event: MouseEvent | TouchEvent) => boolean | void`  
+Type: `boolean | (emblaApi: EmblaCarouselType, event: MouseEvent | TouchEvent) => boolean | void`
 
 Default: `true`
 
@@ -975,7 +980,7 @@ to skip it.
 
 ### watchFocus
 
-Type: `boolean | (emblaApi: EmblaCarouselType, event: FocusEvent) => boolean | void`  
+Type: `boolean | (emblaApi: EmblaCarouselType, event: FocusEvent) => boolean | void`
 
 Default: `true`
 
@@ -990,7 +995,7 @@ to skip it.
 
 ### watchResize
 
-Type: `boolean | (emblaApi: EmblaCarouselType, entries: ResizeObserverEntry[]) => boolean | void`  
+Type: `boolean | (emblaApi: EmblaCarouselType, entries: ResizeObserverEntry[]) => boolean | void`
 
 Default: `true`
 
@@ -1005,7 +1010,7 @@ want to skip it.
 
 ### watchSlides
 
-Type: `boolean | (emblaApi: EmblaCarouselType, mutations: MutationRecord[]) => boolean | void`  
+Type: `boolean | (emblaApi: EmblaCarouselType, mutations: MutationRecord[]) => boolean | void`
 
 Default: `true`
 
@@ -1041,6 +1046,7 @@ npm install embla\-carousel\-autoplay \-\-save
 \`\`\`Copy code snippet to clipboardCopy\`\`\`shell
 yarn add embla\-carousel\-autoplay
 \`\`\`
+
 ## Usage
 
 The Embla Carousel **constructor** accepts an **array of plugins**. Each plugin might have its own [options](/api/plugins/#constructor-options), [methods](/api/plugins/#calling-methods) and [events](/api/plugins/#adding-event-listeners).
@@ -1055,18 +1061,18 @@ const emblaNode = document.querySelector('.embla')const embla = EmblaCarousel(em
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import useEmblaCarousel from 'embla\-carousel\-react'import Autoplay from 'embla\-carousel\-autoplay'
 export function EmblaCarousel() { const \[emblaRef] = useEmblaCarousel({ loop: true }, \[Autoplay()])
- // ...}
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselVue from 'embla\-carousel\-vue' import Autoplay from 'embla\-carousel\-autoplay'
- const \[emblaRef] = emblaCarouselVue({ loop: true }, \[Autoplay()])
- // ...\
+const \[emblaRef] = emblaCarouselVue({ loop: true }, \[Autoplay()])
+// ...\
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import createEmblaCarousel from 'embla\-carousel\-solid'import Autoplay from 'embla\-carousel\-autoplay'
 export function EmblaCarousel() { const \[emblaRef] = createEmblaCarousel( () =\> ({ loop: true }), () =\> \[AutoPlay()] )
- // ...}
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselSvelte from 'embla\-carousel\-svelte' import Autoplay from 'embla\-carousel\-autoplay'
- let plugins = \[Autoplay()]\
+let plugins = \[Autoplay()]\
 \...\
 \`\`\`
 Note that it's possible to **change plugins** passed to the Embla Carousel
@@ -1083,20 +1089,21 @@ const emblaNode = document.querySelector('.embla')const embla = EmblaCarousel(em
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import useEmblaCarousel from 'embla\-carousel\-react'import Autoplay from 'embla\-carousel\-autoplay'
 export function EmblaCarousel() { const \[emblaRef] = useEmblaCarousel({ loop: true }, \[ Autoplay({ delay: 4000 }) ])
- // ...}
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselVue from 'embla\-carousel\-vue' import Autoplay from 'embla\-carousel\-autoplay'
- const \[emblaRef] = emblaCarouselVue({ loop: true }, \[ Autoplay({ delay: 4000 }) ])
- // ...\
+const \[emblaRef] = emblaCarouselVue({ loop: true }, \[ Autoplay({ delay: 4000 }) ])
+// ...\
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import createEmblaCarousel from 'embla\-carousel\-solid'import Autoplay from 'embla\-carousel\-autoplay'
 export function EmblaCarousel() { const \[emblaRef] = createEmblaCarousel( () =\> ({ loop: true }), () =\> \[AutoPlay({ delay: 4000 })] )
- // ...}
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselSvelte from 'embla\-carousel\-svelte' import Autoplay from 'embla\-carousel\-autoplay'
- let plugins = \[Autoplay({ delay: 4000 })]\
+let plugins = \[Autoplay({ delay: 4000 })]\
 \...\
 \`\`\`
+
 ### Global options
 
 All [official plugins](/plugins/) allows you to set **global options** that will be applied to all instances. This allows for overriding the default plugin options with your own:
@@ -1109,21 +1116,21 @@ const emblaNode = document.querySelector('.embla')const embla = EmblaCarousel(em
 import useEmblaCarousel from 'embla\-carousel\-react'import Autoplay from 'embla\-carousel\-autoplay'
 Autoplay.globalOptions = { delay: 4000 }
 export function EmblaCarousel() { const \[emblaRef] = useEmblaCarousel({ loop: true }, \[Autoplay()])
- // ...}
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselVue from 'embla\-carousel\-vue' import Autoplay from 'embla\-carousel\-autoplay'
- Autoplay.globalOptions = { delay: 4000 }
- const \[emblaRef] = emblaCarouselVue({ loop: true }, \[Autoplay()])
- // ...\
+Autoplay.globalOptions = { delay: 4000 }
+const \[emblaRef] = emblaCarouselVue({ loop: true }, \[Autoplay()])
+// ...\
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import createEmblaCarousel from 'embla\-carousel\-solid'import Autoplay from 'embla\-carousel\-autoplay'
 Autoplay.globalOptions = { delay: 4000 }
 export function EmblaCarousel() { const \[emblaRef] = createEmblaCarousel( () =\> ({ loop: true }), () =\> \[AutoPlay()] )
- // ...}
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselSvelte from 'embla\-carousel\-svelte' import Autoplay from 'embla\-carousel\-autoplay'
- Autoplay.globalOptions = { delay: 4000 }
- let plugins = \[Autoplay()]\
+Autoplay.globalOptions = { delay: 4000 }
+let plugins = \[Autoplay()]\
 \...\
 \`\`\`
 Make sure to assign global options **before** initializing any carousel and
@@ -1141,22 +1148,22 @@ emblaApi.plugins().autoplay.stop()
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import { useEffect } from 'react'import useEmblaCarousel from 'embla\-carousel\-react'import Autoplay from 'embla\-carousel\-autoplay'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, \[Autoplay()])
- useEffect(() =\> { if (emblaApi) emblaApi.plugins().autoplay.stop() }, \[emblaApi])
- // ...}
+useEffect(() =\> { if (emblaApi) emblaApi.plugins().autoplay.stop() }, \[emblaApi])
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import { onMounted } from 'vue' import emblaCarouselVue from 'embla\-carousel\-vue' import Autoplay from 'embla\-carousel\-autoplay'
- const \[emblaRef, emblaApi] = emblaCarouselVue({ loop: true }, \[Autoplay()])
- onMounted(() =\> { if (emblaApi.value) emblaApi.value.plugins().autoplay.stop() })
- // ...\
+const \[emblaRef, emblaApi] = emblaCarouselVue({ loop: true }, \[Autoplay()])
+onMounted(() =\> { if (emblaApi.value) emblaApi.value.plugins().autoplay.stop() })
+// ...\
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import { onMount } from 'solid\-js'import createEmblaCarousel from 'embla\-carousel\-solid'import Autoplay from 'embla\-carousel\-autoplay'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = createEmblaCarousel( () =\> ({ loop: true }), () =\> \[AutoPlay()] )
- onMount(() =\> { const api = emblaApi() if (api) api.plugins().autoplay.stop() })
- // ...}
+onMount(() =\> { const api = emblaApi() if (api) api.plugins().autoplay.stop() })
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselSvelte from 'embla\-carousel\-svelte' import Autoplay from 'embla\-carousel\-autoplay'
- let emblaApi let plugins = \[Autoplay()]
- function onInit(event) { emblaApi = event.detail emblaApi.plugins().autoplay.stop() }\
+let emblaApi let plugins = \[Autoplay()]
+function onInit(event) { emblaApi = event.detail emblaApi.plugins().autoplay.stop() }\
 \ ...\
 \`\`\`**Note:** Starting with Svelte 5, the `on:` event handlers have been deprecated. However, `on:emblaInit` will remain for backward compatibility.
 
@@ -1172,26 +1179,26 @@ emblaApi.on('autoplay:stop', logPluginEvent)
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import { useEffect, useCallback } from 'react'import useEmblaCarousel from 'embla\-carousel\-react'import Autoplay from 'embla\-carousel\-autoplay'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, \[Autoplay()])
- const logPluginEvent = useCallback((emblaApi, eventName) =\> { console.log(\`Autoplay just triggered ${eventName}!\`) }, \[])
- useEffect(() =\> { if (emblaApi) emblaApi.on('autoplay:stop', logPluginEvent) }, \[emblaApi, logPluginEvent])
- // ...}
+const logPluginEvent = useCallback((emblaApi, eventName) =\> { console.log(\`Autoplay just triggered ${eventName}!\`) }, \[])
+useEffect(() =\> { if (emblaApi) emblaApi.on('autoplay:stop', logPluginEvent) }, \[emblaApi, logPluginEvent])
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import { onMounted } from 'vue' import emblaCarouselVue from 'embla\-carousel\-vue' import Autoplay from 'embla\-carousel\-autoplay'
- const \[emblaRef, emblaApi] = emblaCarouselVue({ loop: true }, \[Autoplay()])
- function logPluginEvent(emblaApi, eventName) { console.log(\`Autoplay just triggered ${eventName}!\`) }
- onMounted(() =\> { if (emblaApi.value) emblaApi.value.on('autoplay:stop', logPluginEvent) })
- // ...\
+const \[emblaRef, emblaApi] = emblaCarouselVue({ loop: true }, \[Autoplay()])
+function logPluginEvent(emblaApi, eventName) { console.log(\`Autoplay just triggered ${eventName}!\`) }
+onMounted(() =\> { if (emblaApi.value) emblaApi.value.on('autoplay:stop', logPluginEvent) })
+// ...\
 \`\`\`Copy code snippet to clipboardCopy\`\`\`jsx
 import { onMount } from 'solid\-js'import createEmblaCarousel from 'embla\-carousel\-solid'import Autoplay from 'embla\-carousel\-autoplay'
 export function EmblaCarousel() { const \[emblaRef, emblaApi] = createEmblaCarousel( () =\> ({ loop: true }), () =\> \[AutoPlay()] )
- function logPluginEvent(emblaApi, eventName) { console.log(\`Autoplay just triggered ${eventName}!\`) }
- onMount(() =\> { const api = emblaApi() if (api) api.on('autoplay:stop', logPluginEvent) })
- // ...}
+function logPluginEvent(emblaApi, eventName) { console.log(\`Autoplay just triggered ${eventName}!\`) }
+onMount(() =\> { const api = emblaApi() if (api) api.on('autoplay:stop', logPluginEvent) })
+// ...}
 \`\`\`Copy code snippet to clipboardCopy\`\`\`html
 \ import emblaCarouselSvelte from 'embla\-carousel\-svelte' import Autoplay from 'embla\-carousel\-autoplay'
- let emblaApi let plugins = \[Autoplay()]
- function logPluginEvent(emblaApi, eventName) { console.log(\`Autoplay just triggered ${eventName}!\`) }
- function onInit(event) { emblaApi = event.detail emblaApi.on('autoplay:stop', logPluginEvent) }\
+let emblaApi let plugins = \[Autoplay()]
+function logPluginEvent(emblaApi, eventName) { console.log(\`Autoplay just triggered ${eventName}!\`) }
+function onInit(event) { emblaApi = event.detail emblaApi.on('autoplay:stop', logPluginEvent) }\
 \ ...\
 \`\`\`**Note:** Starting with Svelte 5, the `on:` event handlers have been deprecated. However, `on:emblaInit` will remain for backward compatibility.
 
@@ -1206,7 +1213,7 @@ const emblaNode = document.querySelector('.embla')const plugins: EmblaPluginType
 import React from 'react'import { EmblaPluginType } from 'embla\-carousel'import useEmblaCarousel from 'embla\-carousel\-react'import Autoplay from 'embla\-carousel\-autoplay'
 type PropType = { plugins?: EmblaPluginType\[]}
 export function EmblaCarousel(props) { const \[emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, props.plugins)
- // ...}
+// ...}
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
 
@@ -1215,8 +1222,8 @@ dependency, `pnpm` makes nested dependencies inaccessible by design.
 
 Copy code snippet to clipboardCopy\`\`\`html
 \ import { EmblaPluginType } from 'embla\-carousel' import emblaCarouselVue from 'embla\-carousel\-vue' import Autoplay from 'embla\-carousel\-autoplay'
- const plugins: EmblaPluginType\[] = \[Autoplay()] const \[emblaRef] = emblaCarouselVue({ loop: true }, plugins)
- // ...\
+const plugins: EmblaPluginType\[] = \[Autoplay()] const \[emblaRef] = emblaCarouselVue({ loop: true }, plugins)
+// ...\
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
 
@@ -1227,7 +1234,7 @@ Copy code snippet to clipboardCopy\`\`\`tsx
 import { EmblaPluginType } from 'embla\-carousel'import createEmblaCarousel from 'embla\-carousel\-solid'import Autoplay from 'embla\-carousel\-autoplay'
 type PropType = { plugins?: EmblaPluginType\[]}
 export function EmblaCarousel(props) { const \[emblaRef, emblaApi] = createEmblaCarousel( () =\> ({ loop: true }), props.plugins )
- // ...}
+// ...}
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
 
@@ -1236,7 +1243,7 @@ dependency, `pnpm` makes nested dependencies inaccessible by design.
 
 Copy code snippet to clipboardCopy\`\`\`html
 \ import { EmblaPluginType } from 'embla\-carousel' import emblaCarouselSvelte from 'embla\-carousel\-svelte' import Autoplay from 'embla\-carousel\-autoplay'
- let emblaApi let plugins: EmblaPluginType\[] = \[Autoplay()]\
+let emblaApi let plugins: EmblaPluginType\[] = \[Autoplay()]\
 \...\
 \`\`\`If you're using `pnpm`, you need to install `embla-carousel` as a
 **devDependency** when importing types from it like demonstrated above.
@@ -1258,32 +1265,37 @@ Here is a list of available Embla Carousel plugins that will **extend your carou
 
 ## Choose a plugin
 
-* [### Autoplay
+- [### Autoplay
 
 Learn how to use the Autoplay plugin for Embla Carousel
 
 Read more](/plugins/autoplay/)
-* [### Auto Scroll
+
+- [### Auto Scroll
 
 Learn how to use the Auto Scroll plugin for Embla Carousel
 
 Read more](/plugins/auto-scroll/)
-* [### Auto Height
+
+- [### Auto Height
 
 Learn how to use the Auto Height plugin for Embla Carousel
 
 Read more](/plugins/auto-height/)
-* [### Class Names
+
+- [### Class Names
 
 Learn how to use the Class Names plugin for Embla Carousel
 
 Read more](/plugins/class-names/)
-* [### Fade
+
+- [### Fade
 
 Learn how to use the Fade plugin for Embla Carousel
 
 Read more](/plugins/fade/)
-* [### Wheel Gestures
+
+- [### Wheel Gestures
 
 Learn how to add this Wheel Gesture plugin to Embla Carousel
 
@@ -1304,6 +1316,7 @@ This plugin is used to extend Embla Carousel with **auto height** functionality.
 ## Example
 
 Edit Code
+
 ## Installation
 
 First you need to install the **npm package** and save it to your dependencies:
@@ -1340,6 +1353,7 @@ This plugin is used to extend Embla Carousel with **auto scroll** functionality.
 ## Example
 
 Edit Code
+
 ## Installation
 
 Start by installing the **npm package** and save it to your dependencies:
@@ -1351,13 +1365,14 @@ npm install embla\-carousel\-auto\-scroll \-\-save
 \`\`\`Copy code snippet to clipboardCopy\`\`\`shell
 yarn add embla\-carousel\-auto\-scroll
 \`\`\`
+
 ## Options
 
 Below follows an exhaustive **list of all** `Auto Scroll` **options** and their default values.
 
 ### speed
 
-Type: `number`  
+Type: `number`
 
 Default: `2`
 
@@ -1367,7 +1382,7 @@ Number of pixels auto scroll should advance per frame.
 
 ### startDelay
 
-Type: `number`  
+Type: `number`
 
 Default: `1000`
 
@@ -1377,7 +1392,7 @@ Number of milliseconds auto scroll should **wait before it starts**. This also a
 
 ### direction
 
-Type: `string`  
+Type: `string`
 
 Default: `forward`
 
@@ -1387,7 +1402,7 @@ This option is used to set the auto scroll direction. Set it to `backward` if yo
 
 ### playOnInit
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `true`
 
@@ -1397,7 +1412,7 @@ If set to `false`, you'll have to start auto scroll yourself by calling the [pla
 
 ### stopOnInteraction
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `true`
 
@@ -1407,7 +1422,7 @@ If set to `false`, auto scroll will not be disabled after drag interactions, and
 
 ### stopOnMouseEnter
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `false`
 
@@ -1417,7 +1432,7 @@ When enabled, auto scroll will stop when a mouse pointer enters the Embla Carous
 
 ### stopOnFocusIn
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `true`
 
@@ -1427,7 +1442,7 @@ When enabled, auto scroll will stop when a focusable element inside the carousel
 
 ### rootNode
 
-Type: `(emblaRoot: HTMLElement) => HTMLElement | null`  
+Type: `(emblaRoot: HTMLElement) => HTMLElement | null`
 
 Default: `null`
 
@@ -1443,7 +1458,7 @@ Below follows an exhaustive **list of all** `Auto Scroll` **methods** with their
 
 ### play
 
-Parameters: `startDelayOverride?: number`  
+Parameters: `startDelayOverride?: number`
 
 Returns: `void`
 
@@ -1453,7 +1468,7 @@ Start auto scroll. Pass a **startDelayOverride** if you want to change the [star
 
 ### stop
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `void`
 
@@ -1463,7 +1478,7 @@ Stops auto scroll.
 
 ### reset
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `void`
 
@@ -1473,7 +1488,7 @@ Stops auto scroll, and starts the timer again using [startDelay](/plugins/auto-s
 
 ### isPlaying
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `boolean`
 
@@ -1519,6 +1534,7 @@ This plugin is used to extend Embla Carousel with **autoplay** functionality.
 ## Example
 
 Edit Code
+
 ## Installation
 
 Start by installing the **npm package** and save it to your dependencies:
@@ -1530,6 +1546,7 @@ npm install embla\-carousel\-autoplay \-\-save
 \`\`\`Copy code snippet to clipboardCopy\`\`\`shell
 yarn add embla\-carousel\-autoplay
 \`\`\`
+
 ## Options
 
 Below follows an exhaustive **list of all** `Autoplay` **options** and their default values.
@@ -1538,7 +1555,7 @@ Below follows an exhaustive **list of all** `Autoplay` **options** and their def
 
 ### delay
 
-Type: `number | (scrollSnapList: number[], emblaApi: EmblaCarouselType) => number[]`  
+Type: `number | (scrollSnapList: number[], emblaApi: EmblaCarouselType) => number[]`
 
 Default: `4000`
 
@@ -1548,7 +1565,7 @@ Choose a delay between transitions in milliseconds. If you pass a number, the sa
 
 ### jump
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `false`
 
@@ -1558,7 +1575,7 @@ When set to true `true`, autoplay will do instant slide transitions when advanci
 
 ### playOnInit
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `true`
 
@@ -1568,7 +1585,7 @@ If set to `false`, you'll have to start autoplay manually by calling the [play](
 
 ### stopOnInteraction
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `true`
 
@@ -1578,7 +1595,7 @@ If set to `false`, autoplay will not be disabled after drag interactions, and it
 
 ### stopOnMouseEnter
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `false`
 
@@ -1588,7 +1605,7 @@ When enabled, autoplay will stop when a mouse pointer enters the Embla Carousel 
 
 ### stopOnFocusIn
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `true`
 
@@ -1598,7 +1615,7 @@ When enabled, autoplay will stop when a focusable element inside the carousel re
 
 ### stopOnLastSnap
 
-Type: `boolean`  
+Type: `boolean`
 
 Default: `false`
 
@@ -1608,7 +1625,7 @@ If this parameter is enabled, autoplay will stop when it reaches last slide.
 
 ### rootNode
 
-Type: `(emblaRoot: HTMLElement) => HTMLElement | null`  
+Type: `(emblaRoot: HTMLElement) => HTMLElement | null`
 
 Default: `null`
 
@@ -1624,7 +1641,7 @@ Below follows an exhaustive **list of all** `Autoplay` **methods** with their re
 
 ### play
 
-Parameters: `jump?: boolean`  
+Parameters: `jump?: boolean`
 
 Returns: `void`
 
@@ -1634,7 +1651,7 @@ Start autoplay. Set the **jump** parameter to `true` when you want autoplay to d
 
 ### stop
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `void`
 
@@ -1644,7 +1661,7 @@ Stop autoplay.
 
 ### reset
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `void`
 
@@ -1654,7 +1671,7 @@ Resets the timer and starts over. This will only take effect if autoplay is alre
 
 ### isPlaying
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `boolean`
 
@@ -1664,7 +1681,7 @@ Returns a boolean whether autoplay is playing or not.
 
 ### timeUntilNext
 
-Parameters: `none`  
+Parameters: `none`
 
 Returns: `number | null`
 
@@ -1742,6 +1759,7 @@ Class Names is a **class name toggle** utility plugin for Embla Carousel that en
 ## Example
 
 Edit Code
+
 ## Installation
 
 First you need to install the **npm package** and save it to your dependencies:
@@ -1753,6 +1771,7 @@ npm install embla\-carousel\-class\-names \-\-save
 \`\`\`Copy code snippet to clipboardCopy\`\`\`shell
 yarn add embla\-carousel\-class\-names
 \`\`\`
+
 ## Usage
 
 Please read the [plugins](/api/plugins/#usage) page to learn **how to work with plugins**.
@@ -1765,7 +1784,7 @@ Below follows an exhaustive **list of all** `Class Names` **options** and their 
 
 ### snapped
 
-Type: `string | string[]`  
+Type: `string | string[]`
 
 Default: `is-snapped`
 
@@ -1775,7 +1794,7 @@ Choose a class name that will be applied to the **snapped slides**. It's also po
 
 ### inView
 
-Type: `string | string[]`  
+Type: `string | string[]`
 
 Default: `is-in-view`
 
@@ -1788,7 +1807,7 @@ option.
 
 ### draggable
 
-Type: `string | string[]`  
+Type: `string | string[]`
 
 Default: `is-draggable`
 
@@ -1798,7 +1817,7 @@ Choose a class name that will be applied to a **draggable carousel**. It's also 
 
 ### dragging
 
-Type: `string | string[]`  
+Type: `string | string[]`
 
 Default: `is-dragging`
 
@@ -1808,7 +1827,7 @@ Choose a class name that will be applied to the container **when dragging**. It'
 
 ### loop
 
-Type: `string | string[]`  
+Type: `string | string[]`
 
 Default: `is-loop`
 
@@ -1832,6 +1851,7 @@ This plugin is used to replace the Embla Carousel scroll functionality with **fa
 ## Example
 
 Edit Code
+
 ## Installation
 
 Start by installing the **npm package** and save it to your dependencies:
@@ -1853,7 +1873,7 @@ If your slides are less than 100% of the viewport width, it's recommended to set
 
 Copy code snippet to clipboardCopy\`\`\`ts
 const options = { align: 'center', containScroll: false}
-\`\`\`  
+\`\`\`
 
 However, `align: center` is default so you can omit setting the align option and achieve the same thing like so:
 
@@ -1883,6 +1903,7 @@ npm install embla\-carousel\-wheel\-gestures \-\-save
 \`\`\`Copy code snippet to clipboardCopy\`\`\`shell
 yarn add embla\-carousel\-wheel\-gestures
 \`\`\`
+
 ## Usage
 
 This plugin accepts a single **optional** parameter, which is its [options](/plugins/wheel-gestures/#options) object that allows you to configure it.
@@ -1891,6 +1912,7 @@ Copy code snippet to clipboardCopy\`\`\`js
 import EmblaCarousel from 'embla\-carousel'import { WheelGesturesPlugin } from 'embla\-carousel\-wheel\-gestures'
 const embla = EmblaCarousel(emblaRoot, { loop: false }, \[WheelGesturesPlugin()]) // Add plugin
 \`\`\`
+
 ## Options
 
 Below follows an exhaustive **list of all** `Wheel Gestures` **options** and their default values.
@@ -1899,7 +1921,7 @@ Below follows an exhaustive **list of all** `Wheel Gestures` **options** and the
 
 ### wheelDraggingClass
 
-Type: `string`  
+Type: `string`
 
 Default: `is-wheel-dragging`
 
@@ -1909,7 +1931,7 @@ Choose a classname that will be applied to the container during a wheel gesture.
 
 ### forceWheelAxis
 
-Type: `string | undefined`  
+Type: `string | undefined`
 
 Default: `undefined`
 
@@ -1919,7 +1941,7 @@ Force an axis on which to listen for wheel events. Choose scroll axis between `x
 
 ### target
 
-Type: `Element`  
+Type: `Element`
 
 Default: `undefined`
 
@@ -1928,4 +1950,3 @@ Specify the element that should be observed for wheel events.
 ---
 
 [Edit this page on GitHub](https://github.com/davidjerleke/embla-carousel/blob/master/packages/embla-carousel-docs/src/content/pages/plugins/wheel-gestures.mdx)
-

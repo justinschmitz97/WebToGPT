@@ -20,6 +20,11 @@ from bs4 import BeautifulSoup
 from markdownify import markdownify as md
 from playwright.sync_api import sync_playwright
 
+from xpaths import CLEAN_XPATHS
+
+from lxml import etree
+
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -139,28 +144,21 @@ async def fetch_all_pages(urls, excluded_classes):
 
 
 def parse_content(html_content, excluded_classes):
-    soup = BeautifulSoup(html_content, "lxml")
+    # Parse the HTML content using lxml
+    parser = etree.HTMLParser()
+    tree = etree.fromstring(html_content, parser)
 
-    # Remove unwanted elements by class name
-    for class_name in excluded_classes:
-        for element in soup.find_all(class_=class_name):
-            element.decompose()
+    # Remove elements based on XPath expressions
+    for xpath_expr in CLEAN_XPATHS:
+        elements = xpath_expr(tree)
+        for element in elements:
+            element.getparent().remove(element)
 
-    # Remove unwanted elements by tag
-    for tag in [
-        "header",
-        "footer",
-        "nav",
-        "aside",
-        "form",
-        "iframe",
-        "script",
-        "style",
-    ]:
-        for element in soup.find_all(tag):
-            element.decompose()
+    # Convert the cleaned tree back to a string
+    cleaned_html = etree.tostring(tree, pretty_print=True, encoding="unicode")
 
-    # Try to find main content
+    # Use BeautifulSoup to find the main content
+    soup = BeautifulSoup(cleaned_html, "lxml")
     main_content = soup.find("main") or soup.find("article")
     if main_content:
         return main_content
@@ -196,7 +194,7 @@ def convert_to_markdown(element):
 
 def sanitize_markdown_content(content):
     # 1. Normalize newlines: replace multiple consecutive newlines with a single one.
-    content = re.sub(r"\n\s*\n", "\n\n", content)
+    content = re.sub(r"\n{3,}", "\n", content)
 
     # 2. Remove images markdown completely
     content = re.sub(r"!\[.*?\]\(.*?\)", "", content)
@@ -234,7 +232,7 @@ async def main():
         logging.error("No URLs found in the configuration.")
         sys.exit(1)
 
-    markdown_content = f"# {domain}\n\n"
+    markdown_content = f"<<<<< {domain} >>>>>\n\n"
 
     # Fetch all pages concurrently
     fetched_contents = await fetch_all_pages(urls, excluded_classes)
@@ -255,8 +253,7 @@ async def main():
         sanitized_content = sanitize_markdown_content(md_content)
 
         # Append to main markdown content
-        markdown_content += f"## {page_title}\n\n"
-        markdown_content += f"[Read the full article]({url})\n\n"
+        markdown_content += f"--- {page_title}: {url} ---\n\n"
         markdown_content += sanitized_content + "\n\n"
 
     # Write to output file
