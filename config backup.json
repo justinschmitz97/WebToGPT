@@ -7,8 +7,13 @@
     "max_concurrency": 20,
     "selector": ""
   },
+  "devtools": {
+    "url": "https://developer.chrome.com/docs/extensions/",
+    "final_include_patterns": "https://developer.chrome.com/docs/extensions/"
+  },
   "mdn": {
-    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML"
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    "final_include_patterns": "/HTML"
   },
   "react": {
     "url": "https://react.dev",

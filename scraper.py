@@ -1,263 +1,236 @@
+# scraper.py
+
 import argparse
 import json
-import logging
 import os
+import sys
+import time
+import logging
+import re
+
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import Tag
-from tqdm import tqdm
-from readabilipy import simple_json_from_html_string
+from markdownify import markdownify as md
+from playwright.sync_api import sync_playwright
 
-# --- Configuration ---
-BASE_URL_PATH = "urls/"
-OUTPUT_DIR = "data/"
-RETRIES = 3  # Number of retries for network requests
-REQUEST_TIMEOUT = 10  # Timeout for network requests in seconds
-LOG_LEVEL = logging.INFO
-# ---------------------
-
-
-class TqdmLoggingHandler(logging.Handler):
-    """
-    Custom logging handler that integrates with tqdm.
-    """
-
-    def __init__(self, level=logging.NOTSET):
-        super().__init__(level)
-
-    def emit(self, record):
-        try:
-            msg = self.format(record)
-            tqdm.write(msg)
-            self.flush()
-        except Exception:
-            self.handleError(record)
-
-
-# Initialize Logger
+# Configure logging
 logging.basicConfig(
-    level=LOG_LEVEL,
+    level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[TqdmLoggingHandler()],
 )
-logger = logging.getLogger(__name__)
 
 
-def load_metadata_from_file(file_path: str) -> dict:
-    """
-    Load metadata and URLs from a JSON file.
-
-    :param file_path: Path to the JSON file.
-    :return: Dictionary containing the metadata and URLs.
-    """
-    try:
-        with open(file_path, "r", encoding="utf-8") as file:
-            data = json.load(file)
-            if isinstance(data, dict) and "urls" in data:
-                return data
-            logger.error("Unexpected JSON structure in %s", file_path)
-            return {}
-    except (json.JSONDecodeError, FileNotFoundError) as e:
-        logger.error("Error reading %s: %s", file_path, str(e))
-        return {}
+def parse_args():
+    parser = argparse.ArgumentParser(description="Webpage to Markdown scraper.")
+    parser.add_argument(
+        "--site_key",
+        required=True,
+        help="The site key for the configuration JSON file (without .json extension).",
+    )
+    return parser.parse_args()
 
 
-def merge_consecutive_p_types(data):
-    """
-    Merge consecutive 'p' types in the content array of the JSON structure.
-    """
-    for page in data.get("pages", []):
-        merged_content = []
-        temp_text = ""
+def load_configuration(site_key):
+    config_path = os.path.join("urls", f"{site_key}.json")
+    if not os.path.exists(config_path):
+        logging.error(f"Configuration file {config_path} does not exist.")
+        sys.exit(1)
 
-        for content in page.get("content", []):
-            if content["type"] == "p":
-                # Accumulate text for consecutive 'p' types
-                temp_text += content["text"] + " "
-            else:
-                # If a non-'p' type is encountered, finalize the accumulated text
-                if temp_text:
-                    merged_content.append({"type": "p", "text": temp_text.strip()})
-                    temp_text = ""
-                merged_content.append(content)
-
-        # Add any remaining accumulated text
-        if temp_text:
-            merged_content.append({"type": "p", "text": temp_text.strip()})
-
-        # Replace the original content with the merged content
-        page["content"] = merged_content
-
-    return data
-
-
-def fetch_and_parse(
-    url: str, excluded_classes: list, custom_main_indicator: str, selector: str
-) -> dict:
-    """Fetch and parse the URL's HTML content."""
-    for attempt in range(RETRIES):
+    with open(config_path, "r", encoding="utf-8") as f:
         try:
-            logger.debug("Fetching URL: %s", url)
-            response = requests.get(url, timeout=REQUEST_TIMEOUT)
-            response.raise_for_status()  # Raise an HTTPError for bad requests
-
-            soup = BeautifulSoup(response.text, "html.parser")
-
-            # Try ReadabiliPy first for clean article extraction
-            readabilipy_result = simple_json_from_html_string(
-                response.text, use_readability=True
-            )
-            if readabilipy_result and readabilipy_result["content"]:
-                logger.debug("ReadabiliPy extracted content for %s", url)
-                title = readabilipy_result["title"] or soup.title.string or "No Title"
-                plain_text = readabilipy_result["plain_text"] or []
-
-                # Return the plain text content extracted by ReadabiliPy
-                structured_content = [
-                    {"type": "p", "text": text} for text in plain_text
-                ]  # Convert paragraphs to JSON format
-                return {
-                    "url": url,
-                    "title": title,
-                    "content": structured_content,
-                }
-
-            # Fall back to the manual extraction logic if ReadabiliPy fails
-            logger.warning(
-                "ReadabiliPy failed to extract content for %s. Falling back to manual extraction.",
-                url,
-            )
-            main_content = extract_main_content(
-                soup, excluded_classes, custom_main_indicator, selector
-            )
-            if main_content:
-                title = soup.title.string if soup.title else "No Title"
-                structured_content = list(extract_structured_content(main_content))
-                page_data = {"url": url, "title": title, "content": structured_content}
-
-                # Apply the merge_consecutive_p_types function here
-                page_data = merge_consecutive_p_types({"pages": [page_data]})["pages"][
-                    0
-                ]
-
-                return page_data
-            logger.warning("No main content found in %s", url)
-            return {}
-        except requests.RequestException as e:
-            logger.warning(
-                "Error fetching %s (attempt %d): %s", url, attempt + 1, str(e)
-            )
-            if attempt + 1 == RETRIES:
-                return {}
+            config = json.load(f)
+        except json.JSONDecodeError as e:
+            logging.error(f"Error parsing JSON configuration: {e}")
+            sys.exit(1)
+    return config
 
 
-def extract_main_content(
-    soup: BeautifulSoup,
-    excluded_classes: list,
-    custom_main_indicator: str,
-    selector: str,
-) -> BeautifulSoup:
-    """Extract main content from the BeautifulSoup object."""
-    if selector:
-        main_content = soup.select_one(selector)
-    elif custom_main_indicator:
-        main_content = soup.select_one(custom_main_indicator)
-    else:
-        main_content = soup.find("main") or soup.find("article") or soup.body
-
-    if main_content:
-        for tag in main_content.find_all(["header", "footer", "aside", "nav"]):
-            tag.decompose()
-        for class_name in excluded_classes:
-            for tag in main_content.find_all(class_=class_name):
-                tag.decompose()
-    return main_content
-
-
-def merge_paragraphs(paragraphs: list) -> dict:
-    return {"type": "p", "text": " ".join(paragraphs)}
-
-
-def extract_structured_content(content: BeautifulSoup):
-    current_paragraph = []
-
-    for element in content.children:
-        if isinstance(element, str) and not element.strip():
-            continue  # Skip empty text nodes
-
-        if isinstance(element, Tag):  # Only process Tag objects
-            if element.name == "p":
-                # Extract text and filter out paragraphs with fewer than 6 words
-                paragraph_text = element.get_text(separator=" ", strip=True)
-                if (
-                    paragraph_text and len(paragraph_text.split()) >= 6
-                ):  # Check word count
-                    current_paragraph.append(paragraph_text)
+def fetch_url(url, max_retries=3, delay=1):
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/70.0.3538.77 Safari/537.36"
+    }
+    retries = 0
+    while retries < max_retries:
+        try:
+            response = requests.get(url, headers=headers, timeout=10)
+            if response.status_code == 200:
+                return response.text
             else:
-                # Merge all accumulated paragraphs into one before processing non-paragraph elements
-                if current_paragraph:
-                    yield merge_paragraphs(current_paragraph)
-                    current_paragraph = []  # Reset the paragraph accumulator list
-
-                # Process specific element types
-                if element.name in ["ul", "ol"]:
-                    list_items = [
-                        li.get_text(separator=" ", strip=True)
-                        for li in element.find_all("li")
-                    ]
-                    # Filter out lists with only one item that has fewer than 6 words
-                    if not (len(list_items) == 1 and len(list_items[0].split()) < 6):
-                        yield {"type": "list", "items": list_items}
-                elif element.name == "pre":
-                    code = element.get_text(separator=" ", strip=True)
-                    yield {"type": "code", "code": code}
-                else:
-                    # Recursively process other elements
-                    yield from extract_structured_content(element)
-
-    # After iterating, merge any remaining paragraphs
-    if current_paragraph:
-        yield merge_paragraphs(current_paragraph)
+                logging.warning(
+                    f"Non-200 status code {response.status_code} for URL: {url}"
+                )
+        except requests.RequestException as e:
+            logging.warning(f"Request error for URL {url}: {e}")
+        retries += 1
+        logging.info(f"Retrying ({retries}/{max_retries})...")
+        time.sleep(delay)
+    logging.error(f"Failed to fetch URL after {max_retries} retries: {url}")
+    return None
 
 
-def main(site_key: str):
-    """Main function to load URLs, process them, and save the extracted content."""
-    file_path = os.path.join(BASE_URL_PATH, f"{site_key}.json")
-    data = load_metadata_from_file(file_path)
-    urls = data.get("urls", [])
-    domain = data.get("domain", "unknown")
-    excluded_classes = data.get("excluded_classes", [])
-    custom_main_indicator = data.get("custom_main_indicator", "")
-    selector = data.get("selector", "")
+def fetch_url_with_playwright(url):
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch()
+            page = browser.new_page()
+            page.goto(url, timeout=10000)  # Timeout after 10 seconds
+            html_content = page.content()
+            browser.close()
+            return html_content
+    except Exception as e:
+        logging.error(f"Playwright failed to fetch URL {url}: {e}")
+        return None
+
+
+def fetch_page_content(url):
+    html_content = fetch_url(url)
+    if html_content is not None:
+        return html_content
+    else:
+        logging.info(f"Attempting to fetch URL with Playwright: {url}")
+        html_content = fetch_url_with_playwright(url)
+    return html_content
+
+
+def parse_content(html_content, excluded_classes):
+    soup = BeautifulSoup(html_content, "lxml")
+
+    # Remove unwanted elements by class name
+    for class_name in excluded_classes:
+        for element in soup.find_all(class_=class_name):
+            element.decompose()
+
+    # Remove unwanted elements by tag
+    for tag in [
+        "header",
+        "footer",
+        "nav",
+        "aside",
+        "form",
+        "iframe",
+        "script",
+        "style",
+    ]:
+        for element in soup.find_all(tag):
+            element.decompose()
+
+    # Try to find main content
+    main_content = soup.find("main") or soup.find("article")
+    if main_content:
+        return main_content
+    else:
+        logging.warning("Main content not found; using body content.")
+        return soup.body or soup
+
+
+def convert_to_markdown(element):
+    # Handle code blocks separately
+    for pre_tag in element.find_all("pre"):
+        code_tag = pre_tag.find("code")
+        if code_tag:
+            # Attempt to get the language from class attributes
+            classes = code_tag.get("class", [])
+            language = ""
+            for cls in classes:
+                if "language-" in cls:
+                    language = cls.split("language-")[1]
+                    break
+            code_content = code_tag.get_text()
+            fenced_code = f"```{language}\n{code_content}\n```"
+            pre_tag.replace_with(fenced_code)
+        else:
+            code_content = pre_tag.get_text()
+            fenced_code = f"```\n{code_content}\n```"
+            pre_tag.replace_with(fenced_code)
+
+    # Now convert the modified HTML to Markdown
+    md_content = md(str(element), heading_style="ATX")
+    return md_content
+
+
+def sanitize_markdown_content(content):
+    # 1. Normalize newlines: replace multiple consecutive newlines with a single one.
+    content = re.sub(r"\n\s*\n", "\n\n", content)
+
+    # 2. Remove images markdown completely
+    content = re.sub(r"!\[.*?\]\(.*?\)", "", content)
+
+    # 3. Convert inline HTML links to Markdown links if they exist (overwrites the above)
+    # Use BeautifulSoup to achieve this if not already done.
+    soup = BeautifulSoup(content, "html.parser")
+    for a in soup.find_all("a", href=True):
+        markdown_link = f"[{a.get_text()}]({a['href']})"
+        content = content.replace(str(a), markdown_link)
+
+    # 4. Clean any remaining HTML residue
+    content = re.sub(r"<[^>]+>", "", content)  # Simple regex to remove HTML tags
+
+    # 5. Decode HTML entities and fix encoded issues
+    content = content.replace("\\=", "=").replace("&gt;", ">").replace("&lt;", "<")
+
+    return content
+
+
+def write_markdown(output_path, content):
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+
+def main():
+    args = parse_args()
+    config = load_configuration(args.site_key)
+    urls = config.get("urls", [])
+    domain = config.get("domain", "Unknown Domain")
+    excluded_classes = config.get("excluded_classes", [])
 
     if not urls:
-        logger.error("No URLs found in %s", file_path)
-        return
+        logging.error("No URLs found in the configuration.")
+        sys.exit(1)
 
-    domain_data = {"name": domain, "url": f"https://{domain}", "pages": []}
+    # Initialize the Markdown content with the domain header
+    markdown_content = f"# {domain}\n\n"
 
-    progress_bar = tqdm(urls, desc=f"Processing {site_key} URLs", unit="url")
-    for url in progress_bar:
-        page_data = fetch_and_parse(
-            url, excluded_classes, custom_main_indicator, selector
+    for url in urls:
+        logging.info(f"Processing URL: {url}")
+        html_content = fetch_page_content(url)
+        if html_content is None:
+            logging.error(f"Skipping URL due to fetch failure: {url}")
+            continue
+
+        # Parse HTML content
+        main_content = parse_content(html_content, excluded_classes)
+
+        # Extract page title
+        soup = BeautifulSoup(html_content, "lxml")
+        page_title = (
+            soup.title.string.strip()
+            if soup.title and soup.title.string
+            else "No Title"
         )
-        if page_data:
-            domain_data["pages"].append(page_data)
 
-    output_file = os.path.join(OUTPUT_DIR, f"{site_key}.json")
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    with open(output_file, "w", encoding="utf-8") as file:
-        json.dump(domain_data, file, ensure_ascii=False, indent=4)
-    logger.info("All data has been written to %s", output_file)
+        # Convert main content to Markdown
+        md_content = convert_to_markdown(main_content)
+
+        # Sanitize the converted Markdown content
+        sanitized_content = sanitize_markdown_content(md_content)
+
+        # Append to the main markdown content
+        markdown_content += f"## {page_title}\n\n"
+        markdown_content += f"[Read the full article]({url})\n\n"
+        markdown_content += sanitized_content + "\n\n"
+
+        # Respect rate limiting
+        time.sleep(1)  # Adjust sleep time as needed
+
+    # Write to output file
+    output_filename = f"{args.site_key}.md"
+    output_path = os.path.join("data", output_filename)
+    write_markdown(output_path, markdown_content)
+    logging.info(f"Markdown file saved to: {output_path}")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="Scrape and parse content from specified URLs."
-    )
-    parser.add_argument(
-        "--site_key", required=True, help="The site key to use from the config."
-    )
-    args = parser.parse_args()
-
-    main(args.site_key)
+    main()

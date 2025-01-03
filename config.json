@@ -7,12 +7,28 @@
     "max_concurrency": 20,
     "selector": ""
   },
+  "devtools": {
+    "url": "https://developer.chrome.com/docs/extensions/reference/",
+    "final_include_patterns": "https://developer.chrome.com/docs/extensions/reference/"
+  },
+  "mdn": {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/",
+    "final_include_patterns": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/",
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/"
+    ],
+    "excluded_patterns": [".txt", "/input/", "/rel/"]
+  },
   "react": {
     "url": "https://react.dev",
     "final_include_patterns": ["reference"]
   },
+  "reactblog": {
+    "url": "https://react.dev/blog",
+    "final_include_patterns": ["blog/2024/", "blog/2023/"]
+  },
   "cva": {
-    "url": "https://cva.style",
+    "url": "https://cva.style/",
     "excluded_patterns": [
       "assets",
       "tutorials",
@@ -29,20 +45,32 @@
     "excluded_patterns": [],
     "final_include_patterns": ["v4"]
   },
-  "devtools": {
-    "url": "https://developer.chrome.com/docs/extensions/",
-    "final_include_patterns": "https://developer.chrome.com/docs/extensions/"
-  },
-  "mdn": {
-    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML",
-    "final_include_patterns": "/HTML"
-  },
   "nextjs": {
     "url": "https://nextjs.org/",
     "final_include_patterns": ["https://nextjs.org/docs/app/"],
     "excluded_patterns": [
       "13",
       "14",
+      "building-your-application",
+      "canary",
+      "conf",
+      "discord",
+      "templates",
+      "learn",
+      "clone",
+      "/pages",
+      "github",
+      "http://"
+    ]
+  },
+  "nextjsblog": {
+    "url": "https://nextjs.org/blog/",
+    "final_include_patterns": [
+      "https://nextjs.org/blog/next-15",
+      "https://nextjs.org/blog/next-14"
+    ],
+    "excluded_patterns": [
+      "13",
       "building-your-application",
       "canary",
       "conf",

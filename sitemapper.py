@@ -1,10 +1,3 @@
-# sitemapper.py
-
-"""
-This script generates a sitemap for a given website based on the configuration provided.
-It includes domain restriction, file extension filtering, and final output filtering.
-"""
-
 import argparse
 import asyncio
 import re
@@ -67,6 +60,11 @@ def main():
     )
     parser.add_argument("--site_key", help="Site key from config.json to use.")
     parser.add_argument("--url", help="Base URL to start crawling from.")
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="Enable strict mode for URL prefix filtering.",
+    )
     args = parser.parse_args()
 
     # Load configuration
@@ -82,7 +80,7 @@ def main():
         site_config = config.get("default", {})
         site_config["url"] = args.url
 
-    global base_url, base_domain, included_regex, excluded_regex, excluded_extensions, max_concurrency, final_include_patterns
+    global base_url, base_domain, included_regex, excluded_regex, excluded_extensions, max_concurrency, final_include_patterns, strict_mode, url_prefix
 
     base_url = site_config.get("url")
     if not base_url:
@@ -103,7 +101,7 @@ def main():
     excluded_extensions = site_config.get(
         "excluded_extensions", DEFAULT_EXCLUDED_EXTENSIONS
     )
-    max_concurrency = site_config.get("max_concurrency", 10)
+    max_concurrency = site_config.get("max_concurrency", 50)
     final_include_patterns = site_config.get("final_include_patterns", [])
 
     included_regex = (
@@ -112,6 +110,10 @@ def main():
     excluded_regex = (
         re.compile("|".join(excluded_patterns)) if excluded_patterns else None
     )
+
+    # Strict mode-related settings
+    strict_mode = args.strict
+    url_prefix = base_url if strict_mode else None
 
     # Start crawling
     urls_to_visit.put_nowait(base_url)
@@ -150,7 +152,7 @@ def main():
 async def crawl():
     semaphore = asyncio.Semaphore(max_concurrency)
     async with ClientSession() as session:
-        retry_options = ExponentialRetry(attempts=3)
+        retry_options = ExponentialRetry(attempts=2)
         retry_client = RetryClient(session, retry_options=retry_options)
         while not urls_to_visit.empty():
             tasks = []
@@ -171,7 +173,7 @@ async def fetch(url, session, semaphore):
     logging.info(f"Fetching: {url}")
     async with semaphore:
         try:
-            async with session.get(url, timeout=30) as response:
+            async with session.get(url, timeout=10) as response:
                 if response.content_type != "text/html":
                     return
                 html = await response.text()
@@ -190,6 +192,9 @@ def extract_links(html, base):
         parsed_href = urlparse(href)
         # Remove fragments and query parameters
         href = parsed_href.scheme + "://" + parsed_href.netloc + parsed_href.path
+        # Strict mode: discard links outside the specified prefix
+        if strict_mode and not href.startswith(url_prefix):
+            continue
         # Domain restriction
         if parsed_href.netloc != base_domain:
             continue
