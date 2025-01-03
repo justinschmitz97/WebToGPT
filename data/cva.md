@@ -1,21 +1,5 @@
 # https://cva.style/
 
-## React with CSS Modules | cva
-
-[Read the full article](https://cva.style/docs/examples/react/css-modules)
-
-DocumentationExamplesReactCSS Modules# React with CSS Modules
-
-[View on GitHub ↗](https://github.com/joe-bell/cva/tree/main/examples/latest/react-with-css-modules/src/components/button/button.tsx)[BEM](/docs/examples/bem "BEM")[Tailwind CSS](/docs/examples/react/tailwind-css "Tailwind CSS")
-
-## React with Tailwind CSS | cva
-
-[Read the full article](https://cva.style/docs/examples/react/tailwind-css)
-
-DocumentationExamplesReactTailwind CSS# React with Tailwind CSS
-
-[View on GitHub ↗](https://github.com/joe-bell/cva/tree/main/examples/latest/react-with-tailwindcss/src/components/button/button.tsx)[CSS Modules](/docs/examples/react/css-modules "CSS Modules")[Svelte](/docs/examples/svelte "Svelte")
-
 ## cva
 
 [Read the full article](https://cva.style/)
@@ -66,36 +50,6 @@ Previously, this project surfaced a custom `cx` utility for flattening classes, 
 [Apache\-2\.0 License (opens in a new tab)](https://github.com/joe-bell/cva/blob/main/LICENSE) © [Joe Bell (opens in a new tab)](https://joebell.studio)
 
 [Installation](/docs/getting-started/installation "Installation")
-
-## Other Use Cases | cva
-
-[Read the full article](https://cva.style/docs/examples/other-use-cases)
-
-DocumentationExamplesOther Use Cases# Other Use Cases
-
-Although primarily designed for handling class names, at its core, `cva` is really just a fancy way of managing a string…
-
-## Dynamic Text Content
-
-\`\`\`
-const greeter = cva("Good morning!", {
- variants: {
- isLoggedIn: {
- true: "Here's a secret only logged in users can see",
- false: "Log in to find out more…",
- },
- },
- defaultVariants: {
- isLoggedIn: "false",
- },
-});
-
-greeter();
-// =\> "Good morning! Log in to find out more…"
-
-greeter({ isLoggedIn: "true" });
-// =\> "Good morning! Here's a secret only logged in users can see"
-\`\`\`[Vue](/docs/examples/vue "Vue")[Tutorials](/docs/tutorials "Tutorials")
 
 ## cva
 
@@ -191,6 +145,52 @@ const className = cx(classes);
 `string`
 
 [Composing Components](/docs/getting-started/composing-components "Composing Components")[11ty](/docs/examples/11ty "11ty")
+
+## Other Use Cases | cva
+
+[Read the full article](https://cva.style/docs/examples/other-use-cases)
+
+DocumentationExamplesOther Use Cases# Other Use Cases
+
+Although primarily designed for handling class names, at its core, `cva` is really just a fancy way of managing a string…
+
+## Dynamic Text Content
+
+\`\`\`
+const greeter = cva("Good morning!", {
+ variants: {
+ isLoggedIn: {
+ true: "Here's a secret only logged in users can see",
+ false: "Log in to find out more…",
+ },
+ },
+ defaultVariants: {
+ isLoggedIn: "false",
+ },
+});
+
+greeter();
+// =\> "Good morning! Log in to find out more…"
+
+greeter({ isLoggedIn: "true" });
+// =\> "Good morning! Here's a secret only logged in users can see"
+\`\`\`[Vue](/docs/examples/vue "Vue")[Tutorials](/docs/tutorials "Tutorials")
+
+## React with CSS Modules | cva
+
+[Read the full article](https://cva.style/docs/examples/react/css-modules)
+
+DocumentationExamplesReactCSS Modules# React with CSS Modules
+
+[View on GitHub ↗](https://github.com/joe-bell/cva/tree/main/examples/latest/react-with-css-modules/src/components/button/button.tsx)[BEM](/docs/examples/bem "BEM")[Tailwind CSS](/docs/examples/react/tailwind-css "Tailwind CSS")
+
+## React with Tailwind CSS | cva
+
+[Read the full article](https://cva.style/docs/examples/react/tailwind-css)
+
+DocumentationExamplesReactTailwind CSS# React with Tailwind CSS
+
+[View on GitHub ↗](https://github.com/joe-bell/cva/tree/main/examples/latest/react-with-tailwindcss/src/components/button/button.tsx)[CSS Modules](/docs/examples/react/css-modules "CSS Modules")[Svelte](/docs/examples/svelte "Svelte")
 
 ## FAQs | cva
 

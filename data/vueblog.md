@@ -1,5 +1,102 @@
 # https://blog.vuejs.org/
 
+## Vue 3.2 Released! | The Vue Point
+
+[Read the full article](https://blog.vuejs.org/posts/vue-3-2)
+
+Authors* NameEvan YouTwitter[@youyuxi](https://twitter.com/@youyuxi)
+We are excited to announce the release of Vue.js 3\.2 "Quintessential Quintuplets"! This release includes many significant new features and performance improvements, and contains no breaking changes.
+
+---
+
+## New SFC Features [​](#new-sfc-features)
+
+Two new features for Single File Components (SFCs, aka `.vue` files) have graduated from experimental status and are now considered stable:
+
+* `` is a compile\-time syntactic sugar that greatly improves the ergonomics when using Composition API inside SFCs.
+* ` v-bind` enables component state\-driven dynamic CSS values in SFC `` tags.
+
+Here is an example component using these two new features together:
+
+vue\`\`\`
+\
+import { ref } from 'vue'
+
+const color = ref('red')
+\
+
+\
+ \
+ Color is: {{ color }}
+ \
+\
+
+\
+button {
+ color: v\-bind(color);
+}
+\
+\`\`\`Try it out in the [SFC Playground](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcblxuY29uc3QgY29sb3IgPSByZWYoJ3JlZCcpXG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8YnV0dG9uIEBjbGljaz1cImNvbG9yID0gY29sb3IgPT09ICdyZWQnID8gJ2dyZWVuJyA6ICdyZWQnXCI+XG4gICAgQ29sb3IgaXM6IHt7IGNvbG9yIH19XG4gIDwvYnV0dG9uPlxuPC90ZW1wbGF0ZT5cblxuPHN0eWxlIHNjb3BlZD5cbmJ1dHRvbiB7XG4gIGNvbG9yOiB2LWJpbmQoY29sb3IpO1xufVxuPC9zdHlsZT4ifQ==), or read their respective documentations:
+
+* [``](https://v3.vuejs.org/api/sfc-script-setup.html)
+* [` v-bind`](https://v3.vuejs.org/api/sfc-style.html#state-driven-dynamic-css)
+
+Building on top of ``, we also have a new RFC for improving the ergonomics of ref usage with compiler\-enabled sugar \- please share your feedback [here](https://github.com/vuejs/rfcs/discussions/369).
+
+## Web Components [​](#web-components)
+
+Vue 3\.2 introduces a new `defineCustomElement` method for easily creating native [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) using Vue component APIs:
+
+js\`\`\`
+import { defineCustomElement } from 'vue'
+
+const MyVueElement = defineCustomElement({
+ // normal Vue component options here
+})
+
+// Register the custom element.
+// After registration, all \`\\` tags
+// on the page will be upgraded.
+customElements.define('my\-vue\-element', MyVueElement)
+\`\`\`This API allows developers to create Vue\-powered UI component libraries that can be used with any framework, or no framework at all. We have also added a new section in our docs on [consuming and creating Web Components in Vue](https://v3.vuejs.org/guide/web-components.html).
+
+## Performance Improvements [​](#performance-improvements)
+
+3\.2 includes some significant performance improvements to Vue's reactivity system, thanks to the great work by [@basvanmeurs](https://github.com/basvanmeurs). Specifically:
+
+* [More efficient ref implementation (\~260% faster read / \~50% faster write)](https://github.com/vuejs/vue-next/pull/3995)
+* [\~40% faster dependency tracking](https://github.com/vuejs/vue-next/pull/4017)
+* [\~17% less memory usage](https://github.com/vuejs/vue-next/pull/4001)
+
+The template compiler also received a number of improvements:
+
+* [\~200% faster creation of plain element VNodes](https://github.com/vuejs/vue-next/pull/3334)
+* More aggressive constant hoisting \[[1](https://github.com/vuejs/vue-next/commit/b7ea7c148552874e8bce399eec9fbe565efa2f4d)] \[[2](https://github.com/vuejs/vue-next/commit/02339b67d8c6fab6ee701a7c4f2773139ed007f5)]
+
+Finally, there is a new [`v-memo` directive](https://v3.vuejs.org/api/directives.html#v-memo) that provides the ability to memoize part of the template tree. A `v-memo` hit allows Vue to skip not only the Virtual DOM diffing, but the creation of new VNodes altogether. Although rarely needed, it provides an escape hatch to squeeze out maximum performance in certain scenarios, for example large `v-for` lists.
+
+The usage of `v-memo`, which is a one\-line addition, places Vue among the fastest mainstream frameworks in [js\-framework\-benchmark](https://github.com/krausest/js-framework-benchmark):
+
+
+
+## Server\-side Rendering [​](#server-side-rendering)
+
+The `@vue/server-renderer` package in 3\.2 now ships an ES module build which is also decoupled from Node.js built\-ins. This makes it possible to bundle and leverage `@vue/server-renderer` for use inside non\-Node.js runtimes such as [CloudFlare Workers](https://developers.cloudflare.com/workers/) or Service Workers.
+
+We also improved the streaming render APIs, with new methods for rendering to the [Web Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API). Check out the [documentation of `@vue/server-renderer`](https://github.com/vuejs/vue-next/tree/master/packages/server-renderer#streaming-api) for more details.
+
+## Effect Scope API [​](#effect-scope-api)
+
+3\.2 introduces a new [Effect Scope API](https://v3.vuejs.org/api/effect-scope.html) for directly controlling the disposal timing of reactive effects (computed and watchers). It makes it easier to leverage Vue's reactivity API out of a component context, and also unlocks some advanced use cases inside components.
+
+This is low\-level API largely intended for library authors, so it's recommended to read the feature's [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md) for the motivation and use cases of this feature.
+
+---
+
+For a detailed list of all changes in 3\.2, please refer to the [full changelog](https://github.com/vuejs/vue-next/blob/master/CHANGELOG.md).
+
+
+
 ## Announcing Vue 3.3 | The Vue Point
 
 [Read the full article](https://blog.vuejs.org/posts/vue-3-3)
@@ -219,94 +316,6 @@ This release builds upon many maintenance infrastructure improvements that allow
 
 As planned, we aim to start making smaller and more frequent feature releases in 2023\. Stay tuned!
 
-
-
-## Announcing Vue 3.0 "One Piece" | The Vue Point
-
-[Read the full article](https://blog.vuejs.org/posts/vue-3-one-piece)
-
-Authors* NameEvan YouTwitter[@youyuxi](https://twitter.com/@youyuxi)
-
-
-Today we are proud to announce the official release of Vue.js 3\.0 "One Piece". This new major version of the framework provides improved performance, smaller bundle sizes, better TypeScript integration, new APIs for tackling large scale use cases, and a solid foundation for long\-term future iterations of the framework.
-
----
-
-The 3\.0 release represents over 2 years of development efforts, featuring [30\+ RFCs](https://github.com/vuejs/rfcs/tree/master/active-rfcs), 2,600\+ commits, [628 pull requests](https://github.com/vuejs/vue-next/pulls?q=is%3Apr+is%3Amerged+-author%3Aapp%2Fdependabot-preview+) from [99 contributors](https://github.com/vuejs/vue-next/graphs/contributors), plus tremendous amount of development and documentation work outside of the core repo. We would like to express our deepest gratitude towards our team members for taking on this challenge, our contributors for the pull requests, our [sponsors and backers](https://github.com/vuejs/vue/blob/dev/BACKERS.md) for the financial support, and the wider community for participating in our design discussions and providing feedback for the pre\-release versions. Vue is an independent project created for the community and sustained by the community, and Vue 3\.0 wouldn't have been possible without your consistent support.
-
-## Taking the "Progressive Framework" Concept Further [​](#taking-the-progressive-framework-concept-further)
-
-Vue had a simple mission from its humble beginning: to be an approachable framework that anyone can quickly learn. As our user base grew, the framework also grew in scope to adapt to the increasing demands. Over time, it evolved into what we call a "Progressive Framework": a framework that can be learned and adopted incrementally, while providing continued support as the user tackles more and more demanding scenarios.
-
-Today, with over 1\.3 million users worldwide\*, we are seeing Vue being used in a wildly diverse range of scenarios, from sprinkling interactivity on traditional server\-rendered pages, to full\-blown single page applications with hundreds of components. Vue 3 takes this flexibility even further.
-
-### Layered internal modules [​](#layered-internal-modules)
-
-Vue 3\.0 core can still be used via a simple `` tag, but its internals has been re\-written from the ground up into [a collection of decoupled modules](https://github.com/vuejs/vue-next/tree/master/packages). The new architecture provides better maintainability, and allows end users to shave off up to half of the runtime size via tree\-shaking.
-
-These modules also exposes lower\-level APIs that unlocks many advanced use cases:
-
-* The compiler supports custom AST transforms for build\-time customizations (e.g. [build\-time i18n](https://github.com/intlify/vue-i18n-extensions))
-* The core runtime provides first\-class API for creating custom renderers targeting different render targets (e.g. [native mobile](https://github.com/rigor789/nativescript-vue-next), [WebGL](https://github.com/Planning-nl/vugel) or [terminals](https://github.com/ycmjason/vuminal)). The default DOM renderer is built using the same API.
-* The [`@vue/reactivity` module](https://github.com/vuejs/vue-next/tree/master/packages/reactivity) exports functions that provide direct access to Vue's reactivity system, and can be used as a standalone package. It can be used to pair with other templating solutions (e.g. [lit\-html](https://github.com/yyx990803/vue-lit)) or even in non\-UI scenarios.
-
-### New APIs for tackling scale [​](#new-apis-for-tackling-scale)
-
-The 2\.x Object\-based API is largely intact in Vue 3\. However, 3\.0 also introduces the [Composition API](https://v3.vuejs.org/guide/composition-api-introduction.html) \- a new set of APIs aimed at addressing the pain points of Vue usage in large scale applications. The Composition API builds on top of the reactivity API and enables logic composition and reuse similar to React hooks, more flexible code organization patterns, and more reliable type inference than the 2\.x Object\-based API.
-
-Composition API can also be used with Vue 2\.x via the [@vue/composition\-api](https://github.com/vuejs/composition-api) plugin, and there are already Composition API utility libraries that work for both Vue 2 and 3 (e.g. [vueuse](https://github.com/antfu/vueuse), [vue\-composable](https://github.com/pikax/vue-composable)).
-
-### Performance Improvements [​](#performance-improvements)
-
-Vue 3 has demonstrated [significant performance improvements](https://docs.google.com/spreadsheets/d/1VJFx-kQ4KjJmnpDXIEaig-cVAAJtpIGLZNbv3Lr4CR0/edit?usp=sharing) over Vue 2 in terms of bundle size (up to 41% lighter with tree\-shaking), initial render (up to 55% faster), updates (up to 133% faster), and memory usage (up to 54% less).
-
-In Vue 3, we have taken the approach of "compiler\-informed Virtual DOM": the template compiler performs aggressive optimizations and generates render function code that hoists static content, leaves runtime hints for binding types, and most importantly, flattens the dynamic nodes inside a template to reduce the cost of runtime traversal. The user therefore gets the best of both worlds: compiler\-optimized performance from templates, or direct control via manual render functions when the use case demands.
-
-### Improved TypeScript integration [​](#improved-typescript-integration)
-
-Vue 3's codebase is written in TypeScript, with automatically generated, tested, and bundled type definitions so they are always up\-to\-date. Composition API works great with type inference. Vetur, our official VSCode extension, now supports template expression and props type checking leveraging Vue 3's improved internal typing. Oh, and Vue 3's typing [fully supports TSX](https://github.com/vuejs/vue-next/blob/master/test-dts/defineComponent.test-d.tsx) if that's your preference.
-
-### Experimental Features [​](#experimental-features)
-
-We have proposed [two new features](https://github.com/vuejs/rfcs/pull/182) for Singe\-File Components (SFC, aka `.vue` files):
-
-* [``: syntactic sugar for using Composition API inside SFCs](https://github.com/vuejs/rfcs/blob/sfc-improvements/active-rfcs/0000-sfc-script-setup.md)
-* [``: state\-driven CSS variables inside SFCs](https://github.com/vuejs/rfcs/blob/sfc-improvements/active-rfcs/0000-sfc-style-variables.md)
-
-These features are already implemented and available in Vue 3\.0, but are provided only for the purpose of gathering feedback. They will remain experimental until the RFCs are merged.
-
-We have also implemented a currently undocumented `` component, which allows waiting on nested async dependencies (async components or component with `async setup()`) on initial render or branch switch. We are testing and iterating on this feature with the Nuxt.js team ([Nuxt 3 is on the way](https://nuxtjs.slides.com/atinux/state-of-nuxt-2020)) and will likely solidify it in 3\.1\.
-
-## Phased Release Process [​](#phased-release-process)
-
-The release of Vue 3\.0 marks the general readiness of the framework. While some of the frameworks sub projects may still need further work to reach stable status (specifically router and Vuex integration in the devtools), we believe it's suitable to start new, green\-field projects with Vue 3 today. We also encourage library authors to start upgrading your projects to support Vue 3\.
-
-Check out the [Vue 3 Libraries Guide](https://v3-migration.vuejs.org/recommendations.html) for details on all framework sub projects.
-
-### Migration and IE11 Support [​](#migration-and-ie11-support)
-
-We have pushed back the migration build (v3 build with v2 compatible behavior \+ migration warnings) and the IE11 build due to time constraints, and are aiming to focus on them in Q4 2020\. Therefore, users planning to migrate an existing v2 app or require IE11 support should be aware of these limitations at this time.
-
-### Next Steps [​](#next-steps)
-
-For the near term after release, we will focus on:
-
-* Migration build
-* IE11 support
-* Router and Vuex integration in new devtools
-* Further improvements to template type inference in Vetur
-
-For the time being, the documentation websites, GitHub branches, and npm dist tags for Vue 3 and v3\-targeting projects will remain under `next`\-denoted status. This means `npm install vue` will still install Vue 2\.x and `npm install vue@next` will install Vue 3\. **We are planning to switch all doc links, branches and dist tags to default to 3\.0 in early 2021\.**
-
-At the same time, we have started planning for 2\.7, which will be the last planned minor release of the 2\.x release line. 2\.7 will be backporting compatible improvements from v3, and emit warnings on usage of APIs that are removed/changed in v3 to help with potential migration. We are planning to work on 2\.7 in Q1 2021, which will directly become LTS upon release with an 18 months maintenance lifespan.
-
-## Trying It Out [​](#trying-it-out)
-
-To learn more about Vue 3\.0, check out our [new documentation website](https://v3.vuejs.org/). If you are an existing Vue 2\.x user, go directly to the [Migration Guide](https://v3.vuejs.org/guide/migration/introduction.html).
-
----
-
-* \*based on [Vue Devtools Chrome extension](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) weekly active users as reported by Google.
 
 
 ## Announcing Vue 3.4 | The Vue Point
@@ -619,7 +628,7 @@ For a comprehensive list of changes and features in 3\.5, check out of the [the 
 
 ## Vue 3 as the New Default | The Vue Point
 
-[Read the full article](https://blog.vuejs.org/posts/vue-3-as-the-new-default.html)
+[Read the full article](https://blog.vuejs.org/posts/vue-3-as-the-new-default)
 
 Authors* NameEvan YouTwitter[@youyuxi](https://twitter.com/@youyuxi)
 TL;DR: Vue 3 is now the new default version as of **Monday, February 7, 2022**!
@@ -753,7 +762,7 @@ diff\`\`\`
 
 ## Vue 3 as the New Default | The Vue Point
 
-[Read the full article](https://blog.vuejs.org/posts/vue-3-as-the-new-default)
+[Read the full article](https://blog.vuejs.org/posts/vue-3-as-the-new-default.html)
 
 Authors* NameEvan YouTwitter[@youyuxi](https://twitter.com/@youyuxi)
 TL;DR: Vue 3 is now the new default version as of **Monday, February 7, 2022**!
@@ -885,100 +894,91 @@ diff\`\`\`
 }
 \`\`\`
 
-## Vue 3.2 Released! | The Vue Point
+## Announcing Vue 3.0 "One Piece" | The Vue Point
 
-[Read the full article](https://blog.vuejs.org/posts/vue-3-2)
+[Read the full article](https://blog.vuejs.org/posts/vue-3-one-piece)
 
 Authors* NameEvan YouTwitter[@youyuxi](https://twitter.com/@youyuxi)
-We are excited to announce the release of Vue.js 3\.2 "Quintessential Quintuplets"! This release includes many significant new features and performance improvements, and contains no breaking changes.
+
+
+Today we are proud to announce the official release of Vue.js 3\.0 "One Piece". This new major version of the framework provides improved performance, smaller bundle sizes, better TypeScript integration, new APIs for tackling large scale use cases, and a solid foundation for long\-term future iterations of the framework.
 
 ---
 
-## New SFC Features [​](#new-sfc-features)
+The 3\.0 release represents over 2 years of development efforts, featuring [30\+ RFCs](https://github.com/vuejs/rfcs/tree/master/active-rfcs), 2,600\+ commits, [628 pull requests](https://github.com/vuejs/vue-next/pulls?q=is%3Apr+is%3Amerged+-author%3Aapp%2Fdependabot-preview+) from [99 contributors](https://github.com/vuejs/vue-next/graphs/contributors), plus tremendous amount of development and documentation work outside of the core repo. We would like to express our deepest gratitude towards our team members for taking on this challenge, our contributors for the pull requests, our [sponsors and backers](https://github.com/vuejs/vue/blob/dev/BACKERS.md) for the financial support, and the wider community for participating in our design discussions and providing feedback for the pre\-release versions. Vue is an independent project created for the community and sustained by the community, and Vue 3\.0 wouldn't have been possible without your consistent support.
 
-Two new features for Single File Components (SFCs, aka `.vue` files) have graduated from experimental status and are now considered stable:
+## Taking the "Progressive Framework" Concept Further [​](#taking-the-progressive-framework-concept-further)
 
-* `` is a compile\-time syntactic sugar that greatly improves the ergonomics when using Composition API inside SFCs.
-* ` v-bind` enables component state\-driven dynamic CSS values in SFC `` tags.
+Vue had a simple mission from its humble beginning: to be an approachable framework that anyone can quickly learn. As our user base grew, the framework also grew in scope to adapt to the increasing demands. Over time, it evolved into what we call a "Progressive Framework": a framework that can be learned and adopted incrementally, while providing continued support as the user tackles more and more demanding scenarios.
 
-Here is an example component using these two new features together:
+Today, with over 1\.3 million users worldwide\*, we are seeing Vue being used in a wildly diverse range of scenarios, from sprinkling interactivity on traditional server\-rendered pages, to full\-blown single page applications with hundreds of components. Vue 3 takes this flexibility even further.
 
-vue\`\`\`
-\
-import { ref } from 'vue'
+### Layered internal modules [​](#layered-internal-modules)
 
-const color = ref('red')
-\
+Vue 3\.0 core can still be used via a simple `` tag, but its internals has been re\-written from the ground up into [a collection of decoupled modules](https://github.com/vuejs/vue-next/tree/master/packages). The new architecture provides better maintainability, and allows end users to shave off up to half of the runtime size via tree\-shaking.
 
-\
- \
- Color is: {{ color }}
- \
-\
+These modules also exposes lower\-level APIs that unlocks many advanced use cases:
 
-\
-button {
- color: v\-bind(color);
-}
-\
-\`\`\`Try it out in the [SFC Playground](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcblxuY29uc3QgY29sb3IgPSByZWYoJ3JlZCcpXG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8YnV0dG9uIEBjbGljaz1cImNvbG9yID0gY29sb3IgPT09ICdyZWQnID8gJ2dyZWVuJyA6ICdyZWQnXCI+XG4gICAgQ29sb3IgaXM6IHt7IGNvbG9yIH19XG4gIDwvYnV0dG9uPlxuPC90ZW1wbGF0ZT5cblxuPHN0eWxlIHNjb3BlZD5cbmJ1dHRvbiB7XG4gIGNvbG9yOiB2LWJpbmQoY29sb3IpO1xufVxuPC9zdHlsZT4ifQ==), or read their respective documentations:
+* The compiler supports custom AST transforms for build\-time customizations (e.g. [build\-time i18n](https://github.com/intlify/vue-i18n-extensions))
+* The core runtime provides first\-class API for creating custom renderers targeting different render targets (e.g. [native mobile](https://github.com/rigor789/nativescript-vue-next), [WebGL](https://github.com/Planning-nl/vugel) or [terminals](https://github.com/ycmjason/vuminal)). The default DOM renderer is built using the same API.
+* The [`@vue/reactivity` module](https://github.com/vuejs/vue-next/tree/master/packages/reactivity) exports functions that provide direct access to Vue's reactivity system, and can be used as a standalone package. It can be used to pair with other templating solutions (e.g. [lit\-html](https://github.com/yyx990803/vue-lit)) or even in non\-UI scenarios.
 
-* [``](https://v3.vuejs.org/api/sfc-script-setup.html)
-* [` v-bind`](https://v3.vuejs.org/api/sfc-style.html#state-driven-dynamic-css)
+### New APIs for tackling scale [​](#new-apis-for-tackling-scale)
 
-Building on top of ``, we also have a new RFC for improving the ergonomics of ref usage with compiler\-enabled sugar \- please share your feedback [here](https://github.com/vuejs/rfcs/discussions/369).
+The 2\.x Object\-based API is largely intact in Vue 3\. However, 3\.0 also introduces the [Composition API](https://v3.vuejs.org/guide/composition-api-introduction.html) \- a new set of APIs aimed at addressing the pain points of Vue usage in large scale applications. The Composition API builds on top of the reactivity API and enables logic composition and reuse similar to React hooks, more flexible code organization patterns, and more reliable type inference than the 2\.x Object\-based API.
 
-## Web Components [​](#web-components)
+Composition API can also be used with Vue 2\.x via the [@vue/composition\-api](https://github.com/vuejs/composition-api) plugin, and there are already Composition API utility libraries that work for both Vue 2 and 3 (e.g. [vueuse](https://github.com/antfu/vueuse), [vue\-composable](https://github.com/pikax/vue-composable)).
 
-Vue 3\.2 introduces a new `defineCustomElement` method for easily creating native [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) using Vue component APIs:
+### Performance Improvements [​](#performance-improvements)
 
-js\`\`\`
-import { defineCustomElement } from 'vue'
+Vue 3 has demonstrated [significant performance improvements](https://docs.google.com/spreadsheets/d/1VJFx-kQ4KjJmnpDXIEaig-cVAAJtpIGLZNbv3Lr4CR0/edit?usp=sharing) over Vue 2 in terms of bundle size (up to 41% lighter with tree\-shaking), initial render (up to 55% faster), updates (up to 133% faster), and memory usage (up to 54% less).
 
-const MyVueElement = defineCustomElement({
- // normal Vue component options here
-})
+In Vue 3, we have taken the approach of "compiler\-informed Virtual DOM": the template compiler performs aggressive optimizations and generates render function code that hoists static content, leaves runtime hints for binding types, and most importantly, flattens the dynamic nodes inside a template to reduce the cost of runtime traversal. The user therefore gets the best of both worlds: compiler\-optimized performance from templates, or direct control via manual render functions when the use case demands.
 
-// Register the custom element.
-// After registration, all \`\\` tags
-// on the page will be upgraded.
-customElements.define('my\-vue\-element', MyVueElement)
-\`\`\`This API allows developers to create Vue\-powered UI component libraries that can be used with any framework, or no framework at all. We have also added a new section in our docs on [consuming and creating Web Components in Vue](https://v3.vuejs.org/guide/web-components.html).
+### Improved TypeScript integration [​](#improved-typescript-integration)
 
-## Performance Improvements [​](#performance-improvements)
+Vue 3's codebase is written in TypeScript, with automatically generated, tested, and bundled type definitions so they are always up\-to\-date. Composition API works great with type inference. Vetur, our official VSCode extension, now supports template expression and props type checking leveraging Vue 3's improved internal typing. Oh, and Vue 3's typing [fully supports TSX](https://github.com/vuejs/vue-next/blob/master/test-dts/defineComponent.test-d.tsx) if that's your preference.
 
-3\.2 includes some significant performance improvements to Vue's reactivity system, thanks to the great work by [@basvanmeurs](https://github.com/basvanmeurs). Specifically:
+### Experimental Features [​](#experimental-features)
 
-* [More efficient ref implementation (\~260% faster read / \~50% faster write)](https://github.com/vuejs/vue-next/pull/3995)
-* [\~40% faster dependency tracking](https://github.com/vuejs/vue-next/pull/4017)
-* [\~17% less memory usage](https://github.com/vuejs/vue-next/pull/4001)
+We have proposed [two new features](https://github.com/vuejs/rfcs/pull/182) for Singe\-File Components (SFC, aka `.vue` files):
 
-The template compiler also received a number of improvements:
+* [``: syntactic sugar for using Composition API inside SFCs](https://github.com/vuejs/rfcs/blob/sfc-improvements/active-rfcs/0000-sfc-script-setup.md)
+* [``: state\-driven CSS variables inside SFCs](https://github.com/vuejs/rfcs/blob/sfc-improvements/active-rfcs/0000-sfc-style-variables.md)
 
-* [\~200% faster creation of plain element VNodes](https://github.com/vuejs/vue-next/pull/3334)
-* More aggressive constant hoisting \[[1](https://github.com/vuejs/vue-next/commit/b7ea7c148552874e8bce399eec9fbe565efa2f4d)] \[[2](https://github.com/vuejs/vue-next/commit/02339b67d8c6fab6ee701a7c4f2773139ed007f5)]
+These features are already implemented and available in Vue 3\.0, but are provided only for the purpose of gathering feedback. They will remain experimental until the RFCs are merged.
 
-Finally, there is a new [`v-memo` directive](https://v3.vuejs.org/api/directives.html#v-memo) that provides the ability to memoize part of the template tree. A `v-memo` hit allows Vue to skip not only the Virtual DOM diffing, but the creation of new VNodes altogether. Although rarely needed, it provides an escape hatch to squeeze out maximum performance in certain scenarios, for example large `v-for` lists.
+We have also implemented a currently undocumented `` component, which allows waiting on nested async dependencies (async components or component with `async setup()`) on initial render or branch switch. We are testing and iterating on this feature with the Nuxt.js team ([Nuxt 3 is on the way](https://nuxtjs.slides.com/atinux/state-of-nuxt-2020)) and will likely solidify it in 3\.1\.
 
-The usage of `v-memo`, which is a one\-line addition, places Vue among the fastest mainstream frameworks in [js\-framework\-benchmark](https://github.com/krausest/js-framework-benchmark):
+## Phased Release Process [​](#phased-release-process)
 
+The release of Vue 3\.0 marks the general readiness of the framework. While some of the frameworks sub projects may still need further work to reach stable status (specifically router and Vuex integration in the devtools), we believe it's suitable to start new, green\-field projects with Vue 3 today. We also encourage library authors to start upgrading your projects to support Vue 3\.
 
+Check out the [Vue 3 Libraries Guide](https://v3-migration.vuejs.org/recommendations.html) for details on all framework sub projects.
 
-## Server\-side Rendering [​](#server-side-rendering)
+### Migration and IE11 Support [​](#migration-and-ie11-support)
 
-The `@vue/server-renderer` package in 3\.2 now ships an ES module build which is also decoupled from Node.js built\-ins. This makes it possible to bundle and leverage `@vue/server-renderer` for use inside non\-Node.js runtimes such as [CloudFlare Workers](https://developers.cloudflare.com/workers/) or Service Workers.
+We have pushed back the migration build (v3 build with v2 compatible behavior \+ migration warnings) and the IE11 build due to time constraints, and are aiming to focus on them in Q4 2020\. Therefore, users planning to migrate an existing v2 app or require IE11 support should be aware of these limitations at this time.
 
-We also improved the streaming render APIs, with new methods for rendering to the [Web Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API). Check out the [documentation of `@vue/server-renderer`](https://github.com/vuejs/vue-next/tree/master/packages/server-renderer#streaming-api) for more details.
+### Next Steps [​](#next-steps)
 
-## Effect Scope API [​](#effect-scope-api)
+For the near term after release, we will focus on:
 
-3\.2 introduces a new [Effect Scope API](https://v3.vuejs.org/api/effect-scope.html) for directly controlling the disposal timing of reactive effects (computed and watchers). It makes it easier to leverage Vue's reactivity API out of a component context, and also unlocks some advanced use cases inside components.
+* Migration build
+* IE11 support
+* Router and Vuex integration in new devtools
+* Further improvements to template type inference in Vetur
 
-This is low\-level API largely intended for library authors, so it's recommended to read the feature's [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md) for the motivation and use cases of this feature.
+For the time being, the documentation websites, GitHub branches, and npm dist tags for Vue 3 and v3\-targeting projects will remain under `next`\-denoted status. This means `npm install vue` will still install Vue 2\.x and `npm install vue@next` will install Vue 3\. **We are planning to switch all doc links, branches and dist tags to default to 3\.0 in early 2021\.**
+
+At the same time, we have started planning for 2\.7, which will be the last planned minor release of the 2\.x release line. 2\.7 will be backporting compatible improvements from v3, and emit warnings on usage of APIs that are removed/changed in v3 to help with potential migration. We are planning to work on 2\.7 in Q1 2021, which will directly become LTS upon release with an 18 months maintenance lifespan.
+
+## Trying It Out [​](#trying-it-out)
+
+To learn more about Vue 3\.0, check out our [new documentation website](https://v3.vuejs.org/). If you are an existing Vue 2\.x user, go directly to the [Migration Guide](https://v3.vuejs.org/guide/migration/introduction.html).
 
 ---
 
-For a detailed list of all changes in 3\.2, please refer to the [full changelog](https://github.com/vuejs/vue-next/blob/master/CHANGELOG.md).
-
+* \*based on [Vue Devtools Chrome extension](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) weekly active users as reported by Google.
 
 

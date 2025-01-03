@@ -1,30 +1,5 @@
 # https://tailwindcss.com/
 
-## Tailwind CSS v4.0 Beta 1 - Tailwind CSS
-
-[Read the full article](https://tailwindcss.com/blog/tailwindcss-v4-beta)
-
-# Tailwind CSS v4\.0 Beta 1
-
-DateThursday, November 21, 2024* Adam Wathan[@adamwathan](https://twitter.com/adamwathan)
-
-About eight months ago we [open\-sourced our progress](https://tailwindcss.com/blog/tailwindcss-v4-alpha) on Tailwind CSS v4\.0\. Hundreds of hours of fixing bugs, soul\-crushing backward compatibility work, and troubleshooting Windows CI failures later, I’m excited to finally tag the first public beta release.
-
-As I talked about when we published the first alpha, Tailwind CSS v4\.0 is an all\-new engine built for performance, and designed for the modern web.
-
-* **Built for performance** — full builds in the new engine are up to 5x faster, and incremental builds are over 100x faster — and measured in microseconds.
-* **Unified toolchain** — built\-in import handling, vendor prefixing, and syntax transforms, with no additional tooling required.
-* **CSS\-first configuration** — a reimagined developer experience where you customize and extend the framework directly in CSS instead of a JavaScript configuration file.
-* **Designed for the modern web** — built on native cascade layers, wide\-gamut colors, and including first\-class support for modern CSS features like container queries, `@starting-style`, popovers, and more.
-
-There’s so much more to say, but everything you need to get started is in the new beta documentation we published today:
-
-[Get started with Tailwind CSS v4\.0 Beta 1 →](/docs/v4-beta)
-
-Start building and help us bullet\-proof this thing for the stable release early in the new year.
-
-
-
 ## Open-sourcing our progress on Tailwind CSS v4.0 - Tailwind CSS
 
 [Read the full article](https://tailwindcss.com/blog/tailwindcss-v4-alpha)
@@ -322,6 +297,31 @@ Finally, compile your CSS using the CLI tool:
 \`\`\`bash
 $ npx @tailwindcss/cli@next \-i app.css \-o dist/app.css
 \`\`\`
+
+## Tailwind CSS v4.0 Beta 1 - Tailwind CSS
+
+[Read the full article](https://tailwindcss.com/blog/tailwindcss-v4-beta)
+
+# Tailwind CSS v4\.0 Beta 1
+
+DateThursday, November 21, 2024* Adam Wathan[@adamwathan](https://twitter.com/adamwathan)
+
+About eight months ago we [open\-sourced our progress](https://tailwindcss.com/blog/tailwindcss-v4-alpha) on Tailwind CSS v4\.0\. Hundreds of hours of fixing bugs, soul\-crushing backward compatibility work, and troubleshooting Windows CI failures later, I’m excited to finally tag the first public beta release.
+
+As I talked about when we published the first alpha, Tailwind CSS v4\.0 is an all\-new engine built for performance, and designed for the modern web.
+
+* **Built for performance** — full builds in the new engine are up to 5x faster, and incremental builds are over 100x faster — and measured in microseconds.
+* **Unified toolchain** — built\-in import handling, vendor prefixing, and syntax transforms, with no additional tooling required.
+* **CSS\-first configuration** — a reimagined developer experience where you customize and extend the framework directly in CSS instead of a JavaScript configuration file.
+* **Designed for the modern web** — built on native cascade layers, wide\-gamut colors, and including first\-class support for modern CSS features like container queries, `@starting-style`, popovers, and more.
+
+There’s so much more to say, but everything you need to get started is in the new beta documentation we published today:
+
+[Get started with Tailwind CSS v4\.0 Beta 1 →](/docs/v4-beta)
+
+Start building and help us bullet\-proof this thing for the stable release early in the new year.
+
+
 
 ## Tailwind CSS v4.0 Beta - Tailwind CSS
 

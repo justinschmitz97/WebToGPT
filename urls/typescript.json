@@ -1,17 +1,17 @@
 {
-    "timestamp": "2025-01-03T12:04:49Z",
+    "timestamp": "2025-01-03T12:33:46Z",
     "site_key": "typescript",
     "domain": "https://www.typescriptlang.org/",
     "total_urls": 8,
     "failed_urls": {},
     "urls": [
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-3.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-2.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-1.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-2.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-3.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
     ]
 }

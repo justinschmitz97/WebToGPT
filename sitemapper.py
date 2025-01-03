@@ -137,6 +137,9 @@ def main():
     else:
         filtered_urls = list(visited_urls)
 
+    # Sort the URLs alphabetically
+    filtered_urls = sorted(filtered_urls)
+
     # Save results
     output = {
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
