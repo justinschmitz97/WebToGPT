@@ -1,4 +1,7 @@
-# scraper.py
+"""
+scraper.py
+This script scrapes a list of URLs based on the json file provided.
+"""
 
 import argparse
 import json

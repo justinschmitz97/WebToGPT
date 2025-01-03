@@ -2,10 +2,10 @@
   "default": {
     "url": "",
     "excluded_patterns": [],
+    "final_included_patterns": [],
     "included_patterns": [],
     "excluded_classes": [],
-    "max_concurrency": 20,
-    "selector": ""
+    "strict": false
   },
   "devtools": {
     "url": "https://developer.chrome.com/docs/extensions/reference/",
@@ -96,5 +96,18 @@
   "emblacarousel": {
     "url": "https://www.embla-carousel.com/",
     "final_include_patterns": ["plugins", "api"]
+  },
+  "vue": {
+    "url": "https://vuejs.org/guide/",
+    "final_include_patterns": ["style-guide", "guide", "api"]
+  },
+  "vueblog": {
+    "url": "https://blog.vuejs.org/",
+    "final_include_patterns": ["https://blog.vuejs.org/posts/vue-3-"]
+  },
+  "python": {
+    "url": "https://docs.python.org/3/",
+    "final_include_patterns": ["https://docs.python.org/3/whatsnew/3"],
+    "strict": true
   }
 }

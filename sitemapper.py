@@ -1,4 +1,5 @@
 """
+sitemapper.py
 This script generates a sitemap for a given website based on the configuration provided.
 It includes domain restriction, file extension filtering, and final output filtering.
 """
