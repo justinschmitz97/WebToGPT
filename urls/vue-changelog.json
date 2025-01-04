@@ -1,0 +1,16 @@
+{
+    "timestamp": "2025-01-04T21:06:41Z",
+    "site_key": "vue-changelog",
+    "domain": "https://blog.vuejs.org/",
+    "total_urls": 7,
+    "failed_urls": {},
+    "urls": [
+        "https://blog.vuejs.org/posts/vue-3-2",
+        "https://blog.vuejs.org/posts/vue-3-3",
+        "https://blog.vuejs.org/posts/vue-3-4",
+        "https://blog.vuejs.org/posts/vue-3-5",
+        "https://blog.vuejs.org/posts/vue-3-as-the-new-default",
+        "https://blog.vuejs.org/posts/vue-3-as-the-new-default.html",
+        "https://blog.vuejs.org/posts/vue-3-one-piece"
+    ]
+}

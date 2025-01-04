@@ -25,7 +25,7 @@
     "url": "https://react.dev",
     "final_include_patterns": ["reference"]
   },
-  "reactblog": {
+  "react-changelog": {
     "url": "https://react.dev/blog",
     "final_include_patterns": ["blog/2024/", "blog/2023/"],
     "excluded_patterns": ["/02/", "/03/"]
@@ -43,7 +43,7 @@
       "getting-started"
     ]
   },
-  "tailwind": {
+  "tailwind-changelog": {
     "url": "https://tailwindcss.com/",
     "excluded_patterns": [],
     "final_include_patterns": ["v4"]
@@ -66,7 +66,7 @@
       "http://"
     ]
   },
-  "nextjsblog": {
+  "nextjs-changelog": {
     "url": "https://nextjs.org/blog/",
     "final_include_patterns": [
       "https://nextjs.org/blog/next-15",
@@ -88,11 +88,7 @@
   },
   "typescript": {
     "url": "https://www.typescriptlang.org/",
-    "final_include_patterns": [
-      "typescript-5",
-      "typescript-4.9",
-      "typescript-4.8"
-    ]
+    "final_include_patterns": ["typescript-5"]
   },
   "emblacarousel": {
     "url": "https://www.embla-carousel.com/",
@@ -102,13 +98,18 @@
     "url": "https://vuejs.org/guide/",
     "final_include_patterns": ["style-guide", "guide", "api"]
   },
-  "vueblog": {
+  "vue-changelog": {
     "url": "https://blog.vuejs.org/",
     "final_include_patterns": ["https://blog.vuejs.org/posts/vue-3-"]
   },
   "python": {
     "url": "https://docs.python.org/3/",
-    "final_include_patterns": ["https://docs.python.org/3/whatsnew/3"],
+    "final_include_patterns": [
+      "https://docs.python.org/3/whatsnew/3.10",
+      "https://docs.python.org/3/whatsnew/3.11",
+      "https://docs.python.org/3/whatsnew/3.12",
+      "https://docs.python.org/3/whatsnew/3.13"
+    ],
     "strict": true
   }
 }

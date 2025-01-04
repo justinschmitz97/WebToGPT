@@ -5,20 +5,16 @@ import asyncio
 import hashlib
 import json
 import os
-import re
 import sys
 
 from aiohttp import ClientSession, ClientTimeout
-from bs4 import BeautifulSoup
-from markdownify import markdownify as md
 from playwright.async_api import async_playwright
 
-from lxml import etree, html
+import trafilatura
 
 CACHE_DIR = "cache"
 DATA_DIR = "data"
 URLS_DIR = "urls"
-
 
 os.makedirs(CACHE_DIR, exist_ok=True)
 os.makedirs(DATA_DIR, exist_ok=True)
@@ -46,13 +42,6 @@ def cache_content(url, content):
         f.write(content)
 
 
-def sanitize_markdown(markdown_text):
-    """Sanitize and normalize the Markdown content."""
-    lines = markdown_text.splitlines()
-    sanitized_lines = [line for line in lines if not line.strip().startswith("![")]
-    return "\n".join(sanitized_lines)
-
-
 async def fetch_with_aiohttp(url, session, retries=3):
     """Fetch content using aiohttp with retry logic."""
     for attempt in range(retries):
@@ -62,9 +51,10 @@ async def fetch_with_aiohttp(url, session, retries=3):
                     return await response.text()
                 else:
                     print(f"Error {response.status} for URL: {url}")
+            await asyncio.sleep(2**attempt)
         except Exception as e:
             print(f"Exception for URL {url}: {e}")
-        await asyncio.sleep(2**attempt)
+            await asyncio.sleep(2**attempt)
     print(f"Failed to fetch URL after {retries} retries: {url}")
     return None
 
@@ -84,58 +74,29 @@ async def fetch_with_playwright(url):
         return None
 
 
-def extract_content(html_content, xpaths):
-    """Extract main content from HTML using lxml and site-specific XPath rules."""
-    parser = html.HTMLParser(encoding="utf-8")
-    tree = html.fromstring(html_content, parser=parser)
-    for xpath_expr in xpaths:
-        elements = tree.xpath(xpath_expr.path)
-        for elem in elements:
-            elem.getparent().remove(elem)
-    main_content = (
-        tree.xpath("//main") or tree.xpath("//article") or tree.xpath("//body")
-    )
-    if main_content:
-        content_html = etree.tostring(
-            main_content[0], encoding="unicode", method="html"
-        )
-        return content_html
-    else:
-        return None
+def sanitize_backticks(json_text):
+    """
+    Remove extra newlines immediately following backticks in JSON text.
+    """
+    import re
+
+    # Pattern to find backticks followed by newlines
+    pattern = r"(`+)(\n+)(\S)"
+
+    # Replace newlines between backticks and following text
+    sanitized_text = re.sub(pattern, r"\1 \3", json_text)
+    return sanitized_text
 
 
-def convert_to_markdown(html_content):
-    """Convert HTML content to Markdown format."""
-    markdown = md(html_content, heading_style="ATX")
-    markdown = sanitize_markdown(markdown)
-    return markdown
-
-
-def sanitize_markdown(markdown_text):
-    """Sanitize and normalize the Markdown content."""
-    # Remove images
-    lines = markdown_text.splitlines()
-    sanitized_lines = [line for line in lines if not line.strip().startswith("![")]
-    markdown_text = "\n".join(sanitized_lines)
-
-    # Collapse multiple newlines into a single newline
-    markdown_text = re.sub(r"\n\s*\n+", "\n\n", markdown_text)
-
-    # Strip leading and trailing whitespace
-    markdown_text = markdown_text.strip()
-
-    return markdown_text
-
-
-def save_markdown(site_key, markdown_content):
-    """Save Markdown content to a file."""
-    output_file = os.path.join(DATA_DIR, f"{site_key}.md")
+def save_json(site_key, json_content):
+    """Save JSON content to a file."""
+    output_file = os.path.join(DATA_DIR, f"{site_key}.json")
     with open(output_file, "w", encoding="utf-8") as f:
-        f.write(markdown_content)
+        f.write(json_content)
 
 
-async def process_url(url, domain, xpaths, session):
-    """Process a single URL: fetch, extract, convert, and return Markdown content."""
+async def process_url(url, domain, session):
+    """Process a single URL: fetch, extract, sanitize, and return JSON content."""
     cached_content = load_cached_content(url)
     if cached_content:
         html_content = cached_content
@@ -146,26 +107,44 @@ async def process_url(url, domain, xpaths, session):
         if html_content:
             cache_content(url, html_content)
         else:
+            print(f"Failed to retrieve content for URL: {url}")
             return None
-    extracted_html = extract_content(html_content, xpaths)
-    if not extracted_html:
-        print(f"Failed to extract content from URL: {url}")
+
+    if not html_content:
+        print(f"Failed to retrieve content for URL: {url}")
         return None
-    markdown_content = convert_to_markdown(extracted_html)
-    sanitized_markdown = sanitize_markdown(markdown_content)
-    soup = BeautifulSoup(html_content, "lxml")
-    title = soup.title.string.strip() if soup.title else "No Title"
-    markdown_section = f"<<<<< {domain} >>>>>\n\n"
-    markdown_section += f"# {title}\n\n"
-    markdown_section += f"URL: {url}\n\n"
-    markdown_section += sanitized_markdown
-    markdown_section += "\n\n---\n\n"
-    return markdown_section
+
+    # Use Trafilatura to extract content and metadata
+    extracted = trafilatura.extract(
+        html_content,
+        url=url,
+        output_format="json",
+        with_metadata=True,
+    )
+
+    if not extracted:
+        print(f"Trafilatura failed to extract content from URL: {url}")
+        return None
+
+    # Parse the extracted JSON content
+    data = json.loads(extracted)
+
+    # Keep only the 'source', 'title', and 'text' fields
+    minimal_data = {k: data[k] for k in ("source", "title", "text") if k in data}
+
+    # Ensure 'text' field is present
+    if not minimal_data.get("text"):
+        print(f"No text extracted from URL: {url}")
+        return None
+
+    # Convert back to JSON string
+    extracted = json.dumps(minimal_data)
+    return extracted
 
 
 async def main():
     parser = argparse.ArgumentParser(
-        description="Web scraper that converts web pages to Markdown."
+        description="Web scraper that converts web pages to JSON."
     )
     parser.add_argument(
         "--site_key",
@@ -190,31 +169,26 @@ async def main():
         print(f"Error loading configuration: {e}")
         sys.exit(1)
 
-    try:
-        from xpaths import CLEAN_XPATHS
-    except ImportError:
-        CLEAN_XPATHS = []
-
-    markdown_contents = []
+    json_contents = []
 
     timeout = ClientTimeout(total=30)
     async with ClientSession(timeout=timeout) as session:
         tasks = []
         for url in urls:
-            tasks.append(process_url(url, domain, CLEAN_XPATHS, session))
+            tasks.append(process_url(url, domain, session))
         results = await asyncio.gather(*tasks)
 
     for result in results:
         if result:
-            markdown_contents.append(result)
+            json_contents.append(result)
 
-    if not markdown_contents:
+    if not json_contents:
         print("No content was scraped.")
         sys.exit(1)
 
-    final_markdown = "\n".join(markdown_contents)
-    save_markdown(site_key, final_markdown)
-    print(f"Markdown content saved to {os.path.join(DATA_DIR, f'{site_key}.md')}")
+    final_json = "[" + ",\n".join(json_contents) + "]"
+    save_json(site_key, final_json)
+    print(f"JSON content saved to {os.path.join(DATA_DIR, f'{site_key}.json')}")
 
 
 if __name__ == "__main__":
