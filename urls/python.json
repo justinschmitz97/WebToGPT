@@ -1,11 +1,9 @@
 {
-    "timestamp": "2025-01-03T12:35:06Z",
+    "timestamp": "2025-01-04T17:06:56Z",
     "site_key": "python",
     "domain": "https://docs.python.org/3/",
     "total_urls": 14,
-    "failed_urls": {
-        "https://docs.python.org/3/whatsnew/changelog.html": ""
-    },
+    "failed_urls": {},
     "urls": [
         "https://docs.python.org/3/whatsnew/3.0.html",
         "https://docs.python.org/3/whatsnew/3.1.html",

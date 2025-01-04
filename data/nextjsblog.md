@@ -1,7 +1,8 @@
 <<<<< https://nextjs.org/blog/ >>>>>
 
---- Next.js 14 | Next.js: https://nextjs.org/blog/next-14 ---
+# Next.js 14 | Next.js
 
+URL: https://nextjs.org/blog/next-14
 
 [Back to Blog](/blog)
 
@@ -24,7 +25,8 @@ As we announced at [Next.js Conf](https://nextjs.org/conf), Next.js 14 is our mo
 
 Upgrade today or get started with:
 
-Terminal```
+Terminal
+```
 npx create-next-app@latest
 ```
 ## [Next.js Compiler: Turbocharged](#nextjs-compiler-turbocharged)
@@ -52,40 +54,47 @@ Next.js 9 introduced API Routes—a way to quickly build backend endpoints along
 
 For example, you would create a new file in the `api/` directory:
 
-pages/api/submit.ts```
+pages/api/submit.ts
+```
 import type { NextApiRequest, NextApiResponse } from 'next';
+
 export default async function handler(
-req: NextApiRequest,
-res: NextApiResponse,
+  req: NextApiRequest,
+  res: NextApiResponse,
 ) {
-const data = req.body;
-const id = await createItem(data);
-res.status(200).json({ id });
+  const data = req.body;
+  const id = await createItem(data);
+  res.status(200).json({ id });
 }
 ```
 
 Then, on the client-side, you could use React and an event handler like `onSubmit` to make a `fetch` to your API Route.
 
-pages/index.tsx```
+pages/index.tsx
+```
 import { FormEvent } from 'react';
+
 export default function Page() {
-async function onSubmit(event: FormEvent) {
-event.preventDefault();
-const formData = new FormData(event.currentTarget);
-const response = await fetch('/api/submit', {
-method: 'POST',
-body: formData,
-});
-// Handle response if necessary
-const data = await response.json();
-// ...
-}
-return (
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
+    const formData = new FormData(event.currentTarget);
+    const response = await fetch('/api/submit', {
+      method: 'POST',
+      body: formData,
+    });
 
-Submit
+    // Handle response if necessary
+    const data = await response.json();
+    // ...
+  }
 
-);
+  return (
+    <form onSubmit={onSubmit}>
+      <input type="text" name="name" />
+      <button type="submit">Submit</button>
+    </form>
+  );
 }
 ```
 
@@ -99,18 +108,20 @@ The App Router is built on the React `canary` channel, which is [stable for fram
 
 The previous example from the Pages Router can be simplified to one file:
 
-app/page.tsx```
+app/page.tsx
+```
 export default function Page() {
-async function create(formData: FormData) {
-'use server';
-const id = await createItem(formData);
-}
-return (
+  async function create(formData: FormData) {
+    'use server';
+    const id = await createItem(formData);
+  }
 
-
-Submit
-
-);
+  return (
+    <form action={create}>
+      <input type="text" name="name" />
+      <button type="submit">Submit</button>
+    </form>
+  );
 }
 ```
 
@@ -153,56 +164,59 @@ Our challenge was to create a better developer experience, simplifying the exist
 
 Partial Prerendering is defined by your Suspense boundaries. Here's how it works. Consider the following ecommerce page:
 
-app/page.tsx```
+app/page.tsx
+```
 export default function Page() {
-return (
-
-
-My Store
-}>
-
-
-
-
-}>
-
-
-
-
-);
+  return (
+    <main>
+      <header>
+        <h1>My Store</h1>
+        <Suspense fallback={<CartSkeleton />}>
+          <ShoppingCart />
+        </Suspense>
+      </header>
+      <Banner />
+      <Suspense fallback={<ProductListSkeleton />}>
+        <Recommendations />
+      </Suspense>
+      <NewProducts />
+    </main>
+  );
 }
 ```
 
-With Partial Prerendering enabled, this page generates a static shell based on your `` boundaries. The `fallback` from React Suspense is prerendered.
+With Partial Prerendering enabled, this page generates a static shell based on your `<Suspense />` boundaries. The `fallback` from React Suspense is prerendered.
 
 Suspense fallbacks in the shell are then replaced with dynamic components, like reading cookies to determine the cart, or showing a banner based on the user.
 
 When a request is made, the static HTML shell is immediately served:
 
 ```
-
-
-My Store
-
-
-
-
-
-
-
-
-
-
+<main>
+  <header>
+    <h1>My Store</h1>
+    <div class="cart-skeleton">
+      <!-- Hole -->
+    </div>
+  </header>
+  <div class="banner" />
+  <div class="product-list-skeleton">
+    <!-- Hole -->
+  </div>
+  <section class="new-products" />
+</main>
 ```
 
-Since `` reads from `cookies` to look at the user session, this component is then streamed in as part of the same HTTP request as the static shell. There are no extra network roundtrips needed.
+Since `<ShoppingCart />` reads from `cookies` to look at the user session, this component is then streamed in as part of the same HTTP request as the static shell. There are no extra network roundtrips needed.
 
-app/cart.tsx```
+app/cart.tsx
+```
 import { cookies } from 'next/headers'
+
 export default function ShoppingCart() {
-const cookieStore = cookies()
-const session = cookieStore.get('session')
-return ...
+  const cookieStore = cookies()
+  const session = cookieStore.get('session')
+  return ...
 }
 ```
 
@@ -278,9 +292,14 @@ This release was brought to you by:
 
 And the contributions of: @05lazy, @0xadada, @2-NOW, @aarnadlr, @aaronbrown-vercel, @aaronjy, @abayomi185, @abe1272001, @abhiyandhakal, @abstractvector, @acdlite, @adamjmcgrath, @AdamKatzDev, @adamrhunter, @ademilter, @adictonator, @adilansari, @adtc, @afonsojramos, @agadzik, @agrattan0820, @akd-io, @AkifumiSato, @akshaynox, @alainkaiser, @alantoa, @albertothedev, @AldeonMoriak, @aleksa-codes, @alexanderbluhm, @alexkirsz, @alfred-mountfield, @alpha-xek, @andarist, @Andarist, @andrii-bodnar, @andykenward, @angel1254mc, @anonrig, @anthonyshew, @AntoineBourin, @anujssstw, @apeltop, @aralroca, @aretrace, @artdevgame, @artechventure, @arturbien, @Aryan9592, @AviAvinav, @aziyatali, @BaffinLee, @Banbarashik, @bencmbrook, @benjie, @bennettdams, @bertho-zero, @bigyanse, @Bitbbot, @blue-devil1134, @bot08, @bottxiang, @Bowens20832, @bre30kra69cs, @BrennanColberg, @brkalow, @BrodaNoel, @Brooooooklyn, @brunoeduardodev, @brvnonascimento, @carlos-menezes, @cassidoo, @cattmote, @cesarkohl, @chanceaclark, @charkour, @charlesbdudley, @chibicode, @chrisipanaque, @ChristianIvicevic, @chriswdmr, @chunsch, @ciruz, @cjmling, @clive-h-townsend, @colinhacks, @colinking, @coreyleelarson, @Cow258, @cprussin, @craigwheeler, @cramforce, @cravend, @cristobaldominguez95, @ctjlewis, @cvolant, @cxa, @danger-ahead, @daniel-web-developer, @danmindru, @dante-robinson, @darshanjain-entrepreneur, @darshkpatel, @davecarlson, @David0z, @davidnx, @dciug, @delbaoliveira, @denchance, @DerTimonius, @devagrawal09, @DevEsteves, @devjiwonchoi, @devknoll, @DevLab2425, @devvspaces, @didemkkaslan, @dijonmusters, @dirheimerb, @djreillo, @dlehmhus, @doinki, @dpnolte, @Drblessing, @dtinth, @ducanhgh, @DuCanhGH, @ductnn, @duncanogle, @dunklesToast, @DustinsCode, @dvakatsiienko, @dvoytenko, @dylanjha, @ecklf, @EndangeredMassa, @eps1lon, @ericfennis, @escwxyz, @Ethan-Arrowood, @ethanmick, @ethomson, @fantaasm, @feikerwu, @ferdingler, @FernandVEYRIER, @feugy, @fgiuliani, @fomichroman, @Fonger, @ForsakenHarmony, @franktronics, @FSaldanha, @fsansalvadore, @furkanmavili, @g12i, @gabschne, @gaojude, @gdborton, @gergelyke, @gfgabrielfranca, @gidgudgod, @Gladowar, @Gnadhi, @gnoff, @goguda, @greatSumini, @gruz0, @Guilleo03, @gustavostz, @hanneslund, @HarshaVardhanReddyDuvvuru, @haschikeks, @Heidar-An, @heyitsuzair, @hiddenest, @hiro0218, @hotters, @hsrvms, @hu0p, @hughlilly, @HurSungYun, @hustLer2k, @iamarpitpatidar, @ianldgs, @ianmacartney, @iaurg, @ibash, @ibrahemid, @idoob, @iiegor, @ikryvorotenko, @imranbarbhuiya, @ingovals, @inokawa, @insik-han, @isaackatayev, @ishaqibrahimbot, @ismaelrumzan, @itsmingjie, @ivanhofer, @IvanKiral, @jacobsfletch, @jakemstar, @jamespearson, @JanCizmar, @janicklas-ralph, @jankaifer, @JanKaifer, @jantimon, @jaredpalmer, @javivelasco, @jayair, @jaykch, @Jeffrey-Zutt, @jenewland1999, @jeremydouglas, @JesseKoldewijn, @jessewarren-aa, @jimcresswell, @jiwooIncludeJeong, @jocarrd, @joefreeman, @JohnAdib, @JohnAlbin, @JohnDaly, @johnnyomair, @johnta0, @joliss, @jomeswang, @joostdecock, @Josehower, @josephcsoti, @josh, @joshuabaker, @JoshuaKGoldberg, @joshuaslate, @joulev, @jsteele-stripe, @JTaylor0196, @JuanM04, @jueungrace, @juliusmarminge, @Juneezee, @Just-Moh-it, @juzhiyuan, @jyunhanlin, @kaguya3222, @karlhorky, @kevinmitch14, @keyz, @kijikunnn, @kikobeats, @Kikobeats, @kleintorres, @koba04, @koenpunt, @koltong, @konomae, @kosai106, @krmeda, @kvnang, @kwonoj, @ky1ejs, @kylemcd, @labyrinthitis, @lachlanjc, @lacymorrow, @laityned, @Lantianyou, @leerob, @leodr, @leoortizz, @li-jia-nan, @loettz, @lorenzobloedow, @lubakravche, @lucasassisrosa, @lucasconstantino, @lucgagan, @LukeSchlangen, @LuudJanssen, @lycuid, @M3kH, @m7yue, @manovotny, @maranomynet, @marcus-rise, @MarDi66, @MarkAtOmniux, @martin-wahlberg, @masnormen, @matepapp, @matthew-heath, @mattpr, @maxleiter, @MaxLeiter, @maxproske, @meenie, @meesvandongen, @mhmdrioaf, @michaeloliverx, @mike-plummer, @MiLk, @milovangudelj, @Mingyu-Song, @mirismaili, @mkcy3, @mknichel, @mltsy, @mmaaaaz, @mnajdova, @moetazaneta, @mohanraj-r, @molebox, @morganfeeney, @motopods, @mPaella, @mrkldshv, @mrxbox98, @nabsul, @nathanhammond, @nbouvrette, @nekochantaiwan, @nfinished, @Nick-Mazuk, @nickmccurdy, @niedziolkamichal, @niko20, @nikolovlazar, @nivak-monarch, @nk980113, @nnnnoel, @nocell, @notrab, @nroland013, @nuta, @nutlope, @obusk, @okcoker, @oliviertassinari, @omarhoumz, @opnay, @orionmiz, @ossan-engineer, @patrick91, @pauek, @peraltafederico, @Phiction, @pn-code, @pyjun01, @pythagoras-yamamoto, @qrohlf, @raisedadead, @reconbot, @reshmi-sriram, @reyrodrigez, @ricardofiorani, @rightones, @riqwan, @rishabhpoddar, @rjsdnql123, @rodrigofeijao, @runjuu, @Ryan-Dia, @ryo-manba, @s0h311, @sagarpreet-xflowpay, @sairajchouhan, @samdenty, @samsisle, @sanjaiyan-dev, @saseungmin, @SCG82, @schehata, @Schniz, @sepiropht, @serkanbektas, @sferadev, @ShaunFerris, @shivanshubisht, @shozibabbas, @silvioprog, @simonswiss, @simPod, @sivtu, @SleeplessOne1917, @smaeda-ks, @sonam-serchan, @SonMooSans, @soonoo, @sophiebits, @souporserious, @sp00ls, @sqve, @sreetamdas, @stafyniaksacha, @starunaway, @steebchen, @stefanprobst, @steppefox, @steven-tey, @suhaotian, @sukkaw, @SukkaW, @superbahbi, @SuttonJack, @svarunid, @swaminator, @swarnava, @syedtaqi95, @taep96, @taylorbryant, @teobler, @Terro216, @theevilhead, @thepatrick00, @therealrinku, @thomasballinger, @thorwebdev, @tibi1220, @tim-hanssen, @timeyoutakeit, @tka5, @tknickman, @tomryanx, @trigaten, @tristndev, @tunamagur0, @tvthatsme, @tyhopp, @tyler-lutz, @UnknownMonk, @v1k1, @valentincostam, @valentinh, @valentinpolitov, @vamcs, @vasucp1207, @vicsantizo, @vinaykulk621, @vincenthongzy, @visshaljagtap, @vladikoff, @wherehows, @WhoAmIRUS, @WilderDev, @Willem-Jaap, @williamli, @wiredacorn, @wiscaksono, @wojtekolek, @ws-jm, @wxh06, @wyattfry, @wyattjoh, @xiaolou86, @y-tsubuku, @yagogmaisp, @yangshun, @yasath, @Yash-Singh1, @yigithanyucedag, @ykzts, @Yovach, @yutsuten, @yyuemii, @zek, @zekicaneksi, @zignis, and @zlrlyy
 
+---
 
---- Next.js 14.1 | Next.js: https://nextjs.org/blog/next-14-1 ---
 
+<<<<< https://nextjs.org/blog/ >>>>>
+
+# Next.js 14.1 | Next.js
+
+URL: https://nextjs.org/blog/next-14-1
 
 [Back to Blog](/blog)
 
@@ -296,11 +315,12 @@ Next.js 14.1 includes developer experience improvements including:
 * [**Turbopack Improvements:**](#turbopack-improvements) 5,600 tests passing for `next dev --turbo`
 * [**DX Improvements:**](#developer-experience-improvements) Improved error messages, `pushState` and `replaceState` support
 * [**Parallel & Intercepted Routes:**](#parallel--intercepted-routes) 20 bug fixes based on your feedback
-* [**`next/image` Improvements:**](#nextimage-support-for-picture-and-art-direction) ``, art direction, and dark mode support
+* [**`next/image` Improvements:**](#nextimage-support-for-picture-and-art-direction) `<picture>`, art direction, and dark mode support
 
 Upgrade today or get started with:
 
-Terminal```
+Terminal
+```
 npx create-next-app@latest
 ```
 ## [Improved Self-Hosting](#improved-self-hosting)
@@ -314,10 +334,11 @@ We've heard your feedback for improved clarity on how to self-host Next.js with 
 
 With Next.js 14.1, we've also stabilized providing custom cache handlers for Incremental Static Regeneration and the more granular Data Cache for the App Router:
 
-next.config.js```
+next.config.js
+```
 module.exports = {
-cacheHandler: require.resolve('./cache-handler.js'),
-cacheMaxMemorySize: 0, // disable default in-memory caching
+  cacheHandler: require.resolve('./cache-handler.js'),
+  cacheMaxMemorySize: 0, // disable default in-memory caching
 };
 ```
 
@@ -382,20 +403,24 @@ This is helpful when needing to immediately update the URL when saving state lik
 
 ```
 'use client';
-import { useSearchParams } from 'next/navigation';
-export default function SortProducts() {
-const searchParams = useSearchParams();
-function updateSorting(sortOrder: string) {
-const params = new URLSearchParams(searchParams.toString());
-params.set('sort', sortOrder);
-window.history.pushState(null, '', `?${params.toString()}`);
-}
-return (
-<>
- updateSorting('asc')}>Sort Ascending
- updateSorting('desc')}>Sort Descending
 
-);
+import { useSearchParams } from 'next/navigation';
+
+export default function SortProducts() {
+  const searchParams = useSearchParams();
+
+  function updateSorting(sortOrder: string) {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('sort', sortOrder);
+    window.history.pushState(null, '', `?${params.toString()}`);
+  }
+
+  return (
+    <>
+      <button onClick={() => updateSorting('asc')}>Sort Ascending</button>
+      <button onClick={() => updateSorting('desc')}>Sort Descending</button>
+    </>
+  );
 }
 ```
 
@@ -407,53 +432,57 @@ For improved observability of your cached data in your Next.js application when 
 
 You can now display whether there was a cache `HIT` or `SKIP` and the full URL requested:
 
-Terminal```
+Terminal
+```
 GET / 200 in 48ms
-✓ Compiled /fetch-cache in 117ms
-GET /fetch-cache 200 in 165ms
-│ GET https://api.vercel.app/products/1 200 in 14ms (cache: HIT)
-✓ Compiled /fetch-no-store in 150ms
-GET /fetch-no-store 200 in 548ms
-│ GET https://api.vercel.app/products/1 200 in 345ms (cache: SKIP)
-│ │ Cache missed reason: (cache: no-store)
+ ✓ Compiled /fetch-cache in 117ms
+ GET /fetch-cache 200 in 165ms
+  │ GET https://api.vercel.app/products/1 200 in 14ms (cache: HIT)
+ ✓ Compiled /fetch-no-store in 150ms
+ GET /fetch-no-store 200 in 548ms
+  │ GET https://api.vercel.app/products/1 200 in 345ms (cache: SKIP)
+  │  │  Cache missed reason: (cache: no-store)
 ```
 
 This can be enabled through `next.config.js`:
 
-next.config.js```
+next.config.js
+```
 module.exports = {
-logging: {
-fetches: {
-fullUrl: true,
-},
-},
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
 };
 ```
-## [`next/image` support for `` and Art Direction](#nextimage-support-for-picture-and-art-direction)
+## [`next/image` support for `<picture>` and Art Direction](#nextimage-support-for-picture-and-art-direction)
 
-The Next.js Image component now supports more advanced use cases through `getImageProps()` (stable) which don't require using `` directly. This includes:
+The Next.js Image component now supports more advanced use cases through `getImageProps()` (stable) which don't require using `<Image>` directly. This includes:
 
 * Working with [`background-image`](https://developer.mozilla.org/docs/Web/CSS/background-image) or [`image-set`](https://developer.mozilla.org/docs/Web/CSS/image/image-set)
 * Working with canvas [`context.drawImage()`](https://developer.mozilla.org/docs/Web/API/Canvas_API/Tutorial/Using_images) or `new Image()`
-* Working with [``](https://developer.mozilla.org/docs/Web/HTML/Element/picture) media queries to implement [Art Direction](https://developer.mozilla.org/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#art_direction) or Light/Dark Mode images
+* Working with [`<picture>`](https://developer.mozilla.org/docs/Web/HTML/Element/picture) media queries to implement [Art Direction](https://developer.mozilla.org/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#art_direction) or Light/Dark Mode images
 
 ```
 import { getImageProps } from 'next/image';
+
 export default function Page() {
-const common = { alt: 'Hero', width: 800, height: 400 };
-const {
-props: { srcSet: dark },
-} = getImageProps({ ...common, src: '/dark.png' });
-const {
-props: { srcSet: light, ...rest },
-} = getImageProps({ ...common, src: '/light.png' });
-return (
+  const common = { alt: 'Hero', width: 800, height: 400 };
+  const {
+    props: { srcSet: dark },
+  } = getImageProps({ ...common, src: '/dark.png' });
+  const {
+    props: { srcSet: light, ...rest },
+  } = getImageProps({ ...common, src: '/light.png' });
 
-
-
-
-
-);
+  return (
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcSet={dark} />
+      <source media="(prefers-color-scheme: light)" srcSet={light} />
+      <img {...rest} />
+    </picture>
+  );
 }
 ```
 
@@ -479,7 +508,7 @@ We've also recently published videos [explaining caching](https://www.youtube.co
 * **[Docs]** New documentation on [Redirecting](https://nextjs.org/docs/app/building-your-application/routing/redirecting)
 * **[Docs]** New documentation on [Testing](https://nextjs.org/docs/app/building-your-application/testing)
 * **[Docs]** New documentation with a [Production Checklist](https://nextjs.org/docs/app/building-your-application/deploying/production-checklist)
-* **[Feature]** Add `` component to `next/third-parties` ([Docs](https://nextjs.org/docs/app/building-your-application/optimizing/third-party-libraries#google-analytics))
+* **[Feature]** Add `<GoogleAnalytics />` component to `next/third-parties` ([Docs](https://nextjs.org/docs/app/building-your-application/optimizing/third-party-libraries#google-analytics))
 * **[Improvement]** `create-next-app` is now smaller and faster to install ([PR](https://github.com/vercel/next.js/pull/58030))
 * **[Improvement]** Nested routes throwing errors can still be caught be `global-error` ([PR](https://github.com/vercel/next.js/pull/60539))
 * **[Improvement]** `redirect` now respects `basePath` when used in a server action ([PR](https://github.com/vercel/next.js/pull/60184))
@@ -523,9 +552,14 @@ This release was brought to you by:
 
 And the contributions of: @OlehDutchenko, @eps1lon, @ebidel, @janicklas-ralph, @JohnPhamous, @chentsulin, @akawalsky, @BlankParticle, @dvoytenko, @smaeda-ks, @kenji-webdev, @rv-david, @icyJoseph, @dijonmusters, @A7med3bdulBaset, @jenewland1999, @mknichel, @kdy1, @housseindjirdeh, @max-programming, @redbmk, @SSakibHossain10, @jamesmillerburgess, @minaelee, @officialrajdeepsingh, @LorisSigrist, @yesl-kim, @StevenKamwaza, @manovotny, @mcexit, @remcohaszing, @ryo-manba, @TranquilMarmot, @vinaykulk621, @haritssr, @divquan, @IgorVaryvoda, @LukeSchlangen, @RiskyMH, @ash2048, @ManuWeb3, @msgadi, @dhayab, @ShahriarKh, @jvandenaardweg, @DestroyerXyz, @SwitchBladeAK, @ianmacartney, @justinh00k, @tiborsaas, @ArianHamdi, @li-jia-nan, @aramikuto, @jquinc30, @samcx, @Haosik, @AkifumiSato, @arnabsen, @nfroidure, @clbn, @siddtheone, @zbauman3, @anthonyshew, @alexfradiani, @CalebBarnes, @adk96r, @pacexy, @hichemfantar, @michaldudak, @redonkulus, @k-taro56, @mhughdo, @tknickman, @shumakmanohar, @vordgi, @hamirmahal, @gaspar09, @JCharante, @sjoerdvanBommel, @mass2527, @N-Ziermann, @tordans, @davidthorand, @rmathew8-gh, @chriskrogh, @shogunsea, @auipga, @SukkaW, @agustints, @OXXD, @clarencepenz, @better-salmon, @808vita, @coltonehrman, @tksst, @hugo-syn, @JakobJingleheimer, @Willem-Jaap, @brandonnorsworthy, @jaehunn, @jridgewell, @gtjamesa, @mugi-uno, @kentobento, @vivianyentran, @empflow, @samennis1, @mkcy3, @suhaotian, @imevanc, @d3lm, @amannn, @hallatore, @Dylan700, @mpsq, @mdio, @christianvuerings, @karlhorky, @simonhaenisch, @olci34, @zce, @LavaToaster, @rishabhpoddar, @jirihofman, @codercor, @devjiwonchoi, @JackieLi565, @thoushif, @pkellner, @jpfifer, @quisido, @tomfa, @raphaelbadia, @j9141997, @hongaar, @MadCcc, @luismulinari, @dumb-programmer, @nonoakij, @franky47, @robbertstevens, @bryndyment, @marcosmartini, @functino, @Anisi, @AdonisAgelis, @seangray-dev, @prkagrawal, @heloineto, @kn327, @ihommani, @MrNiceRicee, @falsepopsky, @thomasballinger, @tmilewski, @Vadman97, @dnhn, @RodrigoTomeES, @sadikkuzu, @gffuma, @Schniz, @joulev, @Athrun-Judah, @rasvanjaya21, @rashidul0405, @nguyenbry, @Mwimwii, @molebox, @mrr11k, @philwolstenholme, @IgorKowalczyk, @Zoe-Bot, @HanCiHu, @JackHowa, @goncy, @hirotomoyamada, @pveyes, @yeskunall, @ChendayUP, @hmaesta, @ajz003, @its-kunal, @joelhooks, @blurrah, @tariknh, @Vinlock, @Nayeem-XTREME, @aziyatali, @aspehler, and @moka-ayumu.
 
+---
 
---- Next.js 14.2 | Next.js: https://nextjs.org/blog/next-14-2 ---
 
+<<<<< https://nextjs.org/blog/ >>>>>
+
+# Next.js 14.2 | Next.js
+
+URL: https://nextjs.org/blog/next-14-2
 
 [Back to Blog](/blog)
 
@@ -544,7 +578,8 @@ Next.js 14.2 includes development, production, and caching improvements.
 
 Upgrade today or get started with:
 
-Terminal```
+Terminal
+```
 npx create-next-app@latest
 ```
 ## [Turbopack for Development (Release Candidate)](#turbopack-for-development-release-candidate)
@@ -564,7 +599,8 @@ We’ve been extensively dogfooding Turbopack with Vercel’s applications. For 
 
 Turbopack continues to be opt-in and you can try it out with:
 
-Terminal```
+Terminal
+```
 next dev --turbo
 ```
 
@@ -588,11 +624,12 @@ Testing this optimization on a popular library like `react-aria-components` redu
 
 > **Note:** This optimization does not currently work with barrel files. In the meantime, you can use the [`optimizePackageImports`](/docs/app/api-reference/next-config-js/optimizePackageImports) config option:
 > 
-> next.config.ts```
+> next.config.ts
+> ```
 > module.exports = {
-> experimental: {
-> optimizePackageImports: ['package-name'],
-> },
+>   experimental: {
+>     optimizePackageImports: ['package-name'],
+>   },
 > };
 > ```
 
@@ -610,17 +647,22 @@ We updated how CSS is optimized during production Next.js builds by chunking CSS
 
 The order and merging of CSS chunks are now defined by the import order. For example, `base-button.module.css` will be ordered before `page.module.css`:
 
-base-button.tsx```
+base-button.tsx
+```
 import styles from './base-button.module.css';
+
 export function BaseButton() {
-return ;
+  return <button className={styles.primary} />;
 }
 ```
-page.tsx```
+
+page.tsx
+```
 import { BaseButton } from './base-button';
 import styles from './page.module.css';
+
 export function Page() {
-return ;
+  return <BaseButton className={styles.primary} />;
 }
 ```
 
@@ -642,17 +684,19 @@ The [Client-side Router Cache](/docs/app/building-your-application/caching#data-
 
 Based on community feedback, we’ve added an experimental `staleTimes` option to allow the [client-side router cache](/docs/app/building-your-application/caching#router-cache) invalidation period to be configured.
 
-By default, prefetched routes (using the `` component without the `prefetch` prop) will be cached for 30 seconds, and if the `prefetch` prop is set to `true`, 5 minutes. You can overwrite these default values by defining custom [revalidation times](/docs/app/building-your-application/caching#duration-3) in `next.config.js`:
+By default, prefetched routes (using the `<Link>` component without the `prefetch` prop) will be cached for 30 seconds, and if the `prefetch` prop is set to `true`, 5 minutes. You can overwrite these default values by defining custom [revalidation times](/docs/app/building-your-application/caching#duration-3) in `next.config.js`:
 
-next.config.ts```
+next.config.ts
+```
 const nextConfig = {
-experimental: {
-staleTimes: {
-dynamic: 30,
-static: 180,
-},
-},
+  experimental: {
+    staleTimes: {
+      dynamic: 30,
+      static: 180,
+    },
+  },
 };
+
 module.exports = nextConfig;
 ```
 
@@ -717,9 +761,14 @@ This release was brought to you by:
 
 Huge thanks to @taishikato, @JesseKoldewijn, @Evavic44, @feugy, @liamlaverty, @dvoytenko, @SukkaW, @wbinnssmith, @rishabhpoddar, @better-salmon, @ziyafenn, @A7med3bdulBaset, @jasonuc, @yossydev, @Prachi-meon, @InfiniteCodeMonkeys, @ForsakenHarmony, @miketimmerman, @kwonoj, @williamli, @gnoff, @jsteele-stripe, @chungweileong94, @WITS, @sogoagain, @junioryono, @eisafaqiri, @yannbolliger, @aramikuto, @rocketman-21, @kenji-webdev, @michaelpeterswa, @Dannymx, @vpaflah, @zeevo, @chrisweb, @stefangeneralao, @tknickman, @Kikobeats, @ubinatus, @code-haseeb, @hmmChase, @byhow, @DanielRivers, @wojtekmaj, @paramoshkinandrew, @OMikkel, @theitaliandev, @oliviertassinari, @Ishaan2053, @Sandeep-Mani, @alyahmedaly, @Lezzio, @devjiwonchoi, @juliusmarminge, @szmazhr, @eddiejaoude, @itz-Me-Pj, @AndersDJohnson, @gentamura, @tills13, @dijonmusters, @SaiGanesh21, @vordgi, @ryota-murakami, @tszhong0411, @officialrajdeepsingh, @alexpuertasr, @AkifumiSato, @Jonas-PFX, @icyJoseph, @florian-lp, @pbzona, @erfanium, @remcohaszing, @bernardobelchior, @willashe, @kevinmitch14, @smakosh, @mnjongerius, @asobirov, @theoholl, @suu3, @ArianHamdi, @adrianha, @Sina-Abf, @kuzeykose, @meenie, @nphmuller, @javivelasco, @belgattitude, @Svetoslav99, @johnslemmer, @colbyfayock, @mehranmf31, @m-nakamura145, @ryo8000, @aryaemami59, @bestlyg, @jinsoul75, @petrovmiroslav, @nattui, @zhuyedev, @dongwonnn, @nhducit, @flotwig, @Schmavery, @abhinaypandey02, @rvetere, @coffeecupjapan, @cjimmy, @Soheiljafarnejad, @jantimon, @zengspr, @wesbos, @neomad1337, @MaxLeiter, and @devr77 for helping!
 
+---
 
---- Next.js 15 | Next.js: https://nextjs.org/blog/next-15 ---
 
+<<<<< https://nextjs.org/blog/ >>>>>
+
+# Next.js 15 | Next.js
+
+URL: https://nextjs.org/blog/next-15
 
 [Back to Blog](/blog)
 
@@ -731,9 +780,11 @@ Posted by
 
 Next.js 15 is officially stable and ready for production. This release builds on the updates from both [RC1](/blog/next-15-rc) and [RC2](/blog/next-15-rc2). We've focused heavily on stability while adding some exciting updates we think you'll love. Try Next.js 15 today:
 
-terminal```
+terminal
+```
 # Use the new automated upgrade CLI
 npx @next/codemod@canary upgrade latest
+
 # ...or upgrade manually
 npm install next@latest react@rc react-dom@rc
 ```
@@ -764,7 +815,8 @@ We include codemods (automated code transformations) with every major Next.js re
 
 To make upgrades even smoother, we've released an enhanced codemod CLI:
 
-Terminal```
+Terminal
+```
 npx @next/codemod@canary upgrade latest
 ```
 
@@ -782,10 +834,12 @@ Therefore, we are transitioning APIs that rely on request-specific data—such a
 
 ```
 import { cookies } from 'next/headers';
+
 export async function AdminPanel() {
-const cookieStore = await cookies();
-const token = cookieStore.get('token');
-// ...
+  const cookieStore = await cookies();
+  const token = cookieStore.get('token');
+
+  // ...
 }
 ```
 
@@ -799,7 +853,8 @@ This is a **breaking change** and affects the following APIs:
 
 For an easier migration, these APIs can temporarily be accessed synchronously, but will show warnings in development and production until the next major version. A [codemod](/docs/app/building-your-application/upgrading/codemods) is available to automate the migration:
 
-Terminal```
+Terminal
+```
 npx @next/codemod@canary next-async-request-api .
 ```
 
@@ -835,14 +890,16 @@ In Next.js 15, this flag still remains accessible, but we are changing the defau
 
 You can opt into the previous Client Router Cache behavior by setting the following configuration:
 
-next.config.ts```
+next.config.ts
+```
 const nextConfig = {
-experimental: {
-staleTimes: {
-dynamic: 30,
-},
-},
+  experimental: {
+    staleTimes: {
+      dynamic: 30,
+    },
+  },
 };
+
 export default nextConfig;
 ```
 ## [React 19](#react-19)
@@ -913,27 +970,31 @@ Since these tasks are not directly related to the response, the user should not 
 
 To use it, add `experimental.after` to `next.config.js`:
 
-next.config.ts```
+next.config.ts
+```
 const nextConfig = {
-experimental: {
-after: true,
-},
+  experimental: {
+    after: true,
+  },
 };
+
 export default nextConfig;
 ```
 
 Then, import the function in Server Components, Server Actions, Route Handlers, or Middleware.
 
 ```
-import { unstable\_after as after } from 'next/server';
+import { unstable_after as after } from 'next/server';
 import { log } from '@/app/utils';
+
 export default function Layout({ children }) {
-// Secondary task
-after(() => {
-log();
-});
-// Primary task
-return <>{children};
+  // Secondary task
+  after(() => {
+    log();
+  });
+
+  // Primary task
+  return <>{children}</>;
 }
 ```
 
@@ -954,38 +1015,41 @@ In addition, we've collaborated with [Sentry](https://sentry.io/) on designing a
 
 ```
 export async function onRequestError(err, request, context) {
-await fetch('https://...', {
-method: 'POST',
-body: JSON.stringify({ message: err.message, request, context }),
-headers: { 'Content-Type': 'application/json' },
-});
+  await fetch('https://...', {
+    method: 'POST',
+    body: JSON.stringify({ message: err.message, request, context }),
+    headers: { 'Content-Type': 'application/json' },
+  });
 }
+
 export async function register() {
-// init your favorite observability provider SDK
+  // init your favorite observability provider SDK
 }
 ```
 
 Learn more about the `onRequestError` [function](/docs/app/api-reference/file-conventions/instrumentation#onrequesterror-optional).
 
-## [`` Component](#form-component)
+## [`<Form>` Component](#form-component)
 
-The new `` component extends the HTML `` element with [prefetching](/docs/app/building-your-application/routing/linking-and-navigating#2-prefetching), [client-side navigation](/docs/app/building-your-application/routing/linking-and-navigating#5-soft-navigation), and progressive enhancement.
+The new `<Form>` component extends the HTML `<form>` element with [prefetching](/docs/app/building-your-application/routing/linking-and-navigating#2-prefetching), [client-side navigation](/docs/app/building-your-application/routing/linking-and-navigating#5-soft-navigation), and progressive enhancement.
 
 It is useful for forms that navigate to a new page, such as a search form that leads to a results page.
 
-app/page.jsx```
+app/page.jsx
+```
 import Form from 'next/form';
+
 export default function Page() {
-return (
-
-
-Submit
-
-);
+  return (
+    <Form action="/search">
+      <input name="query" />
+      <button type="submit">Submit</button>
+    </Form>
+  );
 }
 ```
 
-The `` component comes with:
+The `<Form>` component comes with:
 
 * **Prefetching**: When the form is in view, the [layout](/docs/app/api-reference/file-conventions/layout) and [loading](/docs/app/api-reference/file-conventions/loading) UI are prefetched, making navigation fast.
 * **Client-side Navigation:** On submission, shared layouts and client-side state are preserved.
@@ -993,49 +1057,63 @@ The `` component comes with:
 
 Previously, achieving these features required a lot of manual boilerplate. For example:
 
-Example```
+Example
+```
 // Note: This is abbreviated for demonstration purposes.
 // Not recommended for use in production code.
+
 'use client'
+
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+
 export default function Form(props) {
-const action = props.action
-const router = useRouter()
-useEffect(() => {
-// if form target is a URL, prefetch it
-if (typeof action === 'string') {
-router.prefetch(action)
-}
-}, [action, router])
-function onSubmit(event) {
-event.preventDefault()
-// grab all of the form fields and trigger a `router.push` with the data URL encoded
-const formData = new FormData(event.currentTarget)
-const data = new URLSearchParams()
-for (const [name, value] of formData) {
-data.append(name, value as string)
-}
-router.push(`${action}?${data.toString()}`)
-}
-if (typeof action === 'string') {
-return 
-}
-return 
+  const action = props.action
+  const router = useRouter()
+
+  useEffect(() => {
+    // if form target is a URL, prefetch it
+    if (typeof action === 'string') {
+      router.prefetch(action)
+    }
+  }, [action, router])
+
+  function onSubmit(event) {
+    event.preventDefault()
+
+    // grab all of the form fields and trigger a `router.push` with the data URL encoded
+    const formData = new FormData(event.currentTarget)
+    const data = new URLSearchParams()
+
+    for (const [name, value] of formData) {
+      data.append(name, value as string)
+    }
+
+    router.push(`${action}?${data.toString()}`)
+  }
+
+  if (typeof action === 'string') {
+    return <form onSubmit={onSubmit} {...props} />
+  }
+
+  return <form {...props} />
 }
 ```
 
-Learn more about the [`` Component](/docs/app/api-reference/components/form).
+Learn more about the [`<Form>` Component](/docs/app/api-reference/components/form).
 
 ## [Support for `next.config.ts`](#support-for-nextconfigts)
 
 Next.js now supports the TypeScript `next.config.ts` file type and provides a `NextConfig` type for autocomplete and type-safe options:
 
-next.config.ts```
+next.config.ts
+```
 import type { NextConfig } from 'next';
+
 const nextConfig: NextConfig = {
-/\* config options here \*/
+  /* config options here */
 };
+
 export default nextConfig;
 ```
 
@@ -1070,11 +1148,13 @@ To improve security, we've introduced the following enhancements:
 ```
 // app/actions.js
 'use server';
-// This action \*\*is\*\* used in our application, so Next.js
+
+// This action **is** used in our application, so Next.js
 // will create a secure ID to allow the client to reference
 // and call the Server Action.
 export async function updateUserAction(formData) {}
-// This action \*\*is not\*\* used in our application, so Next.js
+
+// This action **is not** used in our application, so Next.js
 // will automatically remove this code during `next build`
 // and will not create a public endpoint.
 export async function deleteUserAction(formData) {}
@@ -1090,13 +1170,15 @@ In the **Pages Router**, external packages are not bundled by default, but you c
 
 To unify configuration between App and Pages Router, we're introducing a new option, [`bundlePagesRouterDependencies`](/docs/pages/api-reference/next-config-js/bundlePagesRouterDependencies) to match the default automatic bundling of the App Router. You can then use [`serverExternalPackages`](/docs/app/api-reference/next-config-js/serverExternalPackages) to opt-out specific packages, if needed.
 
-next.config.ts```
+next.config.ts
+```
 const nextConfig = {
-// Automatically bundle external packages in the Pages Router:
-bundlePagesRouterDependencies: true,
-// Opt specific packages out of bundling for both App and Pages Router:
-serverExternalPackages: ['package-name'],
+  // Automatically bundle external packages in the Pages Router:
+  bundlePagesRouterDependencies: true,
+  // Opt specific packages out of bundling for both App and Pages Router:
+  serverExternalPackages: ['package-name'],
 };
+
 export default nextConfig;
 ```
 
@@ -1140,18 +1222,20 @@ We've added experimental support for more control over the static generation pro
 
 We recommend sticking to the current defaults unless you have specific requirements as these options can lead to increased resource usage and potential out-of-memory errors due to increased concurrency.
 
-next.config.ts```
+next.config.ts
+```
 const nextConfig = {
-experimental: {
-// how many times Next.js will retry failed page generation attempts
-// before failing the build
-staticGenerationRetryCount: 1
-// how many pages will be processed per worker
-staticGenerationMaxConcurrency: 8
-// the minimum number of pages before spinning up a new export worker
-staticGenerationMinPagesPerWorker: 25
-},
+  experimental: {
+    // how many times Next.js will retry failed page generation attempts
+    // before failing the build
+    staticGenerationRetryCount: 1
+    // how many pages will be processed per worker
+    staticGenerationMaxConcurrency: 8
+    // the minimum number of pages before spinning up a new export worker
+    staticGenerationMinPagesPerWorker: 25
+  },
 }
+
 export default nextConfig;
 ```
 
@@ -1215,9 +1299,14 @@ This release was brought to you by:
 
 Huge thanks to @AbhiShake1, @Aerilym, @AhmedBaset, @AnaTofuZ, @Arindam200, @Arinji2, @ArnaudFavier, @ArnoldVanN, @Auxdible, @B33fb0n3, @Bhavya031, @Bjornnyborg, @BunsDev, @CannonLock, @CrutchTheClutch, @DeepakBalaraman, @DerTimonius, @Develliot, @EffectDoplera, @Ehren12, @Ethan-Arrowood, @FluxCapacitor2, @ForsakenHarmony, @Francoscopic, @Gomah, @GyoHeon, @Hemanshu-Upadhyay, @HristovCodes, @HughHzyb, @IAmKushagraSharma, @IDNK2203, @IGassmann, @ImDR, @IncognitoTGT, @Jaaneek, @JamBalaya56562, @Jeffrey-Zutt, @JohnGemstone, @JoshuaKGoldberg, @Julian-Louis, @Juneezee, @KagamiChan, @Kahitar, @KeisukeNagakawa, @KentoMoriwaki, @Kikobeats, @KonkenBonken, @Kuboczoch, @Lada496, @LichuAcu, @LorisSigrist, @Lsnsh, @Luk-z, @Luluno01, @M-YasirGhaffar, @Maaz-Ahmed007, @Manoj-M-S, @ManuLpz4, @Marukome0743, @MaxLeiter, @MehfoozurRehman, @MildTomato, @MonstraG, @N2D4, @NavidNourani, @Nayeem-XTREME, @Netail, @NilsJacobsen, @Ocheretovich, @OlyaPolya, @PapatMayuri, @PaulAsjes, @PlagueFPS, @ProchaLu, @Pyr33x, @QiuranHu, @RiskyMH, @Sam-Phillemon9493, @Sayakie, @Shruthireddy04, @SouthLink, @Strift, @SukkaW, @Teddir, @Tim-Zj, @TrevorSayre, @Unsleeping, @Willem-Jaap, @a89529294, @abdull-haseeb, @abhi12299, @acdlite, @actopas, @adcichowski, @adiguno, @agadzik, @ah100101, @akazwz, @aktoriukas, @aldosch, @alessiomaffeis, @allanchau, @alpedia0, @amannn, @amikofalvy, @anatoliik-lyft, @anay-208, @andrii-bodnar, @anku255, @ankur-dwivedi, @aralroca, @archanaagivale30, @arlyon, @atik-persei, @avdeev, @baeharam, @balazsorban44, @bangseongbeom, @begalinsaf, @bennettdams, @bewinsnw, @bgw, @blvdmitry, @bobaaaaa, @boris-szl, @bosconian-dynamics, @brekk, @brianshano, @cfrank, @chandanpasunoori, @chentsulin, @chogyejin, @chrisjstott, @christian-bromann, @codeSTACKr, @coderfin, @coltonehrman, @controversial, @coopbri, @creativoma, @crebelskydico, @crutchcorn, @darthmaim, @datner, @davidsa03, @delbaoliveira, @devjiwonchoi, @devnyxie, @dhruv-kaushik, @dineshh-m, @diogocapela, @dnhn, @domdomegg, @domin-mnd, @dvoytenko, @ebCrypto, @ekremkenter, @emmerich, @flybayer, @floriangosse, @forsakenharmony, @francoscopic, @frys, @gabrielrolfsen, @gaojude, @gdborton, @greatvivek11, @gnoff, @guisehn, @GyoHeon, @hamirmahal, @hiro0218, @hirotomoyamada, @housseindjirdeh, @hungdoansy, @huozhi, @hwangstar156, @iampoul, @ianmacartney, @icyJoseph, @ijjk, @imddc, @imranolas, @iscekic, @jantimon, @jaredhan418, @jeanmax1me, @jericopulvera, @jjm2317, @jlbovenzo, @joelhooks, @joeshub, @jonathan-ingram, @jonluca, @jontewks, @joostmeijles, @jophy-ye, @jordienr, @jordyfontoura, @kahlstrm, @karlhorky, @karlkeefer, @kartheesan05, @kdy1, @kenji-webdev, @kevva, @khawajaJunaid, @kidonng, @kiner-tang, @kippmr, @kjac, @kjugi, @kshehadeh, @kutsan, @kwonoj, @kxlow, @leerob, @lforst, @li-jia-nan, @liby, @lonr, @lorensr, @lovell, @lubieowoce, @luciancah, @luismiramirez, @lukahartwig, @lumirlumir, @luojiyin1987, @mamuso, @manovotny, @marlier, @mauroaccornero, @maxhaomh, @mayank1513, @mcnaveen, @md-rejoyan-islam, @mehmetozguldev, @mert-duzgun, @mirasayon, @mischnic, @mknichel, @mobeigi, @molebox, @mratlamwala, @mud-ali, @n-ii-ma, @n1ckoates, @nattui, @nauvalazhar, @neila-a, @neoFinch, @niketchandivade, @nisabmohd, @none23, @notomo, @notrab, @nsams, @nurullah, @okoyecharles, @omahs, @paarthmadan, @pathliving, @pavelglac, @penicillin0, @phryneas, @pkiv, @pnutmath, @qqww08, @r34son, @raeyoung-kim, @remcohaszing, @remorses, @rezamauliadi, @rishabhpoddar, @ronanru, @royalfig, @rubyisrust, @ryan-nauman, @ryohidaka, @ryota-murakami, @s-ekai, @saltcod, @samcx, @samijaber, @sean-rallycry, @sebmarkbage, @shubh73, @shuding, @sirTangale, @sleevezip, @slimbde, @soedirgo, @sokra, @sommeeeer, @sopranopillow, @souporserious, @srkirkland, @steadily-worked, @steveluscher, @stipsan, @styfle, @stylessh, @syi0808, @symant233, @tariknh, @theoludwig, @timfish, @timfuhrmann, @timneutkens, @tknickman, @todor0v, @tokkiyaa, @torresgol10, @tranvanhieu01012002, @txxxxc, @typeofweb, @unflxw, @unstubbable, @versecafe, @vicb, @vkryachko, @wbinnssmith, @webtinax, @weicheng95, @wesbos, @whatisagi, @wiesson, @woutvanderploeg, @wyattjoh, @xiaohanyu, @xixixao, @xugetsu, @yosefbeder, @ypessoa, @ytori, @yunsii, @yurivangeffen, @z0n, @zce, @zhawtof, @zsh77, and @ztanner for helping!
 
+---
 
---- Next.js 15.1 | Next.js: https://nextjs.org/blog/next-15-1 ---
 
+<<<<< https://nextjs.org/blog/ >>>>>
+
+# Next.js 15.1 | Next.js
+
+URL: https://nextjs.org/blog/next-15-1
 
 [Back to Blog](/blog)
 
@@ -1236,11 +1325,14 @@ Next.js 15.1 brings core upgrades, new APIs, and improvements to the developer e
 
 Upgrade today, or get started with:
 
-Terminal```
+Terminal
+```
 # Use the automated upgrade CLI
 npx @next/codemod@canary upgrade latest
+
 # ...or upgrade manually
 npm install next@latest react@latest react-dom@latest
+
 # ...or start a new project
 npx create-next-app@latest
 ```
@@ -1286,40 +1378,42 @@ When using the Edge runtime, errors are now displayed consistently across develo
 
 Terminal **Before**:
 
-Terminal```
-⨯ app/page.tsx (6:11) @ eval
-⨯ Error: boom
-at eval (./app/page.tsx:12:15)
-at Page (./app/page.tsx:11:74)
-at AsyncLocalStorage.run (node:async\_hooks:346:14)
-at stringify ()
-at AsyncLocalStorage.run (node:async\_hooks:346:14)
-at AsyncResource.runInAsyncScope (node:async\_hooks:206:9)
+Terminal
+```
+ ⨯ app/page.tsx (6:11) @ eval
+ ⨯ Error: boom
+    at eval (./app/page.tsx:12:15)
+    at Page (./app/page.tsx:11:74)
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at stringify (<anonymous>)
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at AsyncResource.runInAsyncScope (node:async_hooks:206:9)
 digest: "380744807"
-4 | export default function Page() {
-5 | const throwError = myCallback(() => {
-> 6 | throw new Error('boom')
-| ^
-7 | }, [])
-8 |
-9 | throwError()
-GET / 500 in 2354ms
+  4 | export default function Page() {
+  5 |   const throwError = myCallback(() => {
+> 6 |     throw new Error('boom')
+    |           ^
+  7 |   }, [])
+  8 |
+  9 |   throwError()
+ GET / 500 in 2354ms
 ```
 
 Terminal **After**:
 
-Terminal```
-⨯ Error: boom
-at eval (app/page.tsx:6:10)
-at Page (app/page.tsx:5:32)
-4 | export default function Page() {
-5 | const throwError = myCallback(() => {
-> 6 | throw new Error('boom')
-| ^
-7 | }, [])
-8 |
-9 | throwError() {
-digest: '225828171'
+Terminal
+```
+  ⨯ Error: boom
+    at eval (app/page.tsx:6:10)
+    at Page (app/page.tsx:5:32)
+  4 | export default function Page() {
+  5 |   const throwError = myCallback(() => {
+> 6 |     throw new Error('boom')
+    |          ^
+  7 |   }, [])
+  8 |
+  9 |   throwError() {
+  digest: '225828171'
 }
 ```
 
@@ -1346,16 +1440,19 @@ Since its introduction, we’ve stabilized `after()` and addressed feedback incl
 * **Enhanced extensibility**, enabling other platforms to inject their own `waitUntil()` primitives to power `after()`.
 * **Support for runtime APIs** such as `cookies()` and `headers()` in Server Actions and Route Handlers.
 
-app/layout.js```
+app/layout.js
+```
 import { after } from 'next/server';
 import { log } from '@/app/utils';
+
 export default function Layout({ children }) {
-// Secondary task
-after(() => {
-log();
-});
-// Primary task
-return <>{children};
+  // Secondary task
+  after(() => {
+    log();
+  });
+
+  // Primary task
+  return <>{children}</>;
 }
 ```
 
@@ -1381,13 +1478,16 @@ If you’re familiar with the App Router, you’ve likely used [`notFound()`](/d
 
 As this feature is still experimental, you’ll need to enable it in your `next.config.ts` file:
 
-next.config.ts```
+next.config.ts
+```
 import type { NextConfig } from 'next';
+
 const nextConfig: NextConfig = {
-experimental: {
-authInterrupts: true,
-},
+  experimental: {
+    authInterrupts: true,
+  },
 };
+
 export default nextConfig;
 ```
 > **Note:** `next.config.ts` support was introduced in Next.js 15. [Learn more](/docs/app/api-reference/config/next-config-js#typescript).
@@ -1399,42 +1499,50 @@ You can use `forbidden()` and `unauthorized()` in Server Actions, Server Compone
 ```
 import { verifySession } from '@/app/lib/dal';
 import { forbidden } from 'next/navigation';
+
 export default async function AdminPage() {
-const session = await verifySession();
-// Check if the user has the 'admin' role
-if (session.role !== 'admin') {
-forbidden();
-}
-// Render the admin page for authorized users
-return Admin Page;
+  const session = await verifySession();
+
+  // Check if the user has the 'admin' role
+  if (session.role !== 'admin') {
+    forbidden();
+  }
+
+  // Render the admin page for authorized users
+  return <h1>Admin Page</h1>;
 }
 ```
 ### [Creating custom error pages](#creating-custom-error-pages)
 
 To customize the error pages, create the following files:
 
-app/forbidden.tsx```
+app/forbidden.tsx
+```
 import Link from 'next/link';
+
 export default function Forbidden() {
-return (
-
-Forbidden
-You are not authorized to access this resource.
-Return Home
-
-);
+  return (
+    <div>
+      <h2>Forbidden</h2>
+      <p>You are not authorized to access this resource.</p>
+      <Link href="/">Return Home</Link>
+    </div>
+  );
 }
 ```
-app/unauthorized.tsx```
+
+app/unauthorized.tsx
+```
 import Link from 'next/link';
+
 export default function Unauthorized() {
-return (
-
-Unauthorized
-Please log in to access this page.
-Go to Login
-
-);
+  return (
+    <div>
+      <h2>Unauthorized</h2>
+      <p>Please log in to access this page.</p>
+      <Link href="/login">Go to Login</Link>
+    </div>
+  );
 }
 ```
 
@@ -1466,9 +1574,14 @@ Next.js is the result of the combined work of over 3,000 individual developers. 
 
 Huge thanks to @sokra, @molebox, @delbaoliveira, @eps1lon, @wbinnssmith, @JamBalaya56562, @hyungjikim, @adrian-faustino, @mottox2, @lubieowoce, @bgw, @mknichel, @wyattjoh, @huozhi, @kdy1, @mischnic, @ijjk, @icyJoseph, @acdlite, @unstubbable, @gaojude, @devjiwonchoi, @cena-ko, @lforst, @devpla, @samcx, @styfle, @ztanner, @Marukome0743, @timneutkens, @JeremieDoctrine, @ductnn, @karlhorky, @reynaldichernando, @chogyejin, @y-yagi, @philparzer, @alfawal, @Rhynden, @arlyon, @MJez29, @Goodosky, @themattmayfield, @tobySolutions, @kevinmitch14, @leerob, @emmanuelgautier, @mrhrifat, @lid0a, @boar-is, @nisabmohd, @PapatMayuri, @ovogmap, @Reflex2468, @LioRael, @betterthanhajin, @HerringtonDarkholme, @bpb54321, @ahmoin, @Kikobeats, @abdelrahmanAbouelkheir, @lumirlumir, @yeeed711, @petter, and @suu3 for helping!
 
+---
 
---- Next.js 15 RC | Next.js: https://nextjs.org/blog/next-15-rc ---
 
+<<<<< https://nextjs.org/blog/ >>>>>
+
+# Next.js 15 RC | Next.js
+
+URL: https://nextjs.org/blog/next-15-rc
 
 [Back to Blog](/blog)
 
@@ -1489,7 +1602,8 @@ The Next.js 15 Release Candidate (RC) is now available. This early version allow
 
 Try the Next.js 15 RC today:
 
-Terminal```
+Terminal
+```
 npm install next@rc react@rc react-dom@rc
 ```
 ## [React 19 RC](#react-19-rc)
@@ -1510,31 +1624,36 @@ With Next.js 15, we've added support for the [React Compiler](https://react.dev/
 
 Install `babel-plugin-react-compiler`:
 
-Terminal```
+Terminal
+```
 npm install babel-plugin-react-compiler
 ```
 
 Then, add `experimental.reactCompiler` option in `next.config.js`:
 
-next.config.ts```
+next.config.ts
+```
 const nextConfig = {
-experimental: {
-reactCompiler: true,
-},
+  experimental: {
+    reactCompiler: true,
+  },
 };
+
 module.exports = nextConfig;
 ```
 
 Optionally, you can configure the compiler to run in "opt-in" mode as follows:
 
-next.config.ts```
+next.config.ts
+```
 const nextConfig = {
-experimental: {
-reactCompiler: {
-compilationMode: 'annotation',
-},
-},
+  experimental: {
+    reactCompiler: {
+      compilationMode: 'annotation',
+    },
+  },
 };
+
 module.exports = nextConfig;
 ```
 > **Note:** The React Compiler is currently only possible to use in Next.js through a Babel plugin, which could result in slower build times.
@@ -1600,14 +1719,16 @@ In Next.js 15, this flag still remains accessible, but we are changing the defau
 
 You can opt into the previous Client Router Cache behavior by setting the following configuration:
 
-next.config.ts```
+next.config.ts
+```
 const nextConfig = {
-experimental: {
-staleTimes: {
-dynamic: 30,
-},
-},
+  experimental: {
+    staleTimes: {
+      dynamic: 30,
+    },
+  },
 };
+
 module.exports = nextConfig;
 ```
 ## [Incremental adoption of Partial Prerendering (Experimental)](#incremental-adoption-of-partial-prerendering-experimental)
@@ -1618,30 +1739,35 @@ Next.js currently defaults to static rendering unless you use [dynamic functions
 
 To allow for incremental adoption, we’ve added an `experimental_ppr` route config option for opting specific Layouts and Pages into PPR:
 
-app/page.jsx```
+app/page.jsx
+```
 import { Suspense } from "react"
 import { StaticComponent, DynamicComponent } from "@/app/ui"
-export const experimental\_ppr = true
+
+export const experimental_ppr = true
+
 export default function Page() {
-return {
-<>
-
-
-
-
-
-};
+  return {
+     <>
+	     <StaticComponent />
+	     <Suspense fallback={...}>
+		     <DynamicComponent />
+	     </Suspense>
+     </>
+  };
 }
 ```
 
 To use the new option, you’ll need to set the `experimental.ppr` config in your `next.config.js` file to `'incremental'`:
 
-next.config.ts```
+next.config.ts
+```
 const nextConfig = {
-experimental: {
-ppr: 'incremental',
-},
+  experimental: {
+    ppr: 'incremental',
+  },
 };
+
 module.exports = nextConfig;
 ```
 
@@ -1661,27 +1787,31 @@ Since these tasks are not directly related to the response, the user should not 
 
 To use it, add `experimental.after` to `next.config.js`:
 
-next.config.ts```
+next.config.ts
+```
 const nextConfig = {
-experimental: {
-after: true,
-},
+  experimental: {
+    after: true,
+  },
 };
+
 module.exports = nextConfig;
 ```
 
 Then, import the function in Server Components, Server Actions, Route Handlers, or Middleware.
 
 ```
-import { unstable\_after as after } from 'next/server';
+import { unstable_after as after } from 'next/server';
 import { log } from '@/app/utils';
+
 export default function Layout({ children }) {
-// Secondary task
-after(() => {
-log();
-});
-// Primary task
-return <>{children};
+  // Secondary task
+  after(() => {
+    log();
+  });
+
+  // Primary task
+  return <>{children}</>;
 }
 ```
 
@@ -1693,19 +1823,22 @@ For Next.js 15, we've updated `create-next-app` with a new design.
 
 When running `create-next-app`, there is a new prompt asking if you want to enable Turbopack for local development (defaults to `No`).
 
-Terminal```
+Terminal
+```
 ✔ Would you like to use Turbopack for next dev? … No / Yes
 ```
 
 The `--turbo` flag can be used to enable Turbopack.
 
-Terminal```
+Terminal
+```
 npx create-next-app@rc --turbo
 ```
 
 To make getting started on a new project even easier, a new `--empty` flag has been added to the CLI. This will remove any extraneous files and styles, resulting in a minimal "hello world" page.
 
-Terminal```
+Terminal
+```
 npx create-next-app@rc --empty
 ```
 ## [Optimizing bundling of external packages (Stable)](#optimizing-bundling-of-external-packages-stable)
@@ -1716,13 +1849,15 @@ In the **Pages Router**, external packages are not bundled by default, but you c
 
 To unify configuration between App and Pages Router, we’re introducing a new option, [`bundlePagesRouterDependencies`](https://nextjs.org/docs/pages/api-reference/next-config-js/bundlePagesRouterDependencies) to match the default automatic bundling of the App Router. You can then use [`serverExternalPackages`](https://nextjs.org/docs/app/api-reference/next-config-js/serverExternalPackages) to opt-out specific packages, if needed.
 
-next.config.ts```
+next.config.ts
+```
 const nextConfig = {
-// Automatically bundle external packages in the Pages Router:
-bundlePagesRouterDependencies: true,
-// Opt specific packages out of bundling for both App and Pages Router:
-serverExternalPackages: ['package-name'],
+  // Automatically bundle external packages in the Pages Router:
+  bundlePagesRouterDependencies: true,
+  // Opt specific packages out of bundling for both App and Pages Router:
+  serverExternalPackages: ['package-name'],
 };
+
 module.exports = nextConfig;
 ```
 
@@ -1763,9 +1898,14 @@ This release was brought to you by:
 
 Huge thanks to @devjiwonchoi, @ijjk, @Ethan-Arrowood, @sokra, @kenji-webdev, @wbinnssmith, @huozhi, @domdomegg, @samcx, @Jaaneek, @evanwinter, @wyattjoh, @kdy1, @balazsorban44, @feedthejim, @ztanner, @ForsakenHarmony, @kwonoj, @delbaoliveira, @stipsan, @leerob, @shuding, @xiaohanyu, @timneutkens, @dvoytenko, @bobaaaaa, @bgw, @gaspar09, @souporserious, @unflxw, @kiner-tang, @Ehren12, @EffectDoplera, @IAmKushagraSharma, @Auxdible, @sean-rallycry, @Jeffrey-Zutt, @eps1lon, @jeanmax1me, @unstubbable, @NilsJacobsen, @PaulAsjes, @adiguno, @ryan-nauman, @zsh77, @KagamiChan, @steveluscher, @MehfoozurRehman, @vkryachko, @chentsulin, @samijaber, @begalinsaf, @FluxCapacitor2, @lukahartwig, @brianshano, @pavelglac, @styfle, @symant233, @HristovCodes, @karlhorky, @jonluca, @jonathan-ingram, @mknichel, @sopranopillow, @Gomah, @imddc, @notrab, @gabrielrolfsen, @remorses, @AbhiShake1, @agadzik, @ryota-murakami, @rishabhpoddar, @rezamauliadi, @IncognitoTGT, @webtinax, @BunsDev, @nisabmohd, @z0n, @bennettdams, @joeshub, @n1ckoates, @srkirkland, @RiskyMH, @coopbri, @okoyecharles, @diogocapela, @dnhn, @typeofweb, @davidsa03, @imranolas, @lubieowoce, @maxhaomh, @mirasayon, @blvdmitry, @hwangstar156, @lforst, @emmerich, @christian-bromann, @Lsnsh, @datner, @hiro0218, @flybayer, @ianmacartney, @ypessoa, @ryohidaka, @icyJoseph, @Arinji2, @lovell, @nsams, @Nayeem-XTREME, @JamBalaya56562, @Arindam200, @gaojude, @qqww08, @todor0v, @coltonehrman, and @wiesson for helping!
 
+---
 
---- Next.js 15 RC 2 | Next.js: https://nextjs.org/blog/next-15-rc2 ---
 
+<<<<< https://nextjs.org/blog/ >>>>>
+
+# Next.js 15 RC 2 | Next.js
+
+URL: https://nextjs.org/blog/next-15-rc2
 
 [Back to Blog](/blog)
 
@@ -1794,6 +1934,7 @@ Try the Next.js 15 Release Candidate (RC2) today:
 ```
 # Use the new automated upgrade CLI
 npx @next/codemod@canary upgrade rc
+
 # ...or upgrade manually
 npm install next@rc react@rc react-dom@rc
 ```
@@ -1842,10 +1983,12 @@ Therefore, we are transitioning APIs that rely on request-specific data—such a
 
 ```
 import { cookies } from 'next/headers';
+
 export async function AdminPanel() {
-const cookieStore = await cookies();
-const token = cookieStore.get('token');
-// ...
+  const cookieStore = await cookies();
+  const token = cookieStore.get('token');
+
+  // ...
 }
 ```
 
@@ -1879,11 +2022,13 @@ To improve security, we’ve introduced the following enhancements:
 ```
 // app/actions.js
 'use server';
-// This action \*\*is\*\* used in our application, so Next.js
+
+// This action **is** used in our application, so Next.js
 // will create a secure ID to allow the client to reference
 // and call the Server Action.
 export async function updateUserAction(formData) {}
-// This action \*\*is not\*\* used in our application, so Next.js
+
+// This action **is not** used in our application, so Next.js
 // will automatically remove this code during `next build`
 // and will not create a public endpoint.
 export async function deleteUserAction(formData) {}
@@ -1901,25 +2046,26 @@ This update is part of our ongoing efforts to enhance observability in Next.js, 
 
 Learn more about the [Static Route Indicator](/docs/canary/app/api-reference/next-config-js/devIndicators#appisrstatus-static-indicator), which can be disabled.
 
-## [`` Component](#form-component)
+## [`<Form>` Component](#form-component)
 
-The new `` component extends the HTML `` element with [prefetching](/docs/app/building-your-application/routing/linking-and-navigating#2-prefetching), [client-side navigation](/docs/app/building-your-application/routing/linking-and-navigating#5-soft-navigation), and progressive enhancement.
+The new `<Form>` component extends the HTML `<form>` element with [prefetching](/docs/app/building-your-application/routing/linking-and-navigating#2-prefetching), [client-side navigation](/docs/app/building-your-application/routing/linking-and-navigating#5-soft-navigation), and progressive enhancement.
 
 It is useful for forms that navigate to a new page, such as a search form that leads to a results page.
 
 ```
 import Form from 'next/form';
+
 export default function Page() {
-return (
-
-
-Submit
-
-);
+  return (
+    <Form action="/search">
+      <input name="query" />
+      <button type="submit">Submit</button>
+    </Form>
+  );
 }
 ```
 
-The `` component comes with:
+The `<Form>` component comes with:
 
 * **Prefetching**: When the form is in view, the [layout](/docs/app/api-reference/file-conventions/layout) and [loading](/docs/app/api-reference/file-conventions/loading) UI are prefetched, making navigation fast.
 * **Client-side Navigation:** On submission, shared layouts and client-side state are preserved.
@@ -1927,39 +2073,50 @@ The `` component comes with:
 
 Previously, achieving these features required a lot of manual boilerplate. For example:
 
-Example```
+Example
+```
 // Note: This is abbreviated for demonstration purposes.
 // Not recommended for use in production code.
+
 'use client'
+
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+
 export default function Form(props) {
-const action = props.action
-const router = useRouter()
-useEffect(() => {
-// if form target is a URL, prefetch it
-if (typeof action === 'string') {
-router.prefetch(action)
-}
-}, [action, router])
-function onSubmit(event) {
-event.preventDefault()
-// grab all of the form fields and trigger a `router.push` with the data URL encoded
-const formData = new FormData(event.currentTarget)
-const data = new URLSearchParams()
-for (const [name, value] of formData) {
-data.append(name, value as string)
-}
-router.push(`${action}?${data.toString()}`)
-}
-if (typeof action === 'string') {
-return 
-}
-return 
+  const action = props.action
+  const router = useRouter()
+
+  useEffect(() => {
+    // if form target is a URL, prefetch it
+    if (typeof action === 'string') {
+      router.prefetch(action)
+    }
+  }, [action, router])
+
+  function onSubmit(event) {
+    event.preventDefault()
+
+    // grab all of the form fields and trigger a `router.push` with the data URL encoded
+    const formData = new FormData(event.currentTarget)
+    const data = new URLSearchParams()
+
+    for (const [name, value] of formData) {
+      data.append(name, value as string)
+    }
+
+    router.push(`${action}?${data.toString()}`)
+  }
+
+  if (typeof action === 'string') {
+    return <form onSubmit={onSubmit} {...props} />
+  }
+
+  return <form {...props} />
 }
 ```
 
-Learn more about the [`` Component](/docs/canary/app/api-reference/components/form).
+Learn more about the [`<Form>` Component](/docs/canary/app/api-reference/components/form).
 
 ## [Support for `next.config.ts`](#support-for-nextconfigts)
 
@@ -1967,9 +2124,11 @@ Next.js now supports the TypeScript `next.config.ts` file type and provides a `N
 
 ```
 import type { NextConfig } from 'next';
+
 const nextConfig: NextConfig = {
-/\* config options here \*/
+  /* config options here */
 };
+
 export default nextConfig;
 ```
 
@@ -1990,14 +2149,15 @@ In addition, we’ve collaborated with [Sentry](https://sentry.io/) on designing
 
 ```
 export async function onRequestError(err, request, context) {
-await fetch('https://...', {
-method: 'POST',
-body: JSON.stringify({ message: err.message, request, context }),
-headers: { 'Content-Type': 'application/json' },
-});
+  await fetch('https://...', {
+    method: 'POST',
+    body: JSON.stringify({ message: err.message, request, context }),
+    headers: { 'Content-Type': 'application/json' },
+  });
 }
+
 export async function register() {
-// init your favorite observability provider SDK
+  // init your favorite observability provider SDK
 }
 ```
 
@@ -2029,16 +2189,17 @@ We recommend sticking to the current defaults unless you have specific requireme
 
 ```
 const nextConfig = {
-experimental: {
-// how many times Next.js will retry failed page generation attempts
-// before failing the build
-staticGenerationRetryCount: 1
-// how many pages will be processed per worker
-staticGenerationMaxConcurrency: 8
-// the minimum number of pages before spinning up a new export worker
-staticGenerationMinPagesPerWorker: 25
-},
+  experimental: {
+	  // how many times Next.js will retry failed page generation attempts
+	  // before failing the build
+    staticGenerationRetryCount: 1
+    // how many pages will be processed per worker
+    staticGenerationMaxConcurrency: 8
+    // the minimum number of pages before spinning up a new export worker
+    staticGenerationMinPagesPerWorker: 25
+  },
 }
+
 export default nextConfig;
 ```
 
@@ -2113,4 +2274,5 @@ This release was brought to you by:
 
 Huge thanks to @huozhi, @shuding, @wyattjoh, @PaulAsjes, @mcnaveen, @timneutkens, @stipsan, @aktoriukas, @sirTangale, @greatvivek11, @sokra, @anatoliik-lyft, @wbinnssmith, @coltonehrman, @hungdoansy, @kxlow, @ztanner, @manovotny, @leerob, @ryota-murakami, @ijjk, @pnutmath, @feugy, @Jeffrey-Zutt, @wiesson, @eps1lon, @devjiwonchoi, @Ethan-Arrowood, @kenji-webdev, @domdomegg, @samcx, @Jaaneek, @evanwinter, @kdy1, @balazsorban44, @feedthejim, @ForsakenHarmony, @kwonoj, @delbaoliveira, @xiaohanyu, @dvoytenko, @bobaaaaa, @bgw, @gaspar09, @souporserious, @unflxw, @kiner-tang, @Ehren12, @EffectDoplera, @IAmKushagraSharma, @Auxdible, @sean-rallycry, @jeanmax1me, @unstubbable, @NilsJacobsen, @adiguno, @ryan-nauman, @zsh77, @KagamiChan, @steveluscher, @MehfoozurRehman, @vkryachko, @chentsulin, @samijaber, @begalinsaf, @FluxCapacitor2, @lukahartwig, @brianshano, @pavelglac, @styfle, @symant233, @HristovCodes, @karlhorky, @jonluca, @jonathan-ingram, @mknichel, @sopranopillow, @Gomah, @imddc, @notrab, @gabrielrolfsen, @remorses, @AbhiShake1, @agadzik, @rishabhpoddar, @rezamauliadi, @IncognitoTGT, @webtinax, @BunsDev, @nisabmohd, @z0n, @bennettdams, @joeshub, @n1ckoates, @srkirkland, @RiskyMH, @coopbri, @okoyecharles, @diogocapela, @dnhn, @typeofweb, @davidsa03, @imranolas, @lubieowoce, @maxhaomh, @mirasayon, @blvdmitry, @hwangstar156, @lforst, @emmerich, @christian-bromann, @Lsnsh, @datner, @hiro0218, @flybayer, @ianmacartney, @ypessoa, @ryohidaka, @icyJoseph, @Arinji2, @lovell, @nsams, @Nayeem-XTREME, @JamBalaya56562, @Arindam200, @gaojude, @qqww08, @todor0v, @tokkiyaa, @arlyon, @lorensr, @Juneezee, @Sayakie, @IGassmann, @bosconian-dynamics, @phryneas, @akazwz, @atik-persei, @shubh73, @alpedia0, @chogyejin, @notomo, @ArnoldVanN, @dhruv-kaushik, @kevva, @Kahitar, @anay-208, @boris-szl, @devnyxie, @LorisSigrist, @M-YasirGhaffar, @Lada496, @kippmr, @torresgol10, @pkiv, @Netail, @jontewks, @ArnaudFavier, @chrisjstott, @mratlamwala, @mayank1513, @karlkeefer, @kshehadeh, @Marukome0743, @a89529294, @anku255, @KeisukeNagakawa, @andrii-bodnar, @aldosch, @versecafe, @steadily-worked, @cfrank, @QiuranHu, @farsabbutt, @joostmeijles, @saltcod, @archanaagivale30, @crutchcorn, @crebelskydico, @Maaz-Ahmed007, @jophy-ye, @remcohaszing, @JoshuaKGoldberg, @creativoma, @GyoHeon, @SukkaW, @MaxLeiter, @neila-a, @stylessh, @Teddir, @ManuLpz4, @Julian-Louis, @syi0808, @mert-duzgun, @amannn, @MonstraG, @hamirmahal, @tariknh, @Kikobeats, @LichuAcu, @Kuboczoch, @himself65, @Sam-Phillemon9493, @Shruthireddy04, @Hemanshu-Upadhyay, @timfuhrmann, @controversial, @pathliving, @mischnic, @mauroaccornero, @NavidNourani, @allanchau, @ekremkenter, @yurivangeffen, @gnoff, @darthmaim, @gdborton, @Willem-Jaap, @KentoMoriwaki, @TrevorSayre, @marlier, @Luluno01, @xixixao, @domin-mnd, @niketchandivade, @N2D4, @kjugi, @luciancah, @mud-ali, @codeSTACKr, @luojiyin1987, @mehmetozguldev, @ronanru, @tknickman, @joelhooks, @khawajaJunaid, @rubyisrust, @abdull-haseeb, @bewinsnw, @housseindjirdeh, @li-jia-nan, @aralroca, @s-ekai, @ah100101, @jantimon, @jordienr, @iscekic, @Strift, @slimbde, @nauvalazhar, @HughHzyb, @guisehn, @wesbos, @OlyaPolya, @paarthmadan, @AhmedBaset, @dineshh-m, @avdeev, @Bhavya031, @MildTomato, @Bjornnyborg, @amikofalvy, @yosefbeder, @kjac, @woutvanderploeg, @Ocheretovich, @ProchaLu, @luismiramirez, @omahs, @theoludwig, @abhi12299, @sommeeeer, @lumirlumir, @royalfig, @iampoul, @molebox, @txxxxc, @zce, @mamuso, @kahlstrm, @vercel-release-bot, @zhawtof, @PapatMayuri, @PlagueFPS, @IDNK2203, @jericopulvera, @liby, @CannonLock, @timfish, @whatisagi, @none23, @haouvw, @Pyr33x, @SouthLink, @frydj, @CrutchTheClutch, @sleevezip, @r34son, @yunsii, @md-rejoyan-islam, @kartheesan05, @nattui, @KonkenBonken, @weicheng95, @brekk, @Francoscopic, @B33fb0n3, @ImDR, @nurullah, @hdodov, @ebCrypto, @soedirgo, @floriangosse, @Tim-Zj, @raeyoung-kim, @erwannbst, @DerTimonius, @hirotomoyamada, @Develliot, @chandanpasunoori, @vicb, @ankur-dwivedi, @kidonng, @baeharam, @AnaTofuZ, @coderfin, @xugetsu, @alessiomaffeis, @kutsan, @jordyfontoura, @sebmarkbage, @tranvanhieu01012002, @jlbovenzo, @Luk-z, @jaredhan418, @bangseongbeom, @penicillin0, @neoFinch, @DeepakBalaraman, @Manoj-M-S, @Unsleeping, @lonr, @Aerilym, @ytori, @acdlite, @actopas, @n-ii-ma, @adcichowski, @mobeigi, @JohnGemstone, and @jjm2317 for helping!
 
+---
 
