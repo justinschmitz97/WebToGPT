@@ -27,7 +27,8 @@
   },
   "reactblog": {
     "url": "https://react.dev/blog",
-    "final_include_patterns": ["blog/2024/", "blog/2023/"]
+    "final_include_patterns": ["blog/2024/", "blog/2023/"],
+    "excluded_patterns": ["/02/", "/03/"]
   },
   "cva": {
     "url": "https://cva.style/",
