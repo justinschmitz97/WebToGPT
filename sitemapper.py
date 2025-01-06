@@ -1,12 +1,7 @@
-"""
-sitemapper.py
-This script generates a sitemap for a given website based on the configuration provided.
-It includes domain restriction, file extension filtering, and final output filtering.
-"""
-
 import argparse
 import asyncio
 import re
+import random
 import json
 import os
 import logging
@@ -59,6 +54,11 @@ visited_urls = set()
 urls_to_visit = asyncio.Queue()
 failed_urls = {}
 
+# Throttling variables
+throttling_enabled = False
+throttling_delay_min = 2.0  # Minimum delay in seconds
+throttling_delay_max = 5.0  # Maximum delay in seconds
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -86,7 +86,7 @@ def main():
         site_config = config.get("default", {})
         site_config["url"] = args.url
 
-    global base_url, base_domain, included_regex, excluded_regex, excluded_extensions, max_concurrency, final_include_patterns, strict_mode, url_prefix
+    global base_url, base_domain, included_regex, excluded_regex, excluded_extensions, max_concurrency, final_include_patterns, strict_mode, url_prefix, throttling_enabled
 
     base_url = site_config.get("url")
     if not base_url:
@@ -122,6 +122,9 @@ def main():
         "strict", False
     )  # Command-line flag overrides config
     url_prefix = base_url if strict_mode else None
+
+    # Throttling settings
+    throttling_enabled = site_config.get("throttling", False)
 
     # Start crawling
     urls_to_visit.put_nowait(base_url)
@@ -184,6 +187,12 @@ async def fetch(url, session, semaphore):
     logging.info(f"Fetching: {url}")
     async with semaphore:
         try:
+            # Throttling: Introduce a randomized delay if enabled
+            if throttling_enabled:
+                delay = random.uniform(throttling_delay_min, throttling_delay_max)
+                logging.info(f"Throttling enabled. Delaying for {delay:.2f} seconds...")
+                await asyncio.sleep(delay)
+
             async with session.get(url, timeout=10) as response:
                 if response.content_type != "text/html":
                     return

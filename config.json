@@ -7,6 +7,30 @@
     "excluded_classes": [],
     "strict": false
   },
+  "grammarly": {
+    "url": "https://www.grammarly.com/blog/",
+    "strict": true,
+    "throttling": true,
+    "excluded_patterns": [
+      "/company/",
+      "/commonly-confused-words/",
+      "/citations/",
+      "/career-advice/",
+      "/author/",
+      "/ai/",
+      "/acronyms-abbreviations/",
+      "/engineering/",
+      "/emailing",
+      "/idioms/",
+      "/institutions/",
+      "/interviewing/",
+      "/product/",
+      "/resigning/",
+      "/resumes-cover-letters/",
+      "/user-stories/",
+      "/what-is"
+    ]
+  },
   "devtools": {
     "url": "https://developer.chrome.com/docs/extensions/reference/",
     "final_include_patterns": "https://developer.chrome.com/docs/extensions/reference/",
