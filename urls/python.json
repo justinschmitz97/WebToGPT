@@ -1,9 +1,14 @@
 {
-    "timestamp": "2025-01-04T21:07:02Z",
+    "timestamp": "2025-01-12T20:06:13Z",
     "site_key": "python",
     "domain": "https://docs.python.org/3/",
     "total_urls": 4,
-    "failed_urls": {},
+    "failed_urls": {
+        "https://docs.python.org/3/whatsnew/changelog.html": "",
+        "https://docs.python.org/3/c-api/unicode.html": "",
+        "https://docs.python.org/3/library/array.html": "",
+        "https://docs.python.org/3/library/curses.html": ""
+    },
     "urls": [
         "https://docs.python.org/3/whatsnew/3.10.html",
         "https://docs.python.org/3/whatsnew/3.11.html",

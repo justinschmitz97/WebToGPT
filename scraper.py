@@ -12,12 +12,33 @@ from playwright.async_api import async_playwright
 
 import trafilatura
 
+import re
+import nltk
+from nltk.corpus import stopwords
+
+nltk.download("stopwords")
+
 CACHE_DIR = "cache"
 DATA_DIR = "data"
 URLS_DIR = "urls"
 
+STOPWORDS = set(stopwords.words("english"))
+
+
 os.makedirs(CACHE_DIR, exist_ok=True)
 os.makedirs(DATA_DIR, exist_ok=True)
+
+
+def cleanup_text(text):
+    # 1. Replace any newline characters with a space.
+    text = text.replace("\n", " ")
+    # 2. Remove multiple spaces (collapse into a single space).
+    text = re.sub(r"\s+", " ", text).strip()
+    # 3. Remove stopwords.
+    words = text.split()
+    filtered = [w for w in words if w.lower() not in STOPWORDS]
+    text = " ".join(filtered)
+    return text
 
 
 def get_cache_filename(url):
@@ -132,14 +153,20 @@ async def process_url(url, domain, session):
     # Keep only the 'source', 'title', and 'text' fields
     minimal_data = {k: data[k] for k in ("source", "title", "text") if k in data}
 
-    # Ensure 'text' field is present
-    if not minimal_data.get("text"):
+    # Clean up fields if they exist
+    if "text" in minimal_data:
+        # Ensure 'text' field is present and then clean
+        if not minimal_data["text"]:
+            print(f"No text extracted from URL: {url}")
+            return None
+        minimal_data["text"] = cleanup_text(minimal_data["text"])
+    else:
         print(f"No text extracted from URL: {url}")
         return None
 
     # Convert back to JSON string
-    extracted = json.dumps(minimal_data)
-    return extracted
+    extracted_json = json.dumps(minimal_data)
+    return extracted_json
 
 
 async def main():
