@@ -7,20 +7,6 @@
     "excluded_classes": [],
     "strict": false
   },
-  "devtools": {
-    "url": "https://developer.chrome.com/docs/extensions/reference/",
-    "final_include_patterns": "https://developer.chrome.com/docs/extensions/reference/",
-    "strict": true
-  },
-  "mdn": {
-    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/",
-    "final_include_patterns": [
-      "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/",
-      "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/"
-    ],
-    "excluded_patterns": [".txt", "/input/", "/rel/"],
-    "strict": true
-  },
   "react": {
     "url": "https://react.dev",
     "final_include_patterns": ["reference"]
@@ -29,19 +15,6 @@
     "url": "https://react.dev/blog",
     "final_include_patterns": ["blog/2024/", "blog/2023/"],
     "excluded_patterns": ["/02/", "/03/"]
-  },
-  "cva": {
-    "url": "https://cva.style/",
-    "excluded_patterns": [
-      "assets",
-      "tutorials",
-      "vue",
-      "svelte",
-      "astro",
-      "11ty",
-      "bem",
-      "getting-started"
-    ]
   },
   "tailwind-changelog": {
     "url": "https://tailwindcss.com/",
@@ -89,27 +62,5 @@
   "typescript": {
     "url": "https://www.typescriptlang.org/",
     "final_include_patterns": ["typescript-5"]
-  },
-  "emblacarousel": {
-    "url": "https://www.embla-carousel.com/",
-    "final_include_patterns": ["plugins", "api"]
-  },
-  "vue": {
-    "url": "https://vuejs.org/guide/",
-    "final_include_patterns": ["style-guide", "guide", "api"]
-  },
-  "vue-changelog": {
-    "url": "https://blog.vuejs.org/",
-    "final_include_patterns": ["https://blog.vuejs.org/posts/vue-3-"]
-  },
-  "python": {
-    "url": "https://docs.python.org/3/",
-    "final_include_patterns": [
-      "https://docs.python.org/3/whatsnew/3.10",
-      "https://docs.python.org/3/whatsnew/3.11",
-      "https://docs.python.org/3/whatsnew/3.12",
-      "https://docs.python.org/3/whatsnew/3.13"
-    ],
-    "strict": true
   }
 }
