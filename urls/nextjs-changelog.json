@@ -1,8 +1,8 @@
 {
-    "timestamp": "2025-02-25T09:16:53Z",
+    "timestamp": "2025-05-28T04:43:45Z",
     "site_key": "nextjs-changelog",
     "domain": "https://nextjs.org/blog/",
-    "total_urls": 7,
+    "total_urls": 9,
     "failed_urls": {},
     "urls": [
         "https://nextjs.org/blog/next-14",
@@ -10,6 +10,8 @@
         "https://nextjs.org/blog/next-14-2",
         "https://nextjs.org/blog/next-15",
         "https://nextjs.org/blog/next-15-1",
+        "https://nextjs.org/blog/next-15-2",
+        "https://nextjs.org/blog/next-15-3",
         "https://nextjs.org/blog/next-15-rc",
         "https://nextjs.org/blog/next-15-rc2"
     ]
