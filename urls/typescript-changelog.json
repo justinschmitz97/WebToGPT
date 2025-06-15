@@ -1,0 +1,12 @@
+{
+    "timestamp": "2025-06-15T07:49:30Z",
+    "site_key": "typescript-changelog",
+    "domain": "https://www.typescriptlang.org/",
+    "total_urls": 3,
+    "failed_urls": {},
+    "urls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-6.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-7.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-8.html"
+    ]
+}

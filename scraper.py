@@ -9,12 +9,17 @@ import sys
 
 from aiohttp import ClientSession, ClientTimeout
 from playwright.async_api import async_playwright
+from dotenv import load_dotenv
+from openai import AsyncOpenAI
 
 import trafilatura
 
 import re
 import nltk
 from nltk.corpus import stopwords
+
+# Load environment variables from .env file
+load_dotenv()
 
 nltk.download("stopwords")
 
@@ -23,6 +28,9 @@ DATA_DIR = "data"
 URLS_DIR = "urls"
 
 STOPWORDS = set(stopwords.words("english"))
+
+# Initialize OpenAI client
+client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 os.makedirs(CACHE_DIR, exist_ok=True)
@@ -35,6 +43,51 @@ def cleanup_text(text):
     # 2. Remove multiple spaces (collapse into a single space).
     text = re.sub(r"\s+", " ", text).strip()
     return text
+
+
+async def process_content_with_ai(text: str):
+    """
+    Process the extracted text with an AI model to summarize and structure it.
+    """
+    if not text or not isinstance(text, str) or len(text.strip()) < 100:
+        print("Text is too short to process, skipping AI structuring.")
+        return None
+
+    try:
+        response = await client.chat.completions.create(
+            model="gpt-4o",
+            response_format={"type": "json_object"},
+            messages=[
+                {
+                    "role": "system",
+                    "content": """
+You are an expert developer assistant. Your task is to analyze a software changelog or blog post and extract the key information into a structured JSON format.
+
+The user will provide the raw text content of a webpage.
+
+Your output must be a JSON object with the following schema:
+{
+  "summary": "A concise, developer-focused summary of the most important changes. Focus on the 'what' and 'why'.",
+  "changes": [
+    {
+      "type": "Feature" | "Breaking Change" | "Deprecation" | "Performance" | "Fix" | "Other",
+      "title": "A short, descriptive title for the change.",
+      "description": "A detailed but clear explanation of the change, including code examples if available in the source text. Keep it technical and to the point."
+    }
+  ]
+}
+
+Focus exclusively on technical changes. Omit marketing fluff, introductory paragraphs, author bios, and other non-essential information. If the text does not appear to be a changelog or technical update, return an empty "changes" array.
+""",
+                },
+                {"role": "user", "content": text},
+            ],
+            temperature=0.2,
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        print(f"Error processing content with AI: {e}")
+        return None
 
 
 def get_cache_filename(url):
@@ -113,7 +166,7 @@ def save_json(site_key, json_content):
 
 
 async def process_url(url, domain, session):
-    """Process a single URL: fetch, extract, sanitize, and return JSON content."""
+    """Process a single URL: fetch, extract, structure with AI, and return JSON content."""
     cached_content = load_cached_content(url)
     if cached_content:
         html_content = cached_content
@@ -131,38 +184,28 @@ async def process_url(url, domain, session):
         print(f"Failed to retrieve content for URL: {url}")
         return None
 
-    # Use Trafilatura to extract content and metadata
-    extracted = trafilatura.extract(
-        html_content,
-        url=url,
-        output_format="json",
-        with_metadata=True,
-    )
+    # Use Trafilatura to extract the main text content
+    plain_text = trafilatura.extract(html_content, include_comments=False)
 
-    if not extracted:
+    if not plain_text:
         print(f"Trafilatura failed to extract content from URL: {url}")
         return None
 
-    # Parse the extracted JSON content
-    data = json.loads(extracted)
+    # Process the text with our AI function to get structured data
+    structured_data_str = await process_content_with_ai(plain_text)
 
-    # Keep only the 'source', 'title', and 'text' fields
-    minimal_data = {k: data[k] for k in ("source", "title", "text") if k in data}
-
-    # Clean up fields if they exist
-    if "text" in minimal_data:
-        # Ensure 'text' field is present and then clean
-        if not minimal_data["text"]:
-            print(f"No text extracted from URL: {url}")
-            return None
-        minimal_data["text"] = cleanup_text(minimal_data["text"])
-    else:
-        print(f"No text extracted from URL: {url}")
+    if not structured_data_str:
+        print(f"AI processing failed or returned no data for URL: {url}")
         return None
 
-    # Convert back to JSON string
-    extracted_json = json.dumps(minimal_data)
-    return extracted_json
+    # Add the source URL to the structured data
+    try:
+        structured_data = json.loads(structured_data_str)
+        structured_data["source"] = url
+        return json.dumps(structured_data)
+    except json.JSONDecodeError:
+        print(f"Failed to decode JSON from AI for URL: {url}")
+        return None
 
 
 async def main():
