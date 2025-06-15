@@ -34,10 +34,6 @@ def cleanup_text(text):
     text = text.replace("\n", " ")
     # 2. Remove multiple spaces (collapse into a single space).
     text = re.sub(r"\s+", " ", text).strip()
-    # 3. Remove stopwords.
-    words = text.split()
-    filtered = [w for w in words if w.lower() not in STOPWORDS]
-    text = " ".join(filtered)
     return text
 
 

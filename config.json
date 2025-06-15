@@ -7,13 +7,9 @@
     "excluded_classes": [],
     "strict": false
   },
-  "react": {
-    "url": "https://react.dev",
-    "final_include_patterns": ["reference"]
-  },
   "react-changelog": {
     "url": "https://react.dev/blog",
-    "final_include_patterns": ["blog/2024/", "blog/2023/"],
+    "final_include_patterns": ["react-19"],
     "excluded_patterns": ["/02/", "/03/"]
   },
   "tailwind-changelog": {
@@ -21,30 +17,9 @@
     "excluded_patterns": [],
     "final_include_patterns": ["v4"]
   },
-  "nextjs": {
-    "url": "https://nextjs.org/",
-    "final_include_patterns": ["https://nextjs.org/docs/app/"],
-    "excluded_patterns": [
-      "13",
-      "14",
-      "building-your-application",
-      "canary",
-      "conf",
-      "discord",
-      "templates",
-      "learn",
-      "clone",
-      "/pages",
-      "github",
-      "http://"
-    ]
-  },
   "nextjs-changelog": {
     "url": "https://nextjs.org/blog/",
-    "final_include_patterns": [
-      "https://nextjs.org/blog/next-15",
-      "https://nextjs.org/blog/next-14"
-    ],
+    "final_include_patterns": ["https://nextjs.org/blog/next-15"],
     "excluded_patterns": [
       "13",
       "building-your-application",
@@ -56,11 +31,16 @@
       "clone",
       "/pages",
       "github",
-      "http://"
+      "http://",
+      "rc"
     ]
   },
-  "typescript": {
+  "typescript-changelog": {
     "url": "https://www.typescriptlang.org/",
-    "final_include_patterns": ["typescript-5"]
+    "final_include_patterns": [
+      "typescript-5-8",
+      "typescript-5-7",
+      "typescript-5-6"
+    ]
   }
 }

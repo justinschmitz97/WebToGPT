@@ -1,18 +1,13 @@
 {
-    "timestamp": "2025-05-28T04:43:45Z",
+    "timestamp": "2025-06-15T07:37:52Z",
     "site_key": "nextjs-changelog",
     "domain": "https://nextjs.org/blog/",
-    "total_urls": 9,
+    "total_urls": 4,
     "failed_urls": {},
     "urls": [
-        "https://nextjs.org/blog/next-14",
-        "https://nextjs.org/blog/next-14-1",
-        "https://nextjs.org/blog/next-14-2",
         "https://nextjs.org/blog/next-15",
         "https://nextjs.org/blog/next-15-1",
         "https://nextjs.org/blog/next-15-2",
-        "https://nextjs.org/blog/next-15-3",
-        "https://nextjs.org/blog/next-15-rc",
-        "https://nextjs.org/blog/next-15-rc2"
+        "https://nextjs.org/blog/next-15-3"
     ]
 }
